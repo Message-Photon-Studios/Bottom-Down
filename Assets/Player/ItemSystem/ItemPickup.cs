@@ -10,10 +10,16 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public class ItemPickup : MonoBehaviour
 {
+    [Header("Item settings")]
     [SerializeField] float spawnChance = 1f;
     [SerializeField] bool needsPayment;
+    [SerializeField] ItemRarity dropPointRarity;
+    [SerializeField] ItemCategory[] availableCategories;
     [SerializeField] public bool setByhand;
     [SerializeField] Item item;
+    [SerializeField] EnemyStats spawnFromEnemy;
+
+    [Header("Functional")]
     [SerializeField] GameObject canvas;
     [SerializeField] TMP_Text cost;
     [SerializeField] TMP_Text nameText;
@@ -21,15 +27,14 @@ public class ItemPickup : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] GameObject collectObj, buyObj;
 
-    [SerializeField] EnemyStats spawnFromEnemy;
+  
     ItemInventory inventory;
 
     private Coroutine hoverCoroutine;
 
     int itemCost;
     
-
-    void OnEnable()
+    void Start()
     {
         if(spawnFromEnemy != null)
         {
@@ -38,6 +43,16 @@ public class ItemPickup : MonoBehaviour
         else if(setByhand)
         {
             SetItem(item, item.itemCost);
+        } else
+        {
+            Item randomItem = GameManager.instance.itemLibrary.GetRandomItem(dropPointRarity, availableCategories);
+            if(randomItem == null) 
+            {
+                Debug.LogWarning("Item pickup of name " + name + " could not get a random item");
+                gameObject.SetActive(false);
+            }
+            else
+                SetItem(randomItem, randomItem.itemCost);
         }
     }
 

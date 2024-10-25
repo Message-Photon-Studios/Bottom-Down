@@ -417,8 +417,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnChance: 1
   needsPayment: 0
+  dropPointRarity: 0
+  availableCategories: 010000000200000003000000
   setByhand: 0
   item: {fileID: 0}
+  spawnFromEnemy: {fileID: 0}
   canvas: {fileID: 6429172647331977874}
   cost: {fileID: 516378011478929623}
   nameText: {fileID: 7945831279127040361}
@@ -426,7 +429,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8487453441343255021}
   collectObj: {fileID: 4734351028533983881}
   buyObj: {fileID: 4619075780793179713}
-  spawnFromEnemy: {fileID: 0}
 --- !u!58 &6412615717530420438
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -30,7 +30,8 @@ public class ItemSpellManager : MonoBehaviour
         }
 
         spawnSetSpell.AddRange(spawnableSpells);
-
+        
+        /*
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Item"))
         {
             ItemPickup pickup = obj.GetComponent<ItemPickup>();
@@ -61,6 +62,7 @@ public class ItemSpellManager : MonoBehaviour
             pickup.SetItem(item, Mathf.RoundToInt(item.itemCost * stageCostMultiplier));
             if(spawnSet.Count <= 0) spawnSet.AddRange(spawnableItems);
         }
+        */
 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("SpellItem"))
         {

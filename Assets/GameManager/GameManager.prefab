@@ -1073,6 +1073,7 @@ GameObject:
   - component: {fileID: 6749319306640925488}
   - component: {fileID: 2211731849923139773}
   - component: {fileID: 7474946213633799611}
+  - component: {fileID: 4351019461878009442}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -1145,6 +1146,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 8
   tipsManager: {fileID: 7474946213633799611}
+  itemLibrary: {fileID: 4351019461878009442}
   disablePausing: 0
 --- !u!114 &7474946213633799611
 MonoBehaviour:
@@ -1195,6 +1197,47 @@ MonoBehaviour:
   - Fire increases its damage each time it spreads.
   - A poisoned enemy deals significantly less damage than normal.
   removeTooltipButton: {fileID: -4679931084075046408, guid: fd04459890e791843a48243064f9151b, type: 3}
+--- !u!114 &4351019461878009442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6749319306640925491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd8d06c73b171e4fbbafab83d894a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPointRarities:
+    _serializedList:
+    - Key: 0
+      Value:
+        _serializedList:
+        - Key: 0
+          Value: 0.8
+        - Key: 1
+          Value: 0.19
+        - Key: 2
+          Value: 0.01
+    - Key: 1
+      Value:
+        _serializedList:
+        - Key: 0
+          Value: 0
+        - Key: 1
+          Value: 0.95
+        - Key: 2
+          Value: 0.05
+    - Key: 2
+      Value:
+        _serializedList:
+        - Key: 0
+          Value: 0
+        - Key: 1
+          Value: 0
+        - Key: 2
+          Value: 1
 --- !u!1 &7038129132029276527
 GameObject:
   m_ObjectHideFlags: 0
