@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0a03bfcfeb14547a7ea7090d7e60ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnChance: 1
+  spawnChance: 2
   needsPayment: 0
   dropPointRarity: 0
   availableCategories: 010000000200000003000000

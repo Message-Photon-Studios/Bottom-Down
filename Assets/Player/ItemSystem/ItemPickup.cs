@@ -11,7 +11,7 @@ using Unity.VisualScripting;
 public class ItemPickup : MonoBehaviour
 {
     [Header("Item settings")]
-    [SerializeField] float spawnChance = 1f;
+    [SerializeField] public SpawnPointChance spawnChance = SpawnPointChance.LowChance;
     [SerializeField] bool needsPayment;
     [SerializeField] ItemRarity dropPointRarity;
     [SerializeField] ItemCategory[] availableCategories;
@@ -90,21 +90,6 @@ public class ItemPickup : MonoBehaviour
         canvas.SetActive(false);
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
         hoverCoroutine = StartCoroutine(hoverAnimation());
-    }
-
-    /// <summary>
-    /// Randomly destroys the spawn point depending on the initial conditions
-    /// </summary>
-    public void RandomSpawnDestroy()
-    {
-        if(spawnChance < 1f)
-        {
-            float rng = UnityEngine.Random.Range(0,1f);
-            if(rng > spawnChance)
-            {
-                GameObject.DestroyImmediate(gameObject);
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -188,4 +173,11 @@ public class ItemPickup : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+}
+
+public enum SpawnPointChance
+{
+    Guaranteed,
+    HighChance,
+    LowChance
 }

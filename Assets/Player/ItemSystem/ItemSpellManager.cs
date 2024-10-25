@@ -7,16 +7,13 @@ using UnityEngine;
 /// </summary>
 public class ItemSpellManager : MonoBehaviour
 {
+    [SerializeField] int itemPop;
     [SerializeField] float stageCostMultiplier = 1;
-    [SerializeField] Item[] spawnableItems;
     [SerializeField] ColorSpell[] levelSpells;
 
     public void SpawnItems()
     {
-        List<Item> spawnSet = new List<Item>();
         List<ColorSpell> spawnSetSpell = new List<ColorSpell>();
-        spawnSet.AddRange(spawnableItems);
-
         List<ColorSpell> spawnableSpells = new List<ColorSpell>();
 
         foreach (ColorSpell spell in levelSpells)
@@ -31,38 +28,36 @@ public class ItemSpellManager : MonoBehaviour
 
         spawnSetSpell.AddRange(spawnableSpells);
         
-        /*
+        
+        List<GameObject> highSpawnChance = new List<GameObject>();
+        List<GameObject> lowSpawnChance = new List<GameObject>();
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Item"))
         {
             ItemPickup pickup = obj.GetComponent<ItemPickup>();
             if(pickup == null) continue;
-            pickup.RandomSpawnDestroy();
             if(obj == null) continue;
-            if(pickup.setByhand) continue;
-            Item item = null;
-            int rng = 0;
-            while(!item)
-            {
-                rng = UnityEngine.Random.Range(0,spawnSet.Count);
-                item = spawnSet[rng];
-                if(!item.CanBeSpawned())
-                {
-                    spawnSet.RemoveAt(rng);
-                    item = null;
-                }
+            if(pickup.spawnChance == SpawnPointChance.Guaranteed) continue;
 
-                if(spawnSet.Count <= 0)
-                {
-                    spawnSet.AddRange(spawnableItems);
-                }
-            }
-
-
-            spawnSet.RemoveAt(rng);
-            pickup.SetItem(item, Mathf.RoundToInt(item.itemCost * stageCostMultiplier));
-            if(spawnSet.Count <= 0) spawnSet.AddRange(spawnableItems);
+            if(pickup.spawnChance == SpawnPointChance.HighChance) highSpawnChance.Add(obj);
+            else lowSpawnChance.Add(obj);
         }
-        */
+
+
+        //Purge items until they reached the allowed item pop count.
+        while(highSpawnChance.Count + lowSpawnChance.Count > itemPop)
+        {
+            if(lowSpawnChance.Count > 0)
+            {
+                int i = Random.Range(0, lowSpawnChance.Count);
+                lowSpawnChance[i].SetActive(false);
+                lowSpawnChance.RemoveAt(i);
+            } else
+            {
+                int i = Random.Range(0, highSpawnChance.Count);
+                highSpawnChance[i].SetActive(false);
+                highSpawnChance.RemoveAt(i);
+            }
+        }    
 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("SpellItem"))
         {

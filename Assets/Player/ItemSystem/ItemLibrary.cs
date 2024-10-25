@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
+using System.Linq;
 public class ItemLibrary : MonoBehaviour{
 
     [SerializeField] SerializedDictionary<ItemRarity, SerializedDictionary<ItemRarity, float>> dropPointRarities;
@@ -118,13 +119,35 @@ public class ItemLibrary : MonoBehaviour{
         }
 
         //Pick a random item from the category and rarity
-        Item[] items = category[picker].items;
-        if(items.Length == 0)
+        List<Item> items = new List<Item>(category[picker].items.Length);
+        items.AddRange(category[picker].items);
+
+        if(items.Count == 0)
         {
             Debug.LogWarning("Item collection " + ((ItemCategory)categoryIndex).ToString()+"/"+((ItemRarity)picker).ToString() + " is empty!");
             return null;
         }
-        Item ret = items[Random.Range(0,items.Length)];
+
+        Item ret = null;
+        while(!ret)
+        {
+            if(items.Count == 0)
+            {
+                Debug.LogWarning("All items in collection " + ((ItemCategory)categoryIndex).ToString()+"/"+((ItemRarity)picker).ToString() + "  are unspawnable");
+                return null;
+            }
+
+            int itemIndex = Random.Range(0, items.Count);
+            if(!items[itemIndex].CanBeSpawned())
+            {
+                items.RemoveAt(itemIndex);
+                continue;
+            } else
+            {
+                ret = items[itemIndex];
+                break;
+            }
+        }
 
         return ret;
     }
