@@ -124,8 +124,10 @@ public class ItemLibrary : MonoBehaviour{
 
         if(items.Count == 0)
         {
-            Debug.LogWarning("Item collection " + ((ItemCategory)categoryIndex).ToString()+"/"+((ItemRarity)picker).ToString() + " is empty!");
-            return null;
+            Debug.LogWarning("Item collection " + ((ItemCategory)categoryIndex).ToString()+"/"+((ItemRarity)picker).ToString() + " is empty!, Taking from default");
+            items.AddRange(category[(int)dropPointRarity].items);
+
+            if(items.Count == 0) Debug.LogError("Item collection " + ((ItemCategory)categoryIndex).ToString() + "/" + dropPointRarity.ToString() + " is empty even though it is default!");
         }
 
         Item ret = null;

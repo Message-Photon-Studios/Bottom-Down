@@ -18,9 +18,11 @@ MonoBehaviour:
     When coloring an enemy gain
     a +20% chance that the color will override the enemys color instead of mixing
     with it.'
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 7258339260076130304
+  itemCategory: 3
+  itemRarity: 0
   references:
     version: 2
     RefIds:

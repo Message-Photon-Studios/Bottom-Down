@@ -177,7 +177,7 @@ MonoBehaviour:
 
     Power:
     30% for 10 sec'
-  spellCost: 50
+  spellCost: 40
   powerScale: 0.3
   coolDown: 3
   destroyOnAllImpact: 1
@@ -185,8 +185,7 @@ MonoBehaviour:
   impactOnEnemies: 0
   impactOnNonEnemies: 1
   triggerOnlyOnce: 1
-  canResetEnemyTriggeredList: 0
-  resetEnemyTriggeredTimer: -1
+  attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
   lifeTime: 2
   animationTrigger: raisedSpell

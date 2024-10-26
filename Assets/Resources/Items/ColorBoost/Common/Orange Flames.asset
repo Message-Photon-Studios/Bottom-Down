@@ -17,9 +17,11 @@ MonoBehaviour:
 
     Buffs orange color with
     +20%.'
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 1595614060766298116
+  itemCategory: 0
+  itemRarity: 0
   references:
     version: 2
     RefIds:

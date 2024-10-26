@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8beaee36baace2743b1bc3ce26b688bc, type: 3}
   description: This item blocks 25% of the damage taken from yellow colored enemies.
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 1655388888735678468
+  itemCategory: 2
+  itemRarity: 0
   references:
     version: 2
     RefIds:
     - rid: 1655388888735678468
       type: {class: ColorArmour, ns: , asm: Assembly-CSharp}
       data:
-        color: {fileID: 11400000, guid: a5087b0e29c5b414795753d6fe24755a, type: 2}
+        color: {fileID: 11400000, guid: 515b8e0cc06f688409aca84476871b24, type: 2}
         armour: 0.25

@@ -17,9 +17,11 @@ MonoBehaviour:
 
     Increases the
     astral pigments gained from enemies with 20%.'
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 7139356996789075970
+  itemCategory: 3
+  itemRarity: 0
   references:
     version: 2
     RefIds:

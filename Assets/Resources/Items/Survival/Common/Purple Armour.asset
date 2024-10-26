@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e5cf8fabff822a4439c543dff62f7b8b, type: 3}
   description: This item blocks 25% of the damage taken from purple colored enemies.
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 1655388888735678468
+  itemCategory: 2
+  itemRarity: 0
   references:
     version: 2
     RefIds:

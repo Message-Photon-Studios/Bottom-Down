@@ -16,9 +16,11 @@ MonoBehaviour:
   description: 'Why did I have these at home?
 
     Buffs red color with +20%.'
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 1595614060766298114
+  itemCategory: 0
+  itemRarity: 0
   references:
     version: 2
     RefIds:

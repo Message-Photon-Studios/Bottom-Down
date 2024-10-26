@@ -174,7 +174,7 @@ MonoBehaviour:
   description: 'Summons a spike that will rotate around the player.
 
     Power: 120%'
-  spellCost: 50
+  spellCost: 40
   powerScale: 1.2
   coolDown: 0.25
   destroyOnAllImpact: 0

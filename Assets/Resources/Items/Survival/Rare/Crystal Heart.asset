@@ -17,7 +17,7 @@ MonoBehaviour:
 
     Adds 20 max health and instantly
     heals the same amount.'
-  itemCost: 100
+  itemCost: 45
   effects:
   - rid: 1595614060766298121
   itemCategory: 2

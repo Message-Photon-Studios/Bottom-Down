@@ -17,7 +17,7 @@ MonoBehaviour:
 
     You have a +10% chance of blocking
     the damage of an enemies attack.'
-  itemCost: 50
+  itemCost: 45
   effects:
   - rid: 7139357001286680576
   itemCategory: 2

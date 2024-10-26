@@ -17,9 +17,11 @@ MonoBehaviour:
 
     Adds a +10% chance of not draining
     color when casting a spell.'
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 7139357001286680578
+  itemCategory: 3
+  itemRarity: 0
   references:
     version: 2
     RefIds:

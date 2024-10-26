@@ -17,9 +17,11 @@ MonoBehaviour:
 
     Gain a +15% chance that coloring an enemy
     also colors nearby enemies.'
-  itemCost: 50
+  itemCost: 45
   effects:
   - rid: 7258339239831011328
+  itemCategory: 3
+  itemRarity: 1
   references:
     version: 2
     RefIds:

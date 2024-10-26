@@ -17,9 +17,11 @@ MonoBehaviour:
 
     Rainbowed enemies
     take +50% damage when exploding.'
-  itemCost: 50
+  itemCost: 45
   effects:
   - rid: 7258339239831011329
+  itemCategory: 1
+  itemRarity: 1
   references:
     version: 2
     RefIds:

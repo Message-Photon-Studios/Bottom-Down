@@ -17,7 +17,7 @@ MonoBehaviour:
 
     Buffs blue color with
     +20%.'
-  itemCost: 50
+  itemCost: 30
   effects:
   - rid: 1595614060766298119
   itemCategory: 0
