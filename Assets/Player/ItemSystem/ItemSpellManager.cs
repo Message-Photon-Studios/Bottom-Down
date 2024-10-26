@@ -11,7 +11,7 @@ public class ItemSpellManager : MonoBehaviour
 {
     public static ItemSpellManager instance;
     [SerializeField] int itemPop;
-    [SerializeField] float stageCostMultiplier = 1;
+    [SerializeField] public float stageCostMultiplier = 1;
     [SerializeField] ColorSpell[] levelSpells;
 
     private Dictionary<Type, List<ItemEffect>> itemEffectsInLevel = new Dictionary<Type, List<ItemEffect>>();

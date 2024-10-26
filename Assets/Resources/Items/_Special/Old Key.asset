@@ -16,6 +16,8 @@ MonoBehaviour:
   description: An old key. I wonder what it unlocks.
   itemCost: 25
   effects: []
+  itemCategory: 4
+  itemRarity: 0
   references:
     version: 2
     RefIds: []

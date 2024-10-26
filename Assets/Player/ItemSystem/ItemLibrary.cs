@@ -173,6 +173,7 @@ public enum ItemCategory
     Damage,
     Survival,
     Utility,
+    Special
 }
 
 /// <summary>

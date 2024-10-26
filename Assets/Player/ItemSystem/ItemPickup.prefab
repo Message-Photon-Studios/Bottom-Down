@@ -418,7 +418,7 @@ MonoBehaviour:
   spawnChance: 2
   needsPayment: 0
   dropPointRarity: 0
-  availableCategories: 010000000200000003000000
+  availableCategories: 020000000100000003000000
   setByhand: 0
   item: {fileID: 0}
   spawnFromEnemy: {fileID: 0}

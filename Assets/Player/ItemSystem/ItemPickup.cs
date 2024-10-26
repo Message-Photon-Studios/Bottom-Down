@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using System;
 
 /// <summary>
 /// Handles the item spawn points
@@ -79,13 +80,13 @@ public class ItemPickup : MonoBehaviour
     public void SetItem(Item setItem, int itemCost)
     {
         ItemSpellManager.instance.AddSpawnedEffects(setItem);
-        
+
         this.item = setItem;
-        this.itemCost = itemCost;
+        this.itemCost = Mathf.RoundToInt(itemCost*ItemSpellManager.instance.stageCostMultiplier);
                 
         descriptionText.text = item.description;
         nameText.text = item.name;
-        cost.text = "Cost: " + itemCost;
+        cost.text = "Cost: " + this.itemCost;
 
         spriteRenderer.sprite = item.sprite;
 
@@ -106,7 +107,7 @@ public class ItemPickup : MonoBehaviour
                 buyObj.SetActive(false);
             } else
             {
-                if(inventory.GetCoins() < itemCost)
+                if(inventory.GetCoins() < this.itemCost)
                 {
                     cost.color = Color.red;
                 } else

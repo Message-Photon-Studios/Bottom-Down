@@ -16,9 +16,11 @@ MonoBehaviour:
   description: 'My favourite snack!
 
     Heal 50 health when picked up.'
-  itemCost: 25
+  itemCost: 45
   effects:
   - rid: 7139357001286680577
+  itemCategory: 4
+  itemRarity: 0
   references:
     version: 2
     RefIds:

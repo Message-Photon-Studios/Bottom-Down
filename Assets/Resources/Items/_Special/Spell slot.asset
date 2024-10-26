@@ -20,6 +20,8 @@ MonoBehaviour:
   itemCost: 100
   effects:
   - rid: 7139356996789075968
+  itemCategory: 4
+  itemRarity: 0
   references:
     version: 2
     RefIds:
