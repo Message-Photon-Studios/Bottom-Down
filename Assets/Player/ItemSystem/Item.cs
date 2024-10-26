@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
+using JetBrains.Annotations;
+using System;
 
 /// <summary>
 /// This is the base class for an item
@@ -13,7 +15,9 @@ public class Item : ScriptableObject
     public Sprite sprite;
     [TextArea(5,20)] public string description;
     public int itemCost;
-    [SerializeReference] public List<ItemEffect> effects = new List<ItemEffect>();
+    [SerializeReference] public List<ItemEffect> effects = new List<ItemEffect>(); 
+    [SerializeField] public ItemCategory itemCategory;
+    [SerializeField] public ItemRarity itemRarity;
 
     public void EnableItem() 
     {
@@ -44,6 +48,25 @@ public class Item : ScriptableObject
         }
         return ret;
     }
+
+    #if UNITY_EDITOR
+
+    //Ensures that the item category and item rarity variables are always set correctly, dependent on what folder the item is in.
+    private void OnValidate() 
+    {
+        string currentPath = AssetDatabase.GetAssetPath(this);
+        string[] splitString = currentPath.Split('/');
+        
+        System.Object temp; 
+        Enum.TryParse(typeof(ItemCategory), splitString[3], out temp);
+        itemCategory = (ItemCategory)temp;
+
+        System.Object temp2; 
+        Enum.TryParse(typeof(ItemRarity), splitString[4], out temp2);
+        itemRarity = (ItemRarity)temp2;
+    }
+    #endif
+
 }
 
 #if UNITY_EDITOR
