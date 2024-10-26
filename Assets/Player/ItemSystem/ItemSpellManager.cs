@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -7,9 +9,56 @@ using UnityEngine;
 /// </summary>
 public class ItemSpellManager : MonoBehaviour
 {
+    public static ItemSpellManager instance;
     [SerializeField] int itemPop;
     [SerializeField] float stageCostMultiplier = 1;
     [SerializeField] ColorSpell[] levelSpells;
+
+    private Dictionary<Type, List<ItemEffect>> itemEffectsInLevel = new Dictionary<Type, List<ItemEffect>>();
+
+    void Awake()
+    {
+        if(instance != null)
+        {
+            Debug.LogError("Two ItemSpellManagers exist in this scene!!!");
+        }
+        instance = this;
+        itemEffectsInLevel = new Dictionary<Type, List<ItemEffect>>();
+    }
+
+    /// <summary>
+    /// Returns the item effects already spawned in level specified by effect
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="effectType"></param>
+    /// <returns></returns>
+    public List<T> GetEffectsInLevel<T>(ItemEffect effectType) where T : ItemEffect
+    {
+        if(itemEffectsInLevel.ContainsKey(effectType.GetType()))
+        {
+            List<ItemEffect> effects = itemEffectsInLevel[effectType.GetType()];
+            return effects.Cast<T>().ToList();
+        } else
+        return new List<T>();
+    }
+
+    public void AddSpawnedEffects(Item item)
+    {
+        List<ItemEffect> effects = item.effects;
+
+        foreach (ItemEffect effect in effects)
+        {
+            if(itemEffectsInLevel.ContainsKey(effect.GetType()))
+            {
+                itemEffectsInLevel[effect.GetType()].Add(effect);
+            } else
+            {
+                List<ItemEffect> newList = new List<ItemEffect>();
+                newList.Add(effect);
+                itemEffectsInLevel.Add(effect.GetType(), newList);
+            }
+        }
+    }
 
     public void SpawnItems()
     {
@@ -48,12 +97,12 @@ public class ItemSpellManager : MonoBehaviour
         {
             if(lowSpawnChance.Count > 0)
             {
-                int i = Random.Range(0, lowSpawnChance.Count);
+                int i = UnityEngine.Random.Range(0, lowSpawnChance.Count);
                 lowSpawnChance[i].SetActive(false);
                 lowSpawnChance.RemoveAt(i);
             } else
             {
-                int i = Random.Range(0, highSpawnChance.Count);
+                int i = UnityEngine.Random.Range(0, highSpawnChance.Count);
                 highSpawnChance[i].SetActive(false);
                 highSpawnChance.RemoveAt(i);
             }

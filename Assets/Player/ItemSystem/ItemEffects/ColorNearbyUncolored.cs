@@ -6,7 +6,7 @@ using UnityEngine;
 public class ColorNearbyUncolored : ItemEffect
 {
     [Header("Chance To Color Nearby")]
-    [SerializeField] int chanceToColorNearby;
+    [SerializeField] public int chanceToColorNearby;
     public override void ActivateEffect()
     {
         GetPlayer().GetComponent<PlayerStats>().chanceToColorNearby += chanceToColorNearby;
@@ -19,6 +19,14 @@ public class ColorNearbyUncolored : ItemEffect
 
     public override bool CanBeSpawned()
     {
-        return GetPlayer().GetComponent<PlayerStats>().chanceToColorNearby < 100;
+
+        float availableChance = GetPlayer().GetComponent<PlayerStats>().chanceToColorNearby;
+        List<ColorNearbyUncolored> effects = ItemSpellManager.instance.GetEffectsInLevel<ColorNearbyUncolored>(this);
+        foreach (ColorNearbyUncolored item in effects)
+        {
+            availableChance += item.chanceToColorNearby;
+        }
+
+        return availableChance + chanceToColorNearby <= 80;
     }
 }

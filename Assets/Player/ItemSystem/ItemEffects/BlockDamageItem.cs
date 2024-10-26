@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlockDamageItem : ItemEffect
 {
     [Header("Block Damage")]
-    [SerializeField] int addBlockChance;
+    [SerializeField] public int addBlockChance;
     public override void ActivateEffect()
     {
         GetPlayer().GetComponent<PlayerStats>().chanceToBlock += addBlockChance;
@@ -18,6 +18,13 @@ public class BlockDamageItem : ItemEffect
 
     public override bool CanBeSpawned()
     {
-        return GetPlayer().GetComponent<PlayerStats>().chanceToBlock < 50;
+        float availableBlockChance = GetPlayer().GetComponent<PlayerStats>().chanceToBlock;
+        List<BlockDamageItem> effects = ItemSpellManager.instance.GetEffectsInLevel<BlockDamageItem>(this);
+        foreach(BlockDamageItem effect in effects)
+        {
+            availableBlockChance += effect.addBlockChance;
+        }
+
+        return availableBlockChance + addBlockChance <= 50;
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class ColorArmour : ItemEffect
 {
     [Header("Color Armour")]
-    [SerializeField] GameColor color;
-    [SerializeField] float armour;
+    [SerializeField] public GameColor color;
+    [SerializeField] public float armour;
 
     public override void ActivateEffect()
     {
@@ -21,6 +21,14 @@ public class ColorArmour : ItemEffect
 
     public override bool CanBeSpawned()
     {
-        return GetPlayer().GetComponent<PlayerStats>().GetColorArmour(color) <= 50;
+        float availableArmour = GetPlayer().GetComponent<PlayerStats>().GetColorArmour(color);
+        List<ColorArmour> availableEffects = ItemSpellManager.instance.GetEffectsInLevel<ColorArmour>(this);
+        foreach (ColorArmour item in availableEffects)
+        {
+            if(item.color = color)
+                availableArmour += item.armour;
+        }
+
+        return availableArmour + armour <= 50;
     }
 }

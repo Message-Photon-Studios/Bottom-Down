@@ -78,6 +78,8 @@ public class ItemPickup : MonoBehaviour
     /// <param name="setItem"></param>
     public void SetItem(Item setItem, int itemCost)
     {
+        ItemSpellManager.instance.AddSpawnedEffects(setItem);
+        
         this.item = setItem;
         this.itemCost = itemCost;
                 

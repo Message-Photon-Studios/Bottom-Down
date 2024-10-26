@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDontMixItem : ItemEffect
 {
     [Header("Enemy Don't Mix Color")]
-    [SerializeField] int addedChance;
+    [SerializeField] public int addedChance;
     public override void ActivateEffect()
     {
         GetPlayer().GetComponent<PlayerStats>().chanceThatEnemyDontMix += addedChance;
@@ -18,6 +18,13 @@ public class EnemyDontMixItem : ItemEffect
 
     public override bool CanBeSpawned()
     {
-        return GetPlayer().GetComponent<PlayerStats>().chanceThatEnemyDontMix < 100;
+        int availableChance = GetPlayer().GetComponent<PlayerStats>().chanceThatEnemyDontMix;
+        List<EnemyDontMixItem> effects = ItemSpellManager.instance.GetEffectsInLevel<EnemyDontMixItem>(this);
+        foreach (EnemyDontMixItem item in effects)
+        {
+            availableChance += item.addedChance;
+        }
+
+        return availableChance + addedChance <= 80;
     }
 }
