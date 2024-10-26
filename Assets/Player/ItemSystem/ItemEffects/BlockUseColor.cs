@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockUseColor : ItemEffect
 {
+    [Header("Block Use Color")]
     [SerializeField] private int blockDrainColor = 10;
     public override void ActivateEffect()
     {

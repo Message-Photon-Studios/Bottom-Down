@@ -8,6 +8,7 @@ using UnityEngine;
 [System.Serializable]
 public class BrushDamageItem : ItemEffect
 {
+    [Header("Brush Deals Damage")]
     [SerializeField] int brushDamage;
     public override void ActivateEffect()
     {

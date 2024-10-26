@@ -8,6 +8,7 @@ using UnityEngine;
 [System.Serializable]
 public class ColorBuffItem : ItemEffect
 {
+    [Header("Color Buff")]
     [SerializeField] GameColor color;
     [SerializeField] float power;
     public override void ActivateEffect()

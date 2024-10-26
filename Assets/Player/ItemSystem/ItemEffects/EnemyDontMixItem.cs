@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyDontMixItem : ItemEffect
 {
+    [Header("Enemy Don't Mix Color")]
     [SerializeField] int addedChance;
     public override void ActivateEffect()
     {

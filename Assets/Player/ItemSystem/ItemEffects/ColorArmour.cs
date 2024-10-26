@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class ColorArmour : ItemEffect
 {
+    [Header("Color Armour")]
     [SerializeField] GameColor color;
     [SerializeField] float armour;
 

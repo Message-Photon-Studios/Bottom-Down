@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockDamageItem : ItemEffect
 {
+    [Header("Block Damage")]
     [SerializeField] int addBlockChance;
     public override void ActivateEffect()
     {

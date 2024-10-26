@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class ChangeHealthIItem : ItemEffect
 {
+    [Header("Add Max Health")]
     [SerializeField] int addMaxHealth;
     [SerializeField] int healAmmount;
     public override void ActivateEffect()

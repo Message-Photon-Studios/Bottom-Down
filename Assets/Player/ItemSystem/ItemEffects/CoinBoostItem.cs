@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CoinBoostItem : ItemEffect
 {
+    [Header("Increase Coins Dropped")]
     [SerializeField] float coinBoost = 0;
     public override void ActivateEffect()
     {
