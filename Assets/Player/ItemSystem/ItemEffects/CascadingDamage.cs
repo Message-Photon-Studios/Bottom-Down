@@ -16,7 +16,7 @@ public class CascadingDamage : ItemEffect
 
     public override void DisableEffect()
     {
-                GetPlayer().GetComponent<PlayerCombatSystem>().cascadeDamageIncrease -= damageIncrease;
+        GetPlayer().GetComponent<PlayerCombatSystem>().cascadeDamageIncrease -= damageIncrease;
         GetPlayer().GetComponent<PlayerCombatSystem>().maxCascadeDamage -= maxCascadeDamageIncrease;
     }
 }
