@@ -134,6 +134,11 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ColorArmour());
         }
+
+        if(GUILayout.Button("Add cascading damage"))
+        {
+            item.effects.Add(new CascadingDamage());
+        }
     }
 }
 

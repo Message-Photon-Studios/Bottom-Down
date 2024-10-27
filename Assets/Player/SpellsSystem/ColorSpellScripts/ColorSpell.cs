@@ -78,7 +78,8 @@ public class ColorSpell : MonoBehaviour
     protected GameColor gameColor;
     protected float power;
     protected GameObject player;
-
+    
+    protected int extraDamage;
     public int lookDir {get; protected set;}
 
     private HashSet<Collider2D> objectsAlreadyHit = new HashSet<Collider2D>();
@@ -90,12 +91,13 @@ public class ColorSpell : MonoBehaviour
     /// <param name="power">The total power of the spell</param>
     /// <param name="player">The player object</param>
     /// <param name="lookDir">The direction the spell should face horizontally</param>
-    public void Initi(GameColor gameColor, float power, GameObject player, int lookDir)
+    public void Initi(GameColor gameColor, float power, GameObject player, int lookDir, int extraDamage)
     {
         this.gameColor = gameColor;
         this.power = power+powerScale;
         this.player = player;
         this.lookDir = lookDir;
+        this.extraDamage = extraDamage;
         resetEnemyTime = attackAgainTimer;
 
         foreach(Collider2D col in GetComponents<Collider2D>())
@@ -261,6 +263,15 @@ public class ColorSpell : MonoBehaviour
     public GameObject GetPlayerObj()
     {
         return player;
+    }
+
+    /// <summary>
+    /// Returns the extra damage the spell should do
+    /// </summary>
+    /// <returns></returns>
+    public int GetExtraDamage()
+    {
+        return extraDamage;
     }
 
     /// <summary>

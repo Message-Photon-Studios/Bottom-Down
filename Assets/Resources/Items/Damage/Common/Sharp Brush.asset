@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: cdf153e3e5a3fab42a35ea9cc0d79f34, type: 3}
   description: "The color on this old brush has congealated and creates sharp edges.
-    \nAbsorb color ability deal +15 damage."
+    \nAbsorb color ability deal +10 damage."
   itemCost: 30
   effects:
   - rid: 7258339796023508992
@@ -26,4 +26,4 @@ MonoBehaviour:
     - rid: 7258339796023508992
       type: {class: BrushDamageItem, ns: , asm: Assembly-CSharp}
       data:
-        brushDamage: 15
+        brushDamage: 10
