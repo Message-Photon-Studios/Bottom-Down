@@ -12,7 +12,7 @@ using Steamworks;
 public class ColorInventory : MonoBehaviour
 {
     int startColorSlots; //The number of starting color slots that the player has
-    [SerializeField] float colorBuff;
+    [SerializeField] float colorMaxBuff;
 
     /// <summary>
     /// The existing color slots that the player have
@@ -30,7 +30,7 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] public Material defaultColor;
     [SerializeField] InputActionReference removeColorAction;
     [SerializeField] int rainbowExtraDrain;
-    public Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
+    private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     SpellPickup pickUpSpell = null;
 
     public int blockDrainColor = 0;
@@ -210,6 +210,19 @@ public class ColorInventory : MonoBehaviour
 
     #region Color buff
 
+    public void AddColorBuff(GameColor color, float addPower)
+    {
+        if(colorBuffs.ContainsKey(color)) 
+        {
+            colorBuffs[color] += addPower;
+        } else
+        {
+            colorBuffs.Add(color, addPower);
+        }
+
+        GameManager.instance.tipsManager.DisplayTips("colorPower");
+    }
+
     /// <summary>
     /// Returns the color buff of the specified color. Returns 1 if no color buff exists.
     /// </summary>
@@ -222,7 +235,7 @@ public class ColorInventory : MonoBehaviour
         {
             if(slot.gameColor == color && slot.charge == slot.maxCapacity) 
             {
-                buff += colorBuff;
+                buff += colorMaxBuff;
             }
         }
 
@@ -408,10 +421,8 @@ public class ColorInventory : MonoBehaviour
             setColor = fillSlot.gameColor.MixColor(color);
         else
             setColor = color;
-        int setAmount = fillSlot.charge + amount;
-        setAmount = (setAmount > fillSlot.maxCapacity)?  fillSlot.maxCapacity : setAmount;
 
-        fillSlot.SetCharge(setAmount);
+        fillSlot.AddCharge(amount);
         fillSlot.SetGameColor(setColor);
 
         onColorUpdated?.Invoke();
@@ -601,7 +612,6 @@ public class ColorSlot
     [SerializeField] public int charge;
     [SerializeField] public GameColor gameColor;
     [SerializeField] public ColorSpell colorSpell;
-
     public float coolDown = 0;
     public void Init(Image setImage)
     {
@@ -613,7 +623,10 @@ public class ColorSlot
     {
         charge = set;
         if(charge > maxCapacity)
-        charge = maxCapacity;
+        {
+            charge = maxCapacity;
+            GameManager.instance.tipsManager.DisplayTips("filledBottle");
+        }
     }
 
     public void AddCharge(int addCharge)
