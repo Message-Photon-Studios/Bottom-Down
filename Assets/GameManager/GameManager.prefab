@@ -1160,6 +1160,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsDictionary:
     _serializedList:
+    - Key: colorPower
+      Value:
+        hasBeenDisplayed: 0
+        callsNeeded: 5
+        text: "Each color has a power level that can be seen under the active bottle
+          and in the inventory. A colors power will affect its damage and the efficiency
+          of its other effects. \n\nThe power of a color can be changed by several
+          things, such as items and bottles."
+    - Key: filledBottle
+      Value:
+        hasBeenDisplayed: 0
+        callsNeeded: 10
+        text: "Each bottle that is filled to the maximum will power up the color
+          it is filled with for all bottles. \n\nUsing color from the max filled
+          bottles will make them not filled to the maximum and therefore remove the
+          buff. "
     - Key: uncoloredDefense
       Value:
         hasBeenDisplayed: 0
