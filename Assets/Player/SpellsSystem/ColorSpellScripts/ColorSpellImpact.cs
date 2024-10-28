@@ -38,7 +38,7 @@ public class ColorSpellImpact : SpellImpact
 
             if (enemy != null)
             {
-                spell.GetColor().ApplyColorEffect(other.gameObject, transform.position, spell.GetPlayerObj(), spell.GetPower(), forcePerspectivePlayer);
+                spell.GetColor().ApplyColorEffect(other.gameObject, transform.position, spell.GetPlayerObj(), spell.GetPower(), forcePerspectivePlayer, spell.GetExtraDamage());
                 enemy.enemySounds?.PlaySpellHit();
             }
         }

@@ -22,6 +22,13 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] PlayerSounds playerSounds;
 
     public int defaultAttackDamage = 0;
+
+    /// <summary>
+    /// Cascade damage will increase damage of spells each time a spell is cast, but will reset to zero when default attack is used.
+    /// </summary>
+    private int cascadeDamage;
+    public int cascadeDamageIncrease;
+    public int maxCascadeDamage;
     private bool attacking;
     private Rigidbody2D body;
 
@@ -64,6 +71,8 @@ public class PlayerCombatSystem : MonoBehaviour
         if (!playerMovement.IsGrounded() && defaultAirHit) return;
         if(attacking) return;
         
+        cascadeDamage = 0;
+
         if(playerMovement.IsGrappeling())
         {
             playerMovement.WallAttackLock();
@@ -147,6 +156,9 @@ public class PlayerCombatSystem : MonoBehaviour
         if(!colorInventory.CheckActveColor()) return;
         if (!colorInventory.IsSpellReady()) return;
 
+        cascadeDamage += cascadeDamageIncrease;
+        if(cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
+
         if(playerMovement.IsGrappeling())
         {
             playerMovement.WallAttackLock();
@@ -186,7 +198,7 @@ public class PlayerCombatSystem : MonoBehaviour
         GameObject spell = GameObject.Instantiate(currentSpell, transform.position + spawnPoint, transform.rotation) as GameObject;
         if(spell != null)
         {
-            spell.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir);
+            spell.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, cascadeDamage);
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown); //When adding items to change the cooldown change it here! 
         }
             

@@ -11,7 +11,7 @@ public class BlueColorEffect : ColorEffect
     [SerializeField] float force;
     [SerializeField] float slow;
     [SerializeField] float duration;
-    public override void Apply(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power, bool forcePerspectivePlayer)
+    public override void Apply(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power, bool forcePerspectivePlayer, int extraDamage)
     {
         
         EnemyStats enemy = enemyObj.GetComponent<EnemyStats>();
@@ -32,6 +32,6 @@ public class BlueColorEffect : ColorEffect
             enemy.GetComponent<Rigidbody2D>()?.AddForce((enemy.transform.position-pushPoint).normalized * force);
         }
         enemy.ChangeDrag(scaledSlow+1, scaledDuration);
-        enemy.DamageEnemy(Mathf.RoundToInt(damage*power));
+        enemy.DamageEnemy(Mathf.RoundToInt(damage*power)+extraDamage);
     }
 }

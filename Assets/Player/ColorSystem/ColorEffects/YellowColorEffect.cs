@@ -9,7 +9,7 @@ public class YellowColorEffect : ColorEffect
     [SerializeField] float force;
     [SerializeField] int maxBounces;
     [SerializeField] GameObject lightning;
-    public override void Apply(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power, bool forcePerspectivePlayer)
+    public override void Apply(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power, bool forcePerspectivePlayer, int extraDamage)
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Enemy");
         List<GameObject> affected = new List<GameObject>();
@@ -73,7 +73,7 @@ public class YellowColorEffect : ColorEffect
             if(forceDir.sqrMagnitude > 1f) forceDir = forceDir.normalized;
             if (!obj.GetComponent<EnemyStats>().IsKnockbackImune())
                 obj?.GetComponent<Rigidbody2D>()?.AddForce(forceDir*force);
-            obj.GetComponent<EnemyStats>().DamageEnemy(Mathf.RoundToInt(damage*power-depth*5));
+            obj.GetComponent<EnemyStats>().DamageEnemy(Mathf.RoundToInt(damage*power-depth*5)+extraDamage);
         }
     }
 }

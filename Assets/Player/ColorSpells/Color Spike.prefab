@@ -174,9 +174,9 @@ MonoBehaviour:
   description: 'Summons a spike that will rotate around the player.
 
     Power: 120%'
-  spellCost: 50
+  spellCost: 40
   powerScale: 1.2
-  coolDown: 0.25
+  coolDown: 0.1
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
   impactOnEnemies: 1
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6383d86d2f1e2ac45a1cf7bca168ed6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonateTimer: 15
+  detonateTimer: 30
   spawnPrefabs:
   - {fileID: 3321278458073070463, guid: eaca80dc5c5c43b4c9b7cfd5aba6ea71, type: 3}
 --- !u!1 &7917038621792183734
