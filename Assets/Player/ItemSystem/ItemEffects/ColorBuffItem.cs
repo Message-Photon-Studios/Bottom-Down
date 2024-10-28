@@ -14,13 +14,12 @@ public class ColorBuffItem : ItemEffect
     public override void ActivateEffect()
     {
         ColorInventory inv = GetPlayer().GetComponent<ColorInventory>();
-        if(inv.colorBuffs.ContainsKey(color)) inv.colorBuffs[color] += power;
-        else inv.colorBuffs.Add(color, power);
+        inv.AddColorBuff(color, power);
     }
 
     public override void DisableEffect()
     {
         ColorInventory inv = GetPlayer().GetComponent<ColorInventory>();
-        if(inv.colorBuffs.ContainsKey(color)) inv.colorBuffs[color] -= power;
+        inv.AddColorBuff(color, -power);
     }
 }
