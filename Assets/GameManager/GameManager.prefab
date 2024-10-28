@@ -1163,7 +1163,7 @@ MonoBehaviour:
     - Key: colorPower
       Value:
         hasBeenDisplayed: 0
-        callsNeeded: 5
+        callsNeeded: 3
         text: "Each color has a power level that can be seen under the active bottle
           and in the inventory. A colors power will affect its damage and the efficiency
           of its other effects. \n\nThe power of a color can be changed by several
