@@ -75,7 +75,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 3
     m_Sprites:
-    - {fileID: -294316641, guid: 92da22245ad5fb64fbe9ff8e3ef556e6, type: 3}
+    - {fileID: 1610088577, guid: 92da22245ad5fb64fbe9ff8e3ef556e6, type: 3}
     - {fileID: 749595119, guid: 92da22245ad5fb64fbe9ff8e3ef556e6, type: 3}
     - {fileID: -1981469366, guid: 92da22245ad5fb64fbe9ff8e3ef556e6, type: 3}
     - {fileID: -1994331699, guid: 92da22245ad5fb64fbe9ff8e3ef556e6, type: 3}
