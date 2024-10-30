@@ -48,6 +48,7 @@ public class TipsManager : MonoBehaviour, IDataPersistence
             if(tipsObj.hasBeenDisplayed) return;
 
             tipsObj.callsNeeded --;
+
             if(tipsObj.callsNeeded <= 0)
             {
                 gameTipsText.text = tipsObj.text;
