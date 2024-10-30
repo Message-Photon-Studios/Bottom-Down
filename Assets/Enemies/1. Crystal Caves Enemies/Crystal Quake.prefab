@@ -108,7 +108,6 @@ MonoBehaviour:
   projectileSpawn3: {x: 1, y: -1.4}
   projectileSpawnUpForce: 3000
   projectileForceRandomness: 0.5
-  patrollDistance: 3
   patrollIdleTime: 3
 --- !u!50 &264917189925170266
 Rigidbody2D:
