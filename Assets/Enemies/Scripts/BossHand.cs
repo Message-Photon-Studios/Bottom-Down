@@ -10,7 +10,6 @@ public class BossHand : Enemy
     [SerializeField] Trigger attackTrigger;
     [SerializeField] int swordDamage;
     [SerializeField] float swordForce;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
     [SerializeField] float spellCastingCooldown;
     [SerializeField] GameObject bossSpellTemplate;
@@ -36,7 +35,7 @@ public class BossHand : Enemy
 
             new Sequence(new List<Node>{
                 new CheckBool("idle", true),
-                new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, .5f, "attack", "walk")
+                new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
             }),
 
             new Sequence(new List<Node>{
@@ -47,7 +46,7 @@ public class BossHand : Enemy
                     new Wait(spellCastingCooldown),
                     new AnimationTrigger(animator, "spell")
                 }),
-                new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, .5f, "attack", "walk")
+                new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
             })
             }),
 
@@ -62,7 +61,7 @@ public class BossHand : Enemy
                     new PlatformChase(stats, player, body, animator, 1f, viewRange, 0f, .5f ,"attack", "walk")
                 }),
 
-                new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, .5f, "attack", "walk")
+                new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
             })
             });
         
@@ -81,8 +80,6 @@ public class BossHand : Enemy
         attackTrigger.DrawTrigger(stats.GetPosition());
         Handles.color = Color.blue;
         Handles.DrawLine(stats.GetPosition()+Vector2.left*viewRange, stats.GetPosition()+Vector2.right*viewRange);
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left* patrollDistance, stats.GetPosition() + Vector2.right* patrollDistance);
     }
 #endif
 }

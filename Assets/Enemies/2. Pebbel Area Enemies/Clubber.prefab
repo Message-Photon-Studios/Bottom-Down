@@ -729,6 +729,8 @@ MonoBehaviour:
   viewRange: 20
   chaseCooldown: 2
   runSpeedFactor: 4
+  jumpForce: 4000
+  jumpForwardForce: 2000
   attackTrigger:
     radius: 1.3
     direction: 130.7
@@ -743,7 +745,6 @@ MonoBehaviour:
     color: {r: 1, g: 0, b: 0, a: 1}
   clubDamage: 75
   clubForce: 1000
-  patrollDistance: 6
   patrollIdleTime: 2
 --- !u!50 &6567443812170086897
 Rigidbody2D:

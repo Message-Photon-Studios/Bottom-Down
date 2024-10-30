@@ -6,7 +6,6 @@ using BehaviourTree;
 public class RandomPatroll : Node
 {
     EnemyStats stats;
-    float patrollDistance;
     float patrollSpeedFactor;
     float maxIdleTime;
     float idleTimer;
@@ -33,11 +32,10 @@ public class RandomPatroll : Node
     /// <param name="stopBool">If this bool is true the enemy will stop moving.</param>
     /// <param name="walkAnimationBool">This animation bool will be set to true when the enemy is moving</param>
     /// <returns></returns>
-    public RandomPatroll(EnemyStats stats, Rigidbody2D body, Animator animator, float patrollDistance, float patrollSpeedFactor, float maxIdleTime, float legPos, string stopBool, string walkAnimationBool) :
+    public RandomPatroll(EnemyStats stats, Rigidbody2D body, Animator animator, float patrollSpeedFactor, float maxIdleTime, float legPos, string stopBool, string walkAnimationBool) :
         base(new List<Node>{new CheckPlatformEdge(stats, legPos)})
     {
         this.stats = stats;
-        this.patrollDistance = patrollDistance;
         this.body = body;
         this.patrollSpeedFactor = patrollSpeedFactor;
         this.animator = animator;
@@ -49,21 +47,6 @@ public class RandomPatroll : Node
         idleTimer = 0.5f;
     }
 
-    public RandomPatroll(EnemyStats stats, Rigidbody2D body, Animator animator, float patrollDistance, float patrollSpeedFactor, float maxIdleTime, float legPos, string stopBool, string walkAnimationBool, float patrollOffset) :
-    base(new List<Node>{new CheckPlatformEdge(stats, legPos)})
-    {
-        this.stats = stats;
-        this.patrollDistance = patrollDistance;
-        this.body = body;
-        this.patrollSpeedFactor = patrollSpeedFactor;
-        this.animator = animator;
-        this.maxIdleTime = maxIdleTime;
-        this.stopBool = stopBool;
-        this.walkAnimation = walkAnimationBool;
-        patrollStart = stats.GetPosition().x+patrollOffset;
-        patrollPoint = stats.GetPosition().x+patrollOffset;
-        idleTimer = 0.5f;
-    }
 
     public override NodeState Evaluate()
     {
@@ -97,9 +80,11 @@ public class RandomPatroll : Node
             return state;
         }
         else if(atEdge)
-            patrollPoint = patrollStart;
-        else if(Mathf.Abs(stats.GetPosition().x - patrollStart) > patrollDistance)
-            patrollPoint = patrollStart;
+        {
+            (float platformL, float platformR) = stats.GetCurrentPlatform();
+
+            patrollPoint = platformL + (platformR-platformL)/2;
+        }
 
         animator.SetBool(walkAnimation, true);
 
@@ -112,8 +97,8 @@ public class RandomPatroll : Node
 
     private float GetRandomPoint()
     {
-        int randomDir = UnityEngine.Random.Range(-1, 2);
-        float ret = patrollStart + randomDir * patrollDistance;
-        return ret;
+        (float platformL, float platformR) = stats.GetCurrentPlatform();
+        float randomPos = Random.Range(platformL, platformR);
+        return randomPos;
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Threading;
 using JetBrains.Annotations;
 using Unity.Mathematics;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
@@ -608,6 +609,58 @@ public class EnemyStats : MonoBehaviour
     public void ChangeDirection()
     {
         GetComponent<Enemy>().SwitchDirection();
+    }
+
+    public float GetHeight()
+    {
+        float height = myCollider.bounds.max.y - myCollider.bounds.min.y;
+        return height;
+    }
+
+    public float GetWidth()
+    {
+        float width = myCollider.bounds.max.x - myCollider.bounds.min.x;
+        return width;
+    }
+
+
+    #endregion
+
+    #region Define platform
+
+    /// <summary>
+    /// Returns the x positions of the edges of the platform that the enemy is currently standing on.
+    /// </summary>
+    /// <returns></returns>
+    public (float leftEdge, float rightEdge) GetCurrentPlatform()
+    {
+        float width = GetWidth();
+        float height = GetHeight();
+        float yPos = GetPosition().y-height/2 +.5f;
+        float FindPlatformEdge(int dir)
+        {
+            float xPos = GetPosition().x;
+            RaycastHit2D hitWall = Physics2D.Raycast(new Vector2(xPos, yPos), Vector2.right*dir, 20, GameManager.instance.maskLibrary.onlyGround);
+
+            float maxXPos = 0;
+            if(hitWall)
+                maxXPos = hitWall.point.x;
+            else 
+                maxXPos = xPos + 20*dir;
+            float newXPos = xPos;
+
+            while(newXPos*dir < maxXPos*dir)
+            {
+                newXPos = ((width/2 + 0.2f)*dir)+xPos;
+                if(!Physics2D.Raycast(new Vector2(xPos, yPos), Vector2.down, .7f, GameManager.instance.maskLibrary.onlyGround)) break;
+                xPos = newXPos;
+            }
+
+            return xPos;
+        }
+        float platformL = FindPlatformEdge(-1);
+        float platformR = FindPlatformEdge(1);
+        return(platformL, platformR);
     }
 
 
