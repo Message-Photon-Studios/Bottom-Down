@@ -218,6 +218,7 @@ SpriteAtlas:
   - {fileID: 492508950, guid: e9a34c01fb25de34cb92e75b4fc1a173, type: 3}
   - {fileID: -207742359, guid: e9a34c01fb25de34cb92e75b4fc1a173, type: 3}
   - {fileID: -1694415928, guid: e9a34c01fb25de34cb92e75b4fc1a173, type: 3}
+  - {fileID: 21300000, guid: 46aba351fc59a3e45b917ed438de3317, type: 3}
   - {fileID: 2109086961, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
   - {fileID: 32007481, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
   - {fileID: -1104915565, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
@@ -636,6 +637,9 @@ SpriteAtlas:
   - {fileID: -1180802545, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
   - {fileID: -1694415928, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
   - {fileID: 492508950, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
+  - {fileID: 21300000, guid: 32942409df51baa44b14241b27a069bc, type: 3}
+  - {fileID: 21300000, guid: 6db30469eaefead45b86d7575a20a293, type: 3}
+  - {fileID: 21300000, guid: edcf6b8ab920bb246bb446dd2799d38a, type: 3}
   - {fileID: -481685603, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
   - {fileID: 247871302, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
   - {fileID: 1799644936, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
@@ -756,6 +760,7 @@ SpriteAtlas:
   - {fileID: 32007481, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
   - {fileID: 1258967800, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
   - {fileID: 163684766, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
+  - {fileID: 21300000, guid: 4f701fbad2d0ec644b0822b764bc4905, type: 3}
   - {fileID: -1258079950, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
   - {fileID: 2143648092, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
   - {fileID: -695945241, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
@@ -1401,6 +1406,7 @@ SpriteAtlas:
   - marine-tiles_60
   - marine-tiles_32
   - marine-tiles_61
+  - mushroom-tiles-floor
   - gray-cave-tiles_13
   - gray-cave-tiles_7
   - gray-cave-tiles_6
@@ -1819,6 +1825,9 @@ SpriteAtlas:
   - marine-tiles-pink_62
   - marine-tiles-pink_61
   - marine-tiles-pink_60
+  - mushroom-tiles
+  - mushroom-tiles-white
+  - mushroom-tiles-green
   - blue-cave-tiles-gold-gems_20
   - blue-cave-tiles-gold-gems_21
   - blue-cave-tiles-gold-gems_22
@@ -1939,6 +1948,7 @@ SpriteAtlas:
   - blue-cave-tiles-blue-gems_7
   - blue-cave-tiles-blue-gems_0
   - blue-cave-tiles-blue-gems_1
+  - mushroom-tiles-red
   - blue-geode_18
   - blue-geode_69
   - blue-geode_19

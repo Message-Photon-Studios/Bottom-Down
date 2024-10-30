@@ -1026,8 +1026,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 25042270746599168}
   - {fileID: 6076342511329833649}
+  - {fileID: 25042270746599168}
   - {fileID: 6950717309549303972}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1197,7 +1197,7 @@ RectTransform:
   m_Children:
   - {fileID: 1358288702462143789}
   m_Father: {fileID: 8360244743668686894}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1349,12 +1349,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 8360244743668686894}
     m_Modifications:
     - target: {fileID: 2219918881807964371, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219918881807964371, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2756652704710078877, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2756652704710078877, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1399,10 +1403,6 @@ PrefabInstance:
     - target: {fileID: 3599529622554698654, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
       propertyPath: m_Name
       value: shop_map_icon2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599529622554698654, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94d1c1f5db866d5499ba863209c9c4c2, type: 3}
