@@ -10,13 +10,14 @@ public class Clubber : Enemy
     [SerializeField] float viewRange;
     [SerializeField] float chaseCooldown;
     [SerializeField] float runSpeedFactor;
+    [SerializeField] float jumpForce;
+    [SerializeField] float jumpForwardForce;
     [SerializeField] Trigger attackTrigger;
     [SerializeField] Trigger attackDamageTrigger;
     [SerializeField] int clubDamage;
     [SerializeField] float clubForce;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
-    private float legPos = 1.2f;
+    private float legPos = 1.5f;
 
     protected override Node SetupTree()
     {
@@ -37,13 +38,31 @@ public class Clubber : Enemy
                 new AnimationBool(animator, "run", false),
                 new AnimationTrigger(animator, "attack")
             }),
+
+            new Sequence(new List<Node>{
+                new CheckBool("attack", false),
+                new CheckBool("chase", true),
+                new CheckVelocity(body, 0, 5),
+                new Wait(.5f, .2f),
+                new EnemyJump(stats, body, jumpForce*1.5f, jumpForwardForce*1.5f)
+            }),
             
             new Sequence(new List<Node>{
                 new CheckBool("attack", false),
                 new CheckBool("chase", true),
-                new CheckPlatformEdgePartly(stats, legPos),
-                new AnimationBool(animator, "run", false),
-                new AnimationTrigger(animator, "attack"),
+                new CheckPlatformEdgePartly(stats, legPos, 2f),
+                new Selector(new List<Node>{
+                    new Sequence(new List<Node>{
+                        new CheckGrounded(stats, legPos, true),
+                        new Inverter(new CheckWall(stats, Vector2.right, 4f, .5f)),
+                        new EnemyJump(stats, body, jumpForce, jumpForwardForce)
+                    }),
+
+                    new Sequence(new List<Node>{
+                        new AnimationBool(animator, "run", false),
+                        new AnimationTrigger(animator, "attack")
+                    })
+                })
             }),
 
             new Sequence(new List<Node>{
@@ -75,7 +94,7 @@ public class Clubber : Enemy
                 new CheckBool("attack", false),
                 new CheckBool("chase", false),
                 new AnimationBool(animator, "run", false),
-                new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, legPos, "attack", "walk")
+                new RandomPatroll(stats, body, animator, 1, patrollIdleTime, legPos, "attack", "walk")
             }),
             
 
@@ -110,8 +129,6 @@ public class Clubber : Enemy
         attackTrigger.DrawTrigger(stats.GetPosition());
         Handles.color = Color.blue;
         Handles.DrawLine(stats.GetPosition()+Vector2.left*viewRange, stats.GetPosition()+Vector2.right*viewRange);
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left* patrollDistance, stats.GetPosition() + Vector2.right* patrollDistance);
     }
 #endif
 }

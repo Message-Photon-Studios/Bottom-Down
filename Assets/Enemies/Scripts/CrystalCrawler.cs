@@ -15,7 +15,6 @@ public class CrystalCrawler : Enemy
     [SerializeField] float checkJumpHight;
     [SerializeField] float forwardJumpForce;
     [SerializeField] float jumpIdleTime;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
 
     private float legPos = .5f;
@@ -98,7 +97,7 @@ public class CrystalCrawler : Enemy
             new Sequence(new List<Node>{
                 new CheckGrounded(stats,legPos),
                 new AnimationBool(animator, "run", false),
-                new RandomPatroll(stats, body, animator, patrollDistance, 1f, patrollIdleTime, legPos, "charge", "move")
+                new RandomPatroll(stats, body, animator, 1f, patrollIdleTime, legPos, "charge", "move")
             })
         });
         
@@ -124,8 +123,6 @@ public class CrystalCrawler : Enemy
     private void OnDrawGizmosSelected() {
         viewTrigger.DrawTrigger(stats.GetPosition());
         preventJump.DrawTrigger(stats.GetPosition());
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left* patrollDistance, stats.GetPosition() + Vector2.right* patrollDistance);
         Handles.color = Color.green;
         Handles.DrawDottedLine(stats.GetPosition()+Vector2.left+Vector2.up*checkJumpHight, stats.GetPosition()+Vector2.right+Vector2.up*checkJumpHight, 5);
     }

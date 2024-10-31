@@ -652,11 +652,10 @@ GameObject:
   - component: {fileID: 6567443812170086911}
   - component: {fileID: 569050536732786453}
   - component: {fileID: 6567443812170086897}
-  - component: {fileID: 6567443812170086896}
   - component: {fileID: 6567443812170086898}
   - component: {fileID: 6567443812170086901}
   - component: {fileID: 6569880262898042755}
-  - component: {fileID: 2984315990543749145}
+  - component: {fileID: 3093880215074115557}
   - component: {fileID: 1795198555313609797}
   m_Layer: 6
   m_Name: Clubber
@@ -729,6 +728,8 @@ MonoBehaviour:
   viewRange: 20
   chaseCooldown: 2
   runSpeedFactor: 4
+  jumpForce: 4000
+  jumpForwardForce: 2000
   attackTrigger:
     radius: 1.3
     direction: 130.7
@@ -743,7 +744,6 @@ MonoBehaviour:
     color: {r: 1, g: 0, b: 0, a: 1}
   clubDamage: 75
   clubForce: 1000
-  patrollDistance: 6
   patrollIdleTime: 2
 --- !u!50 &6567443812170086897
 Rigidbody2D:
@@ -766,22 +766,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &6567443812170086896
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6567443812170086900}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.07}
-  m_Size: {x: 1.5, y: 1.85}
-  m_Direction: 1
 --- !u!212 &6567443812170086898
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -875,19 +859,32 @@ MonoBehaviour:
   jumping: {fileID: 1609261008054442957}
   onHit: {fileID: 4398976353382716072}
   spellHit: {fileID: 3316831444032959949}
---- !u!114 &2984315990543749145
-MonoBehaviour:
+--- !u!61 &3093880215074115557
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6567443812170086900}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3b8a02a3b0f2042a4599de422b021f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  achievementObject: {fileID: 6493222949174414483, guid: 6a2ebc11bf110cd49b02bca59a2c2e3b, type: 3}
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.07}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3, y: 3}
+    newSize: {x: 3, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.85}
+  m_EdgeRadius: 0
 --- !u!58 &1795198555313609797
 CircleCollider2D:
   m_ObjectHideFlags: 0

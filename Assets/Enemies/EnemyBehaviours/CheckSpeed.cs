@@ -1,7 +1,8 @@
 ﻿using BehaviourTree;
 
 /// <summary>
-/// Checks if the current speed matches the provided target with or without a margin of error. 
+/// Checks if the current movement speed matches the provided target with or without a margin of error. 
+/// OBS: This does not check the actual velocity of the enemy, just movement speed.
 /// </summary>
 internal class CheckSpeed : Node
 {
