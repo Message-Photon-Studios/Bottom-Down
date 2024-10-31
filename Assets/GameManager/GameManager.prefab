@@ -1073,6 +1073,7 @@ GameObject:
   - component: {fileID: 6749319306640925488}
   - component: {fileID: 2211731849923139773}
   - component: {fileID: 7474946213633799611}
+  - component: {fileID: 4351019461878009442}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -1121,6 +1122,10 @@ MonoBehaviour:
   - {fileID: -7692674297862362138, guid: 143286fca810d5547a46eced785b473b, type: 3}
   - {fileID: -7692674297862362138, guid: 4d714332baa57cb46b2d801f8c1364ed, type: 3}
   - {fileID: -7692674297862362138, guid: ecda5f5278ae77a4ba9dc72760ae1362, type: 3}
+  - {fileID: -7692674297862362138, guid: f86b65a2c96d172489d02db1be9243ec, type: 3}
+  - {fileID: -7692674297862362138, guid: ae54e4cfc92f8e2429f630d4ad1ccd47, type: 3}
+  - {fileID: -7692674297862362138, guid: 8c072b255aafb364586d145ce4608284, type: 3}
+  - {fileID: -7692674297862362138, guid: cf6b3a2cfc7faec41933d2267b226a61, type: 3}
   spellUnlockSound: {fileID: 5256688047709658222}
   petrifiedPickupSound: {fileID: 2976471086048920126}
   soundEffectManager: {fileID: 7690066140520027446}
@@ -1141,6 +1146,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 8
   tipsManager: {fileID: 7474946213633799611}
+  itemLibrary: {fileID: 4351019461878009442}
   disablePausing: 0
 --- !u!114 &7474946213633799611
 MonoBehaviour:
@@ -1156,6 +1162,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsDictionary:
     _serializedList:
+    - Key: colorPower
+      Value:
+        hasBeenDisplayed: 0
+        callsNeeded: 3
+        text: "Each color has a power level that can be seen under the active bottle
+          and in the inventory. A colors power will affect its damage and the efficiency
+          of its other effects. \n\nThe power of a color can be changed by several
+          things, such as items and bottles."
+    - Key: filledBottle
+      Value:
+        hasBeenDisplayed: 0
+        callsNeeded: 10
+        text: "Each bottle that is filled to the maximum will power up the color
+          it is filled with for all bottles. \n\nUsing color from the max filled
+          bottles will make them not filled to the maximum and therefore remove the
+          buff. "
     - Key: uncoloredDefense
       Value:
         hasBeenDisplayed: 0
@@ -1178,7 +1200,7 @@ MonoBehaviour:
           collected."
   loadingTips:
   - The inventory has information on all colors.
-  - The red color steals health from enemies.
+  - The red color steals health from enemies and converts it to temporary hitpoints.
   - Blue color both slows the enemys movement and attacks.
   - The range of yellow colors lightning scales with the power of the color.
   - Attacking a sleeping enemy increases the power of the color a lot.
@@ -1191,6 +1213,47 @@ MonoBehaviour:
   - Fire increases its damage each time it spreads.
   - A poisoned enemy deals significantly less damage than normal.
   removeTooltipButton: {fileID: -4679931084075046408, guid: fd04459890e791843a48243064f9151b, type: 3}
+--- !u!114 &4351019461878009442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6749319306640925491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd8d06c73b171e4fbbafab83d894a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPointRarities:
+    _serializedList:
+    - Key: 0
+      Value:
+        _serializedList:
+        - Key: 0
+          Value: 0.8
+        - Key: 1
+          Value: 0.19
+        - Key: 2
+          Value: 0.01
+    - Key: 1
+      Value:
+        _serializedList:
+        - Key: 0
+          Value: 0
+        - Key: 1
+          Value: 0.95
+        - Key: 2
+          Value: 0.05
+    - Key: 2
+      Value:
+        _serializedList:
+        - Key: 0
+          Value: 0
+        - Key: 1
+          Value: 0
+        - Key: 2
+          Value: 1
 --- !u!1 &7038129132029276527
 GameObject:
   m_ObjectHideFlags: 0

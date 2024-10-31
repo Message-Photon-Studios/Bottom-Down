@@ -180,7 +180,7 @@ MonoBehaviour:
   description: 'Fire a piercing beam of color.
 
     Power: 120%'
-  spellCost: 100
+  spellCost: 60
   powerScale: 1.2
   coolDown: 5
   destroyOnAllImpact: 0

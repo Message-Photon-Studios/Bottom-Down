@@ -985,6 +985,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
+  roomRegionColor: 1
+  allowGreenClosingRooms: 1
   roomNodes:
     m_keys:
     - {x: 0, y: 0}
@@ -2026,10 +2028,6 @@ PrefabInstance:
     - target: {fileID: 1114419157917583853, guid: 774b22031281e3441a3f4b3e64c02970, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1772271130020501051, guid: 774b22031281e3441a3f4b3e64c02970, type: 3}
-      propertyPath: spawnChance
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2728463698928101730, guid: 774b22031281e3441a3f4b3e64c02970, type: 3}
       propertyPath: m_Name

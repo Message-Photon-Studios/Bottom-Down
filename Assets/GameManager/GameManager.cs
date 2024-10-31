@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public TipsManager tipsManager;
 
+    public ItemLibrary itemLibrary;
+
     void Awake()
     {
         if(instance == null)

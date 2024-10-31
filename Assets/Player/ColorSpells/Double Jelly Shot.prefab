@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Fire a big and a small jellyfish that impacts the first target they
     hit. The smaller jellyfish is weaker. \r\nPower: 80% + 40%\r\n"
-  spellCost: 50
+  spellCost: 40
   powerScale: 0.8
   coolDown: 0.5
   destroyOnAllImpact: 1
