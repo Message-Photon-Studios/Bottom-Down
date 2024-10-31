@@ -90,12 +90,15 @@ public class EnemyStats : MonoBehaviour
     GameObject player;
     PlayerStats playerStats;
     PlayerCombatSystem playerCombat;
+
+    Rigidbody2D body;
     #region Setup
     void Awake()
     {
         normalMovementDrag = GetComponent<Rigidbody2D>().drag;
         myCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
         normalAnimationSpeed = animator.speed;
     }
 

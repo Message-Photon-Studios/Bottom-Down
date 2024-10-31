@@ -33,7 +33,7 @@ public class CheckPlatformEdgePartly : Node
     public override NodeState Evaluate()
     {
         bool test = !Physics2D.Raycast(stats.GetPosition() + Vector2.right * legPos*stats.lookDir, Vector2.down , checkDownDistance, GameManager.instance.maskLibrary.onlyGround) ||
-                    Physics2D.Raycast(stats.GetPosition() + Vector2.right * legPos*stats.lookDir, Vector2.right * (legPos*stats.lookDir), .2f, GameManager.instance.maskLibrary.onlyGround);
+                    Physics2D.Raycast(stats.GetPosition() + Vector2.right * legPos*stats.lookDir, Vector2.right *stats.lookDir, .2f, GameManager.instance.maskLibrary.onlyGround);
         state = (test)?NodeState.SUCCESS:NodeState.FAILURE;
         return state;
     }

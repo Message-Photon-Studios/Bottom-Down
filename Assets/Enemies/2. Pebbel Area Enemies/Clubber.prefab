@@ -656,7 +656,6 @@ GameObject:
   - component: {fileID: 6567443812170086898}
   - component: {fileID: 6567443812170086901}
   - component: {fileID: 6569880262898042755}
-  - component: {fileID: 2984315990543749145}
   - component: {fileID: 1795198555313609797}
   m_Layer: 6
   m_Name: Clubber
@@ -876,19 +875,6 @@ MonoBehaviour:
   jumping: {fileID: 1609261008054442957}
   onHit: {fileID: 4398976353382716072}
   spellHit: {fileID: 3316831444032959949}
---- !u!114 &2984315990543749145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6567443812170086900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3b8a02a3b0f2042a4599de422b021f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  achievementObject: {fileID: 6493222949174414483, guid: 6a2ebc11bf110cd49b02bca59a2c2e3b, type: 3}
 --- !u!58 &1795198555313609797
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class Clubber : Enemy
     [SerializeField] int clubDamage;
     [SerializeField] float clubForce;
     [SerializeField] float patrollIdleTime;
-    private float legPos = 1.2f;
+    private float legPos = 1.5f;
 
     protected override Node SetupTree()
     {
@@ -37,6 +37,14 @@ public class Clubber : Enemy
                 new CheckPlayerArea(stats, player, attackTrigger),
                 new AnimationBool(animator, "run", false),
                 new AnimationTrigger(animator, "attack")
+            }),
+
+            new Sequence(new List<Node>{
+                new CheckBool("attack", false),
+                new CheckBool("chase", true),
+                new CheckVelocity(body, 0, 5),
+                new Wait(.5f, .2f),
+                new EnemyJump(stats, body, jumpForce*1.5f, jumpForwardForce*1.5f)
             }),
             
             new Sequence(new List<Node>{
