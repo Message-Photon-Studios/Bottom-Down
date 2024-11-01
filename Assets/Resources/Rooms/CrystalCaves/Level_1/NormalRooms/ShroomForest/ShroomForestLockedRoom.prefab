@@ -5589,7 +5589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
-  roomRegionColor: 2
+  roomRegionColor: 1
   allowGreenClosingRooms: 1
   roomNodes:
     m_keys:
