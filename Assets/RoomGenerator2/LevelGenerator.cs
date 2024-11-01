@@ -659,9 +659,10 @@ public class LevelGenerator
         if(!door.allowsGreenClosingRooms) 
         {
             string debugMsg = "Missing specialized closing room of color " + door.doorColor + " in room " + door.room.name + " with arrangement: ";
+            string[] rot = {"L", "D", "R" , "U"};
             for (int i = 0; i < doorsToOpen.Length; i++)
             {
-                debugMsg += doorsToOpen[i] + ", ";
+                debugMsg += rot[i] + " = " + doorsToOpen[i] + ", ";
             }
             Debug.Log(debugMsg);
             return new (null, Vector2.zero);

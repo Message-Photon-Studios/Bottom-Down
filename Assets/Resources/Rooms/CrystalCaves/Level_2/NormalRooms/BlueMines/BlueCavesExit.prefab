@@ -4582,7 +4582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
-  roomRegionColor: 1
+  roomRegionColor: 5
   allowGreenClosingRooms: 1
   roomNodes:
     m_keys:
