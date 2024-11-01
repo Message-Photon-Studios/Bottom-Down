@@ -315,7 +315,7 @@ public class LevelGenerator
                 regionSizeCopy.Add(item.Key,item.Value);
             }
             
-            if (tries > 50) 
+            if (tries > 200) 
             {
                 #if UNITY_EDITOR
                     throw new Exception("Failed Generation Exception on try " + tries);
