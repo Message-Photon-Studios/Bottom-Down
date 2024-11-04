@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -1663,78 +1663,78 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      wood-tiles-background_50: 1542452613
-      wood-tiles-background_6: -965465917
-      wood-tiles-background_28: -360270705
-      wood-tiles-background_12: 1688043881
-      wood-tiles-background_58: 1695031769
-      wood-tiles-background_1: -629187943
-      wood-tiles-background_42: -889666228
-      wood-tiles-background_46: 68651878
-      wood-tiles-background_47: -355709456
-      wood-tiles-background_53: -102806517
-      wood-tiles-background_30: 24553036
-      wood-tiles-background_27: -1010764101
-      wood-tiles-background_33: 1949819756
-      wood-tiles-background_22: -1042761605
-      wood-tiles-background_15: 869870837
-      wood-tiles-background_18: -1307025069
-      wood-tiles-background_11: 2096172664
-      wood-tiles-background_5: 1073102092
-      wood-tiles-background_13: -1750319936
-      wood-tiles-background_20: 1567753701
-      wood-tiles-background_31: -365339553
-      wood-tiles-background_4: -1080097699
-      wood-tiles-background_68: -1625709628
-      wood-tiles-background_2: 202132234
-      wood-tiles-background_63: 2019474309
-      wood-tiles-background_56: -91713200
-      wood-tiles-background_69: 833286716
-      wood-tiles-background_7: -1632662389
-      wood-tiles-background_10: 1145985622
-      wood-tiles-background_45: 778572932
-      wood-tiles-background_24: 335820028
-      wood-tiles-background_71: -151588691
-      wood-tiles-background_26: -540299762
-      wood-tiles-background_23: 1151510186
-      wood-tiles-background_40: -1344136492
-      wood-tiles-background_51: -1107375001
-      wood-tiles-background_3: 1017666
-      wood-tiles-background_49: -1100419763
-      wood-tiles-background_25: 2103884974
       wood-tiles-background_34: -2103214340
-      wood-tiles-background_8: -1349190221
-      wood-tiles-background_17: 68352148
-      wood-tiles-background_59: 139686176
-      wood-tiles-background_35: -873390486
-      wood-tiles-background_66: -817762351
-      wood-tiles-background_37: 1119019616
-      wood-tiles-background_41: 2045991705
-      wood-tiles-background_36: 1137817919
-      wood-tiles-background_29: -604739768
-      wood-tiles-background_61: -1299390254
-      wood-tiles-background_44: -552144886
-      wood-tiles-background_57: 328754335
-      wood-tiles-background_70: -260738623
-      wood-tiles-background_64: -1604223179
-      wood-tiles-background_67: -1188352269
+      wood-tiles-background_31: -365339553
+      wood-tiles-background_18: -1307025069
+      wood-tiles-background_4: -1080097699
+      wood-tiles-background_13: -1750319936
       wood-tiles-background_55: 1430458762
-      wood-tiles-background_62: -2087390701
+      wood-tiles-background_26: -540299762
+      wood-tiles-background_40: -1344136492
       wood-tiles-background_14: 1164404166
+      wood-tiles-background_64: -1604223179
+      wood-tiles-background_36: 1137817919
+      wood-tiles-background_69: 833286716
+      wood-tiles-background_63: 2019474309
+      wood-tiles-background_67: -1188352269
+      wood-tiles-background_43: -1643715930
+      wood-tiles-background_2: 202132234
+      wood-tiles-background_15: 869870837
+      wood-tiles-background_59: 139686176
+      wood-tiles-background_12: 1688043881
+      wood-tiles-background_57: 328754335
+      wood-tiles-background_6: -965465917
+      wood-tiles-background_16: 1699636421
+      wood-tiles-background_45: 778572932
+      wood-tiles-background_22: -1042761605
+      wood-tiles-background_44: -552144886
+      wood-tiles-background_25: 2103884974
+      wood-tiles-background_11: 2096172664
+      wood-tiles-background_32: 1525040132
+      wood-tiles-background_17: 68352148
+      wood-tiles-background_51: -1107375001
+      wood-tiles-background_62: -2087390701
+      wood-tiles-background_52: -1559049025
+      wood-tiles-background_42: -889666228
+      wood-tiles-background_61: -1299390254
+      wood-tiles-background_33: 1949819756
+      wood-tiles-background_70: -260738623
       wood-tiles-background_54: -847722816
+      wood-tiles-background_35: -873390486
+      wood-tiles-background_39: -103206192
       wood-tiles-background_21: 1110162974
+      wood-tiles-background_58: 1695031769
+      wood-tiles-background_56: -91713200
+      wood-tiles-background_0: -1996518542
+      wood-tiles-background_49: -1100419763
+      wood-tiles-background_10: 1145985622
+      wood-tiles-background_46: 68651878
+      wood-tiles-background_23: 1151510186
+      wood-tiles-background_68: -1625709628
+      wood-tiles-background_53: -102806517
       wood-tiles-background_19: 156905544
       wood-tiles-background_60: -1279584784
-      wood-tiles-background_16: 1699636421
-      wood-tiles-background_48: -881226710
-      wood-tiles-background_32: 1525040132
-      wood-tiles-background_38: 594715074
+      wood-tiles-background_8: -1349190221
+      wood-tiles-background_24: 335820028
+      wood-tiles-background_30: 24553036
+      wood-tiles-background_5: 1073102092
+      wood-tiles-background_41: 2045991705
+      wood-tiles-background_37: 1119019616
+      wood-tiles-background_66: -817762351
+      wood-tiles-background_28: -360270705
+      wood-tiles-background_50: 1542452613
+      wood-tiles-background_29: -604739768
       wood-tiles-background_65: 325426085
+      wood-tiles-background_7: -1632662389
+      wood-tiles-background_48: -881226710
+      wood-tiles-background_27: -1010764101
+      wood-tiles-background_3: 1017666
+      wood-tiles-background_1: -629187943
+      wood-tiles-background_20: 1567753701
+      wood-tiles-background_38: 594715074
+      wood-tiles-background_47: -355709456
+      wood-tiles-background_71: -151588691
       wood-tiles-background_9: -996012551
-      wood-tiles-background_52: -1559049025
-      wood-tiles-background_43: -1643715930
-      wood-tiles-background_39: -103206192
-      wood-tiles-background_0: -1996518542
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
