@@ -96,6 +96,7 @@ SpriteAtlas:
   - {fileID: -207742359, guid: 52fab3c35bc5a8e4f8758f80cfbd4b88, type: 3}
   - {fileID: 661897186, guid: 52fab3c35bc5a8e4f8758f80cfbd4b88, type: 3}
   - {fileID: -1994331699, guid: 52fab3c35bc5a8e4f8758f80cfbd4b88, type: 3}
+  - {fileID: 21300000, guid: ea68e0f9a49107841bdd73b15d03f262, type: 3}
   - {fileID: -481685603, guid: fd101e0b1eb04c64db08d94e018805f6, type: 3}
   - {fileID: 247871302, guid: fd101e0b1eb04c64db08d94e018805f6, type: 3}
   - {fileID: 1799644936, guid: fd101e0b1eb04c64db08d94e018805f6, type: 3}
@@ -285,6 +286,7 @@ SpriteAtlas:
   - brick-tiles-mud_32
   - brick-tiles-mud_31
   - brick-tiles-mud_30
+  - moss-tiles
   - brick-tiles-blue_20
   - brick-tiles-blue_21
   - brick-tiles-blue_22
