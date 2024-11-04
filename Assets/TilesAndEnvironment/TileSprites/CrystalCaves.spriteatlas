@@ -1353,6 +1353,78 @@ SpriteAtlas:
   - {fileID: -378120823, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
   - {fileID: -1353512376, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
   - {fileID: 641412746, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
+  - {fileID: -151588691, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -260738623, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 156905544, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1307025069, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 68352148, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1699636421, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 869870837, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1164404166, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1750319936, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1688043881, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 2096172664, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1145985622, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1344136492, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 2045991705, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -889666228, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1042761605, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1643715930, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -102806517, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1151510186, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -552144886, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1559049025, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1567753701, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 778572932, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1107375001, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1110162974, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -873390486, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 68651878, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1542452613, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -817762351, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -540299762, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -2103214340, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1080097699, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -355709456, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 328754335, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1188352269, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1010764101, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1119019616, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1073102092, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -881226710, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -91713200, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1604223179, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 335820028, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1137817919, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -965465917, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1100419763, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1430458762, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 325426085, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 2103884974, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -365339553, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1632662389, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -847722816, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -2087390701, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 24553036, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1996518542, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 2019474309, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1949819756, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -629187943, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1279584784, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -360270705, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1525040132, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 202132234, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 139686176, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1299390254, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -604739768, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1017666, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 1695031769, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -103206192, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 594715074, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1349190221, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -996012551, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: -1625709628, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+  - {fileID: 833286716, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
   m_PackedSpriteNamesToIndex:
   - purple-cave-tiles_13
   - purple-cave-tiles_12
@@ -2657,6 +2729,78 @@ SpriteAtlas:
   - yellow-geode_6
   - yellow-geode_5
   - yellow-geode_4
+  - wood-tiles-background_71
+  - wood-tiles-background_70
+  - wood-tiles-background_19
+  - wood-tiles-background_18
+  - wood-tiles-background_17
+  - wood-tiles-background_16
+  - wood-tiles-background_15
+  - wood-tiles-background_14
+  - wood-tiles-background_13
+  - wood-tiles-background_12
+  - wood-tiles-background_11
+  - wood-tiles-background_10
+  - wood-tiles-background_40
+  - wood-tiles-background_41
+  - wood-tiles-background_42
+  - wood-tiles-background_22
+  - wood-tiles-background_43
+  - wood-tiles-background_53
+  - wood-tiles-background_23
+  - wood-tiles-background_44
+  - wood-tiles-background_52
+  - wood-tiles-background_20
+  - wood-tiles-background_45
+  - wood-tiles-background_51
+  - wood-tiles-background_21
+  - wood-tiles-background_35
+  - wood-tiles-background_46
+  - wood-tiles-background_50
+  - wood-tiles-background_66
+  - wood-tiles-background_26
+  - wood-tiles-background_34
+  - wood-tiles-background_4
+  - wood-tiles-background_47
+  - wood-tiles-background_57
+  - wood-tiles-background_67
+  - wood-tiles-background_27
+  - wood-tiles-background_37
+  - wood-tiles-background_5
+  - wood-tiles-background_48
+  - wood-tiles-background_56
+  - wood-tiles-background_64
+  - wood-tiles-background_24
+  - wood-tiles-background_36
+  - wood-tiles-background_6
+  - wood-tiles-background_49
+  - wood-tiles-background_55
+  - wood-tiles-background_65
+  - wood-tiles-background_25
+  - wood-tiles-background_31
+  - wood-tiles-background_7
+  - wood-tiles-background_54
+  - wood-tiles-background_62
+  - wood-tiles-background_30
+  - wood-tiles-background_0
+  - wood-tiles-background_63
+  - wood-tiles-background_33
+  - wood-tiles-background_1
+  - wood-tiles-background_60
+  - wood-tiles-background_28
+  - wood-tiles-background_32
+  - wood-tiles-background_2
+  - wood-tiles-background_59
+  - wood-tiles-background_61
+  - wood-tiles-background_29
+  - wood-tiles-background_3
+  - wood-tiles-background_58
+  - wood-tiles-background_39
+  - wood-tiles-background_38
+  - wood-tiles-background_8
+  - wood-tiles-background_9
+  - wood-tiles-background_68
+  - wood-tiles-background_69
   m_RenderDataMap: {}
   m_Tag: CrystalCaves
   m_IsVariant: 0
