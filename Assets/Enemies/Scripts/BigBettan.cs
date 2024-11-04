@@ -12,6 +12,7 @@ public class BigBettan : Enemy
     [SerializeField] int swordDamage;
     [SerializeField] float swordForce;
     [SerializeField] float patrollIdleTime;
+    float legPos = .8f;
 
     protected override Node SetupTree()
     {
@@ -33,10 +34,10 @@ public class BigBettan : Enemy
                 }),
 
             new Sequence(new List<Node>{
-                new PlatformChase(stats, player, body, animator, 1f, viewRange, -.5f, .5f ,"attack", "walk")
+                new PlatformChase(stats, player, body, animator, 1f, viewRange, -.5f, legPos ,"attack", "walk")
             }),
 
-            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
+            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, legPos, "attack", "walk")
 
             });
         
