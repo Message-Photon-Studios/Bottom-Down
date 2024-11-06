@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4dca4960e9e6a5c45b8ad7364f2dd0fa
+guid: 8368956467e19e44ab9237bee62d7897
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,11 +102,23 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
+    buildTarget: WebGL
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,10 +127,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -127,10 +139,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -141,12 +153,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: peblit-aspeel_0
+      name: pebble-sword-walk-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -155,19 +167,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89a1658199b51ca4f9e9fe12c85ead60
-      internalID: 841572998
+      spriteID: 92589fc9221f79c4e83ada78e12abf19
+      internalID: -543094753
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: peblit-aspeel_1
+      name: pebble-sword-walk-Sheet_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 170
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -176,19 +188,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a42b5cb6dd513ad4cbe1d2fcf8d4b841
-      internalID: -1651661844
+      spriteID: 7d2a15887b128034eb1f4347e543bf99
+      internalID: -1287235532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: peblit-aspeel_2
+      name: pebble-sword-walk-Sheet_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 340
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -197,19 +209,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ee77c08753d25c4e8e27484d0fa734a
-      internalID: -911869452
+      spriteID: fd8e818d32e73284b8633e9ade8e4207
+      internalID: 1014707730
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: peblit-aspeel_3
+      name: pebble-sword-walk-Sheet_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 510
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -218,19 +230,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c142d5062de941f47ac11c6debc45e98
-      internalID: -723875789
+      spriteID: 2c7498415c2ddb943866585acd346c9b
+      internalID: -992732788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: peblit-aspeel_4
+      name: pebble-sword-walk-Sheet_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 680
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -239,71 +251,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a4aa6f8d4bf0e74ba57c2a479a60914
-      internalID: 1371326977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: peblit-aspeel_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a5cff3db9d9d07346a7fb46eaed6822d
-      internalID: -657797185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: peblit-aspeel_6
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2330099fceb315f41aa1d36e2770a96d
-      internalID: -565191759
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: peblit-aspeel_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4519aa4bebf5904eaf561167ad4cadc
-      internalID: 349966040
+      spriteID: 2acf05d5e7316794799d9e40f77744eb
+      internalID: 302691192
       vertices: []
       indices: 
       edges: []
@@ -318,19 +267,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: ab68650f833684649a395afdbce5126f, type: 3}
+    - texture: {fileID: 2800000, guid: e90a43195736a1b429a5bcc1bd213fd6, type: 3}
       name: _MaskTex
-    - texture: {fileID: 2800000, guid: 16c08fd0275e87b459ac97cdae3c98be, type: 3}
+    - texture: {fileID: 2800000, guid: 659c8f21f7e831545aac1e1f722cac73, type: 3}
       name: _AtlasTex
     nameFileIdTable:
-      peblit-aspeel_6: -565191759
-      peblit-aspeel_3: -723875789
-      peblit-aspeel_4: 1371326977
-      peblit-aspeel_7: 349966040
-      peblit-aspeel_5: -657797185
-      peblit-aspeel_2: -911869452
-      peblit-aspeel_0: 841572998
-      peblit-aspeel_1: -1651661844
+      pebble-sword-walk-Sheet_2: 1014707730
+      pebble-sword-walk-Sheet_0: -543094753
+      pebble-sword-walk-Sheet_1: -1287235532
+      pebble-sword-walk-Sheet_4: 302691192
+      pebble-sword-walk-Sheet_3: -992732788
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
