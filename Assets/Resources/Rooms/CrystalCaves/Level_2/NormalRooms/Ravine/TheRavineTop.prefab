@@ -33770,9 +33770,9 @@ MonoBehaviour:
     - {x: 1, y: 6}
     - {x: 2, y: 6}
     m_values:
-    - doors: 01000000040000000100000001000000
-    - doors: 01000000040000000100000001000000
-    - doors: 01000000040000000100000001000000
+    - doors: 01000000000000000100000001000000
+    - doors: 01000000000000000100000001000000
+    - doors: 01000000000000000100000001000000
     - doors: 01000000010000000100000001000000
     - doors: 01000000010000000100000001000000
     - doors: 01000000010000000100000001000000
@@ -33801,8 +33801,8 @@ MonoBehaviour:
   displayMode: 0
   maxSpawns: 1
   spawnCount: 1
-  selectedNode: {x: 2, y: 4}
-  isClosingRoom: 0
+  selectedNode: {x: 0, y: 0}
+  isClosingRoom: 1
 --- !u!1 &5927641445981482623
 GameObject:
   m_ObjectHideFlags: 0
