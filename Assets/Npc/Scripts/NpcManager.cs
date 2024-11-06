@@ -62,8 +62,8 @@ public class NpcData
         if(specificDialogues.ContainsKey(levelName))
         {
             List<Dialogue> dialogues = specificDialogues[levelName];
-            Dialogue toReturn = dialogues[dialogues.Count-1];
-            specificDialogues[levelName].RemoveAt(dialogues.Count-1);
+            Dialogue toReturn = dialogues[0];
+            specificDialogues[levelName].RemoveAt(0);
             if(specificDialogues[levelName].Count == 0) specificDialogues.Remove(levelName);
             return toReturn;
         }
@@ -76,20 +76,12 @@ public class NpcData
         return defaultDialogue;
     }
 
-    public void AddSpecialDialogue(string [] levels, Dialogue dialogue)
-    {
-        for (int i = 0; i < levels.Length; i++)
-        {
-            if(specificDialogues.ContainsKey(levels[i]))
-                specificDialogues[levels[i]].Add(dialogue);
-            else
-                specificDialogues.Add(levels[i], new List<Dialogue>{dialogue});
-        }
-    }
-
     public void AddSpecialDialogue (string level, Dialogue dialogue)
     {
-        AddSpecialDialogue(new string[] {level}, dialogue);
+        if(specificDialogues.ContainsKey(level))
+            specificDialogues[level].Add(dialogue);
+        else
+            specificDialogues.Add(level, new List<Dialogue>{dialogue});
     }
 
     public void ChangeDefaultDialogue(Dialogue dialogue)
