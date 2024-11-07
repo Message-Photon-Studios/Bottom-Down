@@ -28,7 +28,7 @@ public class NPCScript : MonoBehaviour
     void Start()
     {
         nameUi.text = name;
-        mapIcon.SetActive(true);
+        if(mapIcon) mapIcon.SetActive(true);
     }
     private void OnEnable() {
         currentText = 0;

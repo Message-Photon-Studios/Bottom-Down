@@ -1111,12 +1111,14 @@ MonoBehaviour:
     - Key: Willow
       Value:
         defaultDialogue:
+          id: 44460775
           texts:
           - Hi, do you want to buy something?
         regionalDefaultDialogues:
           _serializedList:
           - Key: CaveTown
             Value:
+              id: 116391139
               texts:
               - 'Hi, I found you lying unconscious in the caves. '
               - I managed to bring you here.
@@ -1126,11 +1128,13 @@ MonoBehaviour:
                 just because I am so generous. "
           - Key: TheFirstCave
             Value:
+              id: 307709441
               texts:
               - Before you head out, do you want to buy anything to help you on your
                 journey?
           - Key: CrystalHub
             Value:
+              id: 157530307
               texts:
               - Hi, do you want to buy something?
               - Also, if you find my brother then say hi from me.
@@ -1139,7 +1143,8 @@ MonoBehaviour:
           _serializedList:
           - Key: TheFirstCave
             Value:
-            - texts:
+            - id: 951304142
+              texts:
               - 'Hello there! '
               - Found yourself stuck in this treacherous cave? Use your map to get
                 guidance to reach the exit at the top of the cave system.
@@ -1149,7 +1154,8 @@ MonoBehaviour:
                 me.\r"
           - Key: CoralCaves
             Value:
-            - texts:
+            - id: 600329268
+              texts:
               - Phew, you made it here!
               - These old corals seem to be filled with those hostile rocks. You
                 need to be careful.
@@ -1157,6 +1163,7 @@ MonoBehaviour:
     - Key: William
       Value:
         defaultDialogue:
+          id: 119670184
           texts:
           - Oh  He.. Hey there..
           - "These bottles I found them laying around, broken sadly. They were so
@@ -1168,6 +1175,7 @@ MonoBehaviour:
           _serializedList:
           - Key: CaveTown
             Value:
+              id: 793495809
               texts:
               - Oh, Hi.
               - "Do\u2026 Do you want to test some of my bottles?"
@@ -1176,6 +1184,23 @@ MonoBehaviour:
                 set out on your new journey. '
         specificDialogues:
           _serializedList: []
+    - Key: Lila
+      Value:
+        defaultDialogue:
+          id: 593198724
+          texts:
+          - Hello Squirrel.
+        regionalDefaultDialogues:
+          _serializedList: []
+        specificDialogues:
+          _serializedList:
+          - Key: CaveTown
+            Value:
+            - id: 14067392
+              texts:
+              - 'Hello Squirrel.
+
+                I am Lila, the local doctor here. '
   npcOriginalData:
     _serializedList: []
 --- !u!1 &6749319306640925491

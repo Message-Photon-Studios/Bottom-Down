@@ -4,12 +4,13 @@ using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class NpcManager : MonoBehaviour, IDataPersistence
 {
     public static NpcManager instance = null;
     [SerializeField] public SerializedDictionary<string, NpcData> npcData = new SerializedDictionary<string, NpcData>();
-    [SerializeField] private SerializedDictionary<string, NpcData> npcOriginalData = new SerializedDictionary<string, NpcData>();
+    [SerializeField, HideInInspector] private SerializedDictionary<string, NpcData> npcOriginalData = new SerializedDictionary<string, NpcData>();
     
     public void Awake()
     {
@@ -21,12 +22,34 @@ public class NpcManager : MonoBehaviour, IDataPersistence
 
         npcOriginalData = npcData;
     }
+
+    void OnValidate()
+    {
+        #if UNITY_EDITOR
+        
+        foreach (KeyValuePair<string, NpcData> data in npcData)
+        {
+            data.Value.SetDialogueId();
+        }
+
+        UnityEditor.EditorUtility.SetDirty(this);
+        #endif
+    }
+
     public Dialogue GetDialogue(string npcName)
     {
         if(!npcData.ContainsKey(npcName))
         {
-            Debug.LogError("No default dialogue for " + npcName);
-            return null;
+            if(npcOriginalData.ContainsKey(npcName))
+            {
+                npcData.Add(npcName, npcOriginalData[npcName]);
+                Debug.LogWarning("No default dialogue for " + npcName + " in save file. Added npc from update");
+            }
+            else
+            {
+                Debug.LogError("No default dialogue for " + npcName);
+                return null;
+            }
         }
 
         Dialogue toReturn = npcData[npcName].GetDialogue(SceneManager.GetActiveScene().name);
@@ -37,7 +60,18 @@ public class NpcManager : MonoBehaviour, IDataPersistence
     void IDataPersistence.LoadData(GameData data)
     {
         if(data.npcData != null && data.npcData.Count > 0)
+        {
             npcData = data.npcData;
+
+            foreach (KeyValuePair<string, NpcData> npc in npcOriginalData)
+            {
+                if(!npcData.ContainsKey(npc.Key)) npcData.Add(npc.Key, npc.Value);
+                else
+                {
+                    npcData[npc.Key].UpdateDialogues(npc.Value);
+                }
+            }
+        }
         else
             npcData = npcOriginalData;
     }
@@ -56,6 +90,56 @@ public class NpcData
     [SerializeField] Dialogue defaultDialogue;
     [SerializeField] SerializedDictionary<string, Dialogue> regionalDefaultDialogues;
     [SerializeField] SerializedDictionary<string, List<Dialogue>> specificDialogues;
+
+
+    public void UpdateDialogues(NpcData original)
+    {
+        if(defaultDialogue.id == original.defaultDialogue.id) defaultDialogue = original.defaultDialogue;
+
+        List<(string name, Dialogue dialogue)> toChange = new List<(string, Dialogue)>();
+
+        foreach (KeyValuePair<string, Dialogue> regDef in regionalDefaultDialogues)
+        {
+            if(original.regionalDefaultDialogues.ContainsKey(regDef.Key) && regDef.Value.id == original.regionalDefaultDialogues[regDef.Key].id)
+            {
+                toChange.Add((regDef.Key, original.regionalDefaultDialogues[regDef.Key]));
+            }
+        }
+
+        for (int i = 0; i < toChange.Count; i++)
+        {
+            regionalDefaultDialogues[toChange[i].name] = toChange[i].dialogue;
+        }
+
+        foreach (KeyValuePair<string, List<Dialogue>> spec in specificDialogues)
+        {
+            if(!original.specificDialogues.ContainsKey(spec.Key)) continue;
+            
+            for (int i = 0; i < spec.Value.Count; i++)
+            {
+                Dialogue getOriginal = original.specificDialogues[spec.Key].Find(find => (find.id == spec.Value[i].id));
+                if(getOriginal == null) continue;
+                specificDialogues[spec.Key][i] = getOriginal;
+            }
+        }
+    }
+
+    public void SetDialogueId()
+    {
+        defaultDialogue.UpdateId();
+        foreach (KeyValuePair<string, Dialogue> regDef in regionalDefaultDialogues)
+        {
+            regDef.Value.UpdateId();    
+        }
+
+        foreach (KeyValuePair<string, List<Dialogue>> spec in specificDialogues)
+        {
+            foreach (Dialogue dia in spec.Value)
+            {
+                dia.UpdateId();
+            }
+        }
+    }
     
     public Dialogue GetDialogue(string levelName)
     {
@@ -113,6 +197,14 @@ public class NpcData
 [System.Serializable]
 public class Dialogue
 {
+    public void UpdateId()
+    {
+        if(id == 0)
+        {
+            id = Random.Range(0,1000000000);
+        }
+    }
+    [SerializeField] public int id = 0;
     [TextArea(5,20)] public string[] texts;
 } 
 
