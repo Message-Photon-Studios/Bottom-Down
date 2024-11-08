@@ -1126,7 +1126,7 @@ MonoBehaviour:
               - 'I have no idea what happened to them. '
               - "Oh well, you don\u2019t need to thank me. I decided to help you
                 just because I am so generous. "
-          - Key: TheFirstCave
+          - Key: TheOutskirts
             Value:
               id: 307709441
               texts:
@@ -1148,7 +1148,7 @@ MonoBehaviour:
                 down. '
         specificDialogues:
           _serializedList:
-          - Key: TheFirstCave
+          - Key: TheOutskirts
             Value:
             - id: 951304142
               texts:
