@@ -33,7 +33,15 @@ public class RandomPatroll : Node
     /// <param name="walkAnimationBool">This animation bool will be set to true when the enemy is moving</param>
     /// <returns></returns>
     public RandomPatroll(EnemyStats stats, Rigidbody2D body, Animator animator, float patrollSpeedFactor, float maxIdleTime, float legPos, string stopBool, string walkAnimationBool) :
-        base(new List<Node>{new CheckPlatformEdge(stats, legPos)})
+        base(new List<Node>
+        {
+            new CheckPlatformEdge(stats, legPos), 
+            new Sequence(new List<Node>{
+                new CheckVelocity(body, 0, .1f),
+                new Wait(1f, .2f),
+                new EnemyJump(stats, body, 1000, 500),
+            })
+        })
     {
         this.stats = stats;
         this.body = body;
@@ -91,6 +99,8 @@ public class RandomPatroll : Node
         if((patrollPoint- stats.GetPosition().x)*stats.lookDir<0) stats.ChangeDirection();
 
         body.AddForce(new Vector2(((patrollPoint < stats.GetPosition().x)?-1:1)*stats.GetSpeed()*patrollSpeedFactor, 0)*Time.deltaTime);
+
+        children[1].Evaluate();
         state = NodeState.RUNNING;
         return state;
     }

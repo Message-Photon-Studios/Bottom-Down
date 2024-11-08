@@ -1062,6 +1062,154 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6195609297225964499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8879042368244089635}
+  - component: {fileID: 8610360068542975885}
+  m_Layer: 0
+  m_Name: NpcManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8879042368244089635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195609297225964499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6749319306640925488}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8610360068542975885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195609297225964499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12078e77cf1d05c41a9fb96d71b3427c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcData:
+    _serializedList:
+    - Key: Willow
+      Value:
+        defaultDialogue:
+          id: 44460775
+          texts:
+          - Hi, do you want to buy something?
+        regionalDefaultDialogues:
+          _serializedList:
+          - Key: CaveTown
+            Value:
+              id: 116391139
+              texts:
+              - 'Hi, I found you lying unconscious in the caves. '
+              - I managed to bring you here.
+              - However, all of your items seem to be gone.
+              - 'I have no idea what happened to them. '
+              - "Oh well, you don\u2019t need to thank me. I decided to help you
+                just because I am so generous. "
+          - Key: TheOutskirts
+            Value:
+              id: 307709441
+              texts:
+              - Before you head out, do you want to buy anything to help you on your
+                journey?
+          - Key: CrystalHub
+            Value:
+              id: 157530307
+              texts:
+              - Hi, do you want to buy something?
+              - Also, if you find my brother then say hi from me.
+              - He should have a shop somewhere around here.
+          - Key: QuakeBoss
+            Value:
+              id: 311753470
+              texts:
+              - 'I have heard a lot of scary noises from this pit below as of recently. '
+              - 'You better prepare yourself by buying some items before venturing
+                down. '
+        specificDialogues:
+          _serializedList:
+          - Key: TheOutskirts
+            Value:
+            - id: 951304142
+              texts:
+              - 'Hello there! '
+              - Found yourself stuck in this treacherous cave? Use your map to get
+                guidance to reach the exit at the top of the cave system.
+              - "You see, I found these items lying around the caves after the earthquake.
+                I\u2019m sure someone has a need for these, please have a look."
+              - "Just so you know Finders keepers! But feel free to buy them from
+                me.\r"
+          - Key: CoralCaves
+            Value:
+            - id: 600329268
+              texts:
+              - Phew, you made it here!
+              - These old corals seem to be filled with those hostile rocks. You
+                need to be careful.
+              - Oh well, do you want to buy anything?
+    - Key: William
+      Value:
+        defaultDialogue:
+          id: 119670184
+          texts:
+          - Oh  He.. Hey there..
+          - "These bottles I found them laying around, broken sadly. They were so
+            pretty though!\r"
+          - "I tried, I really tried my best to repair them, hopefully you find one
+            you like.\r"
+          - "Also G...G... Good luck out there!\r"
+        regionalDefaultDialogues:
+          _serializedList:
+          - Key: CaveTown
+            Value:
+              id: 793495809
+              texts:
+              - Oh, Hi.
+              - "Do\u2026 Do you want to test some of my bottles?"
+              - "You can \u2026 "
+              - 'You can borrow these from me. I will collect them again when you
+                set out on your new journey. '
+        specificDialogues:
+          _serializedList: []
+    - Key: Lila
+      Value:
+        defaultDialogue:
+          id: 593198724
+          texts:
+          - Hello Squirrel.
+        regionalDefaultDialogues:
+          _serializedList: []
+        specificDialogues:
+          _serializedList:
+          - Key: CaveTown
+            Value:
+            - id: 14067392
+              texts:
+              - 'Hello Squirrel.
+
+                I am Lila, the local doctor here. '
+  npcOriginalData:
+    _serializedList: []
 --- !u!1 &6749319306640925491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,6 +1242,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4694099751917428603}
+  - {fileID: 8879042368244089635}
+  - {fileID: 1152693480933594067}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1331,6 +1481,52 @@ MonoBehaviour:
       Value:
         audioSource: {fileID: 167709162901887020}
         maxVolume: 0.5
+--- !u!1 &7557040194653726028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152693480933594067}
+  - component: {fileID: 3360079954366367519}
+  m_Layer: 0
+  m_Name: UpgradesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1152693480933594067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557040194653726028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6749319306640925488}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3360079954366367519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557040194653726028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b71b0c9234c6ed4c87006214738fd28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+    extraHealth: 0
 --- !u!1 &7562256178773632822
 GameObject:
   m_ObjectHideFlags: 0

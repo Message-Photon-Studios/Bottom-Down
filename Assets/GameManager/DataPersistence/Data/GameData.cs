@@ -10,8 +10,10 @@ public class GameData
     public int petrifiedPigment;
     public string[] unlockedColorSpells;
     public string[] petrifiedPigmentPickedUp;
-
+    public PermanentUpgrades permanentUpgrades;
     public SerializedDictionary<string, Tips> tipsDictionary;
+    public SerializedDictionary<string, NpcData> npcData;
+    public SerializedDictionary<string, int> permanentShopBuys = new SerializedDictionary<string, int>(); 
 
 
     /// <summary>
@@ -24,5 +26,8 @@ public class GameData
         petrifiedPigment = 0;
         petrifiedPigmentPickedUp = new string[0];
         tipsDictionary = new SerializedDictionary<string, Tips>();
+        npcData = null;
+        permanentUpgrades = new PermanentUpgrades();
+        permanentShopBuys = new SerializedDictionary<string, int>();
     }
 }
