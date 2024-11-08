@@ -1139,6 +1139,13 @@ MonoBehaviour:
               - Hi, do you want to buy something?
               - Also, if you find my brother then say hi from me.
               - He should have a shop somewhere around here.
+          - Key: QuakeBoss
+            Value:
+              id: 311753470
+              texts:
+              - 'I have heard a lot of scary noises from this pit below as of recently. '
+              - 'You better prepare yourself by buying some items before venturing
+                down. '
         specificDialogues:
           _serializedList:
           - Key: TheFirstCave
