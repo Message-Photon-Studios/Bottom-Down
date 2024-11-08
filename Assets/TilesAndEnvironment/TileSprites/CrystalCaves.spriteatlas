@@ -339,6 +339,7 @@ SpriteAtlas:
   - {fileID: -1180802545, guid: 0c10a073ed070bb468ae7eb10ea6a135, type: 3}
   - {fileID: -1694415928, guid: 0c10a073ed070bb468ae7eb10ea6a135, type: 3}
   - {fileID: 492508950, guid: 0c10a073ed070bb468ae7eb10ea6a135, type: 3}
+  - {fileID: 21300000, guid: 52fab3c35bc5a8e4f8758f80cfbd4b88, type: 3}
   - {fileID: -1036203080, guid: 4a70e3d3c080c884eb3ecb4ab2bde17a, type: 3}
   - {fileID: 1448808213, guid: 4a70e3d3c080c884eb3ecb4ab2bde17a, type: 3}
   - {fileID: 456169880, guid: 4a70e3d3c080c884eb3ecb4ab2bde17a, type: 3}
@@ -639,6 +640,7 @@ SpriteAtlas:
   - {fileID: 492508950, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
   - {fileID: 21300000, guid: 32942409df51baa44b14241b27a069bc, type: 3}
   - {fileID: 21300000, guid: 6db30469eaefead45b86d7575a20a293, type: 3}
+  - {fileID: 21300000, guid: ea68e0f9a49107841bdd73b15d03f262, type: 3}
   - {fileID: 21300000, guid: edcf6b8ab920bb246bb446dd2799d38a, type: 3}
   - {fileID: -481685603, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
   - {fileID: 247871302, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
@@ -761,6 +763,7 @@ SpriteAtlas:
   - {fileID: 1258967800, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
   - {fileID: 163684766, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
   - {fileID: 21300000, guid: 4f701fbad2d0ec644b0822b764bc4905, type: 3}
+  - {fileID: 21300000, guid: fd101e0b1eb04c64db08d94e018805f6, type: 3}
   - {fileID: -1258079950, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
   - {fileID: 2143648092, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
   - {fileID: -695945241, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
@@ -1237,6 +1240,7 @@ SpriteAtlas:
   - {fileID: -378120823, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
   - {fileID: -1353512376, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
   - {fileID: 641412746, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
+  - {fileID: 21300000, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
   m_PackedSpriteNamesToIndex:
   - purple-cave-tiles_13
   - purple-cave-tiles_12
@@ -1527,6 +1531,7 @@ SpriteAtlas:
   - gray-cave-tiles-yellow-gems_62
   - gray-cave-tiles-yellow-gems_61
   - gray-cave-tiles-yellow-gems_60
+  - brick-tiles-mud
   - purple-geode_10
   - purple-geode_11
   - purple-geode_12
@@ -1827,6 +1832,7 @@ SpriteAtlas:
   - marine-tiles-pink_60
   - mushroom-tiles
   - mushroom-tiles-white
+  - moss-tiles
   - mushroom-tiles-green
   - blue-cave-tiles-gold-gems_20
   - blue-cave-tiles-gold-gems_21
@@ -1949,6 +1955,7 @@ SpriteAtlas:
   - blue-cave-tiles-blue-gems_0
   - blue-cave-tiles-blue-gems_1
   - mushroom-tiles-red
+  - brick-tiles-blue
   - blue-geode_18
   - blue-geode_69
   - blue-geode_19
@@ -2425,6 +2432,7 @@ SpriteAtlas:
   - yellow-geode_6
   - yellow-geode_5
   - yellow-geode_4
+  - wood-tiles
   m_RenderDataMap: {}
   m_Tag: CrystalCaves
   m_IsVariant: 0
