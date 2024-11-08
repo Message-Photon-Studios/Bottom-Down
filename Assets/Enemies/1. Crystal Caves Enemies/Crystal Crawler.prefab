@@ -57,7 +57,7 @@ MonoBehaviour:
   health: 150
   color: {fileID: 11400000, guid: 5f2b6f6ae8acaf3469c5a5c99178de06, type: 2}
   colorAmmount: 6
-  movementSpeed: 500
+  movementSpeed: 300
   coinsDropped:
     min: 7
     max: 12
@@ -98,7 +98,7 @@ MonoBehaviour:
     width: 360
     offset: {x: 0, y: 0}
     color: {r: 0.048508644, g: 1, b: 0, a: 1}
-  runSpeed: 13
+  runSpeed: 25
   jumpForce: 7500
   checkJumpHight: 3
   forwardJumpForce: 6500

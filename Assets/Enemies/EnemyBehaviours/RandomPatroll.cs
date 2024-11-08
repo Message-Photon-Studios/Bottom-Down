@@ -37,8 +37,8 @@ public class RandomPatroll : Node
         {
             new CheckPlatformEdge(stats, legPos), 
             new Sequence(new List<Node>{
-                new CheckVelocity(body, 0, .5f),
-                new Wait(.3f, .2f),
+                new CheckVelocity(body, 0, .1f),
+                new Wait(1f, .2f),
                 new EnemyJump(stats, body, 1000, 500),
             })
         })

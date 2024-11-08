@@ -11,6 +11,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
     [SerializeField] TMP_Text buysText;
     [SerializeField] bool inactiveWhenMaxed;
     [SerializeField] int cost; 
+    [SerializeField] int costIncrease;
     [SerializeField] TMP_Text costText;
     [SerializeField] GameObject canvas;
     [SerializeField] private InputActionReference interact;
@@ -41,7 +42,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
             return;
         }
         canvas.SetActive(true);
-        if(GameManager.instance.GetPetrifiedPigmentAmount() < cost)
+        if(GameManager.instance.GetPetrifiedPigmentAmount() < cost+buys*costIncrease)
         {
             costText.color = Color.red;
         } else
@@ -71,7 +72,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
     {
         if(!canvas.activeSelf) return;
         if(buys >= maxBuys) return;
-        if(GameManager.instance.TryRemovePetrifiedPigment(cost))
+        if(GameManager.instance.TryRemovePetrifiedPigment(cost+buys*costIncrease))
         {
             buys ++;
             Shop();
