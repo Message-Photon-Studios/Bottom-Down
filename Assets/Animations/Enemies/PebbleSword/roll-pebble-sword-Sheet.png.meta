@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 77e3e27bcd1d1424bb111daf6443714c
+guid: 903f2ff1139e13e4d8a2d86699be5150
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -125,6 +125,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<<< HEAD:Assets/Animations/Enemies/PebbleSword/roll-pebble-sword-Sheet.png.meta
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 4096
@@ -149,16 +150,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+========
+>>>>>>>> dev:Assets/Textures/Enemies/Pebble/Peblit/roll-pebble-sword-Sheet.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_0
+      name: roll-pebble-sword-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -167,19 +170,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12b438394ebc307478cb58865cfa43f3
-      internalID: 781283919
+      spriteID: 196b4abb1b4c4b64cb3b121ebb2b7680
+      internalID: -1547232901
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_1
+      name: roll-pebble-sword-Sheet_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 170
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -188,19 +191,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15a53dd896f3a764b8c247342e8cf080
-      internalID: -123254719
+      spriteID: d5a8f06ee44491a46800a738a675315f
+      internalID: -1347033789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_2
+      name: roll-pebble-sword-Sheet_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 340
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -209,19 +212,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15d47d81d6144b046828c381f9da90e3
-      internalID: -1740697951
+      spriteID: edd802f4d5a361341a78d3e5acafae60
+      internalID: 337861804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_3
+      name: roll-pebble-sword-Sheet_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 510
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -230,19 +233,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e986fcc97ea5a8a43ab76612e7dccc5a
-      internalID: 1710045576
+      spriteID: 52d0cd7b5b67277499069d5dee083d91
+      internalID: 1917340887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_4
+      name: roll-pebble-sword-Sheet_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 680
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -251,19 +254,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b88fd65c70557f64ca2ba122e7a3fb15
-      internalID: -990683894
+      spriteID: 34f7dc954eda7cc48b9454434d4c9e21
+      internalID: 1126202055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_5
+      name: roll-pebble-sword-Sheet_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 850
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -272,19 +275,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd0b6585aa7ac554b8a3e0848da4618d
-      internalID: 1583397908
+      spriteID: 435d8a08989fda74fa069e5e68fc5a73
+      internalID: 577018024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_6
+      name: roll-pebble-sword-Sheet_6
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1020
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -293,19 +296,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8e875936ea169f4396f282388730dd1
-      internalID: 431643654
+      spriteID: e8571a6b52816274ea3d4a2809f5ffcf
+      internalID: -1593788907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_7
+      name: roll-pebble-sword-Sheet_7
       rect:
         serializedVersion: 2
-        x: 896
+        x: 1190
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -314,19 +317,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07c0a5f05cae757488b6f1f3224fac5f
-      internalID: -950544121
+      spriteID: 7563e15fc4ffa384cb031fa21fadc9a8
+      internalID: 814395882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_8
+      name: roll-pebble-sword-Sheet_8
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1360
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -335,19 +338,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94faf71eb2c715d42a7d311105c7ae7d
-      internalID: -722151292
+      spriteID: 4e39a58ac4d5a984bac8c7abf868cb9f
+      internalID: -413327048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_9
+      name: roll-pebble-sword-Sheet_9
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1530
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -356,19 +359,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b8e5d4a5fa6ea5408a2785bd229d736
-      internalID: -900078013
+      spriteID: ab93ae54f3a1051448c2b3a6fe608ae7
+      internalID: 1767725926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_10
+      name: roll-pebble-sword-Sheet_10
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1700
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -377,19 +380,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28737d7aa4e12414b9bce319552c6d93
-      internalID: -1831168422
+      spriteID: 1f8d770f320fd424fb56381ba1f4c14e
+      internalID: -881630465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_11
+      name: roll-pebble-sword-Sheet_11
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 1870
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -398,19 +401,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eaca6967d66c4148bd9517ce6a9e240
-      internalID: 1039324985
+      spriteID: ebfef5e1e78f7024baea4da8c8548e6e
+      internalID: -374217669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_12
+      name: roll-pebble-sword-Sheet_12
       rect:
         serializedVersion: 2
-        x: 1536
+        x: 2040
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -419,19 +422,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f51dc5cbca8c17439100fedd6f42975
-      internalID: -533303087
+      spriteID: 0d371d00ee91ba542a3c9f8b56ee7945
+      internalID: 2100117905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_13
+      name: roll-pebble-sword-Sheet_13
       rect:
         serializedVersion: 2
-        x: 1664
+        x: 2210
         y: 0
-        width: 128
+        width: 170
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -440,29 +443,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dfa7358ea93b0948a9eb63d63e6c1f4
-      internalID: 1991027875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pebble-sword-roll-Sheet_14
-      rect:
-        serializedVersion: 2
-        x: 1792
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 559849a306626534d9fdca366e4ae6dd
-      internalID: 1408701062
+      spriteID: f8d4798df50dee548ad3665ac140f95c
+      internalID: -366512280
       vertices: []
       indices: 
       edges: []
@@ -477,26 +459,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: b92137ba47dbe7445ab162d0cea058c2, type: 3}
+    - texture: {fileID: 2800000, guid: 8b3a101ffb3d76e46a72d2e17c0cad5a, type: 3}
       name: _MaskTex
     - texture: {fileID: 2800000, guid: beca87e3736a5ea4898b584248ea30a1, type: 3}
       name: _AtlasTex
     nameFileIdTable:
-      pebble-sword-roll-Sheet_4: -990683894
-      pebble-sword-roll-Sheet_7: -950544121
-      pebble-sword-roll-Sheet_10: -1831168422
-      pebble-sword-roll-Sheet_9: -900078013
-      pebble-sword-roll-Sheet_5: 1583397908
-      pebble-sword-roll-Sheet_6: 431643654
-      pebble-sword-roll-Sheet_12: -533303087
-      pebble-sword-roll-Sheet_14: 1408701062
-      pebble-sword-roll-Sheet_13: 1991027875
-      pebble-sword-roll-Sheet_0: 781283919
-      pebble-sword-roll-Sheet_8: -722151292
-      pebble-sword-roll-Sheet_3: 1710045576
-      pebble-sword-roll-Sheet_1: -123254719
-      pebble-sword-roll-Sheet_11: 1039324985
-      pebble-sword-roll-Sheet_2: -1740697951
+      roll-pebble-sword-Sheet_7: 814395882
+      roll-pebble-sword-Sheet_13: -366512280
+      roll-pebble-sword-Sheet_10: -881630465
+      roll-pebble-sword-Sheet_4: 1126202055
+      roll-pebble-sword-Sheet_3: 1917340887
+      roll-pebble-sword-Sheet_12: 2100117905
+      roll-pebble-sword-Sheet_1: -1347033789
+      roll-pebble-sword-Sheet_6: -1593788907
+      roll-pebble-sword-Sheet_8: -413327048
+      roll-pebble-sword-Sheet_11: -374217669
+      roll-pebble-sword-Sheet_5: 577018024
+      roll-pebble-sword-Sheet_9: 1767725926
+      roll-pebble-sword-Sheet_2: 337861804
+      roll-pebble-sword-Sheet_0: -1547232901
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
