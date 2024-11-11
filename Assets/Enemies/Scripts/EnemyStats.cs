@@ -757,6 +757,11 @@ public class EnemyStats : MonoBehaviour
         return sleepPowerBonus;
     }
 
+    public bool HasSleepCooldown()
+    {
+        return sleepCooldownTimer > 0f;
+    }
+
     #endregion
 
     #region Coins
