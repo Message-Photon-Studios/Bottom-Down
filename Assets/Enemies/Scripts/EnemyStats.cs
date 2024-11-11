@@ -376,6 +376,11 @@ public class EnemyStats : MonoBehaviour
         instantiatedParticles.transform.parent = transform;
     }
 
+    public bool IsRaibowed()
+    {
+        return color != null && colorAmmount > 0 && color.name == "Rainbow";
+    }
+
     #endregion
     
     #region Poison damage
