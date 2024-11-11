@@ -83,7 +83,7 @@ public class PlayerStats : MonoBehaviour
             {
                 shield -= (shieldDecay<0)?0:shieldDecay;
                 shieldDecay += shieldDecayIncrease;
-                if(shield < 0) shield = 0;
+                if(shield < 0) shield = -1;
                 onShieldChanged?.Invoke(shield);
             }
         }
