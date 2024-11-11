@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -72,4 +73,24 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
+
+    #if UNITY_EDITOR
+    
+    [SerializeField] bool resetSave;
+
+    void OnValidate()
+    {
+        if(resetSave)
+        {
+            ResetSaveEditor();
+            resetSave = false;
+        }
+    }
+    public void ResetSaveEditor()
+    {
+        NewGame();
+        LoadGame();
+        SaveGame();
+    }
+    #endif
 }

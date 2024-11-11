@@ -11,7 +11,7 @@ public class PlayerLevelMananger : MonoBehaviour
 {
     [SerializeField] GameObject[] loadWithPlayerObjects; //Objects that will be set as dont destroy on load with the player and then destroyed at the same time
     Vector3 startPosition;
-    private static GameObject me;
+    private static GameObject instance;
     PlayerMovement movement; //Handles the players movement
     LevelManager gameManager; //The game manager handles the specific scene
     Animator animator;
@@ -22,10 +22,10 @@ public class PlayerLevelMananger : MonoBehaviour
     private void Awake()
     {
         //Singelton that ensures that only one player exists
-        if(me && me != this.gameObject) 
+        if(instance && instance != this.gameObject) 
         {
-            me.transform.position = this.gameObject.transform.position;
-            me.GetComponent<PlayerLevelMananger>().SetStartPosition(transform.position);
+            instance.transform.position = this.gameObject.transform.position;
+            instance.GetComponent<PlayerLevelMananger>().SetStartPosition(transform.position);
 
             Debug.Log("Set new start position " + startPosition);
 
@@ -36,9 +36,9 @@ public class PlayerLevelMananger : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
-        else if(me == null) 
+        else if(instance == null) 
         {
-            me = this.gameObject;
+            instance = this.gameObject;
             foreach (GameObject obj in loadWithPlayerObjects)
             {
                 if(obj != null)
@@ -104,7 +104,7 @@ public class PlayerLevelMananger : MonoBehaviour
         {
             obj.tag = "DeadPlayer";
         }
-        me = null;
+        instance = null;
         killMe = true;
     }
 

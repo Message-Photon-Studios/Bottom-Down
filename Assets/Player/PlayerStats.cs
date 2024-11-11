@@ -65,6 +65,7 @@ public class PlayerStats : MonoBehaviour
     void OnEnable()
     {
         //TODO: Check so this doesnt cause a problem when changing scene.
+        health += PermanentUpgradeManager.instance.upgrades.extraHealth;
         maxHealth = health;
         onMaxHealthChanged?.Invoke(maxHealth);
         onHealthChanged?.Invoke(health);

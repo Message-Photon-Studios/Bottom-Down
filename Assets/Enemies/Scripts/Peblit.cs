@@ -11,6 +11,7 @@ public class Peblit : Enemy
     [SerializeField] int swordDamage;
     [SerializeField] float swordForce;
     [SerializeField] float patrollIdleTime;
+    float legPos = .7f;
 
     protected override Node SetupTree()
     {
@@ -28,10 +29,10 @@ public class Peblit : Enemy
                 }),
 
             new Sequence(new List<Node>{
-                new PlatformChase(stats, player, body, animator, 1f, viewRange, 0f, .5f ,"attack", "walk")
+                new PlatformChase(stats, player, body, animator, 1f, viewRange, 0f, legPos ,"attack", "walk")
             }),
 
-            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
+            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, legPos, "attack", "walk")
 
             });
         

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using JetBrains.Annotations;
-using Unity.Mathematics;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
