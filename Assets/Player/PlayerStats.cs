@@ -26,7 +26,7 @@ public class PlayerStats : MonoBehaviour
     public float colorRainbowMaxedPower = 1;
     
     int shield = 0;
-    int shieldDecay = 0;
+    int shieldDecay = -1;
 
     public int chanceThatEnemyDontMix = 0;
 
@@ -116,6 +116,7 @@ public class PlayerStats : MonoBehaviour
     {
         if(invincibilityTimer > 0) return;
         //if(damage == 0) return;
+        shieldDecay = 0;
         if (UnityEngine.Random.Range(0, 100) < chanceToBlock)
         {
             GameObject aura = Instantiate(blockAura, transform);
