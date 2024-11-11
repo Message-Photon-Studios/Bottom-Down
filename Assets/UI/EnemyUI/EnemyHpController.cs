@@ -30,7 +30,8 @@ public class EnemyHpController : MonoBehaviour
         healthSlider.gameObject.SetActive(false);
         healthSubSlider.gameObject.SetActive(false);
 
-        rectTransform.sizeDelta = new Vector2(healthBarBaseSize + healthBarScale*enemy.GetHealth(), rectTransform.sizeDelta.y);
+        if(rectTransform)
+            rectTransform.sizeDelta = new Vector2(healthBarBaseSize + healthBarScale*enemy.GetHealth(), rectTransform.sizeDelta.y);
     }
 
     /// <summary>

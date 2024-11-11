@@ -191,15 +191,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'Make a short range splash of color in front of you.
 
-    Power: 100%'
+    Power: 80%'
   spellCost: 40
-  powerScale: 1
-  coolDown: 1
+  powerScale: 0.8
+  coolDown: 1.5
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0
   impactOnEnemies: 1
   impactOnNonEnemies: 1
   triggerOnlyOnce: 0
+  triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
   requirePlayerLOSonSpawn: 0
   lifeTime: 0.5

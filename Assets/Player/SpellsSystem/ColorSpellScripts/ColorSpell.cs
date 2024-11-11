@@ -44,6 +44,11 @@ public class ColorSpell : MonoBehaviour
     [SerializeField] protected bool triggerOnlyOnce;
 
     /// <summary>
+    /// If true the spell will only trigger once per enemy. It can still hit multiple different enemies.
+    /// </summary>
+    [SerializeField] protected bool triggerOnlyOncePerEnemy;
+
+    /// <summary>
     /// How often enemy already triggered will be reset
     /// </summary>
     [SerializeField] protected float attackAgainTimer = -1;
@@ -195,13 +200,14 @@ public class ColorSpell : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if(triggerOnlyOnce) return;
+        if(triggerOnlyOncePerEnemy) return;
         if(!objectsAlreadyHit.Contains(other)) return;
 
         objectsAlreadyHit.Remove(other);
     }
 
     private void Update() {
-        if(!triggerOnlyOnce && resetEnemyTime > 0f && objectsAlreadyHit.Count > 0)
+        if(!triggerOnlyOnce && resetEnemyTime > 0f && objectsAlreadyHit.Count > 0 && !triggerOnlyOncePerEnemy)
         {
             if(attackAgainTimer > 0) attackAgainTimer -= Time.deltaTime;
             else
