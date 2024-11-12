@@ -73,15 +73,21 @@ public class LevelGenManager : MonoBehaviour
         
         GetComponent<LevelManager>().FinishedGeneration();
     }
-
-    public void init(UIController canvas, bool async)
+    
+    /// <summary>
+    /// If this var is set to positive then the generation will stop trying to generate after this ammount
+    /// </summary>
+    [SerializeField] int maxTries = -1;
+    public int init(UIController canvas, bool async)
     {
         levelGen = new LevelGenerator();
-        levelGen.generate(size, paths[(int)levelType]+level, regionSize, regionSizeMargin);
+        levelGen.generate(size, paths[(int)levelType]+level, regionSize, regionSizeMargin, maxTries);
         if (async)
             StartCoroutine(generateSceneAsync(canvas));
         else
             generateScene(canvas);
+        
+        return levelGen.tries;
     }
 
     public void reset()

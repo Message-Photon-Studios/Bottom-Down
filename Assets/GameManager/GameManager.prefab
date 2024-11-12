@@ -1130,8 +1130,10 @@ MonoBehaviour:
             Value:
               id: 307709441
               texts:
-              - Before you head out, do you want to buy anything to help you on your
-                journey?
+              - Because I am so generous I have even decided to give you this bottle
+                to help you out on your journey.
+              - Now go collect those Astral Pigments so you have something to spend
+                in my shop.
           - Key: CrystalHub
             Value:
               id: 157530307

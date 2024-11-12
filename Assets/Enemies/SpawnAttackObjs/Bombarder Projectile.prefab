@@ -66,6 +66,7 @@ MonoBehaviour:
   deathTimer: 0
   lookDir: -1
   colorOrbPrefab: {fileID: 0}
+  sleepCooldown: 2
   currentCombo: 0
   enemySounds: {fileID: 0}
   spawnPower: 1

@@ -162,8 +162,15 @@ MonoBehaviour:
   description: 
   spellCost: 0
   powerScale: 0
-  destroyOnImpact: 0
-  destroyOnHit: 0
+  coolDown: 1
+  destroyOnAllImpact: 0
+  destroyOnEnemyHit: 0
+  impactOnEnemies: 1
+  impactOnNonEnemies: 1
+  triggerOnlyOnce: 0
+  triggerOnlyOncePerEnemy: 1
+  attackAgainTimer: -1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 0.5
   animationTrigger: handSpell
   onImpact:
@@ -190,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0900cb19f680a734ba6a9d1fcb2ffcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcePerspectivePlayer: 0
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!1001 &2641858031565607371
 PrefabInstance:

@@ -303,9 +303,10 @@ public class LevelGenerator
 
     public bool instantiated = false;
 
-    public void generate(int size, string areaPath, Dictionary<DoorColor, int> regionSize, int regionSizeMargin)
+    public int tries = 0;
+    public void generate(int size, string areaPath, Dictionary<DoorColor, int> regionSize, int regionSizeMargin, int maxTries)
     {
-        var tries = 0;
+        tries = 0;
         bool res = false;
         do
         {   
@@ -315,7 +316,7 @@ public class LevelGenerator
                 regionSizeCopy.Add(item.Key,item.Value);
             }
             
-            if (tries > 200) 
+            if (maxTries > 0 && tries > maxTries) 
             {
                 #if UNITY_EDITOR
                     throw new Exception("Failed Generation Exception on try " + tries);

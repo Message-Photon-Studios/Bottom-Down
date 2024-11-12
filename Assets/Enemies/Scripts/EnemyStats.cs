@@ -50,6 +50,8 @@ public class EnemyStats : MonoBehaviour
     private float sleepTimer = 0;
     private float lastSleep = 0;
     private float sleepPowerBonus = 0f; //The extra damage dealt to a slept enemy
+    [SerializeField] float sleepCooldown = 2f;
+    float sleepCooldownTimer = 0f;
     GameObject sleepParticles;
     [HideInInspector] public int currentCombo = 0; //At what stage this combo is at
 
@@ -154,6 +156,7 @@ public class EnemyStats : MonoBehaviour
     #region Update
     void Update()
     {
+        if(sleepCooldownTimer > 0) sleepCooldownTimer -= Time.deltaTime;
         if(isColoredThisFrame) isColoredThisFrame = false;
         if(secTimer > 1f)
         {
@@ -371,6 +374,11 @@ public class EnemyStats : MonoBehaviour
         Destroy(instantiatedParticles, 1f);
         // Set enemy as parent of the particle system
         instantiatedParticles.transform.parent = transform;
+    }
+
+    public bool IsRaibowed()
+    {
+        return color != null && colorAmmount > 0 && color.name == "Rainbow";
     }
 
     #endregion
@@ -679,6 +687,7 @@ public class EnemyStats : MonoBehaviour
     /// <param name="timer"></param>
     public void SleepEnemy(float timer, float sleepPower, GameObject particles)
     {
+        if(sleepCooldownTimer > 0) return;
         if(sleepTimer <= 0)
             sleepPowerBonus = sleepPower;
 
@@ -718,6 +727,7 @@ public class EnemyStats : MonoBehaviour
             sleepParticles.GetComponent<ParticleSystem>().Stop();
             GameObject.Destroy(sleepParticles, 1f);
         }
+        sleepCooldownTimer = sleepCooldown;
     }
 
     /// <summary>
@@ -750,6 +760,11 @@ public class EnemyStats : MonoBehaviour
     {
         if(!enemySleep) return 0;
         return sleepPowerBonus;
+    }
+
+    public bool HasSleepCooldown()
+    {
+        return sleepCooldownTimer > 0f;
     }
 
     #endregion

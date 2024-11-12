@@ -201,6 +201,7 @@ MonoBehaviour:
   impactOnEnemies: 1
   impactOnNonEnemies: 0
   triggerOnlyOnce: 1
+  triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
   lifeTime: 3
