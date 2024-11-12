@@ -11,8 +11,9 @@ public class LevelGenManagerEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Generate graph"))
         {
-            genManager.init(null, false);
-        }
+            int tries = genManager.init(null, false);
+            Debug.Log("Level generated after " + tries + " tries"); 
+        }   
         
         GUILayout.Space(20);
 
@@ -23,39 +24,35 @@ public class LevelGenManagerEditor : Editor
 
         GUILayout.Space(20);
 
-        if(GUILayout.Button("Fast test"))
+        if(GUILayout.Button("Test Scene"))
         {
-            float failed = 0;
+            int totalTries = 0;
+            int maxTries = 0;
+            int triesOver50 = 0;
+            int triesOver100 = 0;
+            int triesOver150 = 0;
+            int triesOver200 = 0;
             for (int i = 0; i < 100; i++)
             {
                 try
                 {
-                    genManager.init(null, false);
+                    int tries = genManager.init(null, false);
+                    totalTries += tries;
+                    if(maxTries < tries) maxTries = tries;
+                    if(tries > 50) triesOver50++;
+                    if(tries > 100) triesOver100++;
+                    if(tries > 150) triesOver150++;
+                    if(tries > 200) triesOver200++;
                 } catch (Exception e)
                 {
                     Debug.Log(e);
-                    failed++;
                 }
             }
-
-            Debug.Log("######## TEST COMPLETED ######## Success chance: " + (100f-failed) + "%, total tests made: 100");
-        }
-
-        if(GUILayout.Button("Big test (SLOW!)"))
-        {
-            float failed = 0;
-            for (int i = 0; i < 1000; i++)
-            {
-                try
-                {
-                    genManager.init(null, false);
-                } catch (Exception e)
-                {
-                    failed++;
-                }
-            }
-
-            Debug.Log("######## TEST COMPLETED ######## Success chance: " + (1000f-failed)/10f + "%, total tests made: 1000");
+            
+            float averageTries = totalTries/100f;
+            Debug.Log("######## TEST COMPLETED ######## \nAverage number of tries: " 
+            + averageTries + "\nMax tries to generate: " 
+            + maxTries + "\n Tries over 50: " + triesOver50 +"%\nTries over 100: " + triesOver100 +"%\nTries over 150: " + triesOver150+"%\nTries over 200: " + triesOver200 +"%");
         }
     }
     
