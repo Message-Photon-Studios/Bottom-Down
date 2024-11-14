@@ -30,11 +30,15 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] public Material defaultColor;
     [SerializeField] InputActionReference removeColorAction;
     [SerializeField] int rainbowExtraDrain;
+    [SerializeField] float minCD = 0.3f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     SpellPickup pickUpSpell = null;
 
     public int blockDrainColor = 0;
     private bool CanSwap = true;
+    private float addetiveCDModifier = 0;
+    private float multetiveCDModifier = 1;
+    private float defaultBuff = 0;
 
     #region Actions for UI
     
@@ -189,8 +193,20 @@ public class ColorInventory : MonoBehaviour
     /// <param name="time"></param>
    public void SetCoolDown(float time)
     {
+        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
+        if (time <= minCD) time = minCD; 
         ActiveSlot().coolDown = Time.fixedTime + time;
         onCoolDownSet?.Invoke(time);
+    }
+
+    public void AddCDMultiplier(float multiplier)
+    {
+        multetiveCDModifier += multiplier;
+    }
+
+    public void AddCDAddetive(float add)
+    {
+        addetiveCDModifier += add;
     }
 
     /// <summary>
@@ -242,7 +258,14 @@ public class ColorInventory : MonoBehaviour
         if(colorBuffs.ContainsKey(color))
             buff += colorBuffs[color];
 
+        buff += defaultBuff;
+
         return buff;
+    }
+
+    public void AddDefaultBuff(float buff)
+    {
+        defaultBuff += buff;
     }
 
     /// <summary>
