@@ -12,6 +12,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] GameColor[] bossColors;
     [SerializeField] float changeColorTime;
     [SerializeField] GameObject deathUnlock;
+    [SerializeField] GameObject healthBar;
 
     public static Action onBossDefeated;
 
@@ -36,6 +37,7 @@ public class BossEnemyController : MonoBehaviour
         bossStartHealth = stats.GetHealth();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         stats.onEnemyDeath += BossDied;
+        player.onPlayerDied += PlayerDied;
     }
 
     void Update()
@@ -106,6 +108,11 @@ public class BossEnemyController : MonoBehaviour
 
         onBossDefeated?.Invoke();
         deathUnlock.SetActive(true);
+    }
+
+    void PlayerDied()
+    {
+        healthBar.SetActive(false);
     }
 
     void ChangeSpellHand()

@@ -7778,7 +7778,7 @@ MonoBehaviour:
     - doors: 00000000010000000000000000000000
   displayMode: 0
   maxSpawns: -1
-  spawnCount: 0
+  spawnCount: 1
   selectedNode: {x: -1, y: 1}
   isClosingRoom: 0
 --- !u!1 &5927641445981482623
@@ -12676,7 +12676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367351908956899993, guid: 85f35f6a708d5aa438d5fc14a24c01cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.138533
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4367351908956899993, guid: 85f35f6a708d5aa438d5fc14a24c01cb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13068,7 +13068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2448634880549500883, guid: 8d999566378225446892c13486dee48e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.007658243
+      value: 2.73
       objectReference: {fileID: 0}
     - target: {fileID: 2448634880549500883, guid: 8d999566378225446892c13486dee48e, type: 3}
       propertyPath: m_LocalPosition.z
