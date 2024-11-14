@@ -55,9 +55,15 @@ public class Item : ScriptableObject
                 if (this.name.Equals(item.name)) count++;
                 
             }
+            foreach (GameObject itemHolder in GameObject.FindGameObjectsWithTag("Item"))
+            {
+                Item item = itemHolder.GetComponent<ItemPickup>().GetItem();
+                if (item != null)
+                    if (item.name.Equals(name))
+                        count++;
+            }
             if (count >= maxSpawn) ret = false;
         }
-        Debug.Log(name);
         return ret;
     }
 
@@ -155,6 +161,15 @@ public class ItemInspector : Editor
         if (GUILayout.Button("Add Cool Down Multiplier"))
         {
             item.effects.Add(new ChangeCDMultiplier());
+        }
+
+        if (GUILayout.Button("Add Color Balance Setter"))
+        {
+            item.effects.Add(new BalanceAllColors());
+        }
+        if (GUILayout.Button("Add Random Buff Setter"))
+        {
+            item.effects.Add(new RandomBuff());
         }
     }
 }

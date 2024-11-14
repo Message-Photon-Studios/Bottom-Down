@@ -10,23 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
-  m_Name: Marker
+  m_Name: Color Balance
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 94c48f1301124b3489622cd5e3b57048, type: 3}
-  description: 'This marker is great for fixing the edges.
+  sprite: {fileID: 21300000, guid: 4c8c236b7d5423f489c2271bba01c77c, type: 3}
+  description: 'Why choose a favorite?
 
-    Rainbowed enemies
-    take +50% damage when exploding.'
+    Balances all color buffs equally'
   itemCost: 45
   effects:
-  - rid: 7258339239831011329
-  itemCategory: 1
+  - rid: 7890097968310386693
+  itemCategory: 0
   itemRarity: 1
-  maxSpawn: -1
+  maxSpawn: 1
   references:
     version: 2
     RefIds:
-    - rid: 7258339239831011329
-      type: {class: RainbowMaxedBuff, ns: , asm: Assembly-CSharp}
-      data:
-        power: 0.5
+    - rid: 7890097968310386693
+      type: {class: BalanceAllColors, ns: , asm: Assembly-CSharp}

@@ -21,6 +21,7 @@ MonoBehaviour:
   - rid: 1595614060766298114
   itemCategory: 0
   itemRarity: 0
+  maxSpawn: -1
   references:
     version: 2
     RefIds:
@@ -28,4 +29,5 @@ MonoBehaviour:
       type: {class: ColorBuffItem, ns: , asm: Assembly-CSharp}
       data:
         color: {fileID: 11400000, guid: a43a3607f70897249a36fdff7162cc2a, type: 2}
+        allColors: 0
         power: 0.2
