@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'Runnier paint means faster painting!
 
     Massively decrease spell
-    casting speed but decrease all spells with -10%'
+    casting speed but decrease all spells with -15%'
   itemCost: 45
   effects:
   - rid: 7890097968310386691
