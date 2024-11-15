@@ -18,6 +18,7 @@ public class Item : ScriptableObject
     [SerializeReference] public List<ItemEffect> effects = new List<ItemEffect>(); 
     [SerializeField] public ItemCategory itemCategory;
     [SerializeField] public ItemRarity itemRarity;
+    [SerializeField] public float maxSpawn;
 
     public void EnableItem() 
     {
@@ -45,6 +46,23 @@ public class Item : ScriptableObject
         foreach (ItemEffect item in effects)
         {
             ret &= item.CanBeSpawned();
+        }
+        if (maxSpawn != -1 && ret)
+        {
+            int count = 0;
+            foreach (Item item in GameObject.FindWithTag("Player").GetComponent<ItemInventory>().getItems())
+            {
+                if (this.name.Equals(item.name)) count++;
+                
+            }
+            foreach (GameObject itemHolder in GameObject.FindGameObjectsWithTag("Item"))
+            {
+                Item item = itemHolder.GetComponent<ItemPickup>().GetItem();
+                if (item != null)
+                    if (item.name.Equals(name))
+                        count++;
+            }
+            if (count >= maxSpawn) ret = false;
         }
         return ret;
     }
@@ -138,6 +156,20 @@ public class ItemInspector : Editor
         if(GUILayout.Button("Add cascading damage"))
         {
             item.effects.Add(new CascadingDamage());
+        }
+
+        if (GUILayout.Button("Add Cool Down Multiplier"))
+        {
+            item.effects.Add(new ChangeCDMultiplier());
+        }
+
+        if (GUILayout.Button("Add Color Balance Setter"))
+        {
+            item.effects.Add(new BalanceAllColors());
+        }
+        if (GUILayout.Button("Add Random Buff Setter"))
+        {
+            item.effects.Add(new RandomBuff());
         }
     }
 }

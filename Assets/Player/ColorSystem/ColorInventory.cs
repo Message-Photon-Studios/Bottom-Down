@@ -30,11 +30,19 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] public Material defaultColor;
     [SerializeField] InputActionReference removeColorAction;
     [SerializeField] int rainbowExtraDrain;
+    [SerializeField] float minCD = 0.3f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     SpellPickup pickUpSpell = null;
 
     public int blockDrainColor = 0;
     private bool CanSwap = true;
+    private float addetiveCDModifier = 0;
+    private float multetiveCDModifier = 1;
+    private float defaultBuff = 0;
+    public bool balanceColors = false;
+    private float rngMax = 0;
+    private float rngMin = 0;
+    private float rngBuff = 0;
 
     #region Actions for UI
     
@@ -189,8 +197,20 @@ public class ColorInventory : MonoBehaviour
     /// <param name="time"></param>
    public void SetCoolDown(float time)
     {
+        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
+        if (time <= minCD) time = minCD; 
         ActiveSlot().coolDown = Time.fixedTime + time;
         onCoolDownSet?.Invoke(time);
+    }
+
+    public void AddCDMultiplier(float multiplier)
+    {
+        multetiveCDModifier += multiplier;
+    }
+
+    public void AddCDAddetive(float add)
+    {
+        addetiveCDModifier += add;
     }
 
     /// <summary>
@@ -233,16 +253,31 @@ public class ColorInventory : MonoBehaviour
         float buff = 0;
         foreach (ColorSlot slot in colorSlots)
         {
-            if(slot.gameColor == color && slot.charge == slot.maxCapacity) 
+            if((slot.gameColor == color || balanceColors) && slot.charge == slot.maxCapacity) 
             {
                 buff += colorMaxBuff;
             }
         }
 
-        if(colorBuffs.ContainsKey(color))
+        
+
+        if (balanceColors)
+        {
+            foreach (KeyValuePair<GameColor, float> entry in colorBuffs)
+            {
+                buff += entry.Value;
+            }
+            buff = buff / 7;
+        } else if (colorBuffs.ContainsKey(color))
             buff += colorBuffs[color];
+        buff += defaultBuff + rngBuff;
 
         return buff;
+    }
+
+    public void AddDefaultBuff(float buff)
+    {
+        defaultBuff += buff;
     }
 
     /// <summary>
@@ -252,6 +287,22 @@ public class ColorInventory : MonoBehaviour
     public float GetColorBuff()
     {
         return GetColorBuff(ActiveSlot().gameColor);
+    }
+
+    public void SetRandomBuff()
+    {
+        float buff = Random.Range(rngMin, rngMax);
+        buff *= 100;
+        buff = Mathf.Round(buff);
+        buff *= 0.01f;
+        rngBuff = buff;
+        onColorUpdated?.Invoke();
+    }
+
+    public void SetRandomBuff(float min, float max)
+    {
+        rngMax = max;
+        rngMin = min;
     }
     #endregion
 
