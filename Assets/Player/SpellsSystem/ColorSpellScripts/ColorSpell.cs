@@ -105,6 +105,8 @@ public class ColorSpell : MonoBehaviour
         this.extraDamage = extraDamage;
         resetEnemyTime = attackAgainTimer;
 
+        if (this.power <= 0.1) this.power = 0.1f;
+
         foreach(Collider2D col in GetComponents<Collider2D>())
         {
             col.offset *= new Vector2(lookDir, 1);
