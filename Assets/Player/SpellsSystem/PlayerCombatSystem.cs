@@ -200,6 +200,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             spell.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, cascadeDamage);
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown); //When adding items to change the cooldown change it here! 
+            colorInventory.SetRandomBuff();
         }
             
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);

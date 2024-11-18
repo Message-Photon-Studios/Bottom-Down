@@ -10,16 +10,19 @@ public class ColorBuffItem : ItemEffect
 {
     [Header("Color Buff")]
     [SerializeField] GameColor color;
+    [SerializeField] bool allColors;
     [SerializeField] float power;
     public override void ActivateEffect()
     {
         ColorInventory inv = GetPlayer().GetComponent<ColorInventory>();
-        inv.AddColorBuff(color, power);
+        if (allColors) inv.AddDefaultBuff(power);
+        else inv.AddColorBuff(color, power);
     }
 
     public override void DisableEffect()
     {
         ColorInventory inv = GetPlayer().GetComponent<ColorInventory>();
-        inv.AddColorBuff(color, -power);
+        if (allColors) inv.AddDefaultBuff(-power);
+        else inv.AddColorBuff(color, -power);
     }
 }

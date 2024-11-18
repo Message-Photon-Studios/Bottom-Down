@@ -18,6 +18,7 @@ MonoBehaviour:
   effects: []
   itemCategory: 4
   itemRarity: 0
+  maxSpawn: -1
   references:
     version: 2
     RefIds: []
