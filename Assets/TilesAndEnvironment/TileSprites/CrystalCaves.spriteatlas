@@ -680,6 +680,7 @@ SpriteAtlas:
   - {fileID: -1249097744, guid: 79a15315e291a8c40b9554c6b3824252, type: 3}
   - {fileID: 1166155884, guid: 79a15315e291a8c40b9554c6b3824252, type: 3}
   - {fileID: 1036829545, guid: 79a15315e291a8c40b9554c6b3824252, type: 3}
+  - {fileID: 21300000, guid: cd587755dc6f87a4e8694d6ae5718697, type: 3}
   - {fileID: 1513296552, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
   - {fileID: 1289781034, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
   - {fileID: 163684766, guid: 68d64ff8f9e53814092b8c48d0e12955, type: 3}
@@ -1247,6 +1248,7 @@ SpriteAtlas:
   - {fileID: 199774454, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
   - {fileID: 1794646101, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
   - {fileID: -1864503376, guid: 4c09a1bba1380f04f869dba0cae9fff6, type: 3}
+  - {fileID: 21300000, guid: 67303b1c00b4ddd4eb2f2790d3a0319d, type: 3}
   - {fileID: 32007481, guid: 52b2e33c1ac65a846ba1b7ae3c545efe, type: 3}
   - {fileID: -1104915565, guid: 52b2e33c1ac65a846ba1b7ae3c545efe, type: 3}
   - {fileID: 163684766, guid: 52b2e33c1ac65a846ba1b7ae3c545efe, type: 3}
@@ -1579,6 +1581,7 @@ SpriteAtlas:
   - {fileID: 202132234, guid: 8044a78f364378843af1714f770204a3, type: 3}
   - {fileID: -629187943, guid: 8044a78f364378843af1714f770204a3, type: 3}
   - {fileID: -1996518542, guid: 8044a78f364378843af1714f770204a3, type: 3}
+  - {fileID: 21300000, guid: 050b58bf110ca8741b02d088b923ca7e, type: 3}
   - {fileID: -1598223111, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
   - {fileID: 5646747, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
   - {fileID: 1064050617, guid: ceb36ebf23a06714fa42b15bf36d587d, type: 3}
@@ -2354,6 +2357,7 @@ SpriteAtlas:
   - coral-floor_42
   - coral-floor_10
   - coral-floor_43
+  - background-tiles-brown
   - marine-tiles-pink_9
   - marine-tiles-pink_8
   - marine-tiles-pink_1
@@ -2921,6 +2925,7 @@ SpriteAtlas:
   - blue-geode_39
   - blue-geode_29
   - blue-geode_28
+  - background-tiles-gray
   - marine-tiles-blue_7
   - marine-tiles-blue_6
   - marine-tiles-blue_1
@@ -3253,6 +3258,7 @@ SpriteAtlas:
   - marine-background-tiles_2
   - marine-background-tiles_1
   - marine-background-tiles_0
+  - background-tiles-green
   - yellow-geode_70
   - yellow-geode_71
   - yellow-geode_18
