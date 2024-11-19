@@ -4186,6 +4186,7 @@ Transform:
   - {fileID: 6243581379927389324}
   - {fileID: 8844373946552155395}
   - {fileID: 3323912334262629081}
+  - {fileID: 4713892266682613288}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6679,7 +6680,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7183803984289605828}
   m_Father: {fileID: 1110097504496171644}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9003,6 +9005,72 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1001 &78341752740063316
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1110097504496171644}
+    m_Modifications:
+    - target: {fileID: 4646957673482606202, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_Name
+      value: PetrifiedPigmentPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.244
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.817
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.962631
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606205, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: id
+      value: PetrifiedPigmentPickupBottomRoom 1212459487
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+--- !u!4 &4713892266682613288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+  m_PrefabInstance: {fileID: 78341752740063316}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &977585773361583006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9224,6 +9292,72 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5913113476945127388, guid: b9654455b9c45954fb400343e3bd4343, type: 3}
   m_PrefabInstance: {fileID: 4480345249732372124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5356611570192729524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1746693037376217277}
+    m_Modifications:
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.275
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.975
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434802, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_Name
+      value: BarrelBroken
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019521155788434803, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+--- !u!4 &7183803984289605828 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019521155788434800, guid: fb4602d5536b35941a4b174924789d7c, type: 3}
+  m_PrefabInstance: {fileID: 5356611570192729524}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6539959913447710109
 PrefabInstance:
