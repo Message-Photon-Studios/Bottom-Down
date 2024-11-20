@@ -9,7 +9,7 @@ using System;
 /// <summary>
 /// This is the base class for an item
 /// </summary>
-[CreateAssetMenu(menuName = "Item")]
+[CreateAssetMenu(menuName = "Item/Item")]
 public class Item : ScriptableObject
 {
     public Sprite sprite;
@@ -170,6 +170,10 @@ public class ItemInspector : Editor
         if (GUILayout.Button("Add Random Buff Setter"))
         {
             item.effects.Add(new RandomBuff());
+        }
+        if (GUILayout.Button("Add On Damage Effect"))
+        {
+            item.effects.Add(new OnDamageEffect());
         }
     }
 }

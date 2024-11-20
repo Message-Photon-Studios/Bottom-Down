@@ -54,6 +54,11 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     public UnityAction onPlayerDied;
 
+    /// <summary>
+    /// This event fires when the player is damaged
+    /// </summary>
+    public UnityAction<PlayerStats, EnemyStats> onPlayerDamaged;
+
     private bool isDeathExecuted;
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
@@ -112,7 +117,7 @@ public class PlayerStats : MonoBehaviour
     /// Damage the player
     /// </summary>
     /// <param name="damage"></param>
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(int damage, EnemyStats enemy)
     {
         if(invincibilityTimer > 0) return;
         //if(damage == 0) return;
@@ -151,6 +156,7 @@ public class PlayerStats : MonoBehaviour
         }
         
         onHealthChanged?.Invoke(health);
+        onPlayerDamaged?.Invoke(this, enemy);
     }
 
     /// <summary>
