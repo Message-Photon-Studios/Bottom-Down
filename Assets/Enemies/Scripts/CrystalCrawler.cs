@@ -26,6 +26,11 @@ public class CrystalCrawler : Enemy
                 new CheckBool("prusuit", true),
 
                 new Selector(new List<Node>{
+                        new Sequence(new List<Node>{
+                        new Inverter(new CheckPlayerArea(stats, player, viewTrigger)),
+                        new Wait(2f, 1f),
+                        new SetParentVariable("prusuit", false, 4)
+                    }),
 
                     new Sequence(new List<Node>{
                         new CheckBool("enableJump", true),
@@ -71,13 +76,9 @@ public class CrystalCrawler : Enemy
                         new Inverter(new CheckPlayerArea(stats, player, preventJump)),
                         new AnimationBool(animator, "move", true),
                         new AnimationBool(animator, "run", true),
+                        new Wait(.5f),
                         new LookAtPlayer(stats, player),
                         new RunForward(stats, runSpeed)
-                    }),
-
-                    new Sequence(new List<Node>{
-                        new CheckPlayerDistance(stats,player,20, 2000),
-                        new SetParentVariable("prusuit", false, 4)
                     }),
 
                     new Sequence(new List<Node>{

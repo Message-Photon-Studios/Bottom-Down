@@ -88,7 +88,7 @@ MonoBehaviour:
   playerCollisionDamage: 30
   playerCollisionForce: {x: 1000, y: 5000}
   viewTrigger:
-    radius: 6
+    radius: 9
     direction: 0
     width: 360
     offset: {x: 0, y: 0}
