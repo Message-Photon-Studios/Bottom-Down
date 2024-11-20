@@ -17,8 +17,8 @@ public class WindBag : OnDamageDo
             float distance = (enemy.transform.position - player.transform.position).sqrMagnitude;
             if (distance < Mathf.Pow(range, 2))
             {
-                distance = Mathf.Sqrt(distance);
-                enemy.GetComponent<Rigidbody2D>().AddForce((enemy.transform.position - player.transform.position).normalized * force/distance);
+                distance = (range - Mathf.Sqrt(distance))/4;
+                enemy.GetComponent<Rigidbody2D>().AddForce((enemy.transform.position - player.transform.position).normalized * force*distance);
             }
         }
     }
