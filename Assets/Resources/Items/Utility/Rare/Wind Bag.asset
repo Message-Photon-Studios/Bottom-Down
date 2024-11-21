@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
   m_Name: Wind Bag
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 0d24f6b021c86934c8fc6b3bde8ef17e, type: 3}
-  description: 'Runnier paint means faster painting!
+  sprite: {fileID: 21300000, guid: 7f7983ae5d525da45bce5efc9202bc30, type: 3}
+  description: 'All you have to do is not open this bag
 
-    Massively decrease spell
-    casting speed but decrease all spells with -15%'
+    When you take damage,
+    push enemies away from you'
   itemCost: 45
   effects:
   - rid: 7890098107401371648
@@ -29,4 +29,5 @@ MonoBehaviour:
     - rid: 7890098107401371648
       type: {class: OnDamageEffect, ns: , asm: Assembly-CSharp}
       data:
-        effect: {fileID: 0}
+        effects:
+        - {fileID: 11400000, guid: c663241bb9e0fcf468be7710ccf9cc07, type: 2}

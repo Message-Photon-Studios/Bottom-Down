@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a289707cc67201940981f2189c62c795, type: 3}
   m_Name: WindBagEffect
   m_EditorClassIdentifier: 
-  range: 0
-  force: 0
+  range: 6
+  force: 10000

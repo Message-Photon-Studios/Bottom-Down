@@ -9,7 +9,7 @@ public class OnDamageEffect : ItemEffect
     {
         foreach (OnDamageDo effect in effects)
         {
-            GetPlayer().GetComponent<PlayerStats>().onPlayerDamaged += effect.Effect;
+            effect.AddEffect();
         }
     }
 
@@ -17,12 +17,16 @@ public class OnDamageEffect : ItemEffect
     {
         foreach (OnDamageDo effect in effects)
         {
-            GetPlayer().GetComponent<PlayerStats>().onPlayerDamaged += effect.Effect;
+            effect.RemoveEffect();
         }
     }
 }
 
 public abstract class OnDamageDo : ScriptableObject
 {
+
+    public abstract void AddEffect();
+
+    public abstract void RemoveEffect();
     public abstract void Effect(PlayerStats player, EnemyStats enemy);
 }
