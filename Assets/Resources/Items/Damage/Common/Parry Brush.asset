@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Parry Brush
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 7e434327d1fa01044b464e39e1bc0308, type: 3}
-  description: "The color on this old brush has congealated and creates sharp edges.
-    \nAbsorb color ability deal +10 damage."
+  description: 'When you take damage, deal 20 damage to the attacker.
+
+    +10 per
+    stack'
   itemCost: 30
   effects:
   - rid: 7890098150739279874

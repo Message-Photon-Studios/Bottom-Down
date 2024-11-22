@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 4c8c236b7d5423f489c2271bba01c77c, type: 3}
   description: 'Why choose a favorite?
 
-    Balances all color buffs equally'
+    Balances all color power and buffs equally'
   itemCost: 45
   effects:
   - rid: 7890097968310386693

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'All you have to do is not open this bag
 
     When you take damage,
-    push enemies away from you'
+    push nearby enemies away from you'
   itemCost: 30
   effects:
   - rid: 7890098150739279873
