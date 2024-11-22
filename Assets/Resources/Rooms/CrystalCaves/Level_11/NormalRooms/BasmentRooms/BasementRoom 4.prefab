@@ -2974,7 +2974,7 @@ MonoBehaviour:
     - doors: 06000000000000000100000000000000
   displayMode: 0
   maxSpawns: 3
-  spawnCount: 2
+  spawnCount: 3
   selectedNode: {x: 1, y: 0}
   isClosingRoom: 0
 --- !u!1 &5927641445981482623
