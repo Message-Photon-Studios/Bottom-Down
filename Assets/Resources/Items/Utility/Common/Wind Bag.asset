@@ -17,11 +17,11 @@ MonoBehaviour:
 
     When you take damage,
     push enemies away from you'
-  itemCost: 45
+  itemCost: 30
   effects:
   - rid: 7890098107401371648
   itemCategory: 3
-  itemRarity: 1
+  itemRarity: 0
   maxSpawn: 3
   references:
     version: 2

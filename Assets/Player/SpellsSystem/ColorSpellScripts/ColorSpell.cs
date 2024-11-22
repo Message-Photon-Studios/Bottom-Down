@@ -150,10 +150,14 @@ public class ColorSpell : MonoBehaviour
             mover.Init(lookDir);
         }
 
-        foreach(SpellImpact impact in onImpact)
+        if (this != null)
         {
-            impact.Init(this);
+            foreach (SpellImpact impact in onImpact)
+            {
+                impact.Init(this);
+            }
         }
+        
 
         objectsAlreadyHit = new HashSet<Collider2D>();
 

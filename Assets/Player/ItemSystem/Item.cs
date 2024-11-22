@@ -171,9 +171,13 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new RandomBuff());
         }
-        if (GUILayout.Button("Add On Damage Effect"))
+        if (GUILayout.Button("Add On Custom Effect"))
         {
-            item.effects.Add(new OnDamageEffect());
+            item.effects.Add(new CustomItemEffect());
+        }
+        if (GUILayout.Button("Bottles dont mix color"))
+        {
+            item.effects.Add(new BottlesDontMixColor());
         }
     }
 }

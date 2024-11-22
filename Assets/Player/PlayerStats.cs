@@ -34,6 +34,8 @@ public class PlayerStats : MonoBehaviour
 
     float secTimer = 1;
 
+    public Dictionary<string, int> itemVaribles;
+
     /// <summary>
     /// This event fires when the player health is changed. The float is the new health.
     /// </summary>
@@ -75,6 +77,7 @@ public class PlayerStats : MonoBehaviour
         onMaxHealthChanged?.Invoke(maxHealth);
         onHealthChanged?.Invoke(health);
         colorArmour = new Dictionary<GameColor, float>();
+        itemVaribles = new Dictionary<string, int>();
     }
     void Update()
     {

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnDamageEffect : ItemEffect
+public class CustomItemEffect : ItemEffect
 {
-    [SerializeField] List<OnDamageDo> effects;
+    [SerializeField] List<CustomItem> effects;
     public override void ActivateEffect()
     {
-        foreach (OnDamageDo effect in effects)
+        foreach (CustomItem effect in effects)
         {
             effect.AddEffect();
         }
@@ -15,14 +15,14 @@ public class OnDamageEffect : ItemEffect
 
     public override void DisableEffect()
     {
-        foreach (OnDamageDo effect in effects)
+        foreach (CustomItem effect in effects)
         {
             effect.RemoveEffect();
         }
     }
 }
 
-public abstract class OnDamageDo : ScriptableObject
+public abstract class CustomItem : ScriptableObject
 {
 
     public abstract void AddEffect();

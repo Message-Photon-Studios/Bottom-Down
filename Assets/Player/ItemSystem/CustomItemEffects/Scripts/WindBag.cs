@@ -3,46 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Item/On Damage/Wind Bag")]
-public class WindBag : OnDamageDo
+public class WindBag : CustomItem
 {
     [SerializeField] string itemName;
     [SerializeField] float range;
     [SerializeField] float rangePerStack;
     [SerializeField] float force;
     [SerializeField] float forcePerStack;
-    public static int stackSize = 0;
 
     public override void AddEffect()
     {
-        foreach (Item item in GameObject.Find("Player").GetComponent<ItemInventory>().getItems())
+        PlayerStats player = GameObject.Find("Player").GetComponent<PlayerStats>();
+        if (player.itemVaribles.ContainsKey(itemName))
         {
-            if (item.name.Equals(itemName)) stackSize++;
+            player.itemVaribles[itemName]++;
         }
-        if (stackSize == 1) GameObject.Find("Player").GetComponent<PlayerStats>().onPlayerDamaged += Effect;
+        else
+        {
+            player.itemVaribles.Add(itemName, 1);
+            player.onPlayerDamaged += Effect;
+        }
     }
 
     public override void Effect(PlayerStats player, EnemyStats hit)
     {
         EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
-        float currentRange = range + rangePerStack * stackSize;
+        int count = player.itemVaribles[itemName];
+        float currentRange = range + rangePerStack * count;
         foreach (EnemyStats enemy in enemies)
         {
             float distance = (enemy.transform.position - player.transform.position).sqrMagnitude;
             if (distance < Mathf.Pow(currentRange , 2))
             {
                 distance = (currentRange - Mathf.Sqrt(distance))/ currentRange;
-                enemy.GetComponent<Rigidbody2D>().AddForce(((enemy.transform.position - player.transform.position).normalized + new Vector3(0,1,0)).normalized * (force + forcePerStack*stackSize)*distance);
+                enemy.GetComponent<Rigidbody2D>().AddForce(((enemy.transform.position - player.transform.position).normalized + new Vector3(0,1,0)).normalized * (force + forcePerStack* count) *distance);
             }
         }
     }
 
     public override void RemoveEffect()
     {
-        stackSize = 0;
-        foreach (Item item in GameObject.Find("Player").GetComponent<ItemInventory>().getItems())
-        {
-            if (item.name.Equals(itemName)) stackSize++;
-        }
-        if (stackSize == 0) GameObject.Find("Player").GetComponent<PlayerStats>().onPlayerDamaged -= Effect;
+        PlayerStats player = GameObject.Find("Player").GetComponent<PlayerStats>();
+        player.itemVaribles[itemName]--;
+        if (player.itemVaribles[itemName] == 0) GameObject.Find("Player").GetComponent<PlayerStats>().onPlayerDamaged -= Effect;
     }
 }
