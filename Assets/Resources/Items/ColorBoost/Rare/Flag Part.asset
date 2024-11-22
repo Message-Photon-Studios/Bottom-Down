@@ -15,7 +15,8 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 223fac9fb2cacf247b1d55f42129bd77, type: 3}
   description: 'A part of something bigger
 
-    Buffs all colors with +5%'
+    Buffs all power of all colors with
+    +5%'
   itemCost: 45
   effects:
   - rid: 7890097968310386692

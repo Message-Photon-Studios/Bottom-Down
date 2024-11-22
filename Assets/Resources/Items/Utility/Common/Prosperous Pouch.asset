@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'Hopefully not all of these fell from the house.
 
     Increases the
-    astral pigments gained from enemies with 20%.'
+    astral pigments dropped from enemies with 20%.'
   itemCost: 30
   effects:
   - rid: 7139356996789075970
