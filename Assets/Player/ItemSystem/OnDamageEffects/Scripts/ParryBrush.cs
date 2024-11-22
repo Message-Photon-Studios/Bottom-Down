@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/On Damage/Wind Bag")]
-public class WindBag : OnDamageDo
+[CreateAssetMenu(menuName = "Item/On Damage/Parry Brush")]
+public class ParryBrush : OnDamageDo
 {
     [SerializeField] string itemName;
-    [SerializeField] float range;
-    [SerializeField] float rangePerStack;
-    [SerializeField] float force;
-    [SerializeField] float forcePerStack;
+    [SerializeField] int damage;
+    [SerializeField] int damagePerStack;
     public static int stackSize = 0;
 
     public override void AddEffect()
@@ -23,17 +21,7 @@ public class WindBag : OnDamageDo
 
     public override void Effect(PlayerStats player, EnemyStats hit)
     {
-        EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
-        float currentRange = range + rangePerStack * stackSize;
-        foreach (EnemyStats enemy in enemies)
-        {
-            float distance = (enemy.transform.position - player.transform.position).sqrMagnitude;
-            if (distance < Mathf.Pow(currentRange , 2))
-            {
-                distance = (currentRange - Mathf.Sqrt(distance))/ currentRange;
-                enemy.GetComponent<Rigidbody2D>().AddForce(((enemy.transform.position - player.transform.position).normalized + new Vector3(0,1,0)).normalized * (force + forcePerStack*stackSize)*distance);
-            }
-        }
+        hit.DamageEnemy(damage + stackSize * damagePerStack);
     }
 
     public override void RemoveEffect()

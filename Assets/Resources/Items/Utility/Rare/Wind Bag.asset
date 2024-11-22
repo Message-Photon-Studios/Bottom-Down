@@ -22,7 +22,7 @@ MonoBehaviour:
   - rid: 7890098107401371648
   itemCategory: 3
   itemRarity: 1
-  maxSpawn: 1
+  maxSpawn: 3
   references:
     version: 2
     RefIds:
