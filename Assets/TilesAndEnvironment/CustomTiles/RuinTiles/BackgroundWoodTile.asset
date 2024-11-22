@@ -250,7 +250,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   - m_Id: 11
     m_Sprites:
-    - {fileID: -873390486, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
+    - {fileID: -365339553, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
     - {fileID: 1525040132, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
     - {fileID: 1949819756, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
     - {fileID: -2103214340, guid: 05b909ef8be742347a1c9640def4c08a, type: 3}
