@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
-  m_Name: Prosperous Pouch
+  m_Name: Wind Bag
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 5cb0df5a8e56fe8458e2d7486066a159, type: 3}
-  description: 'Hopefully not all of these fell from the house.
+  sprite: {fileID: 21300000, guid: 7f7983ae5d525da45bce5efc9202bc30, type: 3}
+  description: 'All you have to do is not open this bag
 
-    Increases the
-    astral pigments dropped from enemies with 20%.'
+    When you take damage,
+    push nearby enemies away from you'
   itemCost: 30
   effects:
-  - rid: 7139356996789075970
+  - rid: 7890098150739279873
   itemCategory: 3
   itemRarity: 0
-  maxSpawn: -1
+  maxSpawn: 2
   references:
     version: 2
     RefIds:
-    - rid: 7139356996789075970
-      type: {class: CoinBoostItem, ns: , asm: Assembly-CSharp}
+    - rid: 7890098150739279873
+      type: {class: CustomItemEffect, ns: , asm: Assembly-CSharp}
       data:
-        coinBoost: 0.2
+        effects:
+        - {fileID: 11400000, guid: c663241bb9e0fcf468be7710ccf9cc07, type: 2}

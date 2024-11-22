@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
-  m_Name: Color Balance
+  m_Name: Pipette
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4c8c236b7d5423f489c2271bba01c77c, type: 3}
-  description: 'Why choose a favorite?
+  sprite: {fileID: 21300000, guid: abc029b47ffb6ac46b44ee5908b548fe, type: 3}
+  description: 'An usefull item for picking colors.
 
-    Balances all color power and buffs equally'
+    Absorbing colors no longer
+    mixes in bottles. Instead overrides the previous color'
   itemCost: 45
   effects:
-  - rid: 7890097968310386693
-  itemCategory: 0
+  - rid: 7890098150739279872
+  itemCategory: 3
   itemRarity: 1
   maxSpawn: 1
   references:
     version: 2
     RefIds:
-    - rid: 7890097968310386693
-      type: {class: BalanceAllColors, ns: , asm: Assembly-CSharp}
+    - rid: 7890098150739279872
+      type: {class: BottlesDontMixColor, ns: , asm: Assembly-CSharp}

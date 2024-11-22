@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -7692674297862362138}
   - component: {fileID: 7683476481911508829}
   - component: {fileID: 4168602880897788854}
+  - component: {fileID: 1396320843823986211}
   m_Layer: 8
   m_Name: Color Burst
   m_TagString: Spell
@@ -33,7 +34,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3321278458073070463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0.71, y: 0.002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -90,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1dd204a55e67044e8c4b75a10622fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnForce: {x: 200, y: 0}
+  spawnForce: {x: 100, y: -50}
 --- !u!114 &3321278458073070407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,10 +190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Summons a floating bubble that bursts into four smaller bubbles with
-    25% power each.
+  description: 'Fires a burst of four bubbles that float upwards
 
-    Power: 75% + 4 x 25%'
+    Power:  4 x
+    75%'
   spellCost: 40
   powerScale: 0.75
   coolDown: 2
@@ -204,11 +205,12 @@ MonoBehaviour:
   triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
-  lifeTime: 3
+  lifeTime: 4
   animationTrigger: handSpell
   onImpact:
   - {fileID: 3321278458073070407}
   - {fileID: 4168602880897788854}
+  - {fileID: 1396320843823986211}
   spellSprite:
     bigSprite: {fileID: 21300000, guid: 8535c90902a38dc4e957ec36fdb4cb48, type: 3}
     bigSpriteMask: {fileID: 21300000, guid: 423dd254370bd54499fab50ecb382889, type: 3}
@@ -247,13 +249,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6383d86d2f1e2ac45a1cf7bca168ed6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonateTimer: 1.5
+  detonateTimer: 2
   spawnPrefabs:
-  - {fileID: 3321278458073070463, guid: 4b6422ff90373024180c9a1d861f298a, type: 3}
-  - {fileID: 3321278458073070463, guid: 4b6422ff90373024180c9a1d861f298a, type: 3}
-  - {fileID: 3321278458073070463, guid: dac134cb123f99c45a95654fa2421e5a, type: 3}
-  - {fileID: 3321278458073070463, guid: dac134cb123f99c45a95654fa2421e5a, type: 3}
   - {fileID: 3321278458073070463, guid: 7d548ad82e0997947bb155df87d79a07, type: 3}
+--- !u!114 &1396320843823986211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ed67004b5d1b149a373b86cb7e1aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 0.1
+  spawnAmount: 3
+  spawnPrefabs:
+  - {fileID: 3321278458073070463, guid: 4d46b3332c0e72b43814b9b141ecca3c, type: 3}
 --- !u!1001 &3068050921329342166
 PrefabInstance:
   m_ObjectHideFlags: 0

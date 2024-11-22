@@ -40,9 +40,11 @@ public class ColorInventory : MonoBehaviour
     private float multetiveCDModifier = 1;
     private float defaultBuff = 0;
     public bool balanceColors = false;
+    public bool dontMixColor = false;
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
+    
 
     #region Actions for UI
     
@@ -468,7 +470,7 @@ public class ColorInventory : MonoBehaviour
         GameColor setColor;
         //if(ActiveSlot().gameColor?.name == "Rainbow" && ActiveSlot().charge > 0) return;
         
-        if(fillSlot.charge > 0)
+        if(fillSlot.charge > 0 && !dontMixColor)
             setColor = fillSlot.gameColor.MixColor(color);
         else
             setColor = color;
