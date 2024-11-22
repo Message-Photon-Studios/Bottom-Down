@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baba8e430a20ff445bf6302681a722f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heal: 25
+  heal: 40
   baseCost: 20
   increaseCost: 10
   canvas: {fileID: 1064579540017460114}
@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_text: 'For those lost in these caves, leave a small offering and you shall be
     blessed
 
-    Regain 25 Health'
+    Regain 40 Health'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a3e46f3a0ed94a04a8b2c82103bf2d22, type: 2}
   m_sharedMaterial: {fileID: -1780189698292225346, guid: a3e46f3a0ed94a04a8b2c82103bf2d22, type: 2}
