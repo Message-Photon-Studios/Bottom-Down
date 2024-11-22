@@ -19,15 +19,15 @@ MonoBehaviour:
     push enemies away from you'
   itemCost: 30
   effects:
-  - rid: 7890098107401371648
+  - rid: 7890098150739279873
   itemCategory: 3
   itemRarity: 0
   maxSpawn: 3
   references:
     version: 2
     RefIds:
-    - rid: 7890098107401371648
-      type: {class: OnDamageEffect, ns: , asm: Assembly-CSharp}
+    - rid: 7890098150739279873
+      type: {class: CustomItemEffect, ns: , asm: Assembly-CSharp}
       data:
         effects:
         - {fileID: 11400000, guid: c663241bb9e0fcf468be7710ccf9cc07, type: 2}

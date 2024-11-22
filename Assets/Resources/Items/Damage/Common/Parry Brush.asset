@@ -17,15 +17,15 @@ MonoBehaviour:
     \nAbsorb color ability deal +10 damage."
   itemCost: 30
   effects:
-  - rid: 7890098139746795520
+  - rid: 7890098150739279874
   itemCategory: 1
   itemRarity: 0
   maxSpawn: -1
   references:
     version: 2
     RefIds:
-    - rid: 7890098139746795520
-      type: {class: OnDamageEffect, ns: , asm: Assembly-CSharp}
+    - rid: 7890098150739279874
+      type: {class: CustomItemEffect, ns: , asm: Assembly-CSharp}
       data:
         effects:
         - {fileID: 11400000, guid: b380872a14bfb1044bde72cda4e9871c, type: 2}
