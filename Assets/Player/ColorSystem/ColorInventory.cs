@@ -98,6 +98,7 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
+        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
     }
 
     void OnDisable()
@@ -108,6 +109,7 @@ public class ColorInventory : MonoBehaviour
         
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
+        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
     }
 
     #endregion
@@ -646,6 +648,15 @@ public class ColorInventory : MonoBehaviour
             RemoveColorSlot();
         onColorSlotsChanged?.Invoke();
         onColorUpdated?.Invoke();
+    }
+
+    #endregion
+
+    #region When damaged
+
+    public void WhenDamaged(PlayerStats player, EnemyStats enemy)
+    {
+        EnableRotation();
     }
 
     #endregion
