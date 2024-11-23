@@ -656,6 +656,8 @@ public class ColorInventory : MonoBehaviour
 
     public void WhenDamaged(PlayerStats player, EnemyStats enemy)
     {
+        //Add events from certain items or spells to activate when damaged
+
         EnableRotation();
     }
 
