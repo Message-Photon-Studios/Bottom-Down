@@ -195,10 +195,11 @@ public class ColorSpell : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (destroyOnCollission)
         {
+            Impact(other.collider, GetComponent<Collider2D>().ClosestPoint(other.transform.position));
             Destroy(gameObject);
             return;
         }
