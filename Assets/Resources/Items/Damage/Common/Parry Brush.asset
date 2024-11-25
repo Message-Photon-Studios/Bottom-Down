@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
-  m_Name: Pipette
+  m_Name: Parry Brush
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: abc029b47ffb6ac46b44ee5908b548fe, type: 3}
-  description: 'An usefull item for picking colors.
+  sprite: {fileID: 21300000, guid: 7e434327d1fa01044b464e39e1bc0308, type: 3}
+  description: 'When you take damage, deal 20 damage to the attacker.
 
-    When coloring an enemy gain
-    a +20% chance that the color will override the enemys color instead of mixing
-    with it.'
+    +10 per
+    stack'
   itemCost: 30
   effects:
-  - rid: 7258339260076130304
-  itemCategory: 3
+  - rid: 7890098150739279874
+  itemCategory: 1
   itemRarity: 0
   maxSpawn: -1
   references:
     version: 2
     RefIds:
-    - rid: 7258339260076130304
-      type: {class: EnemyDontMixItem, ns: , asm: Assembly-CSharp}
+    - rid: 7890098150739279874
+      type: {class: CustomItemEffect, ns: , asm: Assembly-CSharp}
       data:
-        addedChance: 20
+        effects:
+        - {fileID: 11400000, guid: b380872a14bfb1044bde72cda4e9871c, type: 2}

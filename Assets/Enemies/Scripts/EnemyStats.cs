@@ -508,6 +508,10 @@ public class EnemyStats : MonoBehaviour
 
     public void SetColor(GameColor color)
     {
+        if (IsRaibowed())
+        {
+            DealRainbowDamage((int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower));
+        }
         this.color = color;
         onColorChanged?.Invoke(color);
         if (enemySleep && lastSleep != Time.time) WakeEnemyAnimation();

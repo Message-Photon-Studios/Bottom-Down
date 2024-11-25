@@ -42,6 +42,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CrystalCaves/TheRavineClimb.unity
     guid: c3fec626fc48f2642a0d91c06a725de4
   - enabled: 1
+    path: Assets/Scenes/CrystalCaves/FungalForest.unity
+    guid: 1392c3aa7c4409c4e811996401b472fb
+  - enabled: 1
     path: Assets/Scenes/CrystalCaves/CoralCaves.unity
     guid: 087713dc918c1f74b9e183ac9065929d
   - enabled: 1

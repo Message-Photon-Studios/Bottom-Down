@@ -40,9 +40,11 @@ public class ColorInventory : MonoBehaviour
     private float multetiveCDModifier = 1;
     private float defaultBuff = 0;
     public bool balanceColors = false;
+    public bool dontMixColor = false;
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
+    
 
     #region Actions for UI
     
@@ -96,6 +98,7 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
+        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
     }
 
     void OnDisable()
@@ -106,6 +109,7 @@ public class ColorInventory : MonoBehaviour
         
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
+        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
     }
 
     #endregion
@@ -468,7 +472,7 @@ public class ColorInventory : MonoBehaviour
         GameColor setColor;
         //if(ActiveSlot().gameColor?.name == "Rainbow" && ActiveSlot().charge > 0) return;
         
-        if(fillSlot.charge > 0)
+        if(fillSlot.charge > 0 && !dontMixColor)
             setColor = fillSlot.gameColor.MixColor(color);
         else
             setColor = color;
@@ -644,6 +648,17 @@ public class ColorInventory : MonoBehaviour
             RemoveColorSlot();
         onColorSlotsChanged?.Invoke();
         onColorUpdated?.Invoke();
+    }
+
+    #endregion
+
+    #region When damaged
+
+    public void WhenDamaged(PlayerStats player, EnemyStats enemy)
+    {
+        //Add events from certain items or spells to activate when damaged
+
+        EnableRotation();
     }
 
     #endregion

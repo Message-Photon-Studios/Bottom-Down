@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7610363122423548218}
   - component: {fileID: 6236179821534792881}
   - component: {fileID: 7802489595120172075}
+  - component: {fileID: 7070412891478941447}
   m_Layer: 8
   m_Name: Color Spike
   m_TagString: Spell
@@ -175,7 +176,7 @@ MonoBehaviour:
 
     Power: 120%'
   spellCost: 40
-  powerScale: 1.2
+  powerScale: 1
   coolDown: 0.1
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
@@ -185,11 +186,12 @@ MonoBehaviour:
   triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
-  lifeTime: 20
+  lifeTime: 60
   animationTrigger: raisedSpell
   onImpact:
   - {fileID: 3321278458073070407}
   - {fileID: 7802489595120172075}
+  - {fileID: 7070412891478941447}
   spellSprite:
     bigSprite: {fileID: 21300000, guid: 0a9e488056a5a3e4ebac9cb7b20d5bb9, type: 3}
     bigSpriteMask: {fileID: 21300000, guid: 2360f932947e2274eb181b56997c0282, type: 3}
@@ -215,6 +217,7 @@ MonoBehaviour:
   RotationSpeed: 135
   InvertRotaion: 1
   PlayerDirection: 1
+  startRoation: 0
 --- !u!70 &7610363122423548218
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,9 +258,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6383d86d2f1e2ac45a1cf7bca168ed6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detonateTimer: 30
+  detonateTimer: 70
   spawnPrefabs:
   - {fileID: 3321278458073070463, guid: eaca80dc5c5c43b4c9b7cfd5aba6ea71, type: 3}
+--- !u!114 &7070412891478941447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ed67004b5d1b149a373b86cb7e1aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDelay: 0
+  spawnAmount: 1
+  spawnPrefabs:
+  - {fileID: 3321278458073070463, guid: 8363ff521426d8b4f8455d9f8540df88, type: 3}
+  - {fileID: 3321278458073070463, guid: d74fe4ad018c4fe449f5748003304ece, type: 3}
 --- !u!1 &7917038621792183734
 GameObject:
   m_ObjectHideFlags: 0

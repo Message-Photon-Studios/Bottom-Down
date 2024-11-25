@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ColorSpell : MonoBehaviour
 {
-    [TextArea(5,20)] public string description;
+    [TextArea(5, 20)] public string description;
 
     public int spellCost;
     /// <summary>
@@ -28,6 +28,8 @@ public class ColorSpell : MonoBehaviour
     /// The projectile will be destroyed on impact with the enemy
     /// </summary>
     [SerializeField] protected bool destroyOnEnemyHit;
+
+    [SerializeField] protected bool destroyOnCollission;
 
     /// <summary>
     /// If true this spell will detect enemies as a hit
@@ -134,26 +136,20 @@ public class ColorSpell : MonoBehaviour
             main.startColor = gameColor.colorMat.color;
             ballTray.Play();
         }
-        /*
-        var ballTray = GetComponentInChildren<ParticleSystem>();
-        if (ballTray != null)
-        {
-            var main = ballTray.main;
-            main.startColor = gameColor.colorMat.color;
-            ballTray.Play();
-        }
-        // Initialize the spell movers
-        */
 
         foreach (SpellMover mover in gameObject.GetComponents<SpellMover>())
         {
             mover.Init(lookDir);
         }
 
-        foreach(SpellImpact impact in onImpact)
+        if (this != null)
         {
-            impact.Init(this);
+            foreach (SpellImpact impact in onImpact)
+            {
+                impact.Init(this);
+            }
         }
+        
 
         objectsAlreadyHit = new HashSet<Collider2D>();
 
@@ -194,6 +190,16 @@ public class ColorSpell : MonoBehaviour
 
         if(destroyOnEnemyHit && other.CompareTag("Enemy"))
         {
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (destroyOnCollission)
+        {
+            Impact(other.collider, GetComponent<Collider2D>().ClosestPoint(other.transform.position));
             Destroy(gameObject);
             return;
         }

@@ -169,6 +169,16 @@ public class ItemInventory : MonoBehaviour
         return items;
     }
 
+    public int getItemAmoutWithName(string name)
+    {
+        int count = 0;
+        foreach (Item item in getItems())
+        {
+            if (item.name.Equals(name)) count++;
+        }
+        return count;
+    }
+
     /// <summary>
     /// Adds a coin boost modifier
     /// </summary>
