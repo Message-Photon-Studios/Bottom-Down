@@ -50,7 +50,7 @@ public class EnemyStats : MonoBehaviour
     private float sleepTimer = 0;
     private float lastSleep = 0;
     private float sleepPowerBonus = 0f; //The extra damage dealt to a slept enemy
-    [SerializeField] float sleepCooldown = 2f;
+    [SerializeField] float sleepCooldown = 5f;
     float sleepCooldownTimer = 0f;
     GameObject sleepParticles;
     [HideInInspector] public int currentCombo = 0; //At what stage this combo is at
