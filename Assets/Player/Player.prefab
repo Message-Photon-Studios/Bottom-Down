@@ -5360,7 +5360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultAttackForce: 900
-  rainbowComboDamage: 20
+  rainbowComboDamage: 10
   spellSpawnPoint: {fileID: 806439298}
   defaultAttackHitbox: {fileID: 7525252594420848717}
   defaultAttackOffset: {x: 1, y: 1}
@@ -5415,6 +5415,8 @@ MonoBehaviour:
   rainbowExtraDrain: 3
   minCD: 0.1
   blockDrainColor: 0
+  balanceColors: 0
+  dontMixColor: 0
 --- !u!114 &-572800373142562677
 MonoBehaviour:
   m_ObjectHideFlags: 0
