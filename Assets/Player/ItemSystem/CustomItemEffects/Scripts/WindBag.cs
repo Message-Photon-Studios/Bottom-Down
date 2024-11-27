@@ -33,10 +33,9 @@ public class WindBag : CustomItem
         foreach (EnemyStats enemy in enemies)
         {
             float distance = (enemy.transform.position - player.transform.position).sqrMagnitude;
-            if (distance < Mathf.Pow(currentRange , 2))
+            if ((distance < Mathf.Pow(currentRange , 2) || enemy == hit) && !enemy.IsKnockbackImune())
             {
-                distance = (currentRange - Mathf.Sqrt(distance))/ currentRange;
-                enemy.GetComponent<Rigidbody2D>().AddForce(((enemy.transform.position - player.transform.position).normalized + new Vector3(0,1,0)).normalized * (force + forcePerStack* count) *distance);
+                enemy.GetComponent<Rigidbody2D>().AddForce(((enemy.transform.position - player.transform.position).normalized + new Vector3(0,1,0)).normalized * (force + forcePerStack* count));
             }
         }
     }
