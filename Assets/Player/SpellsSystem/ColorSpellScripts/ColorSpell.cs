@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +9,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ColorSpell : MonoBehaviour
 {
-    [TextArea(5,20)] public string description;
+    [TextArea(5, 20)] public string description;
 
     public int spellCost;
     /// <summary>
     /// Scales the power for this specific color spell
     /// </summary>
     [SerializeField] public float powerScale = 1;
+
+    [SerializeField] public float coolDown = 1;
 
     /// <summary>
     /// The projectile will be destroyed on impact with any object
@@ -25,6 +28,8 @@ public class ColorSpell : MonoBehaviour
     /// The projectile will be destroyed on impact with the enemy
     /// </summary>
     [SerializeField] protected bool destroyOnEnemyHit;
+
+    [SerializeField] protected bool destroyOnCollission;
 
     /// <summary>
     /// If true this spell will detect enemies as a hit
@@ -39,6 +44,17 @@ public class ColorSpell : MonoBehaviour
     /// If true the spell will only trigger once.
     /// </summary>
     [SerializeField] protected bool triggerOnlyOnce;
+
+    /// <summary>
+    /// If true the spell will only trigger once per enemy. It can still hit multiple different enemies.
+    /// </summary>
+    [SerializeField] protected bool triggerOnlyOncePerEnemy;
+
+    /// <summary>
+    /// How often enemy already triggered will be reset
+    /// </summary>
+    [SerializeField] protected float attackAgainTimer = -1;
+    protected float resetEnemyTime;
 
     /// <summary>
     /// If true the spell checks if it has LOS to the player on spawn and destroys itself if not
@@ -69,10 +85,11 @@ public class ColorSpell : MonoBehaviour
     protected GameColor gameColor;
     protected float power;
     protected GameObject player;
-
+    
+    protected int extraDamage;
     public int lookDir {get; protected set;}
 
-    private HashSet<GameObject> objectsAlreadyHit = new HashSet<GameObject>();
+    private HashSet<Collider2D> objectsAlreadyHit = new HashSet<Collider2D>();
 
     /// <summary>
     /// Needs to be called after the spell is instantiated
@@ -81,12 +98,16 @@ public class ColorSpell : MonoBehaviour
     /// <param name="power">The total power of the spell</param>
     /// <param name="player">The player object</param>
     /// <param name="lookDir">The direction the spell should face horizontally</param>
-    public void Initi(GameColor gameColor, float power, GameObject player, int lookDir)
+    public void Initi(GameColor gameColor, float power, GameObject player, int lookDir, int extraDamage)
     {
         this.gameColor = gameColor;
         this.power = power+powerScale;
         this.player = player;
         this.lookDir = lookDir;
+        this.extraDamage = extraDamage;
+        resetEnemyTime = attackAgainTimer;
+
+        if (this.power <= 0.1) this.power = 0.1f;
 
         foreach(Collider2D col in GetComponents<Collider2D>())
         {
@@ -99,35 +120,45 @@ public class ColorSpell : MonoBehaviour
             spriteRenderer.flipX = lookDir == -1;
         }
         spriteRenderer.material = gameColor?.colorMat;
+
+        foreach(var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (child != null)
+            {
+                child.flipX = lookDir == -1;
+            }
+            child.material = gameColor?.colorMat;
+        }
         
-        var ballTray = GetComponentInChildren<ParticleSystem>();
-        if (ballTray != null)
+        foreach (var ballTray in GetComponentsInChildren<ParticleSystem>())
         {
             var main = ballTray.main;
             main.startColor = gameColor.colorMat.color;
             ballTray.Play();
         }
-        // Initialize the spell movers
-        
 
         foreach (SpellMover mover in gameObject.GetComponents<SpellMover>())
         {
             mover.Init(lookDir);
         }
 
-        foreach(SpellImpact impact in onImpact)
+        if (this != null)
         {
-            impact.Init(this);
+            foreach (SpellImpact impact in onImpact)
+            {
+                impact.Init(this);
+            }
         }
+        
 
-        objectsAlreadyHit = new HashSet<GameObject>();
+        objectsAlreadyHit = new HashSet<Collider2D>();
 
         if(requirePlayerLOSonSpawn)
         {
             RaycastHit2D playerLOS = Physics2D.Raycast(transform.position, player.transform.position-transform.position, Vector2.Distance(transform.position, player.transform.position), GameManager.instance.maskLibrary.onlyGround);
             if(playerLOS.collider != null) 
             {
-                if(impactOnNonEnemies) Impact(playerLOS.collider);
+                if(impactOnNonEnemies) Impact(playerLOS.collider, transform.position);
                 Destroy(gameObject);
                 return;
             }
@@ -145,10 +176,11 @@ public class ColorSpell : MonoBehaviour
         if(other.CompareTag("Item") || other.CompareTag("Player")) return;
         if(!impactOnEnemies && other.CompareTag("Enemy")) return;
         if(!impactOnNonEnemies && !other.CompareTag("Enemy")) return;
-        if(objectsAlreadyHit.Contains(other.gameObject)) return;
+        if(objectsAlreadyHit.Contains(other)) return;
         hasTriggered = true;
-        Impact(other);
-        objectsAlreadyHit.Add(other.gameObject);
+        Impact(other, GetComponent<Collider2D>().ClosestPoint(other.transform.position));
+        objectsAlreadyHit.Add(other);
+        if(attackAgainTimer < 0.5f) attackAgainTimer += 0.5f;
 
         if(destroyOnAllImpact)
         {
@@ -163,15 +195,55 @@ public class ColorSpell : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (destroyOnCollission)
+        {
+            Impact(other.collider, GetComponent<Collider2D>().ClosestPoint(other.transform.position));
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(triggerOnlyOnce) return;
+        if(triggerOnlyOncePerEnemy) return;
+        if(!objectsAlreadyHit.Contains(other)) return;
+
+        objectsAlreadyHit.Remove(other);
+    }
+
+    private void Update() {
+        if(!triggerOnlyOnce && resetEnemyTime > 0f && objectsAlreadyHit.Count > 0 && !triggerOnlyOncePerEnemy)
+        {
+            if(attackAgainTimer > 0) attackAgainTimer -= Time.deltaTime;
+            else
+            {
+                try{
+                    foreach (Collider2D obj in objectsAlreadyHit)
+                    {
+                        if(obj != null)
+                            Impact(obj, GetComponent<Collider2D>().ClosestPoint(obj.transform.position));
+                    }
+                } catch (InvalidOperationException e)
+                {
+                    Debug.LogWarning(e);
+                }
+                attackAgainTimer = resetEnemyTime;
+            }
+        }
+    }
+
     /// <summary>
     /// This is called when the spell should do its effect
     /// </summary>
     /// <param name="other"></param>
-    void Impact(Collider2D other)
+    void Impact(Collider2D other, Vector2 impactPoint)
     {
         foreach (SpellImpact impact in onImpact)
         {
-            impact.Impact(other);
+            impact.Impact(other, impactPoint);
         }
     }
 
@@ -205,6 +277,15 @@ public class ColorSpell : MonoBehaviour
     public GameObject GetPlayerObj()
     {
         return player;
+    }
+
+    /// <summary>
+    /// Returns the extra damage the spell should do
+    /// </summary>
+    /// <returns></returns>
+    public int GetExtraDamage()
+    {
+        return extraDamage;
     }
 
     /// <summary>

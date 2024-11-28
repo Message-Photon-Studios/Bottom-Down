@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2230045413262427663}
   - component: {fileID: 955193730578387014}
   - component: {fileID: -8731039323817544036}
+  - component: {fileID: 1249525927304974758}
   m_Layer: 8
   m_Name: Double Jelly Shot
   m_TagString: Spell
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0900cb19f680a734ba6a9d1fcb2ffcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcePerspectivePlayer: 1
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!212 &4874330200776334801
 SpriteRenderer:
@@ -173,14 +175,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: "Fire a big and a small jellyfish that impacts the first target they
-    hit. The smaller jellyfish is weaker. \r\nPower: 70% + 30%\r\n"
-  spellCost: 50
-  powerScale: 0.7
-  destroyOnAllImpact: 1
+    hit. The smaller jellyfish is weaker. \r\nPower: 80% + 40%\r\n"
+  spellCost: 40
+  powerScale: 0.8
+  coolDown: 0.5
+  destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
+  destroyOnCollission: 1
   impactOnEnemies: 1
-  impactOnNonEnemies: 1
+  impactOnNonEnemies: 0
   triggerOnlyOnce: 1
+  triggerOnlyOncePerEnemy: 1
+  attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
   lifeTime: 2
   animationTrigger: handSpell
@@ -245,6 +251,22 @@ MonoBehaviour:
   detonateTimer: 0.36
   spawnPrefabs:
   - {fileID: 3321278458073070463, guid: e6a515e1e59f1b84c87bf561590f809e, type: 3}
+--- !u!70 &1249525927304974758
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.4, y: 0}
+  m_Size: {x: 0.75, y: 0.2}
+  m_Direction: 1
 --- !u!1001 &3068050921329342166
 PrefabInstance:
   m_ObjectHideFlags: 0

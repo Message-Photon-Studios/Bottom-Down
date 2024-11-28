@@ -7,6 +7,7 @@ using UnityEditor;
 public class Beamy : Enemy
 {
     [SerializeField] int damage = 0;
+    [SerializeField] float laserDecaySpeed = .5f;
     [SerializeField] Trigger attackTrigger;
     [SerializeField] ParticleSystem attackOrb;
     [SerializeField] ParticleSystem attackBeam;
@@ -45,7 +46,7 @@ public class Beamy : Enemy
 
                 new Sequence(new List<Node> {
                     new CheckBool("attack", true),
-                    new Wait(1, 0.1f),
+                    new Wait(laserDecaySpeed, 0.1f),
                     new ParticlesPlay(attackOrb, false),
                     new ParticlesPlay(attackBeam, false),
                     new AnimationBool(animator, "attack", false),
@@ -67,7 +68,7 @@ public class Beamy : Enemy
 
     public void DamagePlayer()
     {
-        player.DamagePlayer((int)(damage*stats.GetDamageFactor()));
+        player.DamagePlayer((int)(damage*stats.GetDamageFactor()), stats);
     }
 
     public void ChooseBeamTarget()

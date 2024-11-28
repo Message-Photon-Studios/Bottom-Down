@@ -303,9 +303,10 @@ public class LevelGenerator
 
     public bool instantiated = false;
 
-    public void generate(int size, string areaPath, Dictionary<DoorColor, int> regionSize, int regionSizeMargin)
+    public int tries = 0;
+    public void generate(int size, string areaPath, Dictionary<DoorColor, int> regionSize, int regionSizeMargin, int maxTries)
     {
-        var tries = 0;
+        tries = 0;
         bool res = false;
         do
         {   
@@ -315,7 +316,7 @@ public class LevelGenerator
                 regionSizeCopy.Add(item.Key,item.Value);
             }
             
-            if (tries > 50) 
+            if (maxTries > 0 && tries > maxTries) 
             {
                 #if UNITY_EDITOR
                     throw new Exception("Failed Generation Exception on try " + tries);
@@ -659,9 +660,10 @@ public class LevelGenerator
         if(!door.allowsGreenClosingRooms) 
         {
             string debugMsg = "Missing specialized closing room of color " + door.doorColor + " in room " + door.room.name + " with arrangement: ";
+            string[] rot = {"L", "D", "R" , "U"};
             for (int i = 0; i < doorsToOpen.Length; i++)
             {
-                debugMsg += doorsToOpen[i] + ", ";
+                debugMsg += rot[i] + " = " + doorsToOpen[i] + ", ";
             }
             Debug.Log(debugMsg);
             return new (null, Vector2.zero);

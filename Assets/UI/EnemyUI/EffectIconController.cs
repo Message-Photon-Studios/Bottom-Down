@@ -1,25 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-enum EffectIcon
-{
-    Burn,
-    Freeze,
-    Sleep,
-    Poison
-}
+using AYellowpaper.SerializedCollections;
+using System;
+using Unity.VisualScripting;
 
 public class EffectIconController : MonoBehaviour
 {
-    [SerializeField] Sprite burnIcon;
-    [SerializeField] Sprite freezeIcon;
-    [SerializeField] Sprite sleepIcon;
-    [SerializeField] Sprite poisonIcon;
-
+    [SerializeField] SerializedDictionary<EffectIcon, Sprite> effectIconDictionary;
     private int iconIndex = 0;
-    private Image[] icons;
-    private Dictionary<EffectIcon, int> iconPositions;
+    private Image[] iconImages;
+    private Dictionary<EffectIcon, int> iconPositions = new Dictionary<EffectIcon, int>();
 
     private EnemyStats enemy;
  
@@ -27,8 +18,8 @@ public class EffectIconController : MonoBehaviour
     void Start()
     {
         iconPositions = new Dictionary<EffectIcon, int>();
-        icons = GetComponentsInChildren<Image>();
-        foreach (var icon in icons)
+        iconImages = GetComponentsInChildren<Image>();
+        foreach (var icon in iconImages)
         {
             icon.sprite = null;
             icon.gameObject.SetActive(false);
@@ -39,52 +30,85 @@ public class EffectIconController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemy.IsAsleep())
-            addIcon(EffectIcon.Sleep);
+        if (enemy.IsAsleep() && !enemy.HasSleepCooldown())
+            AddIcon(EffectIcon.Sleep);
         else
             removeIcon(EffectIcon.Sleep);
+        
+        if(enemy.HasSleepCooldown())
+            AddIcon(EffectIcon.SleepBlock);
+        else
+            removeIcon(EffectIcon.SleepBlock);
 
         if (enemy.isBurning())
-            addIcon(EffectIcon.Burn);
+            AddIcon(EffectIcon.Burning);
         else
-            removeIcon(EffectIcon.Burn);
+            removeIcon(EffectIcon.Burning);
 
         if (enemy.isFrozen())
-            addIcon(EffectIcon.Freeze);
+            AddIcon(EffectIcon.Frozen);
         else
-            removeIcon(EffectIcon.Freeze);
+            removeIcon(EffectIcon.Frozen);
 
         if (enemy.isPoisoned())
-            addIcon(EffectIcon.Poison);
+            AddIcon(EffectIcon.Poison);
         else
             removeIcon(EffectIcon.Poison);
+
+        if(enemy.IsRaibowed())
+            AddIcon(EffectIcon.Rainbow);
+        else
+            removeIcon(EffectIcon.Rainbow);
     }
 
-    void addIcon(EffectIcon icon)
+    void AddIcon(EffectIcon icon)
     {
-        if (iconPositions.ContainsKey(icon)) return;
-        icons[iconIndex].sprite = icon switch
+        if(iconPositions.ContainsKey(icon)) return;
+        if(!effectIconDictionary.ContainsKey(icon))
         {
-            EffectIcon.Burn => burnIcon,
-            EffectIcon.Freeze => freezeIcon,
-            EffectIcon.Sleep => sleepIcon,
-            EffectIcon.Poison => poisonIcon,
-            _ => icons[iconIndex].sprite
-        };
-        iconPositions[icon] = iconIndex++;
-        foreach (var icnObj in icons) icnObj.gameObject.SetActive(icnObj.sprite != null);
+            Debug.LogError(enemy.name + " is missing effect icon for " + icon.ToString());
+            return;
+        }
+
+        iconPositions[icon] = iconIndex;
+        iconImages[iconIndex].sprite = effectIconDictionary[icon];
+        iconIndex ++;
+        foreach (var icnObj in iconImages) icnObj.gameObject.SetActive(icnObj.sprite != null);
     }
 
     void removeIcon(EffectIcon icon)
     {
         if (iconPositions == null || !iconPositions.ContainsKey(icon)) return;
-        for (int i = iconPositions[icon]; i < 3; i++)
+        int pos = iconPositions[icon];
+        iconImages[pos].sprite = null;
+        for (int i = pos; i < iconImages.Length-1; i++)
         {
-            icons[i].sprite = icons[i + 1].sprite;
+            iconImages[i].sprite = iconImages[i + 1].sprite;
         }
-        icons[3].sprite = null;
+        List<EffectIcon> toChange = new List<EffectIcon>();
+        foreach(KeyValuePair<EffectIcon, int> iconPosition in iconPositions)
+        {
+            if(iconPosition.Value >= pos) toChange.Add(iconPosition.Key);
+        }
+
+        for (int i = 0; i < toChange.Count; i++)
+        {
+            iconPositions[toChange[i]] --;
+        }
+
         iconPositions.Remove(icon);
         iconIndex--;
-        foreach (var icnObj in icons) icnObj.gameObject.SetActive(icnObj.sprite != null);
+        foreach (var icnObj in iconImages) icnObj.gameObject.SetActive(icnObj.sprite != null);
     }
+}
+
+[System.Serializable]
+enum EffectIcon
+{
+    Sleep,
+    SleepBlock,
+    Poison, 
+    Burning,
+    Frozen,
+    Rainbow
 }

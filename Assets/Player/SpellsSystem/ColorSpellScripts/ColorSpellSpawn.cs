@@ -44,11 +44,11 @@ public class ColorSpellSpawn : SpellImpact
         {
             GameObject obj = GameObject.Instantiate(spawnPrefab, transform.position, transform.rotation) as GameObject;
             Debug.Log(spell.GetColor());
-            obj.GetComponent<ColorSpell>().Initi(spell.GetColor(), spell.GetPower(), spell.GetPlayerObj(), spell.lookDir);
+            obj.GetComponent<ColorSpell>().Initi(spell.GetColor(), spell.GetPower(), spell.GetPlayerObj(), spell.lookDir, spell.GetExtraDamage());
         }
     }
     
-    public override void Impact(Collider2D other)
+    public override void Impact(Collider2D other, Vector2 impactPoint)
     {
 
     }

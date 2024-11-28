@@ -8,12 +8,12 @@ using UnityEngine;
 public class BrownColorEffect : ColorEffect
 {
     [SerializeField] int uncoloredDamage;
-    public override void Apply(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power)
+    public override void Apply(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power, bool forcePerspectivePlayer, int extraDamage)
     {
         EnemyStats enemy = enemyObj.GetComponent<EnemyStats>();
         if(enemy.GetColor() == null || enemy.GetColorAmmount() <= 0)
         {
-            enemy.DamageEnemy(Mathf.RoundToInt(uncoloredDamage*power));
+            enemy.DamageEnemy(Mathf.RoundToInt(uncoloredDamage*power)+extraDamage);
             return;
         }
 
@@ -22,6 +22,6 @@ public class BrownColorEffect : ColorEffect
         Destroy(instantiatedParticles, instantiatedParticles.GetComponent<ParticleSystem>().main.duration*2);
         // Set enemy as parent of the particle system
         instantiatedParticles.transform.parent = enemyObj.transform;
-        enemy.DamageEnemy(Mathf.RoundToInt(damage*power));
+        enemy.DamageEnemy(Mathf.RoundToInt(damage*power)+extraDamage);
     }
 }
