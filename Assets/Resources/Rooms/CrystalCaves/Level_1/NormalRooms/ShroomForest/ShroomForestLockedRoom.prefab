@@ -5572,7 +5572,6 @@ Transform:
   - {fileID: 1746693037376217277}
   - {fileID: 7818057929030138574}
   - {fileID: 6243581379927389324}
-  - {fileID: 1845384079271648317}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5611,7 +5610,7 @@ MonoBehaviour:
   displayMode: 0
   maxSpawns: 1
   spawnCount: 1
-  selectedNode: {x: -2, y: 0}
+  selectedNode: {x: 1, y: 0}
   isClosingRoom: 0
 --- !u!1 &5477960400142871007
 GameObject:
@@ -11544,72 +11543,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8810671474923876672, guid: 6318e8a69e5b05941b028587d734188e, type: 3}
   m_PrefabInstance: {fileID: 7259098341350919626}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8132576969473691260
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1110097504496171644}
-    m_Modifications:
-    - target: {fileID: 1109980424357281385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_Name
-      value: LevelEndPoint
-      objectReference: {fileID: 0}
-    - target: {fileID: 5280295106999308894, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: goToLevel
-      value: FungalForest
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
---- !u!4 &1845384079271648317 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-  m_PrefabInstance: {fileID: 8132576969473691260}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8231217494958828875
 PrefabInstance:
