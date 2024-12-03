@@ -37,4 +37,5 @@ public class PermanentUpgradeManager : MonoBehaviour, IDataPersistence
 public class PermanentUpgrades
 {
     public int extraHealth = 0;
+    public Item[] items;
 }

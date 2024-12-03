@@ -26,7 +26,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     }
 
-    private void Start() 
+    public void Start() 
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();

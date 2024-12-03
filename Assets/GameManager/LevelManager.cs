@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject videoObjecCanvas;
     [SerializeField] GameObject backgroundMusic;
     [SerializeField] public bool allowTips = true;
+    [SerializeField] public bool isCaveTownLevel = false;
 
     public static LevelManager instance = null;
 

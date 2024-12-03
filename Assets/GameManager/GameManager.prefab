@@ -1562,6 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrades:
     extraHealth: 0
+    items: []
 --- !u!1 &7562256178773632822
 GameObject:
   m_ObjectHideFlags: 0
