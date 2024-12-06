@@ -57,6 +57,8 @@ public abstract class Enemy : BehaviourTree.Tree
             if(Mathf.Abs(body.velocity.x) > .1f && ((body.velocity.x < 0) != (!spriteRenderer.flipX))) SwitchDirection();*/
     }
 
+    public virtual void DamagePlayer(){}
+
     #endregion
 
     #region  Collision with player
