@@ -3,48 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEditor;
-using System;
 using System.Linq;
+using UnityEngine.Events;
 
 public class Wisp : Enemy
 {
-    GameObject target = null;
+    GameObject spawnEnemy = null;
+    public UnityEvent<GameObject> onObjectSpawned;
+    GameObject spawned;
     protected override Node SetupTree()
     {
-        target = player?.gameObject;
-        Node root =     
-            new Selector(new List<Node>{
-
-                new Sequence(new List<Node>{
-                    new CheckTargetDistance(stats, "target", 2f),
-                    new SetEnemyColorToMine(stats, "target"),
-                    new AnimationTrigger(animator, "dead")
-                }),
-            
-                new Sequence(new List<Node>{
-                    new Selector(new List<Node>{
-                        new EnemyCollide(GetComponent<ColliderCheck>(), "Player"),
-                        new EnemyCollide(GetComponent<ColliderCheck>(), "Enemy"),
-                        new CheckGrounded(stats,0.2f)
-                    }),
-                    new AnimationTrigger(animator, "dead")
-                }),
-
-                new Sequence(new List<Node>{
-                    new LookAtTarget(stats, "target"),
-                    new RunForward(stats, 1f)
-                })
-            });
-
         if(gameObject != null && FindObjectsOfType<BossEnemyController>().Count() > 0)
-            FindObjectOfType<BossEnemyController>().WispSpawned(gameObject);
+            spawnEnemy = FindObjectOfType<BossEnemyController>().WispSetupAndSpawnObj(gameObject);
+
+        Node root = new Selector(new List<Node>{
+            new Sequence(new List<Node>{
+                new CheckBool("objectSpawned", false),
+                new Selector(new List<Node>{
+                    new EnemyCollide(GetComponent<ColliderCheck>(), "Player"),
+                    new CheckGrounded(stats,0.2f)
+                }),
+                new EnemyObjectSpawner(stats, spawnEnemy, Vector2.zero, Vector2.zero, true, "spawnedObject"),
+                new SetParentVariable("objectSpawned", true, 1),
+                new AnimationTrigger(animator, "dead"),
+                new ActivateAction<GameObject>(onObjectSpawned, "spawnedObject"),
+            }),
+
+            new AirPatroll(stats, body, animator, 10, 1, .1f, 1, "objectSpawned", "walk")
+            
+        });
+
+        root.SetData("spawnedObject", null);
+        root.SetData("objectSpawned", false);
         
-        root.SetData("target", target);
         return root;
     }
 
-    public void SetTarget(GameObject newTarget){
-        target = newTarget;
+    public void SetSpawnObject(GameObject spawnObject){
+        spawnEnemy = spawnObject;
+    }
+
+    private void OnDestroy() {
+        onObjectSpawned.RemoveAllListeners();
     }
 
 #if UNITY_EDITOR

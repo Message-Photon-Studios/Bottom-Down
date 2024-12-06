@@ -119,6 +119,8 @@ MonoBehaviour:
   changeColorTime: 5
   deathUnlock: {fileID: 0}
   healthBar: {fileID: 570294260994134240}
+  spawnEnemies:
+  - {fileID: 2975167467656347166, guid: 279a516be7221a048a9b12558755b5a1, type: 3}
 --- !u!50 &657598516249302101
 Rigidbody2D:
   serializedVersion: 4

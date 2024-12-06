@@ -320,7 +320,7 @@ TextureImporter:
     secondaryTextures:
     - texture: {fileID: 2800000, guid: 16c08fd0275e87b459ac97cdae3c98be, type: 3}
       name: _AtlasTex
-    - texture: {fileID: 2800000, guid: 77e2836e8268d00409973af81f15ac1b, type: 3}
+    - texture: {fileID: 2800000, guid: 53ef061d7ee32ff45bf6101cfeda4256, type: 3}
       name: _MaskTex
     nameFileIdTable:
       krystina-asleep_1: -1788257942

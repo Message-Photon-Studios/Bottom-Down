@@ -13,6 +13,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] float changeColorTime;
     [SerializeField] GameObject deathUnlock;
     [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject[] spawnEnemies;
 
     public static Action onBossDefeated;
 
@@ -24,8 +25,6 @@ public class BossEnemyController : MonoBehaviour
     float handDeathTimer;
     float bossStartHealth;
     bool secondPhase = false;
-    Transform wispTarget = null;
-
     PlayerStats player;
     bool playerDied = false;
     float changeColorTimer;
@@ -153,14 +152,9 @@ public class BossEnemyController : MonoBehaviour
 
 
 
-    public void WispSpawned(GameObject wisp)
+    public GameObject WispSetupAndSpawnObj(GameObject wisp)
     {
-        int i = UnityEngine.Random.Range(0, hands.Count);
-        GameObject target = GameObject.FindGameObjectWithTag("Player");
-        if(i != hands.Count)
-        {
-            target = hands[i].gameObject;
-            wisp.GetComponent<Wisp>().SetTarget(target);
-        }
+        int i = UnityEngine.Random.Range(0, spawnEnemies.Length);
+        return spawnEnemies[i];
     }
 }
