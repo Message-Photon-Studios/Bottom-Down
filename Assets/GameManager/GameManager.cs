@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] AudioSource petrifiedPickupSound;
     public SoundEffectManager soundEffectManager;
 
-    private int petrifiedPigment = 0;
+    [SerializeField] private int petrifiedPigment = 0;
     string gameStartScene = "Tutorial_0";
     public bool allowsTips {get; private set;} = true;
     float hunterTimer = 0f;
@@ -39,6 +39,23 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public TipsManager tipsManager;
 
     public ItemLibrary itemLibrary;
+
+    private bool prepareStartRun = false;
+
+    /// <summary>
+    /// Is called right before a new run is loaded. This is called when the player is exiting cave town.
+    /// </summary>
+    public System.Action onPrepareNewRun;
+
+    /// <summary>
+    /// Is called right after a new run is loaded. This is called in the first level.
+    /// </summary>
+    public System.Action onStartedNewRun;
+
+    /// <summary>
+    /// Is called after the player has died and cave town is loaded.
+    /// </summary>
+    public System.Action onLoadedCaveTown;
 
     void Awake()
     {
@@ -84,6 +101,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void SetLevelManager (LevelManager levelManager, float addClockTime, bool restartTimer) 
     {
+        DataPersistenceManager.instance.Start();
+
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
 
         currentLevelManager = levelManager;
@@ -102,6 +121,22 @@ public class GameManager : MonoBehaviour, IDataPersistence
         
         allowsTips = levelManager.allowTips;
         onLevelLoaded?.Invoke();
+        if(prepareStartRun)
+        {
+            prepareStartRun = false;
+            onStartedNewRun?.Invoke();
+        } else if(levelManager.isCaveTownLevel)
+        {
+            Debug.Log("Testing testing");
+            DataPersistenceManager.instance.LoadGame();
+            onLoadedCaveTown?.Invoke();
+        }
+    }
+
+    public void SetStartRun()
+    {
+        prepareStartRun = true;
+        onPrepareNewRun?.Invoke();
     }
 
     #region MainMenu and Quit
