@@ -234,7 +234,7 @@ public class ItemInventory : MonoBehaviour
         return true;
     }
 
-    private void SetPermanentItems()
+    public void SetPermanentItems()
     {
         PermanentUpgradeManager.instance.upgrades.items = items.ToArray();
     }

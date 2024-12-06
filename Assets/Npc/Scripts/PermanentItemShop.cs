@@ -20,5 +20,7 @@ public class PermanentItemShop : NpcUpgradeShop
     protected override void Shop()
     {
         FindObjectOfType<ItemInventory>().AddItem(item);
+        FindObjectOfType<ItemInventory>().SetPermanentItems();
+        DataPersistenceManager.instance.SaveGame();
     }
 }

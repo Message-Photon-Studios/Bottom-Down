@@ -56,6 +56,7 @@ public class NPCScript : MonoBehaviour
                     dialogue = NpcManager.instance.GetDialogue(name);
                     currentText = 0;
                     EnableText(false);
+                    DataPersistenceManager.instance.SaveGame();
                 }
 
                 textUi.text = dialogue.texts[currentText];
