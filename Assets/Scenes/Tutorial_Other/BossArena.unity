@@ -24060,6 +24060,7 @@ MonoBehaviour:
   videoObjecCanvas: {fileID: 0}
   backgroundMusic: {fileID: 0}
   allowTips: 0
+  isCaveTownLevel: 0
 --- !u!114 &677141307
 MonoBehaviour:
   m_ObjectHideFlags: 0
