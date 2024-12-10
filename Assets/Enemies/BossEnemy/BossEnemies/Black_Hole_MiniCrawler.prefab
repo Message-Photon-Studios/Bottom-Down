@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5913113476945127376, guid: b9654455b9c45954fb400343e3bd4343, type: 3}
       propertyPath: coinsDropped.max
-      value: 70
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5913113476945127376, guid: b9654455b9c45954fb400343e3bd4343, type: 3}
       propertyPath: coinsDropped.min
@@ -75,6 +75,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5913113476945127389, guid: b9654455b9c45954fb400343e3bd4343, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -489763786, guid: 4aa8ce2ba4c29f4428f5afa989a442ba, type: 3}
     - target: {fileID: 7344724317050663251, guid: b9654455b9c45954fb400343e3bd4343, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
