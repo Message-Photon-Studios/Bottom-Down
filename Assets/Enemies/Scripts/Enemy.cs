@@ -39,7 +39,7 @@ public abstract class Enemy : BehaviourTree.Tree
         stats.onDamageTaken += DamageTaken;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         stats.onDamageTaken -= DamageTaken;
     }

@@ -81,7 +81,7 @@ public class EnemyStats : MonoBehaviour
     /// <summary>
     /// The enemy died
     /// </summary>
-    public UnityAction onEnemyDeath;
+    public UnityAction<EnemyStats> onEnemyDeath;
 
     private bool enemyDead = false;
     [CanBeNull] private Coroutine currentCoroutine;
@@ -112,13 +112,19 @@ public class EnemyStats : MonoBehaviour
             GetComponent<SpriteRenderer>().material = defaultColor;
 
         onDamageTaken += DmgNumber.create;
-        onEnemyDeath += () => dropCoins(coinsDropped.GetReward());
+        onEnemyDeath += (EnemyStats _) => dropCoins(coinsDropped.GetReward());
         enemySounds = GetComponent<EnemySounds>();
         onColorChanged?.Invoke(color);
         if (deathTimer > 0) hasDeathTimer = true;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerStats = player.GetComponent<PlayerStats>();
-        playerCombat = player.GetComponent<PlayerCombatSystem>();
+        if(player != null)
+        {
+            playerStats = player.GetComponent<PlayerStats>();
+            playerCombat = player.GetComponent<PlayerCombatSystem>();
+        } else 
+        {
+            this.enabled = false;
+        }
     }
 
     void OnValidate()
@@ -323,7 +329,7 @@ public class EnemyStats : MonoBehaviour
                 orb.GetComponent<ColorOrb>().SetTarget(player, colorAmmount - drainAmount, color);
             }
         }
-        onEnemyDeath?.Invoke();
+        onEnemyDeath?.Invoke(this);
     }
 
     public bool IsDead()
@@ -583,7 +589,7 @@ public class EnemyStats : MonoBehaviour
             poisonFactor = (1f-poisonDamageReduction);
         
         float playerArmour = 0f;
-        if(GetColor() != null && GetColorAmmount() > 0)
+        if(GetColor() != null && GetColorAmmount() > 0 && playerStats != null)
             playerArmour = playerStats.GetColorArmour(GetColor());
         return spawnPower * poisonFactor * (1f-playerArmour);
     }

@@ -16,7 +16,7 @@ public class RewardAchievementProgressOnDeath : MonoBehaviour
        GetComponent<EnemyStats>().onEnemyDeath -= EnemyDied; 
     }
 
-    void EnemyDied()
+    void EnemyDied(EnemyStats deadEnemy)
     {
         AchievementsManager.instance.ProgressAchievement(achievementObject.GetAchivementId());
     }

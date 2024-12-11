@@ -42,6 +42,7 @@ Transform:
   - {fileID: 8567592728829892568}
   - {fileID: 6073615447468122879}
   - {fileID: 8582703993763132150}
+  - {fileID: 2624483054751738444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +91,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCollisionDamage: 10
   playerCollisionForce: {x: 2000, y: 0.5}
-  wispTimer: 4
+  minionMax: 3
+  minionIncreaseTimer: 60
+  wispTimer: 0.5
+  minionWaveTimer: 30
   wispTmp: {fileID: 3904210810762673740, guid: 48fd111d4ca293846a0368a316105c0b, type: 3}
   spawnOffset: {x: 0, y: 2}
   spawnForce: {x: 0, y: 2000}
@@ -106,8 +110,11 @@ MonoBehaviour:
   attackOrb: {fileID: 6514224676273353913}
   attackBeam: {fileID: 7646961322464936137}
   attackAim: {fileID: 9051526252589441835}
+  bombTimer: 5
+  handAnimator: {fileID: 2624483054751738446}
   patrollDistance: 6
   patrollIdleTime: 5
+  spawned: []
 --- !u!114 &-4186342883332449447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,10 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b620592a602a3f1489875580a035fd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeHandTime: 10
-  handDeathTime: 10
-  startingHands: []
-  secondPhaseHands: []
   bossColors:
   - {fileID: 11400000, guid: f684aa04876576f4f9c4cea37a90b64a, type: 2}
   - {fileID: 11400000, guid: 5f2b6f6ae8acaf3469c5a5c99178de06, type: 2}
@@ -138,6 +141,8 @@ MonoBehaviour:
   - {fileID: 2975167467656347166, guid: 279a516be7221a048a9b12558755b5a1, type: 3}
   - {fileID: 6244197193984023355, guid: 4b54adc810c584e4c998b21878036e2d, type: 3}
   - {fileID: 7089742976804706204, guid: ce95bf9b72e31b943bd7b6a66ce12fc4, type: 3}
+  hands:
+  - {fileID: 2325563230690718954}
 --- !u!50 &657598516249302101
 Rigidbody2D:
   serializedVersion: 4
@@ -5179,6 +5184,127 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &2624483054751738447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2624483054751738444}
+  - component: {fileID: 2624483054751738445}
+  - component: {fileID: 2624483054751738446}
+  - component: {fileID: 2325563230690718954}
+  m_Layer: 6
+  m_Name: BossHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2624483054751738444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624483054751738447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2, y: -0.44, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 657598516249302099}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2624483054751738445
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624483054751738447}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fb05265df024c76489ab11918f4a68a3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 908811297
+  m_SortingLayer: 5
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1648686152, guid: 1d1c6558551e0e54f92de46c9b8f97f6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!95 &2624483054751738446
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624483054751738447}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 78890635c6d2561419e46cc67e22e820, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &2325563230690718954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624483054751738447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e0d90344f6fc64589b8e86d7037461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultColor: {fileID: 2100000, guid: 35a13ff390626d64b8941068ce494c99, type: 2}
+  bombTemp: {fileID: 8094419970937011932, guid: 4a630427006a0094898b5c527abea127, type: 3}
+  spawnBombOffset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8865370589715980451
 GameObject:
   m_ObjectHideFlags: 0

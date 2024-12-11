@@ -84,7 +84,7 @@ public class EnemyObjectSpawner : Node
             }   
             state = NodeState.SUCCESS;
             return state;
-        } catch (NullReferenceException e)
+        } catch (Exception e)
         {
             Debug.LogWarning(e);
             state = NodeState.FAILURE;

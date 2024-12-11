@@ -22,8 +22,25 @@ public class ActivateAction<T> : Node
 
     public override NodeState Evaluate()
     {
-        Debug.Log("event invoced!");
-        action?.Invoke((T)GetData(varName));
+        
+        if(action != null) action.Invoke((T)GetData(varName));
+        state = NodeState.SUCCESS;
+        return state;
+    }
+}
+
+public class ActivateAction : Node
+{
+    UnityEvent action;
+    
+    public ActivateAction(UnityEvent action)
+    {
+        this.action = action;
+    }
+
+    public override NodeState Evaluate()
+    {
+        if(action != null) action.Invoke();
         state = NodeState.SUCCESS;
         return state;
     }

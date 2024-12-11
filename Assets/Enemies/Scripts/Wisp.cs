@@ -25,7 +25,7 @@ public class Wisp : Enemy
                 }),
                 new EnemyObjectSpawner(stats, spawnEnemy, Vector2.zero, Vector2.zero, true, "spawnedObject"),
                 new SetParentVariable("objectSpawned", true, 1),
-                new AnimationTrigger(animator, "dead"),
+                new SuicideEnemy(stats),
                 new ActivateAction<GameObject>(onObjectSpawned, "spawnedObject"),
             }),
 

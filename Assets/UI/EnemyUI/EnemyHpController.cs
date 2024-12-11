@@ -59,7 +59,7 @@ public class EnemyHpController : MonoBehaviour
     /// <summary>
     /// When enemy dies, hide the health bar.
     /// </summary>
-    private void EnemyDied() {
+    private void EnemyDied(EnemyStats deadEnemy) {
         gameObject.SetActive(false);
     }
 }
