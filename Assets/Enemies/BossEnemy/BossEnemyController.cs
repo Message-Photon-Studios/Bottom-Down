@@ -77,6 +77,10 @@ public class BossEnemyController : MonoBehaviour
     void BossDied(EnemyStats deadBoss)
     {
 
+        for (int i = 0; i < hunters.Length; i++)
+        {
+            hunters[i].GetComponent<EnemyStats>().KillEnemy();
+        }
         onBossDefeated?.Invoke();
         deathUnlock.SetActive(true);
     }
