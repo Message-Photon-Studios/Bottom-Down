@@ -12,6 +12,7 @@ public class BossEnemyController : MonoBehaviour
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject[] spawnEnemies;
     [SerializeField] BossHandController[] hands;
+    [SerializeField] GameObject[] hunters;
 
     public static Action onBossDefeated;
 
@@ -53,6 +54,7 @@ public class BossEnemyController : MonoBehaviour
             if(stats.GetHealth() < bossStartHealth/2)
             {
                 secondPhase = true;
+                SecondPhaseStart();
             }
         }
 
@@ -61,6 +63,14 @@ public class BossEnemyController : MonoBehaviour
         {
             stats.SetColor(bossColors[UnityEngine.Random.Range(0, bossColors.Length)], 4);
             changeColorTimer = changeColorTime;
+        }
+    }
+
+    void SecondPhaseStart()
+    {
+        for (int i = 0; i < hunters.Length; i++)
+        {
+            hunters[i].SetActive(true);
         }
     }
 

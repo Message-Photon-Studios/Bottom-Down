@@ -9,6 +9,7 @@ public class BossHandController : MonoBehaviour
     [SerializeField] private Material defaultColor;
     [SerializeField] GameObject bombTemp;
     [SerializeField] Vector3 spawnBombOffset;
+    [SerializeField] Vector2 spawnBombForce;
 
     public void ChangeColor(GameColor gameColor)
     {
@@ -24,5 +25,6 @@ public class BossHandController : MonoBehaviour
     {
         GameObject bomb = Instantiate(bombTemp, transform.position + spawnBombOffset, transform.rotation);
         bomb.GetComponent<EnemyStats>().SetColor(gameColor);
+        bomb.GetComponent<Rigidbody2D>().AddForce(spawnBombForce);
     }
 }

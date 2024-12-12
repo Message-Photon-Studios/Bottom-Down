@@ -97,16 +97,16 @@ MonoBehaviour:
   minionWaveTimer: 30
   wispTmp: {fileID: 3904210810762673740, guid: 48fd111d4ca293846a0368a316105c0b, type: 3}
   spawnOffset: {x: 0, y: 2}
-  spawnForce: {x: 0, y: 2000}
+  spawnForce: {x: 0, y: 1000}
   beamDamage: 20
   laserDecaySpeed: 0.5
   beamTrigger:
-    radius: 5
+    radius: 3.5
     direction: 0
     width: 360
     offset: {x: 0, y: 0}
     color: {r: 0.74853325, g: 0, b: 1, a: 1}
-  beamTimer: 5
+  beamTimer: 7
   attackOrb: {fileID: 6514224676273353913}
   attackBeam: {fileID: 7646961322464936137}
   attackAim: {fileID: 9051526252589441835}
@@ -143,6 +143,7 @@ MonoBehaviour:
   - {fileID: 7089742976804706204, guid: ce95bf9b72e31b943bd7b6a66ce12fc4, type: 3}
   hands:
   - {fileID: 2325563230690718954}
+  hunters: []
 --- !u!50 &657598516249302101
 Rigidbody2D:
   serializedVersion: 4
@@ -5305,6 +5306,7 @@ MonoBehaviour:
   defaultColor: {fileID: 2100000, guid: 35a13ff390626d64b8941068ce494c99, type: 2}
   bombTemp: {fileID: 8094419970937011932, guid: 4a630427006a0094898b5c527abea127, type: 3}
   spawnBombOffset: {x: 0, y: 0.5, z: 0}
+  spawnBombForce: {x: 0, y: 2000}
 --- !u!1 &8865370589715980451
 GameObject:
   m_ObjectHideFlags: 0
