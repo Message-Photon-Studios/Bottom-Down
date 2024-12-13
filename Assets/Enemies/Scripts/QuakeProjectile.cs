@@ -24,7 +24,7 @@ public class QuakeProjectile : Enemy
             }),
 
             new Sequence(new List<Node> {
-                new HomTowardsPlayer(stats, startRotation, player, 1f, turnSpeed, 2f),
+                new HomTowardsTarget(stats, startRotation, player.transform, 1f, turnSpeed, 2f),
                 new CheckBool("startIdle", true),
                 new Wait(startIdleTime+Random.Range(0f, 1f)),
                 new SetParentVariable("startIdle", false, 2),

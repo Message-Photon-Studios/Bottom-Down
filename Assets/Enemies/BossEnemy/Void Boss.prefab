@@ -92,7 +92,6 @@ MonoBehaviour:
   playerCollisionDamage: 10
   playerCollisionForce: {x: 2000, y: 0.5}
   minionMax: 3
-  minionIncreaseTimer: 60
   wispTimer: 0.5
   minionWaveTimer: 30
   wispTmp: {fileID: 3904210810762673740, guid: 48fd111d4ca293846a0368a316105c0b, type: 3}
@@ -144,6 +143,7 @@ MonoBehaviour:
   hands:
   - {fileID: 2325563230690718954}
   hunters: []
+  phase: 0
 --- !u!50 &657598516249302101
 Rigidbody2D:
   serializedVersion: 4

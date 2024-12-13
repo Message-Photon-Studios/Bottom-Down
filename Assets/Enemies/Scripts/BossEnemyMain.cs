@@ -10,7 +10,6 @@ public class BossEnemyMain : Enemy
 {
     [Header("Minion spawning")]
     [SerializeField] int minionMax;
-    [SerializeField] float minionIncreaseTimer;
     [SerializeField] float wispTimer;
     [SerializeField] float minionWaveTimer;
     [SerializeField] GameObject wispTmp;
@@ -35,7 +34,6 @@ public class BossEnemyMain : Enemy
     [SerializeField] float patrollIdleTime;
 
     UnityEvent<GameObject> onWispSpawned = new UnityEvent<GameObject>();
-    UnityEvent onIncreaseMinionAmount = new UnityEvent();
     UnityEvent onNewMinionWave = new UnityEvent();
 
     [SerializeField] List<GameObject> spawned = new List<GameObject>();
@@ -47,11 +45,6 @@ public class BossEnemyMain : Enemy
 
             new KeepHeight(stats, transform.position.y, 1f),
             new Selector(new List<Node>{
-
-                new Sequence(new List<Node>{
-                    new Wait(minionIncreaseTimer),
-                    new ActivateAction(onIncreaseMinionAmount)
-                }),
 
                 new Sequence(new List<Node>{
                     new Wait(minionWaveTimer),
@@ -99,7 +92,6 @@ public class BossEnemyMain : Enemy
         });
         
         onWispSpawned.AddListener(WispSpawned);
-        onIncreaseMinionAmount.AddListener(IncreaseMinionAmount);
         onNewMinionWave.AddListener(NewMinionWave);
         triggersToFlip.Add(beamTrigger);
         root.SetData("activateBeam", false);
@@ -109,18 +101,14 @@ public class BossEnemyMain : Enemy
         return root;
     }
 
-    void IncreaseMinionAmount()
+    public void IncreaseMinionAmount(int addMax)
     {
-        minionMax++;
+        minionMax+=addMax;
     }
 
     void NewMinionWave()
     {
-        while(spawned.Count > 0)
-        {
-            spawned[0].GetComponent<EnemyStats>().KillEnemy();
-        }
-
+        KillAllMinions();
         root.SetData("canSpawn", true);
     }
 
@@ -154,6 +142,14 @@ public class BossEnemyMain : Enemy
         }
     }
 
+    public void KillAllMinions()
+    {
+        while(spawned.Count > 0)
+        {
+            spawned[0].GetComponent<EnemyStats>().KillEnemy();
+        }
+    }
+
     public override void DamagePlayer()
     {
         player.DamagePlayer((int)(beamDamage*stats.GetDamageFactor()), stats);
@@ -163,7 +159,6 @@ public class BossEnemyMain : Enemy
     {
         base.OnDisable();
         onWispSpawned.RemoveAllListeners();
-        onIncreaseMinionAmount.RemoveAllListeners();
         onNewMinionWave.RemoveAllListeners();
     }
 

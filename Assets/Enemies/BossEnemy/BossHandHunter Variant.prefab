@@ -55,5 +55,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2526175596825560151, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: health
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634763741645924541, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634763741645924541, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204111074892045408, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832138514590905992, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057757056873275426, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057757056873275426, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9114564352617170486, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+--- !u!1 &5024185387982423413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2526175596825560144, guid: 81292b40241846b41a71dfe9e90319c2, type: 3}
+  m_PrefabInstance: {fileID: 7401589775694217509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7271712574351246445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024185387982423413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed182f6d6eb7674a907a8b255e1a19f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollisionDamage: 25
+  playerCollisionForce: {x: 2000, y: 0.5}
+  bossTransform: {fileID: 0}
+  maxBossDistance: 2
+  huntTimer: 10
+  attackTrigger:
+    radius: 1.4
+    direction: 0
+    width: 360
+    offset: {x: 0, y: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
+  swordDamage: 40
+  swordForce: 4000
+  timeBetweenAttack: 1.5
+  startRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}

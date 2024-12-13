@@ -18,7 +18,7 @@ public class BossEnemyController : MonoBehaviour
 
     EnemyStats stats;
     float bossStartHealth;
-    bool secondPhase = false;
+    public int phase = 0;
     PlayerStats player;
     bool playerDied = false;
     float changeColorTimer;
@@ -29,6 +29,7 @@ public class BossEnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         stats.onEnemyDeath += BossDied;
         player.onPlayerDied += PlayerDied;
+        stats.onDamageTaken += OnDamageTaken;
 
         foreach (BossHandController hand in hands)
         {
@@ -36,6 +37,14 @@ public class BossEnemyController : MonoBehaviour
         }
 
         stats.onColorChanged += SetHandsColor;
+    }
+
+    void OnDisable()
+    {
+        stats.onEnemyDeath -= BossDied;
+        player.onPlayerDied -= PlayerDied;
+        stats.onDamageTaken -= OnDamageTaken;
+        stats.onColorChanged -= SetHandsColor;
     }
 
     void SetHandsColor(GameColor color)
@@ -47,17 +56,20 @@ public class BossEnemyController : MonoBehaviour
 
     }
 
+    void OnDamageTaken(float damage, Vector2 atPosition)
+    {
+        float health = stats.GetHealth();
+
+        int newPhase =  (int)(4f * (1-(health/bossStartHealth)));
+        if(newPhase != phase)
+        {
+            phase = newPhase;
+            NewPhase();
+        }
+    }
+
     void Update()
     {
-        if(!secondPhase)
-        {
-            if(stats.GetHealth() < bossStartHealth/2)
-            {
-                secondPhase = true;
-                SecondPhaseStart();
-            }
-        }
-
         changeColorTimer -= Time.deltaTime;
         if(changeColorTimer <= 0)
         {
@@ -66,20 +78,55 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
-    void SecondPhaseStart()
+    /// <summary>
+    /// Controls the boss phases
+    /// </summary>
+    void NewPhase()
     {
-        for (int i = 0; i < hunters.Length; i++)
+        switch (phase)
         {
-            hunters[i].SetActive(true);
+            case 0: break;
+            case 1:
+            {
+                hunters[0].transform.position = transform.position + Vector3.right*-1.5f;
+                hunters[0].SetActive(true);
+                break;
+            }
+            case 2: {
+                for (int i = 1; i < 3; i++)
+                {
+                    hunters[i].transform.position = transform.position + Vector3.right*(i%2*2-1) *1.5f;
+                    hunters[i].SetActive(true);
+                    AddMinionMax(1);
+                } 
+                break;
+            }
+            case 3:
+            {
+                for (int i = 3; i < 5; i++)
+                {
+                    hunters[i].transform.position = transform.position + Vector3.right*(i%2*2-1) *1.5f;
+                    hunters[i].SetActive(true);
+                } 
+                AddMinionMax(2);
+                break;
+            }
+            default: break;
         }
+    }
+
+    void AddMinionMax(int addMax)
+    {
+        GetComponent<BossEnemyMain>().IncreaseMinionAmount(addMax);
     }
 
     void BossDied(EnemyStats deadBoss)
     {
-
+        GetComponent<BossEnemyMain>().KillAllMinions();
         for (int i = 0; i < hunters.Length; i++)
         {
-            hunters[i].GetComponent<EnemyStats>().KillEnemy();
+            if(hunters[i] != null && hunters[i].gameObject.activeSelf)
+                hunters[i].GetComponent<EnemyStats>().KillEnemy();
         }
         onBossDefeated?.Invoke();
         deathUnlock.SetActive(true);
