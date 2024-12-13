@@ -30443,7 +30443,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 115
-      m_TileSpriteIndex: 71
+      m_TileSpriteIndex: 70
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -30453,7 +30453,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 115
-      m_TileSpriteIndex: 90
+      m_TileSpriteIndex: 71
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -30703,7 +30703,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 115
-      m_TileSpriteIndex: 70
+      m_TileSpriteIndex: 90
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -41625,9 +41625,9 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 1502435035, guid: 562593983336f8d458064430d2282d37, type: 3}
-  - m_RefCount: 1
     m_Data: {fileID: -230036422, guid: 562593983336f8d458064430d2282d37, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -2139838554, guid: 562593983336f8d458064430d2282d37, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 804606549, guid: 562593983336f8d458064430d2282d37, type: 3}
   - m_RefCount: 4
@@ -41665,7 +41665,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 936773420, guid: 562593983336f8d458064430d2282d37, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -2139838554, guid: 562593983336f8d458064430d2282d37, type: 3}
+    m_Data: {fileID: 1502435035, guid: 562593983336f8d458064430d2282d37, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1248116659, guid: 562593983336f8d458064430d2282d37, type: 3}
   - m_RefCount: 1
@@ -42004,11 +42004,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
---- !u!1 &442221941 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1109980424357281385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
-  m_PrefabInstance: {fileID: 442221940}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &455846581 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 657598516249302099, guid: 7f76ff8f7654cf64e89193f6cd0fab2c, type: 3}
@@ -76870,7 +76865,7 @@ PrefabInstance:
     - target: {fileID: -4186342883332449447, guid: 7f76ff8f7654cf64e89193f6cd0fab2c, type: 3}
       propertyPath: deathUnlock
       value: 
-      objectReference: {fileID: 442221941}
+      objectReference: {fileID: 0}
     - target: {fileID: -4186342883332449447, guid: 7f76ff8f7654cf64e89193f6cd0fab2c, type: 3}
       propertyPath: hunters.Array.size
       value: 5

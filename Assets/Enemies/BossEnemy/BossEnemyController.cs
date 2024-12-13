@@ -8,7 +8,6 @@ public class BossEnemyController : MonoBehaviour
 {
     [SerializeField] GameColor[] bossColors;
     [SerializeField] float changeColorTime;
-    [SerializeField] GameObject deathUnlock;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject[] spawnEnemies;
     [SerializeField] BossHandController[] hands;
@@ -129,7 +128,6 @@ public class BossEnemyController : MonoBehaviour
                 hunters[i].GetComponent<EnemyStats>().KillEnemy();
         }
         onBossDefeated?.Invoke();
-        deathUnlock.SetActive(true);
     }
 
     void PlayerDied()

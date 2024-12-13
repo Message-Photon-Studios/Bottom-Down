@@ -134,7 +134,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a43a3607f70897249a36fdff7162cc2a, type: 2}
   - {fileID: 11400000, guid: a5087b0e29c5b414795753d6fe24755a, type: 2}
   changeColorTime: 5
-  deathUnlock: {fileID: 0}
   healthBar: {fileID: 570294260994134240}
   spawnEnemies:
   - {fileID: 2975167467656347166, guid: 279a516be7221a048a9b12558755b5a1, type: 3}
