@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 1002782749154748724}
   - component: {fileID: 1002782749154748725}
   - component: {fileID: 1002782749154748730}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: BossEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
