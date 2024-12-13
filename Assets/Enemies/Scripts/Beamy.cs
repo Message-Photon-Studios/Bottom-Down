@@ -66,7 +66,7 @@ public class Beamy : Enemy
         return root;
     }
 
-    public void DamagePlayer()
+    public override void DamagePlayer()
     {
         player.DamagePlayer((int)(damage*stats.GetDamageFactor()), stats);
     }
