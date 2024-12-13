@@ -61,7 +61,7 @@ public class BossEnemyMain : Enemy
                     new CheckBool("sleeping", false),
                     new CheckBool("attack", false),
                     new CheckPlayerArea(stats, player, beamTrigger),
-                    new Wait(beamTimer, 1),
+                    new Wait(beamTimer, .5f),
                     new LookAtPlayer(stats, player),
                     new SetParentVariable("attack", true, 3),
                     new ParticlesPlay(attackAim, true),

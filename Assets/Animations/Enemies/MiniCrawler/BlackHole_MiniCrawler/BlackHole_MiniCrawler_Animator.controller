@@ -176,9 +176,9 @@ AnimatorStateMachine:
   - {fileID: -5274524499650251534}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 618643861482311094}
-    second: []
   - first: {fileID: 8540769899168950256}
+    second: []
+  - first: {fileID: 618643861482311094}
     second: []
   - first: {fileID: -6118328503311222589}
     second: []
@@ -221,7 +221,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BlackHole_MiniCrawler_spawn
-  m_Speed: 0.1
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2638579282185744041}

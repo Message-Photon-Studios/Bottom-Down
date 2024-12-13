@@ -105,11 +105,11 @@ MonoBehaviour:
     width: 360
     offset: {x: 0, y: 0}
     color: {r: 0.74853325, g: 0, b: 1, a: 1}
-  beamTimer: 7
+  beamTimer: 10
   attackOrb: {fileID: 6514224676273353913}
   attackBeam: {fileID: 7646961322464936137}
   attackAim: {fileID: 9051526252589441835}
-  bombTimer: 5
+  bombTimer: 7
   handAnimator: {fileID: 2624483054751738446}
   patrollDistance: 6
   patrollIdleTime: 5
