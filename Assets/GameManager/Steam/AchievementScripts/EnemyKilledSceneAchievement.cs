@@ -36,7 +36,7 @@ public class EnemyKilledSceneAchievement : Achievement
     }
 
 
-    void EnemyKilled()
+    void EnemyKilled(EnemyStats deadEnemy)
     {
         RewardAchievement();
     }

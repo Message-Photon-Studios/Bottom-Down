@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BeamyBeam : MonoBehaviour
 {
-    [SerializeField] Beamy parent;
+    [SerializeField] Enemy parent;
     [SerializeField] ParticleSystem particles;
     [SerializeField] ParticleSystem rootParticles;
     [SerializeField] Color defaultColor;

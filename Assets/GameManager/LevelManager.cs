@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Video;
 using Unity.VisualScripting;
 
+[RequireComponent(typeof (EnemyManager))]
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] LevelGenManager levelGenerator;
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject videoObjecCanvas;
     [SerializeField] GameObject backgroundMusic;
     [SerializeField] public bool allowTips = true;
+    [SerializeField] public bool isCaveTownLevel = false;
 
     public static LevelManager instance = null;
 
@@ -128,5 +130,10 @@ public class LevelManager : MonoBehaviour
     public void ShowGame()
     {
 
+    }
+
+    public EnemyManager GetEnemyManager()
+    {
+        return GetComponent<EnemyManager>();
     }
 }

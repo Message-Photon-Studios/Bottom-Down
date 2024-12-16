@@ -32,7 +32,7 @@ public class BossHandHunter : Enemy
                 new Sequence(new List<Node>{
                     new CheckBool("idle", false),
                     new LookAtPlayer(stats, player),
-                    new HomTowardsPlayer(stats, startRotation, player, 1f, 1000, 3f),
+                    new HomTowardsTarget(stats, startRotation, player.transform, 1f, 1000, 3f),
                     new AnimationTrigger(animator, "walk")
                 })
             }),

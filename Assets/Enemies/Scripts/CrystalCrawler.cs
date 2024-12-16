@@ -113,7 +113,8 @@ public class CrystalCrawler : Enemy
 
     protected override void DamageTaken(float damage, Vector2 atPostion)
     {
-        root.SetData("prusuit", true);
+        if(root != null)
+            root.SetData("prusuit", true);
     }
     protected override void Update()
     {

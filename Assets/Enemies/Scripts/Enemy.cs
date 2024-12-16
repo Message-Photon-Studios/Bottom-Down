@@ -39,7 +39,7 @@ public abstract class Enemy : BehaviourTree.Tree
         stats.onDamageTaken += DamageTaken;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         stats.onDamageTaken -= DamageTaken;
     }
@@ -56,6 +56,8 @@ public abstract class Enemy : BehaviourTree.Tree
         /*if(body != null)
             if(Mathf.Abs(body.velocity.x) > .1f && ((body.velocity.x < 0) != (!spriteRenderer.flipX))) SwitchDirection();*/
     }
+
+    public virtual void DamagePlayer(){}
 
     #endregion
 
