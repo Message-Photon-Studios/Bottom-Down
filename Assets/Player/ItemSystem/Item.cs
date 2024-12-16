@@ -175,9 +175,9 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new CustomItemEffect());
         }
-        if (GUILayout.Button("Bottles dont mix color"))
+        if (GUILayout.Button("Add Color Inventory Bools Manager"))
         {
-            item.effects.Add(new BottlesDontMixColor());
+            item.effects.Add(new ColorInventoryBools());
         }
     }
 }

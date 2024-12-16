@@ -33,6 +33,7 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] float minCD = 0.3f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     SpellPickup pickUpSpell = null;
+    ColorLibrary colorLib;
 
     public int blockDrainColor = 0;
     private bool CanSwap = true;
@@ -41,9 +42,12 @@ public class ColorInventory : MonoBehaviour
     private float defaultBuff = 0;
     public bool balanceColors = false;
     public bool dontMixColor = false;
+    public bool autoRotate = false;
+    public bool chaosEnabled = false;
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
+    private int lastDir = 0;
     
 
     #region Actions for UI
@@ -99,6 +103,7 @@ public class ColorInventory : MonoBehaviour
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
         GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        colorLib = GameManager.instance.GetComponent<ColorLibrary>();
     }
 
     void OnDisable()
@@ -124,6 +129,7 @@ public class ColorInventory : MonoBehaviour
     {
         if (!CanSwap) return;
         activeSlot = (colorSlots.Count+activeSlot+dir)%colorSlots.Count;
+        lastDir = dir;
         onSlotChanged?.Invoke(dir);
     }
 
@@ -135,6 +141,11 @@ public class ColorInventory : MonoBehaviour
     public void EnableRotation()
     {
         CanSwap = true;
+    }
+
+    public void AutoRotate()
+    {
+        if (autoRotate) RotateActive(lastDir);
     }
 
     /// <summary>
@@ -509,6 +520,11 @@ public class ColorInventory : MonoBehaviour
     {
         // brush.
         GetComponent<SpriteRenderer>().material = ActiveSlot().charge > 0 ? ActiveSlot().gameColor.colorMat : defaultColor;
+    }
+
+    public void MixRandom()
+    {
+        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 0);
     }
 
     #endregion
