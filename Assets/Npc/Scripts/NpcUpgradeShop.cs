@@ -10,6 +10,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
     int buys;
     [SerializeField] TMP_Text buysText;
     [SerializeField] bool inactiveWhenMaxed;
+    [SerializeField] bool deactivatedWhenMaxed;
     [SerializeField] int cost; 
     [SerializeField] int costIncrease;
     [SerializeField] TMP_Text costText;
@@ -21,6 +22,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
     void OnEnable()
     {
         interact.action.performed += ShopInteraction;
+        if(deactivatedWhenMaxed && buys >= maxBuys) gameObject.SetActive(false);
     }
 
     void OnDisable()
@@ -77,6 +79,8 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
             buys ++;
             Shop();
             OpenShop();
+
+            if(deactivatedWhenMaxed && buys >= maxBuys) gameObject.SetActive(false);
         }
         
     }
@@ -90,7 +94,11 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
         {
             buys = data.permanentShopBuys[name];
         } else
-        buys = 0;
+        {
+            buys = 0;
+        }
+        Debug.Log("Test buys " + buys);
+        if(deactivatedWhenMaxed && buys >= maxBuys) gameObject.SetActive(false);
     }
 
     void IDataPersistence.SaveData(GameData data)

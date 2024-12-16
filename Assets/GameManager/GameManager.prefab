@@ -1210,6 +1210,39 @@ MonoBehaviour:
               - 'Hello Squirrel.
 
                 I am Lila, the local doctor here. '
+    - Key: Nerus
+      Value:
+        defaultDialogue:
+          id: 153072549
+          texts:
+          - Greetings adventurer!
+          - Do you want to buy any old keys from my collection?
+          - Who knows where they might lead!
+        regionalDefaultDialogues:
+          _serializedList: []
+        specificDialogues:
+          _serializedList:
+          - Key: CaveTown
+            Value:
+            - id: 288092991
+              texts:
+              - Greetings adventurer!
+              - 'I am Nerus then Moth, and you are welcome here to my shop. '
+              - I was once an explorer, just like you, travelling around the caves
+                collecting items and finding secrets.
+              - 'But, that was some time ago. '
+              - 'I broke my wing on one of my adventures. After that Lila, the local
+                doctor, forbade me to go out on any more trips.  '
+              - 'However, life moves on. The last couple of years I have mostly been
+                selling trinkets from my adventuring past here in my shop. '
+              - Business has been rather great, at least until recently when these
+                strange stones has started to come alive.
+              - 'Now I only have these old keys left in stock, I am sure that they
+                might lead somewhere. You can buy them if you want. '
+              - As you are also a fellow adventurer I will include a guarantee. If
+                you ever have a similar accident to mine in the caves you will receive
+                a new key for free.
+              - 'We adventurers need to stick together. '
   npcOriginalData:
     _serializedList: []
 --- !u!1 &6749319306640925491
@@ -1282,6 +1315,7 @@ MonoBehaviour:
   spellUnlockSound: {fileID: 5256688047709658222}
   petrifiedPickupSound: {fileID: 2976471086048920126}
   soundEffectManager: {fileID: 7690066140520027446}
+  petrifiedPigment: 0
   maskLibrary:
     playerLayer: 3
     platformLayer: 14
@@ -1559,6 +1593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgrades:
     extraHealth: 0
+    items: []
 --- !u!1 &7562256178773632822
 GameObject:
   m_ObjectHideFlags: 0

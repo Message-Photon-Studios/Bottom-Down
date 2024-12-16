@@ -4,23 +4,23 @@ using UnityEngine;
 /// <summary>
 /// Moves the object towards the target. Does not roate the sprite. 
 /// </summary>
-internal class HomTowardsPlayer : Node
+internal class HomTowardsTarget : Node
 {
     private EnemyStats stats;
     private Rigidbody2D body;
-    private PlayerStats player;
+    private Transform target;
     private float speedFactor;
     private float rotationSpeed;
     Vector3 randomFollowPoint;
     private float randomFollowDist;
     private Quaternion currentRotation;
 
-    public HomTowardsPlayer(EnemyStats stats, Quaternion startRotation, PlayerStats player, float speedFactor, float rotationSpeed, float randomFollowFactor)
+    public HomTowardsTarget(EnemyStats stats, Quaternion startRotation, Transform target, float speedFactor, float rotationSpeed, float randomFollowFactor)
     {
         this.stats = stats;
         this.body = stats.GetComponent<Rigidbody2D>();
         currentRotation = startRotation;
-        this.player = player;
+        this.target = target;
         this.speedFactor = speedFactor;
         this.rotationSpeed = rotationSpeed;
         this.randomFollowPoint = new Vector3(Random.Range(-1f,1f), Random.Range(-1f,1f), 0)*randomFollowFactor;
@@ -35,10 +35,10 @@ internal class HomTowardsPlayer : Node
             return state;
         }
         Vector3 direction;
-        if(Vector2.Distance(player.transform.position, stats.transform.position) > randomFollowDist)
-            direction = (player.transform.position + randomFollowPoint) - stats.transform.position;
+        if(Vector2.Distance(target.position, stats.transform.position) > randomFollowDist)
+            direction = (target.position + randomFollowPoint) - stats.transform.position;
         else
-            direction = player.transform.position - stats.transform.position;
+            direction = target.transform.position - stats.transform.position;
 
         float playerAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         currentRotation = Quaternion.RotateTowards(currentRotation, Quaternion.Euler(new Vector3(0, 0, playerAngle)), Time.deltaTime * rotationSpeed);

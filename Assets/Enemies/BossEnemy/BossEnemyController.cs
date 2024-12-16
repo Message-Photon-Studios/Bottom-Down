@@ -1,96 +1,74 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Steamworks;
 using UnityEngine;
 
 public class BossEnemyController : MonoBehaviour
 {
-    [SerializeField] float changeHandTime;
-    [SerializeField] float handDeathTime;
-    [SerializeField] List<Enemy> startingHands;
-    [SerializeField] List<Enemy> secondPhaseHands;
     [SerializeField] GameColor[] bossColors;
     [SerializeField] float changeColorTime;
-    [SerializeField] GameObject deathUnlock;
     [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject[] spawnEnemies;
+    [SerializeField] BossHandController[] hands;
+    [SerializeField] GameObject[] hunters;
 
     public static Action onBossDefeated;
 
     EnemyStats stats;
-    List<Enemy> hands = new List<Enemy>(0);
-    int spellHand = 0;
-    int idleHand = 0;
-    float changeTimer = 0;
-    float handDeathTimer;
     float bossStartHealth;
-    bool secondPhase = false;
-    Transform wispTarget = null;
-
+    public int phase = 0;
     PlayerStats player;
     bool playerDied = false;
     float changeColorTimer;
     void Start()
     {
-        AddHands(startingHands);
-        changeTimer = UnityEngine.Random.Range(0, changeHandTime);
         stats = GetComponent<EnemyStats>();
         bossStartHealth = stats.GetHealth();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         stats.onEnemyDeath += BossDied;
         player.onPlayerDied += PlayerDied;
+        stats.onDamageTaken += OnDamageTaken;
+
+        foreach (BossHandController hand in hands)
+        {
+            hand.ChangeColor(stats.GetColor());
+        }
+
+        stats.onColorChanged += SetHandsColor;
+    }
+
+    void OnDisable()
+    {
+        stats.onEnemyDeath -= BossDied;
+        player.onPlayerDied -= PlayerDied;
+        stats.onDamageTaken -= OnDamageTaken;
+        stats.onColorChanged -= SetHandsColor;
+    }
+
+    void SetHandsColor(GameColor color)
+    {
+        foreach (BossHandController hand in hands)
+        {
+            hand.ChangeColor(stats.GetColor());
+        }
+
+    }
+
+    void OnDamageTaken(float damage, Vector2 atPosition)
+    {
+        float health = stats.GetHealth();
+
+        int newPhase =  (int)(4f * (1-(health/bossStartHealth)));
+        if(newPhase != phase)
+        {
+            phase = newPhase;
+            NewPhase();
+        }
     }
 
     void Update()
     {
-        if (player.GetHealth() <= 0 && !playerDied)
-        {
-            GetComponent<Enemy>().enabled = false;
-            foreach(Enemy hand in hands)
-            {
-                hand.enabled = false;
-            }
-            playerDied = true;
-            return;
-        }
-        changeTimer -= Time.deltaTime;
-        if(changeTimer <= 0)
-        {
-            changeTimer = UnityEngine.Random.Range(0, changeHandTime);
-            ChangeSpellHand();
-            if(hands.Count > 2)
-            {
-                ChangeIdleHand();
-            }
-        }
-
-        if (handDeathTimer > 0)
-        {
-            handDeathTimer -= Time.deltaTime;
-            if(handDeathTimer <= 0)
-            {
-                foreach (Enemy hand in hands)
-                {
-                    if(!hand.gameObject.activeSelf)
-                    {
-                        hand.gameObject.SetActive(true);
-                    }
-                }
-            }
-        }
-
-        if(!secondPhase)
-        {
-            if(stats.GetHealth() < bossStartHealth/2)
-            {
-                foreach(Enemy hand in secondPhaseHands)
-                {
-                    hand.gameObject.SetActive(true);
-                }
-                secondPhase = true;
-                AddHands(secondPhaseHands);
-            }
-        }
-
         changeColorTimer -= Time.deltaTime;
         if(changeColorTimer <= 0)
         {
@@ -99,15 +77,57 @@ public class BossEnemyController : MonoBehaviour
         }
     }
 
-    void BossDied()
+    /// <summary>
+    /// Controls the boss phases
+    /// </summary>
+    void NewPhase()
     {
-        foreach(Enemy hand in hands)
+        switch (phase)
         {
-            hand.GetComponent<EnemyStats>().KillEnemy();
+            case 0: break;
+            case 1:
+            {
+                hunters[0].transform.position = transform.position + Vector3.right*-1.5f;
+                hunters[0].SetActive(true);
+                break;
+            }
+            case 2: {
+                for (int i = 1; i < 3; i++)
+                {
+                    hunters[i].transform.position = transform.position + Vector3.right*(i%2*2-1) *1.5f;
+                    hunters[i].SetActive(true);
+                    AddMinionMax(1);
+                } 
+                break;
+            }
+            case 3:
+            {
+                for (int i = 3; i < 5; i++)
+                {
+                    hunters[i].transform.position = transform.position + Vector3.right*(i%2*2-1) *1.5f;
+                    hunters[i].SetActive(true);
+                } 
+                AddMinionMax(2);
+                break;
+            }
+            default: break;
         }
+    }
 
+    void AddMinionMax(int addMax)
+    {
+        GetComponent<BossEnemyMain>().IncreaseMinionAmount(addMax);
+    }
+
+    void BossDied(EnemyStats deadBoss)
+    {
+        GetComponent<BossEnemyMain>().KillAllMinions();
+        for (int i = 0; i < hunters.Length; i++)
+        {
+            if(hunters[i] != null && hunters[i].gameObject.activeSelf)
+                hunters[i].GetComponent<EnemyStats>().KillEnemy();
+        }
         onBossDefeated?.Invoke();
-        deathUnlock.SetActive(true);
     }
 
     void PlayerDied()
@@ -115,52 +135,9 @@ public class BossEnemyController : MonoBehaviour
         healthBar.SetActive(false);
     }
 
-    void ChangeSpellHand()
+    public GameObject WispSetupAndSpawnObj(GameObject wisp)
     {
-        hands[spellHand].SetBoolFalse("spellMode");
-        spellHand = UnityEngine.Random.Range(0, hands.Count);
-        hands[spellHand].SetBoolTrue("spellMode");
-    }
-
-    void ChangeIdleHand()
-    {
-        hands[idleHand].SetBoolFalse("idle");
-        idleHand = UnityEngine.Random.Range(0, hands.Count);
-        if(idleHand == spellHand)
-        {
-            idleHand++;
-            idleHand %= hands.Count;
-        }
-
-        hands[idleHand].SetBoolTrue("idle");
-    }
-    
-    void AddHands(List<Enemy> handsAdded)
-    {
-        foreach(Enemy enemy in handsAdded)
-        {
-            EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
-            enemyStats.onDamageTaken += (float damageTaken, Vector2 tmp) => {HandTookDamage(damageTaken);};
-        }
-
-        hands.AddRange(handsAdded);
-    }
-
-    void HandTookDamage(float damageTaken)
-    {
-        stats.DamageEnemy((int)damageTaken);
-    }
-
-
-
-    public void WispSpawned(GameObject wisp)
-    {
-        int i = UnityEngine.Random.Range(0, hands.Count);
-        GameObject target = GameObject.FindGameObjectWithTag("Player");
-        if(i != hands.Count)
-        {
-            target = hands[i].gameObject;
-            wisp.GetComponent<Wisp>().SetTarget(target);
-        }
+        int i = UnityEngine.Random.Range(0, spawnEnemies.Length);
+        return spawnEnemies[i];
     }
 }

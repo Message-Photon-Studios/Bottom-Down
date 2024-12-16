@@ -14,7 +14,9 @@ public class TargetingMarker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if(playerObj == null) return;
+        player = playerObj.GetComponent<PlayerStats>();
         enemyStats = parent.GetComponent<EnemyStats>();
         enemyStats.onColorChanged += ChangeColor;
         ChangeColor(enemyStats.GetColor());

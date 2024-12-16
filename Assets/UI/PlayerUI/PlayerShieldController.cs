@@ -14,6 +14,7 @@ public class PlayerShieldController : MonoBehaviour
     [SerializeField] Slider healthSlider;
     [SerializeField] Slider secondarySlider;
     [SerializeField] float secondaryRate;
+    [SerializeField] RectTransform permanentTHPMarker;
 
     private float healthMultiplier = 1;
     private float targetValue = 1;
@@ -37,6 +38,9 @@ public class PlayerShieldController : MonoBehaviour
 
         ShieldChanged(0);
         healthSliderValue = 0;
+        float pthpX = GetComponent<RectTransform>().sizeDelta.x * ((float)playerStats.GetMaxPermanentShield()/(float)playerStats.GetMaxShield());
+        Debug.Log("size = " + GetComponent<RectTransform>().sizeDelta.x  + " * " + ((float)playerStats.GetMaxPermanentShield()/(float)playerStats.GetMaxShield()) + " = " + pthpX);
+        permanentTHPMarker.anchoredPosition = new Vector3(pthpX , 0, 0);
     }
 
     private void OnDisable() {

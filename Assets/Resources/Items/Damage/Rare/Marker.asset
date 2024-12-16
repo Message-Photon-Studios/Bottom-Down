@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'This marker is great for fixing the edges.
 
     Rainbowed enemies
-    take +50% damage when exploding.'
+    take +10 damage when exploding.'
   itemCost: 45
   effects:
   - rid: 7258339239831011329
@@ -29,4 +29,4 @@ MonoBehaviour:
     - rid: 7258339239831011329
       type: {class: RainbowMaxedBuff, ns: , asm: Assembly-CSharp}
       data:
-        power: 0.5
+        power: 1

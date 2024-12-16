@@ -11,6 +11,8 @@ public class LevelEndpoint : MonoBehaviour
 
     [SerializeField] Sprite[] LoadingSprites;
 
+    [SerializeField] bool startRun = false;
+
     private UIController uiController;
     bool enableExit = false;
 
@@ -30,6 +32,7 @@ public class LevelEndpoint : MonoBehaviour
     void ExitLevel (InputAction.CallbackContext ctx)
     {
         if(!enableExit) return;
+        if(startRun) GameManager.instance.SetStartRun();
         LevelManager.instance.EndLevel(goToLevel);
     }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WindBagEffect
   m_EditorClassIdentifier: 
   itemName: Wind Bag
-  range: 4
-  rangePerStack: 2
+  range: 3
+  rangePerStack: 0
   force: 10000
-  forcePerStack: 4000
+  forcePerStack: 0

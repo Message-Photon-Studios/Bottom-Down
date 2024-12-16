@@ -67,11 +67,17 @@ public class ItemInventory : MonoBehaviour
         };
 
         pickUpAction.action.performed += pickUp;
+        GameManager.instance.onPrepareNewRun += SetPermanentItems;
+        GameManager.instance.onStartedNewRun += LoadPermanentItems;
+        GameManager.instance.onLoadedCaveTown += LoadPermanentItems;
     }
 
     void OnDisable()
     {
         pickUpAction.action.performed -= pickUp;
+        GameManager.instance.onPrepareNewRun -= SetPermanentItems;
+        GameManager.instance.onStartedNewRun -= LoadPermanentItems;
+        GameManager.instance.onLoadedCaveTown -= LoadPermanentItems;
     }
 
     /// <summary>
@@ -226,5 +232,15 @@ public class ItemInventory : MonoBehaviour
         items.Remove(item);
         onItemPickedUpOrRemoved?.Invoke(item);
         return true;
+    }
+
+    public void SetPermanentItems()
+    {
+        PermanentUpgradeManager.instance.upgrades.items = items.ToArray();
+    }
+
+    private void LoadPermanentItems()
+    {
+        items.AddRange(PermanentUpgradeManager.instance.upgrades.items);
     }
 }

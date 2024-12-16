@@ -39,30 +39,24 @@ public class BossHand : Enemy
             }),
 
             new Sequence(new List<Node>{
-            new CheckBool("spellMode", true),
-            new Selector(new List<Node>
-            {
-                new Sequence(new List<Node>{
-                    new Wait(spellCastingCooldown),
-                    new AnimationTrigger(animator, "spell")
-                }),
-                new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
-            })
+                new CheckBool("spellMode", true),
+                new Selector(new List<Node>
+                {
+                    new Sequence(new List<Node>{
+                        new Wait(spellCastingCooldown),
+                        new AnimationTrigger(animator, "spell")
+                    }),
+                    new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
+                })
             }),
 
-            new Selector(new List<Node>{
-                new Sequence(new List<Node>{
-                    new CheckBool("attack", false),
-                    new CheckPlayerArea(stats, player, attackTrigger),
-                    new AnimationTrigger(animator, "attack")
+                new Selector(new List<Node>{
+                    new Sequence(new List<Node>{
+                        new CheckBool("attack", false),
+                        new CheckPlayerArea(stats, player, attackTrigger),
+                        new AnimationTrigger(animator, "attack")
                     }),
-
-                new Sequence(new List<Node>{
-                    new PlatformChase(stats, player, body, animator, 1f, viewRange, 0f, .5f ,"attack", "walk")
-                }),
-
-                new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .5f, "attack", "walk")
-            })
+                })
             });
         
         root.SetData("idle", false);

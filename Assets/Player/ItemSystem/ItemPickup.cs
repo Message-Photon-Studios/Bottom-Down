@@ -57,7 +57,7 @@ public class ItemPickup : MonoBehaviour
         }
     }
 
-    private void SpawnFromEnemy()
+    private void SpawnFromEnemy(EnemyStats deadEnemy)
     {
         transform.position = spawnFromEnemy.transform.position;
         RaycastHit2D hit;
