@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
   m_Name: Chaotic Bottle
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 20c7287056f9a8e409008fed0a4968b0, type: 3}
-  description: Rotates bottles after casting a spell in the same direction as the
-    last rotation.
+  sprite: {fileID: 21300000, guid: 130ff6ea6d61b024394ff2ee7a17cd80, type: 3}
+  description: Mixes in a random primary color into your bottle after casting a spell
   itemCost: 45
   effects:
   - rid: 7456394559367938049
@@ -28,5 +27,5 @@ MonoBehaviour:
       type: {class: ColorInventoryBools, ns: , asm: Assembly-CSharp}
       data:
         dontMixColor: 0
-        autoRotate: 1
-        chaosBottle: 0
+        autoRotate: 0
+        chaosBottle: 1

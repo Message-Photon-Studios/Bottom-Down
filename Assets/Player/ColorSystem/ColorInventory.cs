@@ -218,9 +218,9 @@ public class ColorInventory : MonoBehaviour
         onCoolDownSet?.Invoke(time);
     }
 
-    public void AddCDMultiplier(float multiplier)
+    public void MultiplyCDMultiplier(float multiply)
     {
-        multetiveCDModifier += multiplier;
+        multetiveCDModifier *= multiply;
     }
 
     public void AddCDAddetive(float add)
@@ -524,7 +524,7 @@ public class ColorInventory : MonoBehaviour
 
     public void MixRandom()
     {
-        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 0);
+        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1);
     }
 
     #endregion
