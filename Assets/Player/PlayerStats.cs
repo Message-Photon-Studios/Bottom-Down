@@ -58,7 +58,7 @@ public class PlayerStats : MonoBehaviour
     public UnityAction onPlayerDied;
 
     /// <summary>
-    /// This event fires when the player is damaged
+    /// This event fires when the player is damaged. The enemy stats is null when the player is damaged by non enemies.
     /// </summary>
     public UnityAction<PlayerStats, EnemyStats> onPlayerDamaged;
 

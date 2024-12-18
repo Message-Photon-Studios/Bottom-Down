@@ -78,4 +78,11 @@ public class CameraFocus : MonoBehaviour
             moveVerticalPos = Vector3.Slerp(transform.position, focusPoint.position, ((focusPoint.position.y > transform.position.y)? verticalSpeedUp:verticalSpeedDown)*Time.fixedDeltaTime);*/
         transform.position = new Vector3(x,y,aim.position.z);
     }
+
+    public void Teleport(Vector2 toPosition)
+    {
+        x = toPosition.x;
+        y = toPosition.y;
+        transform.position = new Vector3(x,y,transform.position.z);
+    }
 }

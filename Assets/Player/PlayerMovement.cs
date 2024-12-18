@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 /// <summary>
 /// This class controls the players movement and keeps track of player states such as it being rooted, falling or in the air. 
@@ -97,8 +98,19 @@ public class PlayerMovement : MonoBehaviour
     Action<InputAction.CallbackContext> dropDown;
 
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
+
+    private Queue<Vector2> lastGroundPosition = new Queue<Vector2>();
+    private Vector2 previousFramePosition = Vector2.zero;
+
+    private CameraFocus cameraFocus;
+    private CameraMovement mainCamera;
+
     #region Setup
     private void OnEnable() {
+        for (int i = 0; i < 10; i++) // Determines how large the position save queue is
+        {
+            lastGroundPosition.Enqueue(transform.position);
+        }
         originalFocusPointPos = new Vector3(focusPoint.localPosition.x, focusPoint.localPosition.y, focusPoint.localPosition.z);
         movementRoot.SetTotalRoot("loading", true);
         checkAction = (InputAction.CallbackContext ctx) => {
@@ -131,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        cameraFocus = GameObject.Find("CameraFocus").GetComponent<CameraFocus>();
+        mainCamera = Camera.main.gameObject.GetComponent<CameraMovement>();
         focusPointNormalY = focusPoint.localPosition.y;
     }
 
@@ -319,6 +333,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrounded())
         {
+            if((Vector2)transform.position != previousFramePosition)
+            {
+                previousFramePosition = transform.position;
+                lastGroundPosition.Enqueue(transform.position);
+                lastGroundPosition.Dequeue();
+            }
+
             if(!isCheckingY)
             {
                 if(walkDir != 0 && focusPoint.localPosition.x < aimFocusMaxX && focusPoint.localPosition.x > -aimFocusMaxX)
@@ -544,6 +565,22 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetTrigger("turn");
         GetComponent<PlayerCombatSystem>().FlipDefaultAttack();
     }
+
+    #region Teleportation
+
+    public void Teleport(Vector2 toPosition)
+    {
+        transform.position = toPosition;
+        cameraFocus.Teleport(toPosition);
+        mainCamera.TeleportCamarera(toPosition);
+    }
+
+    public void ReturnToLastGround()
+    {
+        Teleport(lastGroundPosition.Peek());
+    }
+
+    #endregion
 
 }
 
