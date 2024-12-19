@@ -33,6 +33,8 @@ public class PlayerStats : MonoBehaviour
 
     public int complimentaryDamage = 0;
 
+    public bool corrosiveColor = false;
+
     [SerializeField] PlayerSounds playerSounds;
 
     float secTimer = 1;

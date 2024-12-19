@@ -183,6 +183,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ComplimentaryDamage());
         }
+        if (GUILayout.Button("Add Player Stats Bools Manager"))
+        {
+            item.effects.Add(new PlayerStatsBools());
+        }
     }
 }
 

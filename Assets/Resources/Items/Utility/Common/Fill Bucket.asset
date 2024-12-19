@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
-  m_Name: Enchanted Bucket
+  m_Name: Fill Bucket
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 749515d02c83d724fb993443abf2bf6a, type: 3}
-  description: 'One of my trusy old buckets.
-
-    Adds a +20% chance of not draining
-    color when casting a spell.'
+  sprite: {fileID: 21300000, guid: 9db5ec58e36a24e4dbc5b251f779c964, type: 3}
+  description: 'When casting a spell at an enemy color that enemy to the same color
+    as the spell. '
   itemCost: 30
   effects:
-  - rid: 7139357001286680578
+  - rid: 7456394610235932672
   itemCategory: 3
   itemRarity: 0
-  maxSpawn: -1
+  maxSpawn: 1
   references:
     version: 2
     RefIds:
-    - rid: 7139357001286680578
-      type: {class: BlockUseColor, ns: , asm: Assembly-CSharp}
+    - rid: 7456394610235932672
+      type: {class: EnemyDontMixItem, ns: , asm: Assembly-CSharp}
       data:
-        blockDrainColor: 20
+        addedChance: 100

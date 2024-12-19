@@ -62,18 +62,18 @@ public class GameColor : ScriptableObject
     public void ApplyColorEffect(GameObject enemyObj, Vector2 impactPoint, GameObject playerObj, float power, bool forcePerspectivePlayer, int extraDamage)
     {
         EnemyStats enemy = enemyObj.GetComponent<EnemyStats>();
-
-        if(enemy.GetColor() == this)
+        PlayerStats playerStats = playerObj.GetComponent<PlayerStats>();
+        
+        if (enemy.GetColor() == this && !playerStats.corrosiveColor)
         {
             enemy.DamageEnemy(0);
             GameManager.instance.tipsManager.DisplayTips("colorImmunity");
             return;
         }
 
-        PlayerStats playerStats = playerObj.GetComponent<PlayerStats>();
-        
+        float powerDivide = 1;
+        if (playerStats.corrosiveColor && enemy.GetColor() != this) powerDivide = 1.333f;
         bool setPowerZero = false;
-        int powerDivide = 1;
         if(enemy.GetColor() == null || enemy.GetColorAmmount() <= 0) 
         {
             GameManager.instance.tipsManager.DisplayTips("uncoloredDefense");
