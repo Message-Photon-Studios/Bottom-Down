@@ -16,7 +16,7 @@ public class EnemyDontMixItem : ItemEffect
         GetPlayer().GetComponent<PlayerStats>().chanceThatEnemyDontMix -= addedChance;
     }
 
-    public override bool CanBeSpawned()
+    /*public override bool CanBeSpawned()
     {
         int availableChance = GetPlayer().GetComponent<PlayerStats>().chanceThatEnemyDontMix;
         List<EnemyDontMixItem> effects = ItemSpellManager.instance.GetEffectsInLevel<EnemyDontMixItem>(this);
@@ -26,5 +26,5 @@ public class EnemyDontMixItem : ItemEffect
         }
 
         return availableChance + addedChance <= 80;
-    }
+    }*/
 }
