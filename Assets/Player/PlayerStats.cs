@@ -31,6 +31,8 @@ public class PlayerStats : MonoBehaviour
 
     public int chanceThatEnemyDontMix = 0;
 
+    public int complimentaryDamage = 0;
+
     [SerializeField] PlayerSounds playerSounds;
 
     float secTimer = 1;

@@ -179,6 +179,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ColorInventoryBools());
         }
+        if (GUILayout.Button("Add Compliment Damage Bonus"))
+        {
+            item.effects.Add(new ComplimentaryDamage());
+        }
     }
 }
 

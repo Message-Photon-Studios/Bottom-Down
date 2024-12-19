@@ -86,6 +86,7 @@ public class GameColor : ScriptableObject
         } else
             GameManager.instance.soundEffectManager.PlaySound(name);
 
+        if (GameManager.instance.GetComponent<ColorLibrary>().IsComplemtarty(enemy.GetColor(), this)) extraDamage += playerStats.complimentaryDamage;
         GameColor setToColor = (Random.Range(0,100) < playerStats.chanceThatEnemyDontMix)?this:MixColor(enemy.GetColor());
         enemy.SetColor(setToColor, enemy.GetColorAmmount() + 1);
 
