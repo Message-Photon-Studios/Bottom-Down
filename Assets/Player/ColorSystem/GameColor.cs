@@ -87,15 +87,15 @@ public class GameColor : ScriptableObject
             GameManager.instance.soundEffectManager.PlaySound(name);
 
         GameColor setToColor = (Random.Range(0,100) < playerStats.chanceThatEnemyDontMix)?this:MixColor(enemy.GetColor());
-        enemy.SetColor(setToColor, enemy.GetColorAmmount() + 1);
-
+        bool delay = setToColor.name.Equals("Rainbow");
+        if (delay) enemy.SetColor(setToColor, enemy.GetColorAmmount() + 1);
 
         power += enemyObj.GetComponent<EnemyStats>().GetSleepPowerBonus();
         power = power / powerDivide;
         if(setPowerZero) power = 0;
         colorEffect.Apply(enemyObj, impactPoint, playerObj, power, forcePerspectivePlayer, extraDamage);
 
-        
+        if (!delay) enemy.SetColor(setToColor, enemy.GetColorAmmount() + 1);
 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
         {
