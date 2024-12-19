@@ -19,12 +19,16 @@ MonoBehaviour:
     mixes in bottles. Instead overrides the previous color'
   itemCost: 45
   effects:
-  - rid: 7890098150739279872
+  - rid: 7456394559367938050
   itemCategory: 3
   itemRarity: 1
   maxSpawn: 1
   references:
     version: 2
     RefIds:
-    - rid: 7890098150739279872
-      type: {class: BottlesDontMixColor, ns: , asm: Assembly-CSharp}
+    - rid: 7456394559367938050
+      type: {class: ColorInventoryBools, ns: , asm: Assembly-CSharp}
+      data:
+        dontMixColor: 1
+        autoRotate: 0
+        chaosBottle: 0

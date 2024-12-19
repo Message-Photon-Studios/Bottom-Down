@@ -28,7 +28,7 @@ MonoBehaviour:
     - rid: 7890097968310386691
       type: {class: ChangeCDMultiplier, ns: , asm: Assembly-CSharp}
       data:
-        multiplier: 1
+        multiplier: 2
     - rid: 7890097968310386692
       type: {class: ColorBuffItem, ns: , asm: Assembly-CSharp}
       data:

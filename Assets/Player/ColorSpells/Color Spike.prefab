@@ -176,10 +176,11 @@ MonoBehaviour:
 
     Power: 120%'
   spellCost: 40
-  powerScale: 1
+  powerScale: 0.8
   coolDown: 0.1
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
+  destroyOnCollission: 0
   impactOnEnemies: 1
   impactOnNonEnemies: 0
   triggerOnlyOnce: 0

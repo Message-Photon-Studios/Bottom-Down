@@ -260,6 +260,8 @@ SpriteAtlas:
   - {fileID: 1998436307, guid: 46aba351fc59a3e45b917ed438de3317, type: 3}
   - {fileID: -609695017, guid: 46aba351fc59a3e45b917ed438de3317, type: 3}
   - {fileID: 1044796016, guid: 46aba351fc59a3e45b917ed438de3317, type: 3}
+  - {fileID: 21300000, guid: 6b0f5f51ba1c235469266c2f87f4f459, type: 3}
+  - {fileID: 21300000, guid: 60653181629556e458d386aea5e976f6, type: 3}
   - {fileID: 2109086961, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
   - {fileID: 32007481, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
   - {fileID: -1104915565, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
@@ -320,6 +322,7 @@ SpriteAtlas:
   - {fileID: -294316641, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
   - {fileID: -538248756, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
   - {fileID: 1610088577, guid: f3efb7a1fec67fe4299b49d4814922b5, type: 3}
+  - {fileID: 21300000, guid: f3440dd2dce278c4cbb7d8255d90bdf4, type: 3}
   - {fileID: -1994331699, guid: 0c10a073ed070bb468ae7eb10ea6a135, type: 3}
   - {fileID: 661897186, guid: 0c10a073ed070bb468ae7eb10ea6a135, type: 3}
   - {fileID: -207742359, guid: 0c10a073ed070bb468ae7eb10ea6a135, type: 3}
@@ -752,6 +755,7 @@ SpriteAtlas:
   - {fileID: 335820028, guid: cd587755dc6f87a4e8694d6ae5718697, type: 3}
   - {fileID: -1010764101, guid: cd587755dc6f87a4e8694d6ae5718697, type: 3}
   - {fileID: -540299762, guid: cd587755dc6f87a4e8694d6ae5718697, type: 3}
+  - {fileID: 21300000, guid: 282da2b67381463489b07c41a8f49a85, type: 3}
   - {fileID: -552144886, guid: d6ef11c73abb2864b98e6a6fb3933d6f, type: 3}
   - {fileID: 778572932, guid: d6ef11c73abb2864b98e6a6fb3933d6f, type: 3}
   - {fileID: 68651878, guid: d6ef11c73abb2864b98e6a6fb3933d6f, type: 3}
@@ -1145,6 +1149,7 @@ SpriteAtlas:
   - {fileID: -891150372, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
   - {fileID: 1094923572, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
   - {fileID: -1394458356, guid: 9dbf279a28fe30b409f3c7a5a530bad3, type: 3}
+  - {fileID: 21300000, guid: d6731daa562c6964398b25d5272182ae, type: 3}
   - {fileID: -1393354401, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
   - {fileID: -1121804630, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
   - {fileID: 1748913714, guid: cfcaadba0b72b74429593e200cf32896, type: 3}
@@ -1723,6 +1728,7 @@ SpriteAtlas:
   - {fileID: 335073076, guid: 3f5feb0fb5fc51040ad0a3b885b7326d, type: 3}
   - {fileID: 1574641803, guid: 3f5feb0fb5fc51040ad0a3b885b7326d, type: 3}
   - {fileID: 501755264, guid: 3f5feb0fb5fc51040ad0a3b885b7326d, type: 3}
+  - {fileID: 21300000, guid: cfe6347f1c1ff724c876b9d92b11ab67, type: 3}
   - {fileID: 2045991705, guid: 8044a78f364378843af1714f770204a3, type: 3}
   - {fileID: -1344136492, guid: 8044a78f364378843af1714f770204a3, type: 3}
   - {fileID: -1643715930, guid: 8044a78f364378843af1714f770204a3, type: 3}
@@ -2222,6 +2228,8 @@ SpriteAtlas:
   - mushroom-tiles-floor_60
   - mushroom-tiles-floor_63
   - mushroom-tiles-floor_62
+  - red-crystal-spikes-tiles
+  - purple-crystal-spikes-tiles
   - gray-cave-tiles_13
   - gray-cave-tiles_7
   - gray-cave-tiles_6
@@ -2282,6 +2290,7 @@ SpriteAtlas:
   - gray-cave-tiles_10
   - gray-cave-tiles_11
   - gray-cave-tiles_12
+  - white-crystal-spikes-tiles
   - gray-cave-tiles-yellow-gems_30
   - gray-cave-tiles-yellow-gems_31
   - gray-cave-tiles-yellow-gems_32
@@ -2714,6 +2723,7 @@ SpriteAtlas:
   - background-tiles-brown_24
   - background-tiles-brown_27
   - background-tiles-brown_26
+  - blue-crystal-spikes-tiles
   - background-tiles-gray_44
   - background-tiles-gray_45
   - background-tiles-gray_46
@@ -3107,6 +3117,7 @@ SpriteAtlas:
   - blue-cave-tiles-gold-gems_63
   - blue-cave-tiles-gold-gems_71
   - blue-cave-tiles-gold-gems_70
+  - green-crystal-spikes-tiles
   - blue-cave-tiles-blue-gems_17
   - blue-cave-tiles-blue-gems_48
   - blue-cave-tiles-blue-gems_16
@@ -3685,6 +3696,7 @@ SpriteAtlas:
   - minecart-tracks_32
   - minecart-tracks_8
   - minecart-tracks_9
+  - yellow-crystal-spikes-tiles
   - marine-background-tiles_41
   - marine-background-tiles_40
   - marine-background-tiles_43

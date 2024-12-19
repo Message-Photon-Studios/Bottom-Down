@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 749515d02c83d724fb993443abf2bf6a, type: 3}
   description: 'One of my trusy old buckets.
 
-    Adds a +10% chance of not draining
+    Adds a +20% chance of not draining
     color when casting a spell.'
   itemCost: 30
   effects:
@@ -29,4 +29,4 @@ MonoBehaviour:
     - rid: 7139357001286680578
       type: {class: BlockUseColor, ns: , asm: Assembly-CSharp}
       data:
-        blockDrainColor: 10
+        blockDrainColor: 20
