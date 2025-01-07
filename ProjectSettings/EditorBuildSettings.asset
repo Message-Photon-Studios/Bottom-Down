@@ -27,9 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial_Other/TutorialCaves.unity
     guid: 1557034ee1bd3d040a98bea4e4c75712
   - enabled: 1
-    path: Assets/Scenes/Tutorial_Other/CaveTown.unity
-    guid: 2df2da8714b54d9479be0ea955bba5c5
-  - enabled: 1
     path: Assets/Scenes/CrystalCaves/TheOutskirts.unity
     guid: ee449d219448cb0468018049d00d59fa
   - enabled: 1
@@ -56,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial_Other/BossArena.unity
     guid: 5b17767f4d3032b4cbf4cb4cfad64d83
+  - enabled: 1
+    path: Assets/Scenes/Tutorial_Other/CaveTown.unity
+    guid: 20e335fa73cf673499fe6894388f5aad
   m_configObjects: {}
