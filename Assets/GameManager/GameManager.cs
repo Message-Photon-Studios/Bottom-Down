@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void SetLevelManager (LevelManager levelManager, float addClockTime, bool restartTimer) 
     {
+        DataPersistenceManager.instance.SaveGame();
         DataPersistenceManager.instance.Start();
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();

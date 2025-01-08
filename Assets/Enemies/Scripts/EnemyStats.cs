@@ -87,6 +87,7 @@ public class EnemyStats : MonoBehaviour
     [CanBeNull] private Coroutine currentCoroutine;
 
     public bool isColoredThisFrame {get; private set;} = false;
+    private bool dealingRainbowDamage = false;
     GameObject player;
     PlayerStats playerStats;
     PlayerCombatSystem playerCombat;
@@ -217,7 +218,7 @@ public class EnemyStats : MonoBehaviour
 
             if(burning.damage > 0 && burning.timer > 0)
             {
-                if (burning.mustBurn || GetColor() == null || !GetColor().name.Equals("Orange")) DamageEnemy(burning.damage);
+                if (burning.mustBurn || playerStats.corrosiveColor || GetColor() == null || !GetColor().name.Equals("Orange")) DamageEnemy(burning.damage);
                 //if(color?.name != "Orange" || color == null) DamageEnemy(burning.damage);
                 //else DamageEnemy(0);
                 float timer = burning.timer;
@@ -279,9 +280,11 @@ public class EnemyStats : MonoBehaviour
 
         onHealthChanged?.Invoke(health);
         onDamageTaken?.Invoke(damage, transform.position);
+        int rainbowDmg = (int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower);
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
-        if(health <= 0) KillEnemy();
+        if (health <= 0) KillEnemy();
+        else if ((health - rainbowDmg <= 0 && IsRaibowed() && !dealingRainbowDamage)) DealRainbowDamage(rainbowDmg);
         else currentCoroutine = StartCoroutine(dmgResponse());
     }
 
@@ -371,7 +374,9 @@ public class EnemyStats : MonoBehaviour
     private void DealRainbowDamage(int rainbowDamage)
     {
         GameManager.instance.tipsManager.DisplayTips("rainbowCombo");
+        dealingRainbowDamage = true;
         DamageEnemy(rainbowDamage);
+        dealingRainbowDamage = false;
         AbsorbColor();
         colorComboTimer = 2f;
 
@@ -517,6 +522,7 @@ public class EnemyStats : MonoBehaviour
         if (IsRaibowed())
         {
             DealRainbowDamage((int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower));
+            if (health <= 0) return;
         }
         this.color = color;
         onColorChanged?.Invoke(color);
