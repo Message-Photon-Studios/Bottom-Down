@@ -12,11 +12,6 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private String[] soundGroups;
     private int selectedPixelSize = 100;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
-
     private void Start() {
         foreach(string group in soundGroups) {
             if (PlayerPrefs.HasKey(group)) {
