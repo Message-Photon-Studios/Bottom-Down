@@ -333,7 +333,7 @@ TextureImporter:
       name: mushroom-tiles-floor_21
       rect:
         serializedVersion: 2
-        x: 269
+        x: 270
         y: 720
         width: 90
         height: 180
@@ -543,7 +543,7 @@ TextureImporter:
       name: mushroom-tiles-floor_43
       rect:
         serializedVersion: 2
-        x: 89
+        x: 90
         y: 360
         width: 90
         height: 180
@@ -628,7 +628,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 450
-        y: 361
+        y: 360
         width: 90
         height: 180
       alignment: 9
@@ -779,7 +779,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -800,7 +800,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -821,7 +821,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -842,7 +842,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -863,7 +863,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -884,7 +884,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -905,7 +905,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -926,7 +926,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -947,7 +947,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -968,7 +968,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -989,7 +989,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1010,7 +1010,7 @@ TextureImporter:
         width: 90
         height: 90
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1033,78 +1033,78 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mushroom-tiles-floor_52: 248400509
-      mushroom-tiles-floor_56: -570512006
-      mushroom-tiles-floor_25: 164971486
-      mushroom-tiles-floor_40: 260278380
-      mushroom-tiles-floor_28: -142408932
-      mushroom-tiles-floor_50: -494670684
-      mushroom-tiles-floor_30: 851746647
-      mushroom-tiles-floor_27: 880990365
-      mushroom-tiles-floor_13: -879620319
-      mushroom-tiles-floor_37: 236626167
-      mushroom-tiles-floor_66: 2034734316
-      mushroom-tiles-floor_60: 1998436307
-      mushroom-tiles-floor_6: -1064681287
-      mushroom-tiles-floor_29: -1537629901
-      mushroom-tiles-floor_47: 379729725
-      mushroom-tiles-floor_15: -226180681
       mushroom-tiles-floor_8: -20891057
-      mushroom-tiles-floor_1: -1817649297
-      mushroom-tiles-floor_62: 1044796016
-      mushroom-tiles-floor_33: -1489849268
-      mushroom-tiles-floor_65: -288092405
+      mushroom-tiles-floor_32: -1957288412
+      mushroom-tiles-floor_58: -417936916
+      mushroom-tiles-floor_69: 1430268990
       mushroom-tiles-floor_49: -1682736458
+      mushroom-tiles-floor_28: -142408932
+      mushroom-tiles-floor_30: 851746647
+      mushroom-tiles-floor_21: 314521818
+      mushroom-tiles-floor_1: -1817649297
+      mushroom-tiles-floor_26: -289980022
+      mushroom-tiles-floor_5: -929332539
+      mushroom-tiles-floor_45: 1345763548
+      mushroom-tiles-floor_54: 1144220037
+      mushroom-tiles-floor_20: -1236638744
+      mushroom-tiles-floor_44: 706990620
+      mushroom-tiles-floor_71: -2096193716
+      mushroom-tiles-floor_48: -443159793
+      mushroom-tiles-floor_0: -1811015435
+      mushroom-tiles-floor_40: 260278380
+      mushroom-tiles-floor_29: -1537629901
+      mushroom-tiles-floor_57: -2134118769
+      mushroom-tiles-floor_66: 2034734316
+      mushroom-tiles-floor_12: 761986296
+      mushroom-tiles-floor_62: 1044796016
+      mushroom-tiles-floor_65: -288092405
       mushroom-tiles-floor_67: 1703708294
       mushroom-tiles-floor_24: 449078131
-      mushroom-tiles-floor_21: 314521818
-      mushroom-tiles-floor_23: -373106280
-      mushroom-tiles-floor_68: 1665361116
-      mushroom-tiles-floor_59: 1711577636
-      mushroom-tiles-floor_55: -409611158
       mushroom-tiles-floor_46: 427691786
-      mushroom-tiles-floor_12: 761986296
-      mushroom-tiles-floor_58: -417936916
-      mushroom-tiles-floor_35: -1013737718
-      mushroom-tiles-floor_34: -200557127
-      mushroom-tiles-floor_45: 1345763548
-      mushroom-tiles-floor_71: -2096193716
-      mushroom-tiles-floor_53: 1656980891
-      mushroom-tiles-floor_0: -1811015435
-      mushroom-tiles-floor_31: -1523187706
-      mushroom-tiles-floor_69: 1430268990
-      mushroom-tiles-floor_7: -1642828075
-      mushroom-tiles-floor_39: -833487554
-      mushroom-tiles-floor_4: 2139664428
-      mushroom-tiles-floor_10: 1166155884
-      mushroom-tiles-floor_26: -289980022
-      mushroom-tiles-floor_36: -1598962283
-      mushroom-tiles-floor_14: 1755874102
-      mushroom-tiles-floor_2: -1354051472
-      mushroom-tiles-floor_42: -1249097744
-      mushroom-tiles-floor_9: 1234619602
-      mushroom-tiles-floor_44: 706990620
-      mushroom-tiles-floor_70: -1783627083
-      mushroom-tiles-floor_16: -466962830
-      mushroom-tiles-floor_17: -1995729837
-      mushroom-tiles-floor_20: -1236638744
-      mushroom-tiles-floor_19: -213947746
-      mushroom-tiles-floor_3: -240795795
       mushroom-tiles-floor_61: 2101717074
-      mushroom-tiles-floor_41: -1131707975
-      mushroom-tiles-floor_51: -1284855491
-      mushroom-tiles-floor_32: -1957288412
-      mushroom-tiles-floor_11: -482316544
-      mushroom-tiles-floor_18: -1073485906
-      mushroom-tiles-floor_48: -443159793
-      mushroom-tiles-floor_5: -929332539
-      mushroom-tiles-floor_43: 1036829545
-      mushroom-tiles-floor_64: -279359058
       mushroom-tiles-floor_63: -609695017
-      mushroom-tiles-floor_38: 2012682772
-      mushroom-tiles-floor_54: 1144220037
+      mushroom-tiles-floor_55: -409611158
+      mushroom-tiles-floor_56: -570512006
+      mushroom-tiles-floor_59: 1711577636
+      mushroom-tiles-floor_34: -200557127
+      mushroom-tiles-floor_2: -1354051472
+      mushroom-tiles-floor_33: -1489849268
+      mushroom-tiles-floor_53: 1656980891
+      mushroom-tiles-floor_19: -213947746
+      mushroom-tiles-floor_25: 164971486
+      mushroom-tiles-floor_27: 880990365
+      mushroom-tiles-floor_51: -1284855491
+      mushroom-tiles-floor_13: -879620319
+      mushroom-tiles-floor_37: 236626167
+      mushroom-tiles-floor_35: -1013737718
+      mushroom-tiles-floor_23: -373106280
+      mushroom-tiles-floor_7: -1642828075
+      mushroom-tiles-floor_16: -466962830
+      mushroom-tiles-floor_18: -1073485906
       mushroom-tiles-floor_22: 1916270592
-      mushroom-tiles-floor_57: -2134118769
+      mushroom-tiles-floor_14: 1755874102
+      mushroom-tiles-floor_42: -1249097744
+      mushroom-tiles-floor_4: 2139664428
+      mushroom-tiles-floor_3: -240795795
+      mushroom-tiles-floor_11: -482316544
+      mushroom-tiles-floor_50: -494670684
+      mushroom-tiles-floor_60: 1998436307
+      mushroom-tiles-floor_39: -833487554
+      mushroom-tiles-floor_47: 379729725
+      mushroom-tiles-floor_43: 1036829545
+      mushroom-tiles-floor_6: -1064681287
+      mushroom-tiles-floor_36: -1598962283
+      mushroom-tiles-floor_68: 1665361116
+      mushroom-tiles-floor_31: -1523187706
+      mushroom-tiles-floor_9: 1234619602
+      mushroom-tiles-floor_70: -1783627083
+      mushroom-tiles-floor_64: -279359058
+      mushroom-tiles-floor_38: 2012682772
+      mushroom-tiles-floor_52: 248400509
+      mushroom-tiles-floor_17: -1995729837
+      mushroom-tiles-floor_10: 1166155884
+      mushroom-tiles-floor_41: -1131707975
+      mushroom-tiles-floor_15: -226180681
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

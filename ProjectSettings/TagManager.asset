@@ -84,14 +84,14 @@ TagManager:
   - name: Player
     uniqueID: 1472463759
     locked: 0
-  - name: Spell
-    uniqueID: 3679530677
-    locked: 0
   - name: Particles
     uniqueID: 567990507
     locked: 0
   - name: Front Decoration
     uniqueID: 2140779007
+    locked: 0
+  - name: Spell
+    uniqueID: 3679530677
     locked: 0
   - name: UI
     uniqueID: 303372357
