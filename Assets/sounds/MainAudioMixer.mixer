@@ -74,7 +74,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enviroment
+  m_Name: Environment
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: bb2050d3666c98046881af0e8cb2abfe
   m_Children: []
@@ -141,7 +141,7 @@ AudioMixerController:
   - guid: 583b6576200325747947d265257dfaf8
     name: ColorSound
   - guid: cb478f5b399b6b04189e1797421c6e39
-    name: EnviromentSound
+    name: EnvironmentSound
   - guid: 115c6c6f669f9584287424d50c484e6f
     name: MasterSound
   - guid: 2101e155f0c02dc4a9a808bee7e15bfd

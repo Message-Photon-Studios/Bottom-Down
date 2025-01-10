@@ -42304,6 +42304,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1260936072642490527, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497819499528214414, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497819499528214414, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497819499528214414, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1905754977137966822, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -42388,6 +42404,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1936018463867190362, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936018463867190362, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1936018463867190362, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2289676561721957872, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -42411,6 +42439,22 @@ PrefabInstance:
     - target: {fileID: 5369940176031308045, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
       propertyPath: m_SortingLayerID
       value: 303372357
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084328019528193705, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084328019528193705, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084328019528193705, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471223423051761265, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7582749045088705485, guid: 5d57141fb574288439e53ea9c123b700, type: 3}
       propertyPath: m_Name
@@ -42812,6 +42856,7 @@ MonoBehaviour:
   videoObjecCanvas: {fileID: 0}
   backgroundMusic: {fileID: 0}
   allowTips: 0
+  isCaveTownLevel: 0
 --- !u!114 &677141307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42845,11 +42890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d29f3964f51f9d4b8869ccea5d455ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPop: 0
   stageCostMultiplier: 1
-  spawnableItems:
-  - {fileID: 11400000, guid: 4eafc665398987e41b73d8cbd3db533d, type: 2}
-  - {fileID: 11400000, guid: 29012ce9011c6da429e66f396c51a236, type: 2}
-  - {fileID: 11400000, guid: d50cd4bc4678cf44099f3639d3aef023, type: 2}
   levelSpells:
   - {fileID: -7692674297862362138, guid: cca545def1804c84ca260d3a5e9d7b2b, type: 3}
 --- !u!1001 &705644689
@@ -83690,7 +83732,7 @@ AudioSource:
   m_GameObject: {fileID: 2118465208}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2553096001939658544, guid: 64871d3c797da61409d5ff404c02446d, type: 2}
   m_audioClip: {fileID: 8300000, guid: c50fe5bef6fc175439e9ee6474a67bf7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5

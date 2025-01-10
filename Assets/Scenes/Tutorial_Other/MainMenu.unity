@@ -53916,7 +53916,7 @@ GameObject:
   - component: {fileID: 1999199325}
   - component: {fileID: 1999199324}
   m_Layer: 5
-  m_Name: EnviromentSlider
+  m_Name: EnvironmentSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53960,7 +53960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1999199325}
-  group: EnviromentSound
+  group: EnvironmentSound
   number: {fileID: 143326782}
 --- !u!114 &1999199325
 MonoBehaviour:
