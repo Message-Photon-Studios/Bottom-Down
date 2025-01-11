@@ -31,6 +31,10 @@ public class PauseMenu : MonoBehaviour
         uiController.OpenInventory();
     }
 
+    public void OpenSettings() {
+        uiController.OpenSettings();
+    }
+
     public void GoToMainMenu()
     {
         GameManager.instance.GoToMainMenu();

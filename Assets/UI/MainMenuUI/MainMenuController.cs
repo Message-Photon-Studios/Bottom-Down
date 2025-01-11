@@ -209,7 +209,7 @@ public class MainMenuController : MonoBehaviour
         creditsButton.interactable = true;
         exitButton.interactable = true;
 
-        creditsButton.Select();
+        settingsButton.Select();
 
         settings.SetActive(false);
         timeSinceLastInput = Time.time;
