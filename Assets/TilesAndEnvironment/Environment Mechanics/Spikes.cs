@@ -26,7 +26,7 @@ public class Spikes : MonoBehaviour
             {
                 damageTime = damageTimer;
                 playerStats.DamagePlayer(damage, null);
-                playerMovement.movementRoot.SetRoot("spikes", .5f);
+                playerMovement.movementRoot.SetRoot("spikes", .2f);
             }
         }
     }
