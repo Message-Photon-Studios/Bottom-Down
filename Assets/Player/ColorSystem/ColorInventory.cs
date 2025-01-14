@@ -229,13 +229,10 @@ public class ColorInventory : MonoBehaviour
 
     public void ValidateCDlist(ColorSlot slot)
     {
-        if (slot.colorSpell == null)
-        {
-            if (slot.storedSpellCDs.Count != 1 + bonusSpells) slot.storedSpellCDs = CreateCDList(slot.colorSpell, 0);
-        } else
-        {
-            if (slot.storedSpellCDs.Count != slot.colorSpell.storedSpells + bonusSpells) slot.storedSpellCDs = CreateCDList(slot.colorSpell, 0);
-        }
+        ColorSpell spell = slot.colorSpell;
+        if (spell == null) spell = defaultSpell;
+        if (slot.storedSpellCDs.Count == 0) slot.storedSpellCDs = CreateCDList(spell, 0);
+        if (slot.storedSpellCDs.Count != spell.storedSpells + bonusSpells) slot.storedSpellCDs = UpdateCDList(spell, slot.storedSpellCDs);
     }
 
     public void AddSpellSpawned(string spell, int i)
@@ -295,12 +292,17 @@ public class ColorInventory : MonoBehaviour
         if (time <= minCD) time = minCD;
         ActiveSlot().coolDown = Time.fixedTime + time;
         */
-        onCoolDownSet?.Invoke(slot.storedSpellCDs, (time - time * addetiveCDModifier) * multetiveCDModifier);
+        onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time));
+    }
+
+    public float CalculateCD(float time)
+    {
+        return (time - time * addetiveCDModifier) * multetiveCDModifier;
     }
 
     public List<float> SetCoolDownForIndex(List<float> list, int index, float time)
     {
-        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
+        time = CalculateCD(time);
         if (time <= minCD) time = minCD;
         list[index] = 0;
         float max = Time.fixedTime;
@@ -702,6 +704,40 @@ public class ColorInventory : MonoBehaviour
             list = SetCoolDownForIndex(list, i, spell.coolDown);
         }
         return list;
+    }
+
+    public List<float> UpdateCDList(ColorSpell spell, List<float> oldList)
+    {
+        if (spell == null) spell = defaultSpell;
+        int spellCapacity = spell.storedSpells + bonusSpells;
+        if (oldList.Count == spellCapacity) return oldList;
+        if (oldList.Count < spellCapacity)
+        {
+            float max = Time.fixedTime;
+            for (int i = 0; i < spellCapacity; i++)
+            {
+                if (oldList.Count < i)
+                {
+                    if (oldList[i] > max) max = oldList[i];
+                } else
+                {
+                    max += CalculateCD(spell.coolDown);
+                    oldList.Add(max);
+                }
+            }
+        } else
+        {
+            while (oldList.Count < spellCapacity)
+            {
+                float max = 0;
+                foreach(float f in oldList)
+                {
+                    if (f > max) max = f;
+                }
+                oldList.Remove(max);
+            }
+        }
+        return oldList;
     }
 
     /// <summary>
