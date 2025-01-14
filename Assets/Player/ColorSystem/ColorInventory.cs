@@ -80,7 +80,7 @@ public class ColorInventory : MonoBehaviour
     /// </summary>
     public UnityAction<bool> onSpellPickupInRange;
 
-    public UnityAction<float> onCoolDownSet;
+    public UnityAction<List<float>, float> onCoolDownSet;
     
     private System.Action<InputAction.CallbackContext> divideColorHandler;
 
@@ -295,7 +295,7 @@ public class ColorInventory : MonoBehaviour
         if (time <= minCD) time = minCD;
         ActiveSlot().coolDown = Time.fixedTime + time;
         */
-        onCoolDownSet?.Invoke(time);
+        onCoolDownSet?.Invoke(slot.storedSpellCDs, (time - time * addetiveCDModifier) * multetiveCDModifier);
     }
 
     public List<float> SetCoolDownForIndex(List<float> list, int index, float time)

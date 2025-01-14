@@ -315,16 +315,27 @@ public class ColorSlotController : MonoBehaviour
     /// Add the CoolDown indicator to a list when a spell is used. 
     /// </summary>
     /// <param name="time"></param>
-    private void StartCoolDownSlider(float time)
+    private void StartCoolDownSlider(List<float> spellCDList, float spellMaxCD)
     {
         if (colorInventory.activeSlot >= slotList.Count) return;
         if (slotList[colorInventory.activeSlot] == null) return; 
         Slider slide = slotList[colorInventory.activeSlot].GetComponentInChildren<Slider>();
         if (slide == null) return;    
         if (spellsOnCoolDown.Contains(slide)) return;
-        slide.maxValue = time;
-        slide.value = time;
-        spellsOnCoolDown.Add(slide);
+        slide.maxValue = spellMaxCD;
+        float min = spellMaxCD + Time.fixedTime;
+        foreach(float cd in spellCDList) {
+            if (cd < min) {
+                min = cd;
+            }
+        }
+        if(min < Time.fixedTime) {
+            return;
+        } else {
+            slide.value = min-Time.fixedTime;
+            spellsOnCoolDown.Add(slide);
+        }
+        
     }
     private void Update()
     {
