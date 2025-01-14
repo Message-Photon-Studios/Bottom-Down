@@ -179,6 +179,7 @@ MonoBehaviour:
   powerScale: 0
   coolDown: 0.1
   maxSpawn: 0
+  spawnKey: 
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
   destroyOnCollission: 0
@@ -275,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf290b486d4794640ad769b34f368a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell: {fileID: -7692674297862362138, guid: cf6b3a2cfc7faec41933d2267b226a61, type: 3}
+  spawnKey: ColorSpike
 --- !u!1 &7917038621792183734
 GameObject:
   m_ObjectHideFlags: 0

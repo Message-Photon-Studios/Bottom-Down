@@ -32,7 +32,7 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] int rainbowExtraDrain;
     [SerializeField] float minCD = 0.3f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
-    public Dictionary<ColorSpell, int> spellsSpawned = new Dictionary<ColorSpell, int>();
+    public Dictionary<string, int> spellsSpawned = new Dictionary<string, int>();
     SpellPickup pickUpSpell = null;
     ColorLibrary colorLib;
 
@@ -210,19 +210,23 @@ public class ColorInventory : MonoBehaviour
     public bool CheckCanSpawn()
     {
         ColorSpell spell = GetActiveColorSpell();
-        Debug.Log(GetSpawnedSpellCount(spell));
         if (spell.maxSpawn <= 0) return true;
-        int count = GetSpawnedSpellCount(spell);
+        if (spell.spawnKey == null || spell.spawnKey == "")
+        {
+            Debug.Log("Error: Spell is missing Spawn Key but is expected to be limited. Set a spawn key");
+            return true;
+        }
+        int count = GetSpawnedSpellCount(spell.spawnKey);
         if (count < spell.maxSpawn) return true;
         return false;
     }
 
-    public void AddSpellSpawned(ColorSpell spell, int i)
+    public void AddSpellSpawned(string spell, int i)
     {
         SetSpawnedSpellCount(spell, GetSpawnedSpellCount(spell) + i);
     }
 
-    public void RemoveSpellSpawned(ColorSpell spell, int i)
+    public void RemoveSpellSpawned(string spell, int i)
     {
         int count = GetSpawnedSpellCount(spell);
         count -= i;
@@ -230,7 +234,7 @@ public class ColorInventory : MonoBehaviour
         SetSpawnedSpellCount(spell, count);
     }
 
-    public int GetSpawnedSpellCount(ColorSpell spell)
+    public int GetSpawnedSpellCount(string spell)
     {
         if (spellsSpawned.ContainsKey(spell))
         {
@@ -242,7 +246,7 @@ public class ColorInventory : MonoBehaviour
         }
     }
 
-    public void SetSpawnedSpellCount(ColorSpell spell, int i)
+    public void SetSpawnedSpellCount(string spell, int i)
     {
         if (spellsSpawned.ContainsKey(spell))
         {

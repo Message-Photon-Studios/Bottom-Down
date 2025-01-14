@@ -21,6 +21,8 @@ public class ColorSpell : MonoBehaviour
 
     [SerializeField] public int maxSpawn = 0;
 
+    [SerializeField] public string spawnKey;
+
     /// <summary>
     /// The projectile will be destroyed on impact with any object
     /// </summary>

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class SpellSpawnCounter : SpellImpact
 {
-    [SerializeField] ColorSpell spell;
+    [SerializeField] string spawnKey;
     private ColorInventory inv;
 
     private void OnEnable()
     {
         inv = FindObjectOfType<ColorInventory>();
-        inv.AddSpellSpawned(spell, 1);
+        inv.AddSpellSpawned(spawnKey, 1);
     }
 
     public override void Impact(Collider2D other, Vector2 impactPoint)
     {
-        inv.RemoveSpellSpawned(spell, 1);
+        inv.RemoveSpellSpawned(spawnKey, 1);
     }
 
 
