@@ -32,6 +32,7 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] int rainbowExtraDrain;
     [SerializeField] float minCD = 0.3f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
+    public Dictionary<ColorSpell, int> spellsSpawned = new Dictionary<ColorSpell, int>();
     SpellPickup pickUpSpell = null;
     ColorLibrary colorLib;
 
@@ -202,15 +203,62 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public bool IsSpellReady()
     {
-        if (ActiveSlot().coolDown <= Time.fixedTime) return true;
+        if (ActiveSlot().coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
         return false;
+    }
+
+    public bool CheckCanSpawn()
+    {
+        ColorSpell spell = GetActiveColorSpell();
+        Debug.Log(GetSpawnedSpellCount(spell));
+        if (spell.maxSpawn <= 0) return true;
+        int count = GetSpawnedSpellCount(spell);
+        if (count < spell.maxSpawn) return true;
+        return false;
+    }
+
+    public void AddSpellSpawned(ColorSpell spell, int i)
+    {
+        SetSpawnedSpellCount(spell, GetSpawnedSpellCount(spell) + i);
+    }
+
+    public void RemoveSpellSpawned(ColorSpell spell, int i)
+    {
+        int count = GetSpawnedSpellCount(spell);
+        count -= i;
+        if (count < 0) count = 0;
+        SetSpawnedSpellCount(spell, count);
+    }
+
+    public int GetSpawnedSpellCount(ColorSpell spell)
+    {
+        if (spellsSpawned.ContainsKey(spell))
+        {
+            return spellsSpawned[spell];
+        } else
+        {
+            spellsSpawned.Add(spell, 0);
+            return 0;
+        }
+    }
+
+    public void SetSpawnedSpellCount(ColorSpell spell, int i)
+    {
+        if (spellsSpawned.ContainsKey(spell))
+        {
+            spellsSpawned[spell] = i;
+        }
+        else
+        {
+            spellsSpawned.Add(spell, i);
+        }
     }
 
     /// <summary>
     /// Starts the cooldown
     /// </summary>
     /// <param name="time"></param>
-   public void SetCoolDown(float time)
+    public void SetCoolDown(float time)
     {
         time = (time - time * addetiveCDModifier) * multetiveCDModifier;
         if (time <= minCD) time = minCD; 
