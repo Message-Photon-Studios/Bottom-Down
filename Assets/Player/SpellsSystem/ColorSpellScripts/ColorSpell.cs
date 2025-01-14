@@ -19,6 +19,8 @@ public class ColorSpell : MonoBehaviour
 
     [SerializeField] public float coolDown = 1;
 
+    [SerializeField] public int storedSpells = 1;
+
     [SerializeField] public int maxSpawn = 0;
 
     [SerializeField] public string spawnKey;

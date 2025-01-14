@@ -203,7 +203,14 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public bool IsSpellReady()
     {
-        if (ActiveSlot().coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
+        ColorSlot slot = ActiveSlot();
+        if (slot.storedSpellCDs.Count == 0 || (slot.colorSpell != null && slot.storedSpellCDs.Count != slot.colorSpell.storedSpells)) slot.storedSpellCDs = CreateCDList(slot.colorSpell, 0);
+        Debug.Log(slot.storedSpellCDs.Count);
+        foreach (float coolDown in slot.storedSpellCDs)
+        {
+            Debug.Log(coolDown);
+            if (coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
+        }
         return false;
     }
 
@@ -264,10 +271,35 @@ public class ColorInventory : MonoBehaviour
     /// <param name="time"></param>
     public void SetCoolDown(float time)
     {
+        ColorSlot slot = ActiveSlot();
+        for(int i = 0; i < slot.storedSpellCDs.Count; i++)
+        {
+            if (slot.storedSpellCDs[i] <= Time.fixedTime) 
+            {
+                slot.storedSpellCDs = SetCoolDownForIndex(slot.storedSpellCDs, i, time);
+                break;
+            }  
+        }
+        /*
         time = (time - time * addetiveCDModifier) * multetiveCDModifier;
-        if (time <= minCD) time = minCD; 
+        if (time <= minCD) time = minCD;
         ActiveSlot().coolDown = Time.fixedTime + time;
+        */
         onCoolDownSet?.Invoke(time);
+    }
+
+    public List<float> SetCoolDownForIndex(List<float> list, int index, float time)
+    {
+        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
+        if (time <= minCD) time = minCD;
+        list[index] = 0;
+        float max = Time.fixedTime;
+        foreach(float cd in list)
+        {
+            if (max < cd) max = cd;
+        }
+        list[index] = time + max;
+        return list;
     }
 
     public void MultiplyCDMultiplier(float multiply)
@@ -629,7 +661,31 @@ public class ColorInventory : MonoBehaviour
     public void ChangeActiveSlotColorSpell(ColorSpell newSpell)
     {
         ActiveSlot().colorSpell = newSpell;
+        float min = 0;
+        foreach(float cd in ActiveSlot().storedSpellCDs)
+        {
+            if (min == 0) min = cd;
+            if (min > cd) min = cd;
+        }
+        ActiveSlot().storedSpellCDs = CreateCDList(newSpell, min);
         onColorSpellChanged?.Invoke(activeSlot);
+    }
+
+    public List<float> CreateCDList(ColorSpell spell, float min)
+    {
+        int spellCapacity = 1;
+        if (spell != null)
+        {
+            spellCapacity = spell.storedSpells;
+        }
+        List<float> list = new List<float>();
+        list.Add(min);
+        for (int i = 1; i < spellCapacity; i++)
+        {
+            list.Add(0);
+            list = SetCoolDownForIndex(list, i, spell.coolDown);
+        }
+        return list;
     }
 
     /// <summary>
@@ -658,6 +714,7 @@ public class ColorInventory : MonoBehaviour
         }
         colorSlots[index].colorSpell = newSpell;
         colorSlots[index].coolDown = 0;
+        colorSlots[index].storedSpellCDs = CreateCDList(newSpell, 0);
         onColorSpellChanged?.Invoke(index);
     }
 
@@ -746,6 +803,7 @@ public class ColorSlot
     [SerializeField] public int charge;
     [SerializeField] public GameColor gameColor;
     [SerializeField] public ColorSpell colorSpell;
+    public List<float> storedSpellCDs = new List<float>();
     public float coolDown = 0;
     public void Init(Image setImage)
     {

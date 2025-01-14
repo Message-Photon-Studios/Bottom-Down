@@ -178,8 +178,9 @@ MonoBehaviour:
     Power: 120%'
   spellCost: 40
   powerScale: 0.8
-  coolDown: 0.1
-  maxSpawn: 10
+  coolDown: 5
+  storedSpells: 3
+  maxSpawn: 20
   spawnKey: ColorSpike
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
