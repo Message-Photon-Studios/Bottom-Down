@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellSpawnCounter : SpellImpact
+public class SpellSpawnCounter : MonoBehaviour
 {
     [SerializeField] string spawnKey;
     private ColorInventory inv;
@@ -13,7 +13,7 @@ public class SpellSpawnCounter : SpellImpact
         inv.AddSpellSpawned(spawnKey, 1);
     }
 
-    public override void Impact(Collider2D other, Vector2 impactPoint)
+    private void OnDisable()
     {
         inv.RemoveSpellSpawned(spawnKey, 1);
     }
