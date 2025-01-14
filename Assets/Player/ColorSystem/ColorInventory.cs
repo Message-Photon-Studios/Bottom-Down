@@ -41,6 +41,7 @@ public class ColorInventory : MonoBehaviour
     private float addetiveCDModifier = 0;
     private float multetiveCDModifier = 1;
     private float defaultBuff = 0;
+    private int bonusSpells = 0;
     public bool balanceColors = false;
     public bool dontMixColor = false;
     public bool autoRotate = false;
@@ -203,10 +204,8 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public bool IsSpellReady()
     {
-        ColorSlot slot = ActiveSlot();
-        if (slot.storedSpellCDs.Count == 0 || (slot.colorSpell != null && slot.storedSpellCDs.Count != slot.colorSpell.storedSpells)) slot.storedSpellCDs = CreateCDList(slot.colorSpell, 0);
-        Debug.Log(slot.storedSpellCDs.Count);
-        foreach (float coolDown in slot.storedSpellCDs)
+        ValidateCDlist(ActiveSlot());
+        foreach (float coolDown in ActiveSlot().storedSpellCDs)
         {
             Debug.Log(coolDown);
             if (coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
@@ -226,6 +225,17 @@ public class ColorInventory : MonoBehaviour
         int count = GetSpawnedSpellCount(spell.spawnKey);
         if (count < spell.maxSpawn) return true;
         return false;
+    }
+
+    public void ValidateCDlist(ColorSlot slot)
+    {
+        if (slot.colorSpell == null)
+        {
+            if (slot.storedSpellCDs.Count != 1 + bonusSpells) slot.storedSpellCDs = CreateCDList(slot.colorSpell, 0);
+        } else
+        {
+            if (slot.storedSpellCDs.Count != slot.colorSpell.storedSpells + bonusSpells) slot.storedSpellCDs = CreateCDList(slot.colorSpell, 0);
+        }
     }
 
     public void AddSpellSpawned(string spell, int i)
@@ -310,6 +320,12 @@ public class ColorInventory : MonoBehaviour
     public void AddCDAddetive(float add)
     {
         addetiveCDModifier += add;
+    }
+
+    public void AddBonusSpell(int add)
+    {
+        bonusSpells += add;
+        if (bonusSpells <= 0) bonusSpells = 0;
     }
 
     /// <summary>
@@ -680,7 +696,7 @@ public class ColorInventory : MonoBehaviour
         }
         List<float> list = new List<float>();
         list.Add(min);
-        for (int i = 1; i < spellCapacity; i++)
+        for (int i = 1; i < spellCapacity + bonusSpells; i++)
         {
             list.Add(0);
             list = SetCoolDownForIndex(list, i, spell.coolDown);
