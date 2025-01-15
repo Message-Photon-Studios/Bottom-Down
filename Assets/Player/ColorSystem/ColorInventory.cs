@@ -31,6 +31,7 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] InputActionReference removeColorAction;
     [SerializeField] int rainbowExtraDrain;
     [SerializeField] float minCD = 0.3f;
+    [SerializeField] int maxStoredSpells = 5;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     public Dictionary<string, int> spellsSpawned = new Dictionary<string, int>();
     SpellPickup pickUpSpell = null;
@@ -231,7 +232,9 @@ public class ColorInventory : MonoBehaviour
         ColorSpell spell = slot.colorSpell;
         if (spell == null) spell = defaultSpell;
         if (slot.storedSpellCDs.Count == 0) slot.storedSpellCDs = CreateCDList(spell, 0);
-        if (slot.storedSpellCDs.Count != spell.storedSpells + bonusSpells) slot.storedSpellCDs = UpdateCDList(spell, slot.storedSpellCDs);
+        int capacaty = spell.storedSpells + bonusSpells;
+        if (capacaty > maxStoredSpells) capacaty = maxStoredSpells;
+        if (slot.storedSpellCDs.Count != maxStoredSpells) slot.storedSpellCDs = UpdateCDList(spell, slot.storedSpellCDs);
     }
 
     public void AddSpellSpawned(string spell, int i)
@@ -689,14 +692,12 @@ public class ColorInventory : MonoBehaviour
 
     public List<float> CreateCDList(ColorSpell spell, float min)
     {
-        int spellCapacity = 1;
-        if (spell != null)
-        {
-            spellCapacity = spell.storedSpells;
-        }
+        if (spell == null) spell = defaultSpell;
+        int spellCapacity = spell.storedSpells + bonusSpells;
+        if (spellCapacity > maxStoredSpells) spellCapacity = maxStoredSpells;
         List<float> list = new List<float>();
         list.Add(min);
-        for (int i = 1; i < spellCapacity + bonusSpells; i++)
+        for (int i = 1; i < spellCapacity; i++)
         {
             list.Add(0);
             list = SetCoolDownForIndex(list, i, spell.coolDown);
@@ -708,6 +709,7 @@ public class ColorInventory : MonoBehaviour
     {
         if (spell == null) spell = defaultSpell;
         int spellCapacity = spell.storedSpells + bonusSpells;
+        if (spellCapacity > maxStoredSpells) spellCapacity = maxStoredSpells;
         if (oldList.Count == spellCapacity) return oldList;
         if (oldList.Count < spellCapacity)
         {
