@@ -207,7 +207,6 @@ public class ColorInventory : MonoBehaviour
         ValidateCDlist(ActiveSlot());
         foreach (float coolDown in ActiveSlot().storedSpellCDs)
         {
-            Debug.Log(coolDown);
             if (coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
         }
         return false;
@@ -714,20 +713,18 @@ public class ColorInventory : MonoBehaviour
         if (oldList.Count < spellCapacity)
         {
             float max = Time.fixedTime;
-            for (int i = 0; i < spellCapacity; i++)
+            foreach (float f in oldList)
             {
-                if (oldList.Count < i)
-                {
-                    if (oldList[i] > max) max = oldList[i];
-                } else
-                {
-                    max += CalculateCD(spell.coolDown);
-                    oldList.Add(max);
-                }
+                if (f > max) max = f;
+            }
+            while (oldList.Count < spellCapacity)
+            {
+                max += CalculateCD(spell.coolDown);
+                oldList.Add(max);
             }
         } else
         {
-            while (oldList.Count < spellCapacity)
+            while (oldList.Count > spellCapacity)
             {
                 float max = 0;
                 foreach(float f in oldList)
@@ -737,6 +734,8 @@ public class ColorInventory : MonoBehaviour
                 oldList.Remove(max);
             }
         }
+        Debug.Log(oldList.Count);
+        Debug.Log(spellCapacity + " cap");
         return oldList;
     }
 
