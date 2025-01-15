@@ -286,11 +286,6 @@ public class ColorInventory : MonoBehaviour
                 break;
             }  
         }
-        /*
-        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
-        if (time <= minCD) time = minCD;
-        ActiveSlot().coolDown = Time.fixedTime + time;
-        */
         onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time));
     }
 
@@ -327,6 +322,10 @@ public class ColorInventory : MonoBehaviour
     {
         bonusSpells += add;
         if (bonusSpells <= 0) bonusSpells = 0;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ValidateCDlist(slot);
+        }
     }
 
     /// <summary>
