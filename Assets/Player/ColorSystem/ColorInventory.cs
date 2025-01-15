@@ -236,10 +236,19 @@ public class ColorInventory : MonoBehaviour
     {
         ColorSpell spell = slot.colorSpell;
         if (spell == null) spell = defaultSpell;
-        if (slot.storedSpellCDs.Count == 0) slot.storedSpellCDs = CreateCDList(spell, 0);
         int capacaty = spell.storedSpells + bonusSpells;
         if (capacaty > maxStoredSpells) capacaty = maxStoredSpells;
-        if (slot.storedSpellCDs.Count != maxStoredSpells) slot.storedSpellCDs = UpdateCDList(spell, slot.storedSpellCDs);
+        if (capacaty <= 0) capacaty = 1;
+        if (slot.storedSpellCDs.Count == 0)
+        {
+            slot.storedSpellCDs = CreateCDList(spell, 0);
+            onSpellChargeChange?.Invoke();
+        } 
+        if (slot.storedSpellCDs.Count != capacaty) 
+        {
+            slot.storedSpellCDs = UpdateCDList(spell, slot.storedSpellCDs);
+            onSpellChargeChange?.Invoke();
+        }
     }
 
     public void AddSpellSpawned(string spell, int i)
@@ -329,7 +338,6 @@ public class ColorInventory : MonoBehaviour
     public void AddBonusSpell(int add)
     {
         bonusSpells += add;
-        if (bonusSpells <= 0) bonusSpells = 0;
         foreach (ColorSlot slot in colorSlots)
         {
             ValidateCDlist(slot);
@@ -707,44 +715,41 @@ public class ColorInventory : MonoBehaviour
             list.Add(0);
             list = SetCoolDownForIndex(list, i, spell.coolDown);
         }
-        onSpellChargeChange?.Invoke();
         return list;
     }
 
     public List<float> UpdateCDList(ColorSpell spell, List<float> oldList)
     {
+        List<float> newList = oldList;
         if (spell == null) spell = defaultSpell;
         int spellCapacity = spell.storedSpells + bonusSpells;
         if (spellCapacity > maxStoredSpells) spellCapacity = maxStoredSpells;
-        if (oldList.Count == spellCapacity) return oldList;
-        if (oldList.Count < spellCapacity)
+        if (newList.Count == spellCapacity) return newList;
+        if (newList.Count < spellCapacity)
         {
             float max = Time.fixedTime;
-            foreach (float f in oldList)
+            foreach (float f in newList)
             {
                 if (f > max) max = f;
             }
-            while (oldList.Count < spellCapacity)
+            while (newList.Count < spellCapacity)
             {
                 max += CalculateCD(spell.coolDown);
-                oldList.Add(max);
+                newList.Add(max);
             }
         } else
         {
-            while (oldList.Count > spellCapacity)
+            while (newList.Count > spellCapacity)
             {
                 float max = 0;
-                foreach(float f in oldList)
+                foreach(float f in newList)
                 {
                     if (f > max) max = f;
                 }
-                oldList.Remove(max);
+                newList.Remove(max);
             }
         }
-        onSpellChargeChange?.Invoke();
-        Debug.Log(oldList.Count);
-        Debug.Log(spellCapacity + " cap");
-        return oldList;
+        return newList;
     }
 
     /// <summary>
