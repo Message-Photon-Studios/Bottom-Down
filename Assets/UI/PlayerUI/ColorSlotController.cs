@@ -56,6 +56,9 @@ public class ColorSlotController : MonoBehaviour
 
     private List<Slider> spellsOnCoolDown = new List<Slider>();
 
+    [SerializeField] public Sprite[] ChargesSprites;
+    [SerializeField] public Sprite[] ChargesMaskSprites;
+
     # region Setup
     /// <summary>
     /// When enabling the Player In game UI, set up the script.
@@ -71,6 +74,7 @@ public class ColorSlotController : MonoBehaviour
         colorInventory.onSlotChanged += ActiveColorChanged;
         colorInventory.onColorSpellChanged += BottleChanged;
         colorInventory.onCoolDownSet += StartCoolDownSlider;
+        colorInventory.onSpellChargeChange += UpdateAllSprites;
         uiController.UILoaded += UpdateAllSprites;
         uiController.ColorSlotAmountChanged += UpdateAllSprites;
 
@@ -285,6 +289,15 @@ public class ColorSlotController : MonoBehaviour
 
         slotList[index].GetComponentInChildren<Slider>().GetComponentInChildren<Image>().sprite = bottle.sprite;
 
+        int charges = colorInventory.colorSlots[index].storedSpellCDs.Count;
+        Image chargesSprite = slotList[index].GetChild(2).GetComponent<Image>();
+        if(charges > 1) {
+            chargesSprite.sprite = ChargesSprites[charges-1];
+            chargesSprite.gameObject.SetActive(true);
+        } else {
+            chargesSprite.gameObject.SetActive(false);
+        }
+
         foreach (Image image in slotList[index].GetComponentsInChildren<Image>())
         {
             if(pos == 0)
@@ -334,9 +347,9 @@ public class ColorSlotController : MonoBehaviour
         } else {
             slide.value = min-Time.fixedTime;
             spellsOnCoolDown.Add(slide);
-        }
-        
+        }   
     }
+    
     private void Update()
     {
         // Get sinewave value based on time

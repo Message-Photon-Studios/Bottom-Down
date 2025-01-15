@@ -82,6 +82,11 @@ public class ColorInventory : MonoBehaviour
     public UnityAction<bool> onSpellPickupInRange;
 
     public UnityAction<List<float>, float> onCoolDownSet;
+
+    /// <summary>
+    /// Called whenever amount of charges on a spell is changed (usually trough an item).
+    /// </summary>
+    public UnityAction onSpellChargeChange;
     
     private System.Action<InputAction.CallbackContext> divideColorHandler;
 
@@ -702,6 +707,7 @@ public class ColorInventory : MonoBehaviour
             list.Add(0);
             list = SetCoolDownForIndex(list, i, spell.coolDown);
         }
+        onSpellChargeChange?.Invoke();
         return list;
     }
 
@@ -735,6 +741,7 @@ public class ColorInventory : MonoBehaviour
                 oldList.Remove(max);
             }
         }
+        onSpellChargeChange?.Invoke();
         Debug.Log(oldList.Count);
         Debug.Log(spellCapacity + " cap");
         return oldList;
