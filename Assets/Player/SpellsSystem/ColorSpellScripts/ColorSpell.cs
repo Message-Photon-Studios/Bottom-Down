@@ -19,6 +19,8 @@ public class ColorSpell : MonoBehaviour
 
     [SerializeField] public float coolDown = 1;
 
+    [SerializeField] public bool castWhenDamaged;
+
     /// <summary>
     /// The projectile will be destroyed on impact with any object
     /// </summary>

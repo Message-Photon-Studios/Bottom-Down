@@ -438,10 +438,12 @@ public class ColorInventory : MonoBehaviour
     /// <param name="amount"></param>
     public void AddColor(GameColor color, int amount)
     {
+        AddColor(color, amount, null);
+    }
+    public void AddColor(GameColor color, int amount, ColorSlot fillSlot)
+    {
         if(color == null) return;
-        ColorSlot fillSlot = null;
-        
-        fillSlot = ActiveSlot();
+        if(fillSlot == null) fillSlot = ActiveSlot();
 
         /*
         if(ActiveSlot().IsEmpty() || ActiveSlot().gameColor == color)
@@ -525,6 +527,11 @@ public class ColorInventory : MonoBehaviour
     public void MixRandom()
     {
         if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1);
+    }
+
+    public void MixRandom(ColorSlot slot)
+    {
+        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1, slot);
     }
 
     #endregion
@@ -673,7 +680,13 @@ public class ColorInventory : MonoBehaviour
     public void WhenDamaged(PlayerStats player, EnemyStats enemy)
     {
         //Add events from certain items or spells to activate when damaged
-
+        foreach (ColorSlot slot in colorSlots)
+        {
+            if (slot.colorSpell.castWhenDamaged)
+            {
+                player.GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
+            }
+        }
         EnableRotation();
     }
 

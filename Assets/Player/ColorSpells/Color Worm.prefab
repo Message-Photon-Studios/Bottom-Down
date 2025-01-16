@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6271258304019460346}
   - component: {fileID: -7692674297862362138}
   - component: {fileID: 1609077829872420345}
+  - component: {fileID: 6978534892282143140}
   m_Layer: 8
   m_Name: Color Worm
   m_TagString: Spell
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1dd204a55e67044e8c4b75a10622fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnForce: {x: 0, y: -400}
+  spawnForce: {x: 200, y: -400}
 --- !u!114 &3321278458073070407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0900cb19f680a734ba6a9d1fcb2ffcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcePerspectivePlayer: 0
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!212 &4874330200776334801
 SpriteRenderer:
@@ -192,12 +194,17 @@ MonoBehaviour:
     Power:
     100%'
   spellCost: 50
-  powerScale: 1
+  powerScale: 0.5
+  coolDown: 3
+  castWhenDamaged: 1
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
+  destroyOnCollission: 0
   impactOnEnemies: 1
   impactOnNonEnemies: 0
   triggerOnlyOnce: 0
+  triggerOnlyOncePerEnemy: 0
+  attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
   lifeTime: 4
   animationTrigger: handSpell
@@ -225,11 +232,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e912482988b69644a9711556680c97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 7
   speed: 500
-  smartTarget: 0
-  targetClosest: 0
-  targetRandom: 1
+  spawnTargetDelay: 0.5
+  settings: 0
+--- !u!114 &6978534892282143140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5146cb47d5dc49ac6960695b3ce8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.5
 --- !u!1001 &3068050921329342166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,7 +275,7 @@ PrefabInstance:
     - target: {fileID: 275500846492424100, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 87ff859addb7e1946a53b5a3f05c7079, type: 2}
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 1019539130980119227, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
       propertyPath: m_RootOrder
       value: 0
