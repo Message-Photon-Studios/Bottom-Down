@@ -154,17 +154,22 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public GameColor UseActiveColor()
     {
-        if(ActiveSlot().charge > 0)
+        return UseActiveColor(ActiveSlot());
+    }
+
+    public GameColor UseActiveColor(ColorSlot slot)
+    {
+        if(slot.charge > 0)
         {   
-            GameColor ret = ActiveSlot().gameColor;
+            GameColor ret = slot.gameColor;
 
             if (Random.Range(0, 100) > blockDrainColor)
             {
-                int charge = ActiveSlot().charge - 1;
-                if (ActiveSlot().gameColor.name == "Rainbow")
+                int charge = slot.charge - 1;
+                if (slot.gameColor.name == "Rainbow")
                     charge -= rainbowExtraDrain;
                 if(charge < 0) charge = 0;
-                ActiveSlot().SetCharge(charge);
+                slot.SetCharge(charge);
 
                 onColorUpdated?.Invoke();
             }

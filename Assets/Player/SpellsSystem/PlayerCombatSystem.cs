@@ -211,7 +211,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     public void PocketSpecialAttack(ColorSlot slot)
     {
-        GameColor color = slot.gameColor;
+        GameColor color = colorInventory.UseActiveColor(slot);
         ColorSpell spell = slot.colorSpell;
         if (spell == null || color == null) return;
 
