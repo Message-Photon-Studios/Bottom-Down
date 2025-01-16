@@ -125,7 +125,7 @@ public class PlayerSounds : MonoBehaviour
     }
     public void PlayTakingDamage()
     {
-        if (!takingDamage.isPlaying)
+        if (!takingDamage.isPlaying && !player.GetBool(dyingBool))
         {
             takingDamage.Play();
         }
