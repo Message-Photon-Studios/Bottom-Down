@@ -99,6 +99,7 @@ public class ColorInventory : MonoBehaviour
         changeRightActions.action.performed += (dir) => {RotateActive((int)dir.ReadValue<float>()); };
         onColorUpdated += updateBrushColor;
         onSlotChanged += slotChangedBrush;
+        ColorSpellImpact.onSpellImpact += SpellImactTrigger;
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
@@ -114,6 +115,7 @@ public class ColorInventory : MonoBehaviour
         
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
+        ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
         GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
     }
 
@@ -680,19 +682,34 @@ public class ColorInventory : MonoBehaviour
 
     #endregion
 
-    #region When damaged
+    #region Unity Actions
 
     public void WhenDamaged(PlayerStats player, EnemyStats enemy)
     {
         //Add events from certain items or spells to activate when damaged
         foreach (ColorSlot slot in colorSlots)
         {
-            if (slot.colorSpell.castWhenDamaged)
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castWhenDamaged)
             {
-                player.GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
+                GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
             }
         }
         EnableRotation();
+    }
+
+    public void SpellImactTrigger()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnSpellImpact)
+            {
+                GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
+            }
+        }
     }
 
     #endregion
