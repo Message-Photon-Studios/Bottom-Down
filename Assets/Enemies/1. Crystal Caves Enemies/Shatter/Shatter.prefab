@@ -67,6 +67,7 @@ MonoBehaviour:
   deathTimer: 0
   lookDir: -1
   colorOrbPrefab: {fileID: 3555706799306581111, guid: e632eca802dd6974981edd7786f7e079, type: 3}
+  sleepCooldown: 5
   currentCombo: 0
   enemySounds: {fileID: 4169589993257190461}
   spawnPower: 1
@@ -82,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af4b6960793ca64eb8602955848f8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollisionDamage: 30
+  playerCollisionDamage: 20
   playerCollisionForce: {x: 1000, y: 0}
 --- !u!50 &7646013780313188473
 Rigidbody2D:
@@ -100,7 +101,7 @@ Rigidbody2D:
   m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 8
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b51b88b2aa1c7ce40a636c7c8484d4b9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

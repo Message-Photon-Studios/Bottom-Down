@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class EnemyHpController : MonoBehaviour
     [SerializeField] Slider healthSlider;
     [SerializeField] Slider healthSubSlider;
     [SerializeField] float subBarRate;
+    [SerializeField] RectTransform rectTransform;
+    [SerializeField] float healthBarScale;
+    [SerializeField] float healthBarBaseSize;
     
     private void Start() {
         gameObject.SetActive(true);
@@ -25,6 +29,9 @@ public class EnemyHpController : MonoBehaviour
         healthSubSlider.value = enemy.GetHealth();
         healthSlider.gameObject.SetActive(false);
         healthSubSlider.gameObject.SetActive(false);
+
+        if(rectTransform)
+            rectTransform.sizeDelta = new Vector2(healthBarBaseSize + healthBarScale*enemy.GetHealth(), rectTransform.sizeDelta.y);
     }
 
     /// <summary>
@@ -52,7 +59,7 @@ public class EnemyHpController : MonoBehaviour
     /// <summary>
     /// When enemy dies, hide the health bar.
     /// </summary>
-    private void EnemyDied() {
+    private void EnemyDied(EnemyStats deadEnemy) {
         gameObject.SetActive(false);
     }
 }

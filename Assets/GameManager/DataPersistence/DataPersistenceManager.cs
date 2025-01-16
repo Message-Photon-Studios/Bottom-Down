@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEditor;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     }
 
-    private void Start() 
+    public void Start() 
     {
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
@@ -36,6 +37,9 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+
+        dataHandler.Save(gameData);
+        
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);
@@ -72,4 +76,24 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
+
+    #if UNITY_EDITOR
+    
+    [SerializeField] bool resetSave;
+
+    void OnValidate()
+    {
+        if(resetSave)
+        {
+            ResetSaveEditor();
+            resetSave = false;
+        }
+    }
+    public void ResetSaveEditor()
+    {
+        NewGame();
+        LoadGame();
+        SaveGame();
+    }
+    #endif
 }

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff04d270692645468f7bbf12f973753, type: 3}
+  m_Name: Wind Bag
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 7f7983ae5d525da45bce5efc9202bc30, type: 3}
+  description: 'All you have to do is not open this bag
+
+    When you take damage,
+    push nearby enemies away from you'
+  itemCost: 30
+  effects:
+  - rid: 7890098150739279873
+  itemCategory: 3
+  itemRarity: 0
+  maxSpawn: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7890098150739279873
+      type: {class: CustomItemEffect, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - {fileID: 11400000, guid: c663241bb9e0fcf468be7710ccf9cc07, type: 2}

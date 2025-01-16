@@ -13,7 +13,7 @@ AnimatorStateMachine:
     m_State: {fileID: 8883850288969417444}
     m_Position: {x: 310, y: 50, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 3356569810285236984}
+    m_State: {fileID: 8276492775439815182}
     m_Position: {x: 345, y: 115, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
@@ -47,14 +47,14 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &3356569810285236984
+--- !u!1102 &8276492775439815182
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ColorWorm
+  m_Name: ColorBeam
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -67,7 +67,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8f3b17f727cbd5e4fa71fd4cac0d5cb6, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8b3b5618596680644942a9880bf44c0b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

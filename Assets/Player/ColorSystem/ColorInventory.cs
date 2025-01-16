@@ -12,7 +12,7 @@ using Steamworks;
 public class ColorInventory : MonoBehaviour
 {
     int startColorSlots; //The number of starting color slots that the player has
-    [SerializeField] float colorBuff;
+    [SerializeField] float colorMaxBuff;
 
     /// <summary>
     /// The existing color slots that the player have
@@ -30,10 +30,25 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] public Material defaultColor;
     [SerializeField] InputActionReference removeColorAction;
     [SerializeField] int rainbowExtraDrain;
-    public Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
+    [SerializeField] float minCD = 0.3f;
+    private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     SpellPickup pickUpSpell = null;
+    ColorLibrary colorLib;
 
     public int blockDrainColor = 0;
+    private bool CanSwap = true;
+    private float addetiveCDModifier = 0;
+    private float multetiveCDModifier = 1;
+    private float defaultBuff = 0;
+    public bool balanceColors = false;
+    public bool dontMixColor = false;
+    public bool autoRotate = false;
+    public bool chaosEnabled = false;
+    private float rngMax = 0;
+    private float rngMin = 0;
+    private float rngBuff = 0;
+    private int lastDir = 0;
+    
 
     #region Actions for UI
     
@@ -62,6 +77,8 @@ public class ColorInventory : MonoBehaviour
     /// Sends a bool as parameter; if bool == true the spell got in range and if bool == false the spell left the range
     /// </summary>
     public UnityAction<bool> onSpellPickupInRange;
+
+    public UnityAction<float> onCoolDownSet;
     
     private System.Action<InputAction.CallbackContext> divideColorHandler;
 
@@ -85,6 +102,8 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
+        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        colorLib = GameManager.instance.GetComponent<ColorLibrary>();
     }
 
     void OnDisable()
@@ -95,6 +114,7 @@ public class ColorInventory : MonoBehaviour
         
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
+        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
     }
 
     #endregion
@@ -107,8 +127,25 @@ public class ColorInventory : MonoBehaviour
     /// <param name="dir"></param>
     public void RotateActive(int dir)
     {
+        if (!CanSwap) return;
         activeSlot = (colorSlots.Count+activeSlot+dir)%colorSlots.Count;
+        lastDir = dir;
         onSlotChanged?.Invoke(dir);
+    }
+
+    public void DisableRotation()
+    {
+        CanSwap = false;
+    }
+
+    public void EnableRotation()
+    {
+        CanSwap = true;
+    }
+
+    public void AutoRotate()
+    {
+        if (autoRotate) RotateActive(lastDir);
     }
 
     /// <summary>
@@ -160,6 +197,38 @@ public class ColorInventory : MonoBehaviour
     }
 
     /// <summary>
+    /// Checks if the cooldown for a spell is done
+    /// </summary>
+    /// <returns></returns>
+    public bool IsSpellReady()
+    {
+        if (ActiveSlot().coolDown <= Time.fixedTime) return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Starts the cooldown
+    /// </summary>
+    /// <param name="time"></param>
+   public void SetCoolDown(float time)
+    {
+        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
+        if (time <= minCD) time = minCD; 
+        ActiveSlot().coolDown = Time.fixedTime + time;
+        onCoolDownSet?.Invoke(time);
+    }
+
+    public void MultiplyCDMultiplier(float multiply)
+    {
+        multetiveCDModifier *= multiply;
+    }
+
+    public void AddCDAddetive(float add)
+    {
+        addetiveCDModifier += add;
+    }
+
+    /// <summary>
     /// Returns the colorspell for the active slot or the default spell if no such spell is attached
     /// </summary>
     /// <returns></returns>
@@ -176,6 +245,19 @@ public class ColorInventory : MonoBehaviour
 
     #region Color buff
 
+    public void AddColorBuff(GameColor color, float addPower)
+    {
+        if(colorBuffs.ContainsKey(color)) 
+        {
+            colorBuffs[color] += addPower;
+        } else
+        {
+            colorBuffs.Add(color, addPower);
+        }
+
+        GameManager.instance.tipsManager.DisplayTips("colorPower");
+    }
+
     /// <summary>
     /// Returns the color buff of the specified color. Returns 1 if no color buff exists.
     /// </summary>
@@ -186,16 +268,31 @@ public class ColorInventory : MonoBehaviour
         float buff = 0;
         foreach (ColorSlot slot in colorSlots)
         {
-            if(slot.gameColor == color && slot.charge == slot.maxCapacity) 
+            if((slot.gameColor == color || balanceColors) && slot.charge == slot.maxCapacity) 
             {
-                buff += colorBuff;
+                buff += colorMaxBuff;
             }
         }
 
-        if(colorBuffs.ContainsKey(color))
+        
+
+        if (balanceColors)
+        {
+            foreach (KeyValuePair<GameColor, float> entry in colorBuffs)
+            {
+                buff += entry.Value;
+            }
+            buff = buff / 7;
+        } else if (colorBuffs.ContainsKey(color))
             buff += colorBuffs[color];
+        buff += defaultBuff + rngBuff;
 
         return buff;
+    }
+
+    public void AddDefaultBuff(float buff)
+    {
+        defaultBuff += buff;
     }
 
     /// <summary>
@@ -205,6 +302,22 @@ public class ColorInventory : MonoBehaviour
     public float GetColorBuff()
     {
         return GetColorBuff(ActiveSlot().gameColor);
+    }
+
+    public void SetRandomBuff()
+    {
+        float buff = Random.Range(rngMin, rngMax);
+        buff *= 100;
+        buff = Mathf.Round(buff);
+        buff *= 0.01f;
+        rngBuff = buff;
+        onColorUpdated?.Invoke();
+    }
+
+    public void SetRandomBuff(float min, float max)
+    {
+        rngMax = max;
+        rngMin = min;
     }
     #endregion
 
@@ -370,14 +483,12 @@ public class ColorInventory : MonoBehaviour
         GameColor setColor;
         //if(ActiveSlot().gameColor?.name == "Rainbow" && ActiveSlot().charge > 0) return;
         
-        if(fillSlot.charge > 0)
+        if(fillSlot.charge > 0 && !dontMixColor)
             setColor = fillSlot.gameColor.MixColor(color);
         else
             setColor = color;
-        int setAmount = fillSlot.charge + amount;
-        setAmount = (setAmount > fillSlot.maxCapacity)?  fillSlot.maxCapacity : setAmount;
 
-        fillSlot.SetCharge(setAmount);
+        fillSlot.AddCharge(amount);
         fillSlot.SetGameColor(setColor);
 
         onColorUpdated?.Invoke();
@@ -409,6 +520,11 @@ public class ColorInventory : MonoBehaviour
     {
         // brush.
         GetComponent<SpriteRenderer>().material = ActiveSlot().charge > 0 ? ActiveSlot().gameColor.colorMat : defaultColor;
+    }
+
+    public void MixRandom()
+    {
+        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1);
     }
 
     #endregion
@@ -489,6 +605,7 @@ public class ColorInventory : MonoBehaviour
             return;
         }
         colorSlots[index].colorSpell = newSpell;
+        colorSlots[index].coolDown = 0;
         onColorSpellChanged?.Invoke(index);
     }
 
@@ -518,6 +635,9 @@ public class ColorInventory : MonoBehaviour
         }
         colorSlots.Add(new ColorSlot());
         colorSlots[colorSlots.Count-1].maxCapacity = colorSlots[0].maxCapacity;
+
+        foreach (ColorSlot slot in colorSlots) slot.coolDown = 0;
+
         onColorSlotsChanged?.Invoke();
     }
 
@@ -548,6 +668,17 @@ public class ColorInventory : MonoBehaviour
 
     #endregion
 
+    #region When damaged
+
+    public void WhenDamaged(PlayerStats player, EnemyStats enemy)
+    {
+        //Add events from certain items or spells to activate when damaged
+
+        EnableRotation();
+    }
+
+    #endregion
+
 }
 
 #region Color slot
@@ -563,6 +694,7 @@ public class ColorSlot
     [SerializeField] public int charge;
     [SerializeField] public GameColor gameColor;
     [SerializeField] public ColorSpell colorSpell;
+    public float coolDown = 0;
     public void Init(Image setImage)
     {
         SetGameColor(gameColor);
@@ -573,7 +705,10 @@ public class ColorSlot
     {
         charge = set;
         if(charge > maxCapacity)
-        charge = maxCapacity;
+        {
+            charge = maxCapacity;
+            GameManager.instance.tipsManager.DisplayTips("filledBottle");
+        }
     }
 
     public void AddCharge(int addCharge)

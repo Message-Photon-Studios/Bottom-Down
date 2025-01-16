@@ -53,7 +53,7 @@ MonoBehaviour:
   health: 1
   color: {fileID: 11400000, guid: 5f2b6f6ae8acaf3469c5a5c99178de06, type: 2}
   colorAmmount: 6
-  movementSpeed: 5000
+  movementSpeed: 3000
   coinsDropped:
     min: 0
     max: 0
@@ -61,10 +61,11 @@ MonoBehaviour:
   comboParticles: {fileID: 6205137580783060889, guid: 08a80dfa497e1524d8b1d91a3ef76662, type: 3}
   knockbackImune: 1
   sleepForcedown: 0
-  setColorByHand: 0
+  setColorByHand: 1
   deathTimer: 0
   lookDir: -1
   colorOrbPrefab: {fileID: 3555706799306581111, guid: e632eca802dd6974981edd7786f7e079, type: 3}
+  sleepCooldown: 2
   currentCombo: 0
   enemySounds: {fileID: 0}
   spawnPower: 1
@@ -82,6 +83,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCollisionDamage: 20
   playerCollisionForce: {x: 2000, y: 0.5}
+  onObjectSpawned:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &3904210810762673737
 Rigidbody2D:
   serializedVersion: 4

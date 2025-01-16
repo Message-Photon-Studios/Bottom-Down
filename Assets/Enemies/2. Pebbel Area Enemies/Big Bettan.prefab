@@ -67,6 +67,7 @@ MonoBehaviour:
   deathTimer: 0
   lookDir: -1
   colorOrbPrefab: {fileID: 3555706799306581111, guid: e632eca802dd6974981edd7786f7e079, type: 3}
+  sleepCooldown: 5
   currentCombo: 0
   enemySounds: {fileID: 2196678549535324435}
   spawnPower: 1
@@ -99,7 +100,6 @@ MonoBehaviour:
     color: {r: 1, g: 0, b: 0, a: 1}
   swordDamage: 40
   swordForce: 4000
-  patrollDistance: 3
   patrollIdleTime: 2
 --- !u!50 &5601755027595367767
 Rigidbody2D:
@@ -114,10 +114,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2.5
-  m_LinearDrag: 5
+  m_LinearDrag: 28
   m_AngularDrag: 0.05
-  m_GravityScale: 8
-  m_Material: {fileID: 0}
+  m_GravityScale: 40
+  m_Material: {fileID: 6200000, guid: b51b88b2aa1c7ce40a636c7c8484d4b9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

@@ -10,6 +10,9 @@ using UnityEngine.Events;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] int health = 100;
+    [SerializeField] int maxShield = 50;
+    [SerializeField] int maxPermanetShield = 20;
+    [SerializeField] int shieldDecayIncrease = 1;
     [SerializeField] float hitInvincibilityTime;
     [SerializeField] LevelManager levelManager;
     [SerializeField] Animator animator;
@@ -22,17 +25,31 @@ public class PlayerStats : MonoBehaviour
     public float colorNearbyRange = 0;
     public int chanceToColorNearby = 0;
     public float colorRainbowMaxedPower = 1;
+    
+    int shield = 0;
+    int shieldDecay = -1;
 
     public int chanceThatEnemyDontMix = 0;
+
+    public int complimentaryDamage = 0;
+
+    public bool corrosiveColor = false;
 
     [SerializeField] PlayerSounds playerSounds;
 
     float secTimer = 1;
 
+    public Dictionary<string, int> itemVaribles;
+
     /// <summary>
     /// This event fires when the player health is changed. The float is the new health.
     /// </summary>
     public UnityAction<float> onHealthChanged;
+
+    /// <summary>
+    /// This event fires when the shield takes damage. The float is the new shield.
+    /// </summary>
+    public UnityAction<float> onShieldChanged;
     
     /// <summary>
     /// This event fires when the players max health is set or changed. The float is the new max health
@@ -43,6 +60,11 @@ public class PlayerStats : MonoBehaviour
     /// The player died
     /// </summary>
     public UnityAction onPlayerDied;
+
+    /// <summary>
+    /// This event fires when the player is damaged
+    /// </summary>
+    public UnityAction<PlayerStats, EnemyStats> onPlayerDamaged;
 
     private bool isDeathExecuted;
 
@@ -55,14 +77,30 @@ public class PlayerStats : MonoBehaviour
     void OnEnable()
     {
         //TODO: Check so this doesnt cause a problem when changing scene.
+        health += PermanentUpgradeManager.instance.upgrades.extraHealth;
         maxHealth = health;
         onMaxHealthChanged?.Invoke(maxHealth);
         onHealthChanged?.Invoke(health);
         colorArmour = new Dictionary<GameColor, float>();
+        itemVaribles = new Dictionary<string, int>();
     }
-
     void Update()
     {
+        secTimer -= Time.deltaTime;
+        if(secTimer <= 0)
+        {
+            secTimer = 1;
+            //DO stuff each second here:
+
+            if(shield > maxPermanetShield)
+            {
+                shield -= (shieldDecay<0)?0:shieldDecay;
+                shieldDecay += shieldDecayIncrease;
+                if(shield < maxPermanetShield) shield = maxPermanetShield;
+                onShieldChanged?.Invoke(shield);
+            }
+        }
+
         if(invincibilityTimer >= 0)
         {
             invincibilityTimer -= Time.deltaTime;
@@ -79,16 +117,19 @@ public class PlayerStats : MonoBehaviour
             GetComponent<SpriteRenderer>().color = tmp;
         }
 
+        
+
     }
 
     /// <summary>
     /// Damage the player
     /// </summary>
     /// <param name="damage"></param>
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(int damage, EnemyStats enemy)
     {
         if(invincibilityTimer > 0) return;
         //if(damage == 0) return;
+        shieldDecay = 0;
         if (UnityEngine.Random.Range(0, 100) < chanceToBlock)
         {
             GameObject aura = Instantiate(blockAura, transform);
@@ -97,6 +138,18 @@ public class PlayerStats : MonoBehaviour
             //return;
         } else
         {
+            if(shield >= damage)
+            {
+                shield -= damage;
+                damage = 0;
+                onShieldChanged?.Invoke(shield);
+            } else if(shield > 0 && damage > shield)
+            {
+                damage -= shield;
+                shield = 0;
+                onShieldChanged?.Invoke(shield);
+            }
+
             health -= damage;
             animator.SetTrigger("damaged");
         }
@@ -111,6 +164,7 @@ public class PlayerStats : MonoBehaviour
         }
         
         onHealthChanged?.Invoke(health);
+        onPlayerDamaged?.Invoke(this, enemy);
     }
 
     /// <summary>
@@ -149,6 +203,19 @@ public class PlayerStats : MonoBehaviour
     }
 
     /// <summary>
+    /// Adds shield to the player
+    /// </summary>
+    /// <param name="addShield"></param> 
+    public void AddShield(int addShield)
+    {
+        shield += addShield;
+        shieldDecay = 0;
+        if(shield > maxShield) shield = maxShield;
+        onShieldChanged?.Invoke(shield);
+    }
+
+
+    /// <summary>
     /// Returns the players current health
     /// </summary>
     public float GetHealth()
@@ -175,6 +242,21 @@ public class PlayerStats : MonoBehaviour
         health += addMaxHealth;
         onMaxHealthChanged?.Invoke(maxHealth);
         onHealthChanged?.Invoke(health);
+    }
+
+    public int GetMaxShield()
+    {
+        return maxShield;
+    }
+
+    public int GetMaxPermanentShield()
+    {
+        return maxPermanetShield;
+    }
+
+    public int GetShield()
+    {
+        return shield;
     }
 
     /// <summary>

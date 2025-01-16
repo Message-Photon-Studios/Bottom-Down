@@ -19,7 +19,6 @@ public class CrystalQuake : Enemy
     [SerializeField] Vector2 projectileSpawn3;
     [SerializeField] float projectileSpawnUpForce;
     [SerializeField] float projectileForceRandomness;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
 
     private float legPos = 1.8f;
@@ -61,7 +60,7 @@ public class CrystalQuake : Enemy
                 new PlatformChase(stats, player, body, animator, 1f, viewRange, eyePosY, legPos ,"attack", "walk")
             }),
 
-            new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, legPos, "attack", "walk")
+            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, legPos, "attack", "walk")
 
             });
 
@@ -81,8 +80,6 @@ public class CrystalQuake : Enemy
         quakeTrigger.DrawTrigger(stats.GetPosition());
         Handles.color = Color.blue;
         Handles.DrawLine(stats.GetPosition()+Vector2.left*viewRange+ Vector2.up*eyePosY, stats.GetPosition()+Vector2.right*viewRange+ Vector2.up*eyePosY);
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left * patrollDistance, stats.GetPosition() + Vector2.right * patrollDistance);
         Handles.color = Color.green;
         Handles.DrawSolidDisc(stats.GetPosition()+projectileSpawn1, Vector3.forward, .1f);
         Handles.DrawSolidDisc(stats.GetPosition()+projectileSpawn2, Vector3.forward, .1f);

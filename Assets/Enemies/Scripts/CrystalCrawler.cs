@@ -15,7 +15,6 @@ public class CrystalCrawler : Enemy
     [SerializeField] float checkJumpHight;
     [SerializeField] float forwardJumpForce;
     [SerializeField] float jumpIdleTime;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
 
     private float legPos = .5f;
@@ -27,6 +26,11 @@ public class CrystalCrawler : Enemy
                 new CheckBool("prusuit", true),
 
                 new Selector(new List<Node>{
+                        new Sequence(new List<Node>{
+                        new Inverter(new CheckPlayerArea(stats, player, viewTrigger)),
+                        new Wait(2f, 1f),
+                        new SetParentVariable("prusuit", false, 4)
+                    }),
 
                     new Sequence(new List<Node>{
                         new CheckBool("enableJump", true),
@@ -72,13 +76,9 @@ public class CrystalCrawler : Enemy
                         new Inverter(new CheckPlayerArea(stats, player, preventJump)),
                         new AnimationBool(animator, "move", true),
                         new AnimationBool(animator, "run", true),
+                        new Wait(.5f),
                         new LookAtPlayer(stats, player),
                         new RunForward(stats, runSpeed)
-                    }),
-
-                    new Sequence(new List<Node>{
-                        new CheckPlayerDistance(stats,player,20, 2000),
-                        new SetParentVariable("prusuit", false, 4)
                     }),
 
                     new Sequence(new List<Node>{
@@ -98,7 +98,7 @@ public class CrystalCrawler : Enemy
             new Sequence(new List<Node>{
                 new CheckGrounded(stats,legPos),
                 new AnimationBool(animator, "run", false),
-                new RandomPatroll(stats, body, animator, patrollDistance, 1f, patrollIdleTime, legPos, "charge", "move")
+                new RandomPatroll(stats, body, animator, 1f, patrollIdleTime, legPos, "charge", "move")
             })
         });
         
@@ -113,7 +113,8 @@ public class CrystalCrawler : Enemy
 
     protected override void DamageTaken(float damage, Vector2 atPostion)
     {
-        root.SetData("prusuit", true);
+        if(root != null)
+            root.SetData("prusuit", true);
     }
     protected override void Update()
     {
@@ -124,8 +125,6 @@ public class CrystalCrawler : Enemy
     private void OnDrawGizmosSelected() {
         viewTrigger.DrawTrigger(stats.GetPosition());
         preventJump.DrawTrigger(stats.GetPosition());
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left* patrollDistance, stats.GetPosition() + Vector2.right* patrollDistance);
         Handles.color = Color.green;
         Handles.DrawDottedLine(stats.GetPosition()+Vector2.left+Vector2.up*checkJumpHight, stats.GetPosition()+Vector2.right+Vector2.up*checkJumpHight, 5);
     }

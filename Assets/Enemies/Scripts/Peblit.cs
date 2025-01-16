@@ -10,8 +10,8 @@ public class Peblit : Enemy
     [SerializeField] Trigger attackTrigger;
     [SerializeField] int swordDamage;
     [SerializeField] float swordForce;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
+    float legPos = .7f;
 
     protected override Node SetupTree()
     {
@@ -29,10 +29,10 @@ public class Peblit : Enemy
                 }),
 
             new Sequence(new List<Node>{
-                new PlatformChase(stats, player, body, animator, 1f, viewRange, 0f, .5f ,"attack", "walk")
+                new PlatformChase(stats, player, body, animator, 1f, viewRange, 0f, legPos ,"attack", "walk")
             }),
 
-            new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, .5f, "attack", "walk")
+            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, legPos, "attack", "walk")
 
             });
         
@@ -48,8 +48,6 @@ public class Peblit : Enemy
         attackTrigger.DrawTrigger(stats.GetPosition());
         Handles.color = Color.blue;
         Handles.DrawLine(stats.GetPosition()+Vector2.left*viewRange, stats.GetPosition()+Vector2.right*viewRange);
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left* patrollDistance, stats.GetPosition() + Vector2.right* patrollDistance);
     }
 #endif
 }

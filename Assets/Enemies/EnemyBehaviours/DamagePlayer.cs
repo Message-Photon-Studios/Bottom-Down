@@ -22,7 +22,7 @@ public class DamagePlayer : Node
     }
     public override NodeState Evaluate()
     {
-        player.DamagePlayer(stats.GetScaledDamage(damage));
+        player.DamagePlayer(stats.GetScaledDamage(damage), stats);
         state = NodeState.SUCCESS;
         return state;
     }

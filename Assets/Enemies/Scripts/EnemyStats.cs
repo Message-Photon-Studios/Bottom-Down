@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using JetBrains.Annotations;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.ParticleSystem;
@@ -51,6 +50,8 @@ public class EnemyStats : MonoBehaviour
     private float sleepTimer = 0;
     private float lastSleep = 0;
     private float sleepPowerBonus = 0f; //The extra damage dealt to a slept enemy
+    [SerializeField] float sleepCooldown = 5f;
+    float sleepCooldownTimer = 0f;
     GameObject sleepParticles;
     [HideInInspector] public int currentCombo = 0; //At what stage this combo is at
 
@@ -80,21 +81,25 @@ public class EnemyStats : MonoBehaviour
     /// <summary>
     /// The enemy died
     /// </summary>
-    public UnityAction onEnemyDeath;
+    public UnityAction<EnemyStats> onEnemyDeath;
 
     private bool enemyDead = false;
     [CanBeNull] private Coroutine currentCoroutine;
 
     public bool isColoredThisFrame {get; private set;} = false;
+    private bool dealingRainbowDamage = false;
     GameObject player;
     PlayerStats playerStats;
     PlayerCombatSystem playerCombat;
+
+    Rigidbody2D body;
     #region Setup
     void Awake()
     {
         normalMovementDrag = GetComponent<Rigidbody2D>().drag;
         myCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
         normalAnimationSpeed = animator.speed;
     }
 
@@ -108,13 +113,19 @@ public class EnemyStats : MonoBehaviour
             GetComponent<SpriteRenderer>().material = defaultColor;
 
         onDamageTaken += DmgNumber.create;
-        onEnemyDeath += () => dropCoins(coinsDropped.GetReward());
+        onEnemyDeath += (EnemyStats _) => dropCoins(coinsDropped.GetReward());
         enemySounds = GetComponent<EnemySounds>();
         onColorChanged?.Invoke(color);
         if (deathTimer > 0) hasDeathTimer = true;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerStats = player.GetComponent<PlayerStats>();
-        playerCombat = player.GetComponent<PlayerCombatSystem>();
+        if(player != null)
+        {
+            playerStats = player.GetComponent<PlayerStats>();
+            playerCombat = player.GetComponent<PlayerCombatSystem>();
+        } else 
+        {
+            this.enabled = false;
+        }
     }
 
     void OnValidate()
@@ -152,6 +163,7 @@ public class EnemyStats : MonoBehaviour
     #region Update
     void Update()
     {
+        if(sleepCooldownTimer > 0) sleepCooldownTimer -= Time.deltaTime;
         if(isColoredThisFrame) isColoredThisFrame = false;
         if(secTimer > 1f)
         {
@@ -206,7 +218,7 @@ public class EnemyStats : MonoBehaviour
 
             if(burning.damage > 0 && burning.timer > 0)
             {
-                if (burning.mustBurn || GetColor() == null || !GetColor().name.Equals("Orange")) DamageEnemy(burning.damage);
+                if (burning.mustBurn || playerStats.corrosiveColor || GetColor() == null || !GetColor().name.Equals("Orange")) DamageEnemy(burning.damage);
                 //if(color?.name != "Orange" || color == null) DamageEnemy(burning.damage);
                 //else DamageEnemy(0);
                 float timer = burning.timer;
@@ -268,9 +280,11 @@ public class EnemyStats : MonoBehaviour
 
         onHealthChanged?.Invoke(health);
         onDamageTaken?.Invoke(damage, transform.position);
+        int rainbowDmg = (int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower);
         if (currentCoroutine != null)
             StopCoroutine(currentCoroutine);
-        if(health <= 0) KillEnemy();
+        if (health <= 0) KillEnemy();
+        else if ((health - rainbowDmg <= 0 && IsRaibowed() && !dealingRainbowDamage)) DealRainbowDamage(rainbowDmg);
         else currentCoroutine = StartCoroutine(dmgResponse());
     }
 
@@ -308,13 +322,17 @@ public class EnemyStats : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 5);
         SleepEnemy(10, 1, null);
-        int drainAmount = 3;
+        int drainAmount = 0;
         if(color != null && color.name.Equals("Rainbow") && colorOrbPrefab != null && colorAmmount-drainAmount > 0)
         {
-            GameObject orb = Instantiate(colorOrbPrefab, GetPosition(), transform.rotation) as GameObject;
-            orb.GetComponent<ColorOrb>().SetTarget(GameObject.FindGameObjectWithTag("Player"), colorAmmount - drainAmount, color);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if(player != null)
+            {
+                GameObject orb = Instantiate(colorOrbPrefab, GetPosition(), transform.rotation) as GameObject;  
+                orb.GetComponent<ColorOrb>().SetTarget(player, colorAmmount - drainAmount, color);
+            }
         }
-        onEnemyDeath?.Invoke();
+        onEnemyDeath?.Invoke(this);
     }
 
     public bool IsDead()
@@ -356,7 +374,9 @@ public class EnemyStats : MonoBehaviour
     private void DealRainbowDamage(int rainbowDamage)
     {
         GameManager.instance.tipsManager.DisplayTips("rainbowCombo");
+        dealingRainbowDamage = true;
         DamageEnemy(rainbowDamage);
+        dealingRainbowDamage = false;
         AbsorbColor();
         colorComboTimer = 2f;
 
@@ -365,6 +385,11 @@ public class EnemyStats : MonoBehaviour
         Destroy(instantiatedParticles, 1f);
         // Set enemy as parent of the particle system
         instantiatedParticles.transform.parent = transform;
+    }
+
+    public bool IsRaibowed()
+    {
+        return color != null && colorAmmount > 0 && color.name == "Rainbow";
     }
 
     #endregion
@@ -494,6 +519,11 @@ public class EnemyStats : MonoBehaviour
 
     public void SetColor(GameColor color)
     {
+        if (IsRaibowed())
+        {
+            DealRainbowDamage((int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower));
+            if (health <= 0) return;
+        }
         this.color = color;
         onColorChanged?.Invoke(color);
         if (enemySleep && lastSleep != Time.time) WakeEnemyAnimation();
@@ -565,7 +595,7 @@ public class EnemyStats : MonoBehaviour
             poisonFactor = (1f-poisonDamageReduction);
         
         float playerArmour = 0f;
-        if(GetColor() != null && GetColorAmmount() > 0)
+        if(GetColor() != null && GetColorAmmount() > 0 && playerStats != null)
             playerArmour = playerStats.GetColorArmour(GetColor());
         return spawnPower * poisonFactor * (1f-playerArmour);
     }
@@ -610,6 +640,58 @@ public class EnemyStats : MonoBehaviour
         GetComponent<Enemy>().SwitchDirection();
     }
 
+    public float GetHeight()
+    {
+        float height = myCollider.bounds.max.y - myCollider.bounds.min.y;
+        return height;
+    }
+
+    public float GetWidth()
+    {
+        float width = myCollider.bounds.max.x - myCollider.bounds.min.x;
+        return width;
+    }
+
+
+    #endregion
+
+    #region Define platform
+
+    /// <summary>
+    /// Returns the x positions of the edges of the platform that the enemy is currently standing on.
+    /// </summary>
+    /// <returns></returns>
+    public (float leftEdge, float rightEdge) GetCurrentPlatform()
+    {
+        float width = GetWidth();
+        float height = GetHeight();
+        float yPos = GetPosition().y-height/2 +.5f;
+        float FindPlatformEdge(int dir)
+        {
+            float xPos = GetPosition().x;
+            RaycastHit2D hitWall = Physics2D.Raycast(new Vector2(xPos, yPos), Vector2.right*dir, 20, GameManager.instance.maskLibrary.onlyGround);
+
+            float maxXPos = 0;
+            if(hitWall)
+                maxXPos = hitWall.point.x;
+            else 
+                maxXPos = xPos + 20*dir;
+            float newXPos = xPos;
+
+            while(newXPos*dir < maxXPos*dir)
+            {
+                newXPos = ((width/2 + 0.2f)*dir)+xPos;
+                if(!Physics2D.Raycast(new Vector2(xPos, yPos), Vector2.down, .7f, GameManager.instance.maskLibrary.onlyGround)) break;
+                xPos = newXPos;
+            }
+
+            return xPos;
+        }
+        float platformL = FindPlatformEdge(-1);
+        float platformR = FindPlatformEdge(1);
+        return(platformL, platformR);
+    }
+
 
     #endregion
 
@@ -621,6 +703,7 @@ public class EnemyStats : MonoBehaviour
     /// <param name="timer"></param>
     public void SleepEnemy(float timer, float sleepPower, GameObject particles)
     {
+        if(sleepCooldownTimer > 0) return;
         if(sleepTimer <= 0)
             sleepPowerBonus = sleepPower;
 
@@ -660,6 +743,7 @@ public class EnemyStats : MonoBehaviour
             sleepParticles.GetComponent<ParticleSystem>().Stop();
             GameObject.Destroy(sleepParticles, 1f);
         }
+        sleepCooldownTimer = sleepCooldown;
     }
 
     /// <summary>
@@ -692,6 +776,11 @@ public class EnemyStats : MonoBehaviour
     {
         if(!enemySleep) return 0;
         return sleepPowerBonus;
+    }
+
+    public bool HasSleepCooldown()
+    {
+        return sleepCooldownTimer > 0f;
     }
 
     #endregion

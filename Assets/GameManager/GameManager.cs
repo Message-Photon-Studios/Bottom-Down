@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [SerializeField] AudioSource petrifiedPickupSound;
     public SoundEffectManager soundEffectManager;
 
-    private int petrifiedPigment = 0;
+    [SerializeField] private int petrifiedPigment = 0;
     string gameStartScene = "Tutorial_0";
     public bool allowsTips {get; private set;} = true;
     float hunterTimer = 0f;
@@ -34,8 +34,28 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private PlayerStats player;
     private UIController uiController;
     private LevelManager currentLevelManager;
+    public UnityAction onLevelLoaded;
 
     public TipsManager tipsManager;
+
+    public ItemLibrary itemLibrary;
+
+    private bool prepareStartRun = false;
+
+    /// <summary>
+    /// Is called right before a new run is loaded. This is called when the player is exiting cave town.
+    /// </summary>
+    public System.Action onPrepareNewRun;
+
+    /// <summary>
+    /// Is called right after a new run is loaded. This is called in the first level.
+    /// </summary>
+    public System.Action onStartedNewRun;
+
+    /// <summary>
+    /// Is called after the player has died and cave town is loaded.
+    /// </summary>
+    public System.Action onLoadedCaveTown;
 
     void Awake()
     {
@@ -81,9 +101,10 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void SetLevelManager (LevelManager levelManager, float addClockTime, bool restartTimer) 
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        DataPersistenceManager.instance.SaveGame();
+        DataPersistenceManager.instance.Start();
 
-        
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
 
         currentLevelManager = levelManager;
         hunterTimer = 0f;
@@ -93,8 +114,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
         else
             clockTime = maxClockTime;
 
-
-
         if(levelManager.saveProgressionOnStart)
         {
             gameStartScene = levelManager.onDeathLevel;
@@ -102,6 +121,23 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
         
         allowsTips = levelManager.allowTips;
+        onLevelLoaded?.Invoke();
+        if(prepareStartRun)
+        {
+            prepareStartRun = false;
+            onStartedNewRun?.Invoke();
+        } else if(levelManager.isCaveTownLevel)
+        {
+            Debug.Log("Testing testing");
+            DataPersistenceManager.instance.LoadGame();
+            onLoadedCaveTown?.Invoke();
+        }
+    }
+
+    public void SetStartRun()
+    {
+        prepareStartRun = true;
+        onPrepareNewRun?.Invoke();
     }
 
     #region MainMenu and Quit
@@ -109,6 +145,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         StartCoroutine(uiController.FadeOutCoroutine(false, GoToMainMenuAsync));
         Resume();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         DataPersistenceManager.instance.SaveGame();
         Debug.Log("Loading to main menu...");
     }
@@ -188,6 +226,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         hunters++;
     }
 
+    public void RespawnHunter()
+    {
+        GameObject hunter = GameObject.Instantiate(hunterPrefab, player.transform.position + (new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized * hunterSpawnDist), hunterPrefab.transform.rotation, GameObject.Find("EnemyHolder").transform);
+        Debug.Log("Hunter ReSpawned");
+    }
+
     /// <summary>
     /// Returns the clock time as a formated string in the format "min:sec"
     /// </summary>
@@ -214,6 +258,16 @@ public class GameManager : MonoBehaviour, IDataPersistence
         } 
 
         return (retString, retSize, retColor);
+    }
+
+    public (int, int) getTime()
+    {
+        if(clockTime > 0)
+        {
+            return ((int)clockTime / 60, (int)clockTime % 60);
+        }
+
+        return (0, 0);
     }
 
     #endregion
@@ -299,6 +353,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         if(disablePausing) return;
         Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Debug.Log("Game is paused...");
 
     }
@@ -308,9 +364,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
     /// </summary>
     public void Resume()
     {
+        if (Time.timeScale == 1f) return; 
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Debug.Log("Game is resumed...");
-
     }
     #endregion
 

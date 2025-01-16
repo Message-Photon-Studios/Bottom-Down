@@ -39,7 +39,7 @@ public abstract class Enemy : BehaviourTree.Tree
         stats.onDamageTaken += DamageTaken;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         stats.onDamageTaken -= DamageTaken;
     }
@@ -57,6 +57,8 @@ public abstract class Enemy : BehaviourTree.Tree
             if(Mathf.Abs(body.velocity.x) > .1f && ((body.velocity.x < 0) != (!spriteRenderer.flipX))) SwitchDirection();*/
     }
 
+    public virtual void DamagePlayer(){}
+
     #endregion
 
     #region  Collision with player
@@ -66,7 +68,7 @@ public abstract class Enemy : BehaviourTree.Tree
         {
             other.rigidbody.AddForce(Vector2.up * playerCollisionForce.y + ((Vector2)player.transform.position-stats.GetPosition()) * Vector2.right * playerCollisionForce.x);
             body.velocity = new Vector2(0, body.velocity.y);
-            other.gameObject.GetComponent<PlayerStats>().DamagePlayer((int)(stats.GetScaledDamage(playerCollisionDamage)*stats.GetDamageFactor()));
+            other.gameObject.GetComponent<PlayerStats>().DamagePlayer((int)(stats.GetScaledDamage(playerCollisionDamage)*stats.GetDamageFactor()), stats);
             other.gameObject.GetComponent<PlayerMovement>().movementRoot.SetRoot(gameObject.name + "enemyCollision", 0.35f);
         }
     }

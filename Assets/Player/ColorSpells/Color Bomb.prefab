@@ -174,13 +174,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: "Lob a blob of colors that explode on impact. \nPower: 100%"
-  spellCost: 50
+  spellCost: 40
   powerScale: 1
+  coolDown: 1.5
   destroyOnAllImpact: 1
   destroyOnEnemyHit: 0
   impactOnEnemies: 1
   impactOnNonEnemies: 1
   triggerOnlyOnce: 0
+  triggerOnlyOncePerEnemy: 1
+  attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
   lifeTime: 2
   animationTrigger: raisedSpell

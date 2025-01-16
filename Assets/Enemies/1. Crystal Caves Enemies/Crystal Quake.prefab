@@ -68,6 +68,7 @@ MonoBehaviour:
   deathTimer: 0
   lookDir: -1
   colorOrbPrefab: {fileID: 3555706799306581111, guid: e632eca802dd6974981edd7786f7e079, type: 3}
+  sleepCooldown: 5
   currentCombo: 0
   enemySounds: {fileID: 2042908631029740834, guid: a7535c43c57344b468aab40bffb77bf6, type: 3}
   spawnPower: 1
@@ -108,7 +109,6 @@ MonoBehaviour:
   projectileSpawn3: {x: 1, y: -1.4}
   projectileSpawnUpForce: 3000
   projectileForceRandomness: 0.5
-  patrollDistance: 3
   patrollIdleTime: 3
 --- !u!50 &264917189925170266
 Rigidbody2D:
@@ -123,10 +123,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 2.5
-  m_LinearDrag: 5
+  m_LinearDrag: 30
   m_AngularDrag: 0.05
-  m_GravityScale: 8
-  m_Material: {fileID: 0}
+  m_GravityScale: 40
+  m_Material: {fileID: 6200000, guid: b51b88b2aa1c7ce40a636c7c8484d4b9, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

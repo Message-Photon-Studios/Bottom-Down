@@ -47,6 +47,8 @@ public class MainMenuController : MonoBehaviour
 
     private void OnEnable()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         sylviaLoading.gameObject.SetActive(false);
         StartCoroutine(FadeOutCoroutine(true));
         //StartCoroutine(tiltCamera()); //Disabled this with the new camera
@@ -80,6 +82,8 @@ public class MainMenuController : MonoBehaviour
             TutorialMusic bgMusic = GameObject.FindObjectOfType<TutorialMusic>();
             bgMusic?.disableChildren();
         }
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         StartCoroutine(FadeOutCoroutine(false));
     }
 
@@ -205,7 +209,7 @@ public class MainMenuController : MonoBehaviour
         creditsButton.interactable = true;
         exitButton.interactable = true;
 
-        creditsButton.Select();
+        settingsButton.Select();
 
         settings.SetActive(false);
         timeSinceLastInput = Time.time;

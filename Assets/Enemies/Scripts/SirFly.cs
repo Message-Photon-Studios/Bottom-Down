@@ -12,7 +12,6 @@ public class SirFly : Enemy
 
     [SerializeField] Trigger rangeTrigger;
     [SerializeField] Trigger attackTrigger;
-    [SerializeField] float patrollDistance;
     [SerializeField] float patrollIdleTime;
     [SerializeField] GameObject attackSpawn;
     [SerializeField] Vector2 spawnOffset;
@@ -51,7 +50,7 @@ public class SirFly : Enemy
                 new AnimationBool(animator, "inRange",true),
                 new ParticlesPlay (aimTarget, true)
             }),
-            new RandomPatroll(stats, body, animator, patrollDistance, 1, patrollIdleTime, .4f, "inRange", "walk")
+            new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .4f, "inRange", "walk")
             }); 
         
 
@@ -67,8 +66,6 @@ public class SirFly : Enemy
     private void OnDrawGizmosSelected() {
         attackTrigger.DrawTrigger(stats.GetPosition());
         rangeTrigger.DrawTrigger(stats.GetPosition());
-        Handles.color = Color.yellow;
-        Handles.DrawLine(stats.GetPosition() + Vector2.left* patrollDistance, stats.GetPosition() + Vector2.right* patrollDistance);
     }
 #endif
 }

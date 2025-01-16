@@ -21,17 +21,17 @@ public class ColorSpellSpawnImpact : SpellImpact
         detonateTimer -= Time.deltaTime;
         if(detonateTimer <= 0)
         {
-            Impact(null);
+            Impact(null, transform.position);
             Destroy(gameObject);
         }
     }
     
-    public override void Impact(Collider2D other)
+    public override void Impact(Collider2D other, Vector2 ImpactPoint)
     {
         foreach (GameObject spawnPrefab in spawnPrefabs)
         {
             GameObject obj = GameObject.Instantiate(spawnPrefab, transform.position, transform.rotation) as GameObject;
-            obj.GetComponent<ColorSpell>().Initi(spell.GetColor(), spell.GetPower(), spell.GetPlayerObj(), spell.lookDir);
+            obj.GetComponent<ColorSpell>().Initi(spell.GetColor(), spell.GetPower(), spell.GetPlayerObj(), spell.lookDir, spell.GetExtraDamage());
         }
     }
 }
