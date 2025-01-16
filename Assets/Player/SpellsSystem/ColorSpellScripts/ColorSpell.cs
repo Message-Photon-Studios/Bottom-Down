@@ -298,6 +298,30 @@ public class ColorSpell : MonoBehaviour
     {
         return spellSprite;
     }
+
+    public void SetDir(int lookDir)
+    {
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.offset *= new Vector2(lookDir, 1);
+        }
+
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.flipX = lookDir == -1;
+        }
+        spriteRenderer.material = gameColor?.colorMat;
+
+        foreach (var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (child != null)
+            {
+                child.flipX = lookDir == -1;
+            }
+            child.material = gameColor?.colorMat;
+        }
+    }
 }
 /// <summary>
 /// This struct keeps track of all sprites for a bottle
