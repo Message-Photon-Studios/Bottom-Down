@@ -209,6 +209,25 @@ public class PlayerCombatSystem : MonoBehaviour
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);
     }
 
+    public void PocketSpecialAttack(ColorSlot slot)
+    {
+        GameColor color = colorInventory.UseActiveColor(slot);
+        ColorSpell spell = slot.colorSpell;
+        if (spell == null || color == null) return;
+
+        Vector3 spawnPoint = new Vector3((spellSpawnPoint.localPosition.x + spell.transform.position.x) * playerMovement.lookDir,
+                                        spell.transform.position.y + spellSpawnPoint.localPosition.y);
+        GameObject spellSpawn = GameObject.Instantiate(spell.gameObject, transform.position + spawnPoint, transform.rotation) as GameObject;
+        if (spellSpawn != null)
+        {
+            spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, cascadeDamage);
+            colorInventory.SetRandomBuff();
+            colorInventory.MixRandom(slot);
+        }
+
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
+    }
+
     #endregion
 
     /// <summary>

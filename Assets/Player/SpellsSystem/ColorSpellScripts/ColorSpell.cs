@@ -16,8 +16,9 @@ public class ColorSpell : MonoBehaviour
     /// Scales the power for this specific color spell
     /// </summary>
     [SerializeField] public float powerScale = 1;
-
     [SerializeField] public float coolDown = 1;
+    [SerializeField] public bool castWhenDamaged;
+    [SerializeField] public bool castOnSpellImpact;
 
     /// <summary>
     /// The projectile will be destroyed on impact with any object
@@ -295,6 +296,30 @@ public class ColorSpell : MonoBehaviour
     public BottleSprite GetBottleSprite()
     {
         return spellSprite;
+    }
+
+    public void SetDir(int lookDir)
+    {
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.offset *= new Vector2(lookDir, 1);
+        }
+
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.flipX = lookDir == -1;
+        }
+        spriteRenderer.material = gameColor?.colorMat;
+
+        foreach (var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (child != null)
+            {
+                child.flipX = lookDir == -1;
+            }
+            child.material = gameColor?.colorMat;
+        }
     }
 }
 /// <summary>
