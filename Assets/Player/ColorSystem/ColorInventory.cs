@@ -113,6 +113,12 @@ public class ColorInventory : MonoBehaviour
         removeColorAction.action.performed += divideColorHandler;
         GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
         colorLib = GameManager.instance.GetComponent<ColorLibrary>();
+
+        foreach (ColorSlot colorSlot in colorSlots)
+        {
+            if(colorSlot.gameColor == null)
+                colorSlot.SetGameColor(colorLib.GetRandomColor());
+        }
     }
 
     void OnDisable()
