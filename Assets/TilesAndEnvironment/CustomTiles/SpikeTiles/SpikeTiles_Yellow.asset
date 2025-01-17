@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpikeTiles_Yellow
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -1108493664, guid: cfe6347f1c1ff724c876b9d92b11ab67, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 2642572097189858369, guid: 4ef98b4afbb63fe44bd4c56d1516f9f5, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 14
