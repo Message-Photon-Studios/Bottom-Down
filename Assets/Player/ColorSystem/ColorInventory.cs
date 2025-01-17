@@ -107,6 +107,7 @@ public class ColorInventory : MonoBehaviour
         changeRightActions.action.performed += (dir) => {RotateActive((int)dir.ReadValue<float>()); };
         onColorUpdated += updateBrushColor;
         onSlotChanged += slotChangedBrush;
+        ColorSpellImpact.onSpellImpact += SpellImactTrigger;
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
@@ -122,6 +123,7 @@ public class ColorInventory : MonoBehaviour
         
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
+        ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
         GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
     }
 
@@ -162,17 +164,22 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public GameColor UseActiveColor()
     {
-        if(ActiveSlot().charge > 0)
+        return UseActiveColor(ActiveSlot());
+    }
+
+    public GameColor UseActiveColor(ColorSlot slot)
+    {
+        if(slot.charge > 0)
         {   
-            GameColor ret = ActiveSlot().gameColor;
+            GameColor ret = slot.gameColor;
 
             if (Random.Range(0, 100) > blockDrainColor)
             {
-                int charge = ActiveSlot().charge - 1;
-                if (ActiveSlot().gameColor.name == "Rainbow")
+                int charge = slot.charge - 1;
+                if (slot.gameColor.name == "Rainbow")
                     charge -= rainbowExtraDrain;
                 if(charge < 0) charge = 0;
-                ActiveSlot().SetCharge(charge);
+                slot.SetCharge(charge);
 
                 onColorUpdated?.Invoke();
             }
@@ -554,10 +561,12 @@ public class ColorInventory : MonoBehaviour
     /// <param name="amount"></param>
     public void AddColor(GameColor color, int amount)
     {
+        AddColor(color, amount, null);
+    }
+    public void AddColor(GameColor color, int amount, ColorSlot fillSlot)
+    {
         if(color == null) return;
-        ColorSlot fillSlot = null;
-        
-        fillSlot = ActiveSlot();
+        if(fillSlot == null) fillSlot = ActiveSlot();
 
         /*
         if(ActiveSlot().IsEmpty() || ActiveSlot().gameColor == color)
@@ -641,6 +650,11 @@ public class ColorInventory : MonoBehaviour
     public void MixRandom()
     {
         if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1);
+    }
+
+    public void MixRandom(ColorSlot slot)
+    {
+        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1, slot);
     }
 
     #endregion
@@ -844,13 +858,34 @@ public class ColorInventory : MonoBehaviour
 
     #endregion
 
-    #region When damaged
+    #region Unity Actions
 
     public void WhenDamaged(PlayerStats player, EnemyStats enemy)
     {
         //Add events from certain items or spells to activate when damaged
-
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castWhenDamaged)
+            {
+                GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
+            }
+        }
         EnableRotation();
+    }
+
+    public void SpellImactTrigger()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnSpellImpact)
+            {
+                GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
+            }
+        }
     }
 
     #endregion

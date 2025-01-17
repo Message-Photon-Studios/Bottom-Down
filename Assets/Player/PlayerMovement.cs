@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 /// <summary>
 /// This class controls the players movement and keeps track of player states such as it being rooted, falling or in the air. 
@@ -97,8 +98,19 @@ public class PlayerMovement : MonoBehaviour
     Action<InputAction.CallbackContext> dropDown;
 
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
+
+    private Queue<Vector2> lastGroundPosition = new Queue<Vector2>();
+    private Vector2 previousFramePosition = Vector2.zero;
+
+    private CameraFocus cameraFocus;
+    private CameraMovement mainCamera;
+
     #region Setup
     private void OnEnable() {
+        for (int i = 0; i < 10; i++) // Determines how large the position save queue is
+        {
+            lastGroundPosition.Enqueue(transform.position);
+        }
         originalFocusPointPos = new Vector3(focusPoint.localPosition.x, focusPoint.localPosition.y, focusPoint.localPosition.z);
         movementRoot.SetTotalRoot("loading", true);
         checkAction = (InputAction.CallbackContext ctx) => {
@@ -131,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        cameraFocus = GameObject.Find("CameraFocus").GetComponent<CameraFocus>();
+        mainCamera = Camera.main.gameObject.GetComponent<CameraMovement>();
         focusPointNormalY = focusPoint.localPosition.y;
     }
 
@@ -234,8 +248,14 @@ public class PlayerMovement : MonoBehaviour
     #region Collision checks
     public bool IsGrounded()
     {  
-        bool ret =  Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround) ||
-                    Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        
+        bool ret = false;
+        if(hitR && hitL) ret = true;
+        else if(hitL && hitL.normal.y >= .9f) ret = true;
+        else if(hitR && hitR.normal.y >= .9f) ret = true;
+
         playerAnimator.SetBool("grounded", ret);
         return ret;
     }
@@ -272,14 +292,19 @@ public class PlayerMovement : MonoBehaviour
     {
         if(walkDir != lookDir && walkDir != 0) return false;
 
-        return  (!Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround) && 
+        RaycastHit2D startHitR =  Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D startHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D continueHitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D continueHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
+
+        return  ((!startHitR || startHitR.normal.y <0.9f) && 
                 Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/4, Vector2.right, .5f, GameManager.instance.maskLibrary.onlyGround)) ||
-                (!Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround) &&
+                ((!startHitL || startHitL.normal.y < 0.9f) &&
                 Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/4, Vector2.left, .5f, GameManager.instance.maskLibrary.onlyGround)) ||
                 ((wasClimbing) && (
-                    (!Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround()) && 
+                    ((!continueHitR || continueHitR.normal.y < 0.9f)  && 
                     Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2+playerCollider.offset, Vector2.right, .7f, GameManager.instance.maskLibrary.onlyGround)) ||
-                    (!Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround()) &&
+                    ((!continueHitL || continueHitL.normal.y < 0.9f) &&
                     Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2+playerCollider.offset, Vector2.left, .7f, GameManager.instance.maskLibrary.onlyGround))  
                 ));
     }
@@ -319,6 +344,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrounded())
         {
+            if((Vector2)transform.position != previousFramePosition)
+            {
+                previousFramePosition = transform.position;
+                lastGroundPosition.Enqueue(transform.position);
+                lastGroundPosition.Dequeue();
+            }
+
             if(!isCheckingY)
             {
                 if(walkDir != 0 && focusPoint.localPosition.x < aimFocusMaxX && focusPoint.localPosition.x > -aimFocusMaxX)
@@ -544,6 +576,22 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetTrigger("turn");
         GetComponent<PlayerCombatSystem>().FlipDefaultAttack();
     }
+
+    #region Teleportation
+
+    public void Teleport(Vector2 toPosition)
+    {
+        transform.position = toPosition;
+        cameraFocus.Teleport(toPosition);
+        mainCamera.TeleportCamarera(toPosition);
+    }
+
+    public void ReturnToLastGround()
+    {
+        Teleport(lastGroundPosition.Peek());
+    }
+
+    #endregion
 
 }
 
