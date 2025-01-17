@@ -179,11 +179,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: 'Fires a wisp that will target a random enemy nearby. This spell will
-    also fire when you hit with another spell
+    also automatically fire when you hit an enemy with another spell
 
-    Power: 100%'
+    Power:
+    30%'
   spellCost: 50
-  powerScale: 0.3
+  powerScale: 0.2
   coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 1
@@ -195,7 +196,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 0
   attackAgainTimer: -1
-  requirePlayerLOSonSpawn: 1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 4
   animationTrigger: raisedSpell
   onImpact:
@@ -279,7 +280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 275500846492424100, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 275500846492424100, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
       propertyPath: m_SortingOrder
@@ -287,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 275500846492424100, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
       propertyPath: m_SortingLayerID
-      value: 0
+      value: -615436619
       objectReference: {fileID: 0}
     - target: {fileID: 275500846492424100, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
       propertyPath: m_Materials.Array.data[0]

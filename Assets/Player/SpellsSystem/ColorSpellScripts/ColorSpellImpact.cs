@@ -12,8 +12,6 @@ public class ColorSpellImpact : SpellImpact
     /// </summary>
     [SerializeField] protected bool forcePerspectivePlayer;
     [SerializeField] protected bool triggerImpactSpells;
-
-
     [SerializeField] public ParticleSystem onImpactParticles;
 
     static public UnityAction onSpellImpact;

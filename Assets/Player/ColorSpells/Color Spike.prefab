@@ -189,7 +189,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
-  requirePlayerLOSonSpawn: 1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 60
   animationTrigger: raisedSpell
   onImpact:

@@ -16,9 +16,7 @@ public class ColorSpell : MonoBehaviour
     /// Scales the power for this specific color spell
     /// </summary>
     [SerializeField] public float powerScale = 1;
-
     [SerializeField] public float coolDown = 1;
-
     [SerializeField] public bool castWhenDamaged;
     [SerializeField] public bool castOnSpellImpact;
 
