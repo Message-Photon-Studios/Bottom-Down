@@ -93,7 +93,7 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     color: {r: 0, g: 0.54226303, b: 1, a: 1}
   preventJump:
-    radius: 2.5
+    radius: 3
     direction: 0
     width: 360
     offset: {x: 0, y: 0}
