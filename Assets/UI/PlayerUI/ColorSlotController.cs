@@ -55,6 +55,7 @@ public class ColorSlotController : MonoBehaviour
     [SerializeField] public Sprite[] FullBottleEffectSprites;
 
     private List<Slider> spellsOnCoolDown = new List<Slider>();
+    private List<(ColorSlot, Image)> spellsWithchargesOnCD = new List<(ColorSlot, Image)>();
 
     [SerializeField] public Sprite[] ChargesSprites;
     [SerializeField] public Sprite[] ChargesMaskSprites;
@@ -105,10 +106,14 @@ public class ColorSlotController : MonoBehaviour
             Image capEffect = slotList[i].GetChild(0).GetChild(2).GetComponent<Image>();
             capEffect.sprite = FullBottleEffectSprites[0];
             capEffect.gameObject.SetActive(false);
-            
+
+            Image chargeImage = slotList[i].GetChild(2).GetChild(0).GetComponent<Image>();
+            chargeImage.material = capMaterials[i];
+            chargeImage.material.SetColor("_Color", slot.gameColor != null ? slot.gameColor.colorMat.color : colorInventory.defaultColor.GetColor("_Color"));
+
             activeCoroutines.Add(null);
-            BottleChanged(i);
         }
+        UpdateAllSprites();
     }
 
     //When turning off UI, detatch UnityActions from local functions. 
@@ -116,9 +121,11 @@ public class ColorSlotController : MonoBehaviour
         colorInventory.onColorUpdated -= ColorUpdate;
         colorInventory.onSlotChanged -= ActiveColorChanged;
         colorInventory.onColorSpellChanged -= BottleChanged;
+        colorInventory.onCoolDownSet -= StartCoolDownSlider;
+        colorInventory.onSpellChargeChange -= UpdateAllSprites;
         uiController.UILoaded -= UpdateAllSprites;
         uiController.ColorSlotAmountChanged -= UpdateAllSprites;
-        colorInventory.onCoolDownSet -= StartCoolDownSlider;
+        
     }
     #endregion
     #region SlotMovement
@@ -188,11 +195,13 @@ public class ColorSlotController : MonoBehaviour
     private void ColorUpdate(int index) {
         Image frameImage = slotList[index].GetChild(0).GetChild(0).GetComponent<Image>();
         Image capImage = slotList[index].GetChild(0).GetChild(1).GetComponent<Image>();
+        Image chargeImage = slotList[index].GetChild(2).GetChild(0).GetComponent<Image>();
         ColorSlot slot = colorInventory.colorSlots[index];
         
         frameImage.material.SetColor("_Color", slot.gameColor != null ? slot.gameColor.plainColor : colorInventory.defaultColor.GetColor("_Color")); 
         capImage.material.SetColor("_Color", slot.gameColor != null ? slot.gameColor.colorMat.GetColor("_Color") : colorInventory.defaultColor.GetColor("_Color"));
         capImage.material.SetColor("_PlainColor", slot.gameColor != null ? slot.gameColor.plainColor : colorInventory.defaultColor.GetColor("_Color"));
+        chargeImage.material.SetColor("_Color", slot.gameColor != null ? slot.gameColor.colorMat.GetColor("_Color") : colorInventory.defaultColor.GetColor("_Color"));
 
         if (capImage.material.GetFloat("_Alpha") == 0f && slot.charge > 0)
             StartCoroutine(setActivateCap(capImage, slot, true));
@@ -289,13 +298,19 @@ public class ColorSlotController : MonoBehaviour
 
         slotList[index].GetComponentInChildren<Slider>().GetComponentInChildren<Image>().sprite = bottle.sprite;
 
-        int charges = colorInventory.colorSlots[index].storedSpellCDs.Count;
-        Image chargesSprite = slotList[index].GetChild(2).GetComponent<Image>();
-        if(charges > 1) {
-            chargesSprite.sprite = ChargesSprites[charges-1];
-            chargesSprite.gameObject.SetActive(true);
+        int chargesAmount = colorInventory.colorSlots[index].storedSpellCDs.Count;
+        Image charges = slotList[index].GetChild(2).GetComponent<Image>();
+        Image chargesMask = slotList[index].GetChild(2).GetChild(0).GetComponent<Image>();
+        if(chargesAmount > 1) {
+            charges.sprite = ChargesSprites[chargesAmount-1];
+            charges.gameObject.SetActive(true);
+            chargesMask.sprite = ChargesMaskSprites[chargesAmount-1];
+            chargesMask.gameObject.SetActive(true);
+            spellsWithchargesOnCD.Add((colorSlots[index], slotList[index].GetChild(2).GetChild(0).GetComponent<Image>()));
+
         } else {
-            chargesSprite.gameObject.SetActive(false);
+            charges.gameObject.SetActive(false);
+            chargesMask.gameObject.SetActive(false);
         }
 
         foreach (Image image in slotList[index].GetComponentsInChildren<Image>())
@@ -318,6 +333,7 @@ public class ColorSlotController : MonoBehaviour
     /// Updates all bottles, their caps and colors.
     /// </summary>
     private void UpdateAllSprites() {
+
         for (int i = 0; i < slotList.Count; i++){
             ColorUpdate(i);
             BottleChanged(i);
@@ -327,7 +343,6 @@ public class ColorSlotController : MonoBehaviour
     /// <summary>
     /// Add the CoolDown indicator to a list when a spell is used. 
     /// </summary>
-    /// <param name="time"></param>
     private void StartCoolDownSlider(List<float> spellCDList, float spellMaxCD)
     {
         if (colorInventory.activeSlot >= slotList.Count) return;
@@ -341,13 +356,30 @@ public class ColorSlotController : MonoBehaviour
             if (cd < min) {
                 min = cd;
             }
-        }
+        } 
+        int activeSlot = colorInventory.activeSlot;
+        spellsWithchargesOnCD.Add((colorSlots[activeSlot], slotList[activeSlot].GetChild(2).GetChild(0).GetComponent<Image>()));
         if(min < Time.fixedTime) {
             return;
         } else {
             slide.value = min-Time.fixedTime;
             spellsOnCoolDown.Add(slide);
         }   
+    }
+
+    /// <summary>
+    /// Counts how many charges are on cooldown.
+    /// </summary>
+    /// <param name="spellCDList">spell cooldown list to count trough.</param>
+    /// <returns> Amount of charges on cooldown </returns>
+    private int ChargesOnCD(List<float> spellCDList) {
+        int count = 0;
+        foreach(float cd in spellCDList) {
+            if(cd > Time.fixedTime) {
+                count ++;
+            }
+        }
+        return count;
     }
     
     private void Update()
@@ -389,8 +421,22 @@ public class ColorSlotController : MonoBehaviour
                 }
             }
         }
-        
 
+        //Updates charges display on each spell currently active
+        if(spellsWithchargesOnCD.Count > 0){
+            foreach((ColorSlot slot, Image mask) in spellsWithchargesOnCD.ToList()) {
+                int count = ChargesOnCD(slot.storedSpellCDs);
+                if(count == slot.storedSpellCDs.Count) {
+                    mask.gameObject.SetActive(false);
+                } else {
+                    mask.sprite = ChargesMaskSprites[slot.storedSpellCDs.Count -1 - count];
+                    mask.gameObject.SetActive(true);
+                    if(count == 0) {
+                        spellsWithchargesOnCD.Remove((slot, mask));
+                    }
+                }
+            }
+        }
     }
 
     #endregion
