@@ -197,6 +197,9 @@ MonoBehaviour:
   coolDown: 2
   castWhenDamaged: 1
   castOnSpellImpact: 0
+  storedSpells: 2
+  maxSpawn: 0
+  spawnKey: 
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
   destroyOnCollission: 0

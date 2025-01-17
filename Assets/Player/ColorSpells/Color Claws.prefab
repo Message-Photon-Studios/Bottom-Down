@@ -116,7 +116,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 762165020, guid: 668f574b8938e32409217139fc71f6fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -165,9 +165,15 @@ MonoBehaviour:
     the cat to lurk for enemies. \nPower: 140%"
   spellCost: 40
   powerScale: 1.4
-  coolDown: 2
+  coolDown: 3
+  castWhenDamaged: 0
+  castOnSpellImpact: 0
+  storedSpells: 2
+  maxSpawn: 0
+  spawnKey: 
   destroyOnAllImpact: 1
   destroyOnEnemyHit: 0
+  destroyOnCollission: 0
   impactOnEnemies: 0
   impactOnNonEnemies: 1
   triggerOnlyOnce: 1
@@ -231,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePerspectivePlayer: 0
+  triggerImpactSpells: 0
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!114 &2146103257369105666
 MonoBehaviour:
