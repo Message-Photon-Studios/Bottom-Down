@@ -135,6 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 4909109159191071892}
   sparkles: {fileID: 6476858652691662770}
+  collectDistance: 0.5
+  acceleration: 5
+  trigger: {fileID: 3520616632148361668}
   value: 1
 --- !u!58 &1423568556697246203
 CircleCollider2D:
@@ -188,7 +191,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 3
 --- !u!1 &8065316344728387353
 GameObject:
   m_ObjectHideFlags: 0
