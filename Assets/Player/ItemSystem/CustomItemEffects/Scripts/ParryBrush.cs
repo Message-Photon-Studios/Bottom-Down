@@ -24,6 +24,7 @@ public class ParryBrush : CustomItem
 
     public override void Effect(PlayerStats player, EnemyStats hit)
     {
+        if(hit == null) return;
         hit.DamageEnemy(damage + player.itemVaribles[itemName] * damagePerStack);
     }
 

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6236179821534792881}
   - component: {fileID: 7802489595120172075}
   - component: {fileID: 7070412891478941447}
+  - component: {fileID: 7179502063779312373}
   m_Layer: 8
   m_Name: Color Spike
   m_TagString: Spell
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePerspectivePlayer: 1
+  triggerImpactSpells: 1
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!212 &4874330200776334801
 SpriteRenderer:
@@ -147,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -1114698942, guid: 7409f3211c789bc4090ea82d283c8781, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -177,7 +179,12 @@ MonoBehaviour:
     Power: 120%'
   spellCost: 40
   powerScale: 0.8
-  coolDown: 0.1
+  coolDown: 5
+  castWhenDamaged: 0
+  castOnSpellImpact: 0
+  storedSpells: 2
+  maxSpawn: 13
+  spawnKey: ColorSpike
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
   destroyOnCollission: 0
@@ -279,6 +286,19 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 3321278458073070463, guid: 8363ff521426d8b4f8455d9f8540df88, type: 3}
   - {fileID: 3321278458073070463, guid: d74fe4ad018c4fe449f5748003304ece, type: 3}
+--- !u!114 &7179502063779312373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf290b486d4794640ad769b34f368a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnKey: ColorSpike
 --- !u!1 &7917038621792183734
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +392,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -1114698942, guid: 7409f3211c789bc4090ea82d283c8781, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

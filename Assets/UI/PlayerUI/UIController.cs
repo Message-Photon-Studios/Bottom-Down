@@ -29,12 +29,14 @@ public class UIController : MonoBehaviour
 
     //Containers for the various menus.
     [SerializeField] GameObject pauseMenuContainer;
+    [SerializeField] GameObject settingsContainer;
     [SerializeField] GameObject mapContainer;
     [SerializeField] GameObject inventoryContainer;
 
     //Bools for tracking which menu is open.
     private bool anyMenuOpen = false;
     private bool pauseMenuOpen = false;
+    private bool settingsOpen = false;
     private bool mapOpen = false;
     private bool inventoryOpen = false;
 
@@ -112,6 +114,28 @@ public class UIController : MonoBehaviour
         mapContainer.SetActive(mapOpen);
         inventoryOpen = false;
         inventoryContainer.SetActive(inventoryOpen);
+        settingsOpen = false;
+        settingsContainer.SetActive(settingsOpen);
+    }
+
+    public void OpenSettings() {
+        GameManager.instance.tipsManager.CloseTips();
+        settingsOpen = !settingsOpen;
+        if(settingsOpen) {
+            GameManager.instance.Pause();
+        } else {
+            GameManager.instance.Resume();
+        }
+        anyMenuOpen = settingsOpen;
+        settingsContainer.SetActive(settingsOpen);
+        lightbox.SetActive(settingsOpen);
+        playerMovement.movementRoot.SetTotalRoot("menuOpen", settingsOpen);
+        pauseMenuOpen = false;
+        pauseMenuContainer.SetActive(pauseMenuOpen);
+        mapOpen = false;
+        mapContainer.SetActive(mapOpen);
+        inventoryOpen = false;
+        inventoryContainer.SetActive(inventoryOpen);
     }
 
     private void CloseTips(InputAction.CallbackContext ctx){CloseTips();}
@@ -140,6 +164,8 @@ public class UIController : MonoBehaviour
         pauseMenuContainer.SetActive(pauseMenuOpen);
         inventoryOpen = false;
         inventoryContainer.SetActive(inventoryOpen);
+        settingsOpen = false;
+        settingsContainer.SetActive(settingsOpen);
     }
 
     private void OpenInventory(InputAction.CallbackContext ctx) {OpenInventory();}
@@ -162,6 +188,8 @@ public class UIController : MonoBehaviour
         pauseMenuContainer.SetActive(pauseMenuOpen);
         mapOpen = false;
         mapContainer.SetActive(mapOpen);
+        settingsOpen = false;
+        settingsContainer.SetActive(settingsOpen);
     }
 
     public void Inspired(Sprite spell, String text) {
@@ -184,6 +212,7 @@ public class UIController : MonoBehaviour
         sylviaLoading.gameObject.SetActive(false);
         loadingText.gameObject.SetActive(false);
         loadScreenFinished = true;
+        yield return new WaitForEndOfFrame();
         UILoaded?.Invoke();
     }
 

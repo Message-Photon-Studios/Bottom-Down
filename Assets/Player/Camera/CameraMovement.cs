@@ -119,4 +119,9 @@ public class CameraMovement : MonoBehaviour
             }
         }
     }
+
+    public void TeleportCamarera(Vector2 toPosition)
+    {
+        transform.position = new Vector3(toPosition.x, toPosition.y, transform.position.z);
+    }
 }

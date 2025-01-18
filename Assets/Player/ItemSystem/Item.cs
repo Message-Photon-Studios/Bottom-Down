@@ -187,6 +187,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new PlayerStatsBools());
         }
+        if (GUILayout.Button("Add Change Stored Spell Bonus"))
+        {
+            item.effects.Add(new ChangeStoredSpellBonus());
+        }
     }
 }
 

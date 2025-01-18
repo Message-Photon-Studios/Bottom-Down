@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7610363122423548218}
   - component: {fileID: 6236179821534792881}
   - component: {fileID: 7802489595120172075}
+  - component: {fileID: 704859975680083243}
   m_Layer: 8
   m_Name: Down Left Color Spike
   m_TagString: Spell
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePerspectivePlayer: 1
+  triggerImpactSpells: 1
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!212 &4874330200776334801
 SpriteRenderer:
@@ -146,7 +148,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -1114698942, guid: 7409f3211c789bc4090ea82d283c8781, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -177,8 +179,11 @@ MonoBehaviour:
   spellCost: 40
   powerScale: 0
   coolDown: 0.1
+  maxSpawn: 0
+  spawnKey: 
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
+  destroyOnCollission: 0
   impactOnEnemies: 1
   impactOnNonEnemies: 0
   triggerOnlyOnce: 0
@@ -259,6 +264,19 @@ MonoBehaviour:
   detonateTimer: 70
   spawnPrefabs:
   - {fileID: 3321278458073070463, guid: eaca80dc5c5c43b4c9b7cfd5aba6ea71, type: 3}
+--- !u!114 &704859975680083243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf290b486d4794640ad769b34f368a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnKey: ColorSpike
 --- !u!1 &7917038621792183734
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +370,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -1114698942, guid: 7409f3211c789bc4090ea82d283c8781, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
