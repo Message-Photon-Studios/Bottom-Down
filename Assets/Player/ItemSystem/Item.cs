@@ -195,6 +195,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ColorMaxBonus());
         }
+        if (GUILayout.Button("Add Color Max Damage Bonus"))
+        {
+            item.effects.Add(new ColorMaxDamageBonus());
+        }
     }
 }
 

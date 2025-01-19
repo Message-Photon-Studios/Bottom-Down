@@ -14,6 +14,7 @@ public class ColorInventory : MonoBehaviour
     int startColorSlots; //The number of starting color slots that the player has
     [SerializeField] float colorMaxBuff;
     private float colorMaxBonus = 0;
+    private int colorMaxDamageBonus = 0;
 
     /// <summary>
     /// The existing color slots that the player have
@@ -437,6 +438,24 @@ public class ColorInventory : MonoBehaviour
     public void AddColorMaxBuff(float add)
     {
         colorMaxBonus += add;
+    }
+
+    public void AddColorMaxDamageBuff(int add)
+    {
+        colorMaxDamageBonus += add;
+    }
+
+    public int GetColorMaxDamageBuff()
+    {
+        int damageBonus = 0;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            if (slot.charge == slot.maxCapacity)
+            {
+                damageBonus += colorMaxDamageBonus;
+            }
+        }
+        return damageBonus;
     }
 
     /// <summary>
