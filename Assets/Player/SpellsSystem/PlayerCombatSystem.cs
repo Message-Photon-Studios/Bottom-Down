@@ -189,7 +189,7 @@ public class PlayerCombatSystem : MonoBehaviour
     /// </summary>
     private void SpecialAttack()
     {
-        GameColor color = colorInventory.UseActiveColor();
+        GameColor color = colorInventory.CheckActveColor();
         colorInventory.EnableRotation();
 
         if(currentSpell == null || color == null) return;
@@ -205,13 +205,14 @@ public class PlayerCombatSystem : MonoBehaviour
             colorInventory.MixRandom();
             colorInventory.AutoRotate();
         }
-            
+        colorInventory.UseActiveColor();
+
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);
     }
 
     public void PocketSpecialAttack(ColorSlot slot)
     {
-        GameColor color = colorInventory.UseActiveColor(slot);
+        GameColor color = colorInventory.CheckActveColor(slot);
         ColorSpell spell = slot.colorSpell;
         if (spell == null || color == null) return;
 
@@ -224,6 +225,7 @@ public class PlayerCombatSystem : MonoBehaviour
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom(slot);
         }
+        colorInventory.UseActiveColor(slot);
 
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
     }
