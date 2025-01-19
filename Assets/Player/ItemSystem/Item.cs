@@ -191,6 +191,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ChangeStoredSpellBonus());
         }
+        if (GUILayout.Button("Add Color Max Bonus"))
+        {
+            item.effects.Add(new ColorMaxBonus());
+        }
     }
 }
 
