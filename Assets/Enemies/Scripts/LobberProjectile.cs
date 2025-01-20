@@ -25,7 +25,7 @@ public class LobberProjectile : Enemy
 
             new Sequence(new List<Node>{
                 new CheckBool("startStop", true),
-                new Wait(0.1f),
+                new Wait(0.07f),
                 new EnemySetVelocity(GetComponent<Rigidbody2D>(), 0),
                 new SetParentVariable("startStop", false, 2)
             }),

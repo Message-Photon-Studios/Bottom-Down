@@ -93,7 +93,7 @@ MonoBehaviour:
     offset: {x: 0, y: 0}
     color: {r: 1, g: 0.5513562, b: 0, a: 1}
   projectilePrefab: {fileID: 8094419970937011932, guid: 4343d3f8b16f8564e9601d251e8dabc3, type: 3}
-  shootTimer: 3
+  shootTimer: 0.1
   projectileSpawn: {x: 0, y: -0.52}
   projectileSpawnUpForce: 2000
   projectileForceRandomness: 0.1
