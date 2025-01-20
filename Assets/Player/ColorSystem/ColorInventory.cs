@@ -32,6 +32,7 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] int rainbowExtraDrain;
     [SerializeField] float minCD = 0.3f;
     [SerializeField] int maxStoredSpells = 5;
+    [SerializeField] float routedSheildCost = 0.5f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
     public Dictionary<string, int> spellsSpawned = new Dictionary<string, int>();
     SpellPickup pickUpSpell = null;
@@ -47,12 +48,14 @@ public class ColorInventory : MonoBehaviour
     public bool dontMixColor = false;
     public bool autoRotate = false;
     public bool chaosEnabled = false;
+    public bool routedSheild = false;
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
     private int lastDir = 0;
     private float colorMaxBonus = 0;
     private int colorMaxDamageBonus = 0;
+    
 
 
     #region Actions for UI
@@ -903,6 +906,21 @@ public class ColorInventory : MonoBehaviour
     public bool CheckIfActiveColorMatches(GameColor color)
     {
         return color == ActiveSlot().gameColor;
+    }
+
+    public bool CheckRoutedSheild(GameColor color)
+    {
+        if (!routedSheild) return false;
+        if (color == null) return false;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            if (slot.gameColor == color && slot.charge == slot.maxCapacity)
+            {
+                AddColor(color, (int) (slot.charge * -routedSheildCost), slot);
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion

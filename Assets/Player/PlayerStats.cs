@@ -137,14 +137,22 @@ public class PlayerStats : MonoBehaviour
         {
             GameObject aura = Instantiate(blockAura, transform);
             Destroy(aura, 1);
-        } else
+        }
+        else if (enemy != null && colorInventory.CheckRoutedSheild(enemy.GetColor()))
         {
-            if(shield >= damage)
+            //TODO add proper block Sheild
+            GameObject aura = Instantiate(blockAura, transform);
+            Destroy(aura, 1);
+        }
+        else
+        {
+            if (shield >= damage)
             {
                 shield -= damage;
                 damage = 0;
                 onShieldChanged?.Invoke(shield);
-            } else if(shield > 0 && damage > shield)
+            }
+            else if (shield > 0 && damage > shield)
             {
                 damage -= shield;
                 shield = 0;
