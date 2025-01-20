@@ -183,9 +183,12 @@ MonoBehaviour:
     Power: 120%'
   spellCost: 60
   powerScale: 1.2
-  coolDown: 5
+  coolDown: 4
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  storedSpells: 1
+  maxSpawn: 0
+  spawnKey: 
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0
   destroyOnCollission: 0

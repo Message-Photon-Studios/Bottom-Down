@@ -71,6 +71,7 @@ public class PlayerStats : MonoBehaviour
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
     private float adaptiveArmourBonus = 0f;
+    private float defaultArmour = 0f;
     private float invincibilityBonus = 0f;
     public void Setup(LevelManager levelManager)
     {
@@ -300,7 +301,7 @@ public class PlayerStats : MonoBehaviour
 
     public float GetColorArmour(GameColor color)
     {
-        float armour = 0f;
+        float armour = defaultArmour;
         if (colorArmour.ContainsKey(color)) armour += colorArmour[color];
         if (color != null && colorInventory.CheckIfActiveColorMatches(color)) armour += adaptiveArmourBonus;
         if (armour > .9f)
@@ -324,6 +325,11 @@ public class PlayerStats : MonoBehaviour
     public void AddAdaptiveArmour(float addArmour)
     {
         adaptiveArmourBonus += addArmour;
+    }
+
+    public void AddDefaultArmour(float addArmour)
+    {
+        defaultArmour += addArmour;
     }
 
     public void AddInvincibilityBonus(float time)
