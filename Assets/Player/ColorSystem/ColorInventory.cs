@@ -916,7 +916,7 @@ public class ColorInventory : MonoBehaviour
         {
             if (slot.gameColor == color && slot.charge == slot.maxCapacity)
             {
-                AddColor(color, (int) (slot.charge * -routedSheildCost), slot);
+                if (Random.Range(0, 100) > blockDrainColor) AddColor(color, (int) (slot.charge * -routedSheildCost), slot);
                 return true;
             }
         }
