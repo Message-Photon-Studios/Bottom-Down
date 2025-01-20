@@ -199,6 +199,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ColorMaxDamageBonus());
         }
+        if (GUILayout.Button("Add Adaptive Color Armour"))
+        {
+            item.effects.Add(new AdaptiveColorArmour());
+        }
     }
 }
 

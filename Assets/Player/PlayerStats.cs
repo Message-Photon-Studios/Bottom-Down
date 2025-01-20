@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] PlayerMovement movement;
     [SerializeField] GameObject blockAura;
+    private ColorInventory colorInventory;
     int maxHealth;
     float invincibilityTimer = 0;
     public int chanceToBlock = 0;
@@ -69,6 +70,7 @@ public class PlayerStats : MonoBehaviour
     private bool isDeathExecuted;
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
+    private float adaptiveArmourBonus = 0;
     public void Setup(LevelManager levelManager)
     {
         this.levelManager = levelManager;
@@ -83,6 +85,7 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
         colorArmour = new Dictionary<GameColor, float>();
         itemVaribles = new Dictionary<string, int>();
+        colorInventory = GetComponent<ColorInventory>();
     }
     void Update()
     {
@@ -134,8 +137,6 @@ public class PlayerStats : MonoBehaviour
         {
             GameObject aura = Instantiate(blockAura, transform);
             Destroy(aura, 1);
-            Debug.Log("Damage blocked");
-            //return;
         } else
         {
             if(shield >= damage)
@@ -282,20 +283,16 @@ public class PlayerStats : MonoBehaviour
         return invincibilityTimer > 0;
     }
 
-    public float GetColorArmour (GameColor color)
+    public float GetColorArmour(GameColor color)
     {
-        if(colorArmour == null) return 0f;
-        if(colorArmour.ContainsKey(color))
-        {
-            float armour = colorArmour[color];
-            if(armour > .9f)
-                return .9f;
-            else
-                return
-                    armour;
-        }
+        float armour = 0;
+        if (colorArmour.ContainsKey(color)) armour += colorArmour[color];
+        if (color != null && colorInventory.CheckIfActiveColorMatches(color)) armour += adaptiveArmourBonus;
+        if (armour > .9f)
+            return .9f;
         else
-            return 0f;
+            return
+                armour;
     }
 
     public void AddColorArmour(GameColor color, float addArmour)
@@ -304,5 +301,10 @@ public class PlayerStats : MonoBehaviour
             colorArmour[color] += addArmour;
         else
             colorArmour.Add(color, addArmour);
+    }
+
+    public void AddAdaptiveArmour(float addArmour)
+    {
+        adaptiveArmourBonus += addArmour;
     }
 }

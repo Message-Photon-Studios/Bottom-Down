@@ -13,8 +13,6 @@ public class ColorInventory : MonoBehaviour
 {
     int startColorSlots; //The number of starting color slots that the player has
     [SerializeField] float colorMaxBuff;
-    private float colorMaxBonus = 0;
-    private int colorMaxDamageBonus = 0;
 
     /// <summary>
     /// The existing color slots that the player have
@@ -53,10 +51,12 @@ public class ColorInventory : MonoBehaviour
     private float rngMin = 0;
     private float rngBuff = 0;
     private int lastDir = 0;
-    
+    private float colorMaxBonus = 0;
+    private int colorMaxDamageBonus = 0;
+
 
     #region Actions for UI
-    
+
     /// <summary>
     /// Called when the active color slot is changed
     /// </summary>
@@ -894,6 +894,15 @@ public class ColorInventory : MonoBehaviour
             RemoveColorSlot();
         onColorSlotsChanged?.Invoke();
         onColorUpdated?.Invoke();
+    }
+
+    #endregion
+
+    #region defense
+
+    public bool CheckIfActiveColorMatches(GameColor color)
+    {
+        return color == ActiveSlot().gameColor;
     }
 
     #endregion
