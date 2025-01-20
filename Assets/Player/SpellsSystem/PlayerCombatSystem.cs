@@ -30,6 +30,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private int cascadeDamage;
     public int cascadeDamageIncrease;
     public int maxCascadeDamage;
+    private int bonusDamage;
     private bool attacking;
     private Rigidbody2D body;
 
@@ -232,7 +233,12 @@ public class PlayerCombatSystem : MonoBehaviour
 
     public int GetExtraDamage()
     {
-        return cascadeDamage + colorInventory.GetColorMaxDamageBuff();
+        return cascadeDamage + colorInventory.GetColorMaxDamageBuff() + bonusDamage;
+    }
+
+    public void AddBonusDamage(int bonus)
+    {
+        bonusDamage += bonus;
     }
 
     #endregion

@@ -207,6 +207,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new AddInvincibilityBonus());
         }
+        if (GUILayout.Button("Add Spell Bonus Damage"))
+        {
+            item.effects.Add(new AddSpellBonusDamage());
+        }
     }
 }
 
