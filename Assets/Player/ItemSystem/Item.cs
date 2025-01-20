@@ -203,6 +203,10 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new AdaptiveColorArmour());
         }
+        if (GUILayout.Button("Add Invincibility Bonus"))
+        {
+            item.effects.Add(new AddInvincibilityBonus());
+        }
     }
 }
 

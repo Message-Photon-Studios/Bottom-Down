@@ -71,6 +71,7 @@ public class PlayerStats : MonoBehaviour
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
     private float adaptiveArmourBonus = 0;
+    private float invincibilityBonus = 0;
     public void Setup(LevelManager levelManager)
     {
         this.levelManager = levelManager;
@@ -164,7 +165,7 @@ public class PlayerStats : MonoBehaviour
         }
         Physics2D.IgnoreLayerCollision(3,6);
         
-        invincibilityTimer = hitInvincibilityTime;
+        invincibilityTimer = hitInvincibilityTime + invincibilityBonus;
         GetComponent<PlayerCombatSystem>().RemoveAttackRoot();
         GetComponent<PlayerCombatSystem>().RemovePlayerAirlock();
         if(health <= 0)
@@ -314,5 +315,10 @@ public class PlayerStats : MonoBehaviour
     public void AddAdaptiveArmour(float addArmour)
     {
         adaptiveArmourBonus += addArmour;
+    }
+
+    public void AddInvincibilityBonus(float time)
+    {
+        invincibilityBonus += time;
     }
 }
