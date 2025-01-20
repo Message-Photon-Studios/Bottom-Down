@@ -28,4 +28,4 @@ MonoBehaviour:
       data:
         color: {fileID: 0}
         allColor: 1
-        armour: 10
+        armour: 0.1
