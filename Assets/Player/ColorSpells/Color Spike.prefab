@@ -176,9 +176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'Summons a spike that will rotate around the player.
 
-    Power: 120%'
+    Power: 3
+    x 50%'
   spellCost: 40
-  powerScale: 0.8
+  powerScale: 0.5
   coolDown: 5
   castWhenDamaged: 0
   castOnSpellImpact: 0
