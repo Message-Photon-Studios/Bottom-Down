@@ -593,11 +593,7 @@ public class EnemyStats : MonoBehaviour
         float poisonFactor = 1f;
         if(isPoisoned())
             poisonFactor = (1f-poisonDamageReduction);
-        
-        float playerArmour = 0f;
-        if(GetColor() != null && GetColorAmmount() > 0 && playerStats != null)
-            playerArmour = playerStats.GetColorArmour(GetColor());
-        return spawnPower * poisonFactor * (1f-playerArmour);
+        return spawnPower * poisonFactor;
     }
 
     /// <summary>
@@ -607,7 +603,9 @@ public class EnemyStats : MonoBehaviour
     /// <returns></returns>
     public int GetScaledDamage(int baseDamage)
     {
-        return Mathf.RoundToInt(baseDamage*GetDamageFactor());
+        int i = Mathf.RoundToInt(baseDamage * GetDamageFactor());
+        if (i <= 0) return 1;
+        return i;
     }
     
     /// <summary>

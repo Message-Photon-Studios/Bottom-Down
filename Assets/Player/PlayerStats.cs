@@ -70,8 +70,8 @@ public class PlayerStats : MonoBehaviour
     private bool isDeathExecuted;
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
-    private float adaptiveArmourBonus = 0;
-    private float invincibilityBonus = 0;
+    private float adaptiveArmourBonus = 0f;
+    private float invincibilityBonus = 0f;
     public void Setup(LevelManager levelManager)
     {
         this.levelManager = levelManager;
@@ -132,7 +132,13 @@ public class PlayerStats : MonoBehaviour
     public void DamagePlayer(int damage, EnemyStats enemy)
     {
         if(invincibilityTimer > 0) return;
-        //if(damage == 0) return;
+        Debug.Log(damage);
+        if(enemy != null && damage > 0)
+        {
+            damage = Mathf.RoundToInt(damage * (1f - GetColorArmour(enemy.GetColor())));
+            if (damage <= 0) damage = 1;
+        }
+
         shieldDecay = 0;
         if (UnityEngine.Random.Range(0, 100) < chanceToBlock)
         {
@@ -294,11 +300,14 @@ public class PlayerStats : MonoBehaviour
 
     public float GetColorArmour(GameColor color)
     {
-        float armour = 0;
+        float armour = 0f;
         if (colorArmour.ContainsKey(color)) armour += colorArmour[color];
         if (color != null && colorInventory.CheckIfActiveColorMatches(color)) armour += adaptiveArmourBonus;
         if (armour > .9f)
+        {
             return .9f;
+        }
+            
         else
             return
                 armour;
