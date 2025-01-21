@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 885ea8e04f1654e4893b99f72c618cf6, type: 3}
   description: 'Each time you cast a spell increase the impact damage of all spells
-    with +1. This item can increase the damage up to a maximum of +10 (+10 per item).
+    with +1. This item can increase the damage up to a maximum of + 5 (+5 per item).
     Collecting color with your brush resets the damage to 0. '
   itemCost: 30
   effects:
@@ -29,4 +29,4 @@ MonoBehaviour:
       type: {class: CascadingDamage, ns: , asm: Assembly-CSharp}
       data:
         damageIncrease: 1
-        maxCascadeDamageIncrease: 10
+        maxCascadeDamageIncrease: 5
