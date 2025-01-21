@@ -54,7 +54,7 @@ public class LobberProjectile : Enemy
         root.SetData("aim", true);
         root.SetData("startStop", true);
         
-        if(Random.Range(0,10) == 0) animator.SetTrigger("crystopher");
+        if(Random.Range(0,10) == 0) animator.SetTrigger("boulder2");
 
         body?.AddTorque(Random.Range(-20f,20f));
 

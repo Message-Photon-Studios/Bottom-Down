@@ -24284,7 +24284,7 @@ MonoBehaviour:
   setColorByHand: 1
   deathTimer: 8
   lookDir: -1
-  colorOrbPrefab: {fileID: 0}
+  colorOrbPrefab: {fileID: 3555706799306581111, guid: e632eca802dd6974981edd7786f7e079, type: 3}
   sleepCooldown: 2
   currentCombo: 0
   enemySounds: {fileID: 0}
@@ -24351,7 +24351,7 @@ SpriteRenderer:
   m_SortingLayerID: 908811297
   m_SortingLayer: 5
   m_SortingOrder: 1
-  m_Sprite: {fileID: -48220799, guid: 9200ff06a41db464584843a20e0beddf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e1a4ada3c21ebd4b8baad37cb4381d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -24384,7 +24384,7 @@ Animator:
   m_GameObject: {fileID: 8094419970937011932}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 483d0dd280bd43748b1d082364a82cce, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2a910b4b42b0d5d48ab8c69100e208f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

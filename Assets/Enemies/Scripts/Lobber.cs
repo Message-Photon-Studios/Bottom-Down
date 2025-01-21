@@ -19,7 +19,7 @@ public class Lobber : Enemy
         Node root = new Selector(new List<Node>{
             new Sequence(new List<Node>{
                 new CheckBool("stoneThrowAttack", true),
-                new EnemyObjectSpawner(stats, projectilePrefab, projectileSpawn, Vector2.up*projectileSpawnUpForce, false, projectileForceRandomness),
+                new EnemyObjectSpawner(stats, projectilePrefab, projectileSpawn, Vector2.up*projectileSpawnUpForce, true, projectileForceRandomness),
                 new SetParentVariable("stoneThrowAttack", false, 2),
             }),
 
