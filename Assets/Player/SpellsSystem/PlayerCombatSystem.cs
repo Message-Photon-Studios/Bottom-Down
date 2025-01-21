@@ -191,8 +191,6 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack()
     {
         GameColor color = colorInventory.CheckActveColor();
-        colorInventory.EnableRotation();
-
         if(currentSpell == null || color == null) return;
 
         Vector3 spawnPoint = new Vector3((spellSpawnPoint.localPosition.x+currentSpell.transform.position.x) * playerMovement.lookDir, 
@@ -204,10 +202,10 @@ public class PlayerCombatSystem : MonoBehaviour
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown); //When adding items to change the cooldown change it here! 
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom();
-            colorInventory.AutoRotate();
         }
         colorInventory.UseActiveColor();
-
+        colorInventory.EnableRotation();
+        colorInventory.AutoRotate();
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);
     }
 

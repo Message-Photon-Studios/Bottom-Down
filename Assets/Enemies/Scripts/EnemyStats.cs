@@ -88,6 +88,9 @@ public class EnemyStats : MonoBehaviour
 
     public bool isColoredThisFrame {get; private set;} = false;
     private bool dealingRainbowDamage = false;
+    public static bool chaoticMixer = false;
+    private bool mixerActive = false;
+    ColorLibrary colorLibrary;
     GameObject player;
     PlayerStats playerStats;
     PlayerCombatSystem playerCombat;
@@ -101,6 +104,7 @@ public class EnemyStats : MonoBehaviour
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         normalAnimationSpeed = animator.speed;
+        colorLibrary = GameManager.instance.GetComponent<ColorLibrary>();
     }
 
     void Start()
@@ -278,6 +282,10 @@ public class EnemyStats : MonoBehaviour
 
         health -= damage;
 
+        if (chaoticMixer && damage > 0)
+        {
+            StartCoroutine(ChaothicMixer());
+        } 
         onHealthChanged?.Invoke(health);
         onDamageTaken?.Invoke(damage, transform.position);
         int rainbowDmg = (int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower);
@@ -286,6 +294,12 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0) KillEnemy();
         else if ((health - rainbowDmg <= 0 && IsRaibowed() && !dealingRainbowDamage)) DealRainbowDamage(rainbowDmg);
         else currentCoroutine = StartCoroutine(dmgResponse());
+    }
+
+    public IEnumerator ChaothicMixer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        colorLibrary.GetRandomPrimaryColor().MixThisColorOntoEnemy(this, playerStats);
     }
 
     public IEnumerator dmgResponse()
