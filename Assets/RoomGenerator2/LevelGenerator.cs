@@ -684,7 +684,7 @@ public class LevelGenerator
         // Return random room from the options
         if (rooms.Count == 0)
         {
-            Debug.LogError("Missing closing room layout!! Do we have all posible rooms?");
+            Debug.LogWarning("Missing closing room layout!! Do we have all posible rooms?");
             return (null, new Vector2(0, 0));
         }
 
