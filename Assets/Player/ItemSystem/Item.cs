@@ -191,6 +191,26 @@ public class ItemInspector : Editor
         {
             item.effects.Add(new ChangeStoredSpellBonus());
         }
+        if (GUILayout.Button("Add Color Max Bonus"))
+        {
+            item.effects.Add(new ColorMaxBonus());
+        }
+        if (GUILayout.Button("Add Color Max Damage Bonus"))
+        {
+            item.effects.Add(new ColorMaxDamageBonus());
+        }
+        if (GUILayout.Button("Add Adaptive Color Armour"))
+        {
+            item.effects.Add(new AdaptiveColorArmour());
+        }
+        if (GUILayout.Button("Add Invincibility Bonus"))
+        {
+            item.effects.Add(new AddInvincibilityBonus());
+        }
+        if (GUILayout.Button("Add Spell Bonus Damage"))
+        {
+            item.effects.Add(new AddSpellBonusDamage());
+        }
     }
 }
 

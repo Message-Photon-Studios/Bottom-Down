@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] PlayerMovement movement;
     [SerializeField] GameObject blockAura;
+    private ColorInventory colorInventory;
     int maxHealth;
     float invincibilityTimer = 0;
     public int chanceToBlock = 0;
@@ -69,6 +70,9 @@ public class PlayerStats : MonoBehaviour
     private bool isDeathExecuted;
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
+    private float adaptiveArmourBonus = 0f;
+    private float defaultArmour = 0f;
+    private float invincibilityBonus = 0f;
     public void Setup(LevelManager levelManager)
     {
         this.levelManager = levelManager;
@@ -83,6 +87,7 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
         colorArmour = new Dictionary<GameColor, float>();
         itemVaribles = new Dictionary<string, int>();
+        colorInventory = GetComponent<ColorInventory>();
     }
     void Update()
     {
@@ -128,22 +133,34 @@ public class PlayerStats : MonoBehaviour
     public void DamagePlayer(int damage, EnemyStats enemy)
     {
         if(invincibilityTimer > 0) return;
-        //if(damage == 0) return;
+        Debug.Log(damage);
+        if(enemy != null && damage > 0)
+        {
+            damage = Mathf.RoundToInt(damage * (1f - GetColorArmour(enemy.GetColor())));
+            if (damage <= 0) damage = 1;
+        }
+
         shieldDecay = 0;
         if (UnityEngine.Random.Range(0, 100) < chanceToBlock)
         {
             GameObject aura = Instantiate(blockAura, transform);
             Destroy(aura, 1);
-            Debug.Log("Damage blocked");
-            //return;
-        } else
+        }
+        else if (enemy != null && colorInventory.CheckRoutedSheild(enemy.GetColor()))
         {
-            if(shield >= damage)
+            //TODO add proper block Sheild
+            GameObject aura = Instantiate(blockAura, transform);
+            Destroy(aura, 1);
+        }
+        else
+        {
+            if (shield >= damage)
             {
                 shield -= damage;
                 damage = 0;
                 onShieldChanged?.Invoke(shield);
-            } else if(shield > 0 && damage > shield)
+            }
+            else if (shield > 0 && damage > shield)
             {
                 damage -= shield;
                 shield = 0;
@@ -155,7 +172,7 @@ public class PlayerStats : MonoBehaviour
         }
         Physics2D.IgnoreLayerCollision(3,6);
         
-        invincibilityTimer = hitInvincibilityTime;
+        invincibilityTimer = hitInvincibilityTime + invincibilityBonus;
         GetComponent<PlayerCombatSystem>().RemoveAttackRoot();
         GetComponent<PlayerCombatSystem>().RemovePlayerAirlock();
         if(health <= 0)
@@ -282,20 +299,19 @@ public class PlayerStats : MonoBehaviour
         return invincibilityTimer > 0;
     }
 
-    public float GetColorArmour (GameColor color)
+    public float GetColorArmour(GameColor color)
     {
-        if(colorArmour == null) return 0f;
-        if(colorArmour.ContainsKey(color))
+        float armour = defaultArmour;
+        if (colorArmour.ContainsKey(color)) armour += colorArmour[color];
+        if (color != null && colorInventory.CheckIfActiveColorMatches(color)) armour += adaptiveArmourBonus;
+        if (armour > .9f)
         {
-            float armour = colorArmour[color];
-            if(armour > .9f)
-                return .9f;
-            else
-                return
-                    armour;
+            return .9f;
         }
+            
         else
-            return 0f;
+            return
+                armour;
     }
 
     public void AddColorArmour(GameColor color, float addArmour)
@@ -304,5 +320,20 @@ public class PlayerStats : MonoBehaviour
             colorArmour[color] += addArmour;
         else
             colorArmour.Add(color, addArmour);
+    }
+
+    public void AddAdaptiveArmour(float addArmour)
+    {
+        adaptiveArmourBonus += addArmour;
+    }
+
+    public void AddDefaultArmour(float addArmour)
+    {
+        defaultArmour += addArmour;
+    }
+
+    public void AddInvincibilityBonus(float time)
+    {
+        invincibilityBonus += time;
     }
 }
