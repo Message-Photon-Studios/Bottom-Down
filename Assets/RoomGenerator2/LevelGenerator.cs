@@ -50,6 +50,7 @@ public static class ListExtensions
 public class DungeonNode
 {
     public bool isClosingRoom = false;
+    public bool allowGreenClosingRoom;
     public DoorColor[] doors = { DoorColor.None, DoorColor.None, DoorColor.None, DoorColor.None };
 }
 
@@ -195,7 +196,7 @@ public class DungeonGraph
             var pos = node.Key + shift;
             nodes[pos] = new DungeonNode()
             {
-                doors = node.Value.doors, isClosingRoom = prefab.isClosingRoom
+                doors = node.Value.doors, isClosingRoom = prefab.isClosingRoom, allowGreenClosingRoom = prefab.allowGreenClosingRooms
             };
         }
         rooms.Add((shift, prefab));
@@ -641,13 +642,18 @@ public class LevelGenerator
 
         // Get how many nodes adjacent to it have an open door looking at it
         var doorsToOpen = new[] { DoorColor.None, DoorColor.None, DoorColor.None, DoorColor.None };
+
+        bool greenClosing_isOK = door.allowsGreenClosingRooms;
         for (var i = 0; i < CustomRoom.dirVectors.Length; i++)
         {
             // Get the node adjacent to the otherNode
             var neighborPos = otherNodePos + CustomRoom.dirVectors[i];
             // If the node exists and has an open door looking at the otherNode, we set the door to open as true
             if (graph.nodes.ContainsKey(neighborPos) && graph.nodes[neighborPos].doors[CustomRoom.mirrorDir[i]] != DoorColor.None)
-                doorsToOpen[i] = graph.nodes[neighborPos].doors[CustomRoom.mirrorDir[i]] ;
+            {
+                doorsToOpen[i] = graph.nodes[neighborPos].doors[CustomRoom.mirrorDir[i]];
+                greenClosing_isOK &= graph.nodes[neighborPos].allowGreenClosingRoom;
+            }
         }
 
         // Find closing rooms that have the same doors to open
@@ -657,7 +663,7 @@ public class LevelGenerator
         
         if(rooms.Count > 0) return (rooms[Random.Range(0, rooms.Count)], new Vector2(0, 0));
 
-        if(!door.allowsGreenClosingRooms) 
+        if(!greenClosing_isOK) 
         {
             string debugMsg = "Missing specialized closing room of color " + door.doorColor + " in room " + door.room.name + " with arrangement: ";
             string[] rot = {"L", "D", "R" , "U"};
