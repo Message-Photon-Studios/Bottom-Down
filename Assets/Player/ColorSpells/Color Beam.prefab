@@ -183,9 +183,12 @@ MonoBehaviour:
     Power: 120%'
   spellCost: 60
   powerScale: 1.2
-  coolDown: 5
+  coolDown: 4
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  storedSpells: 1
+  maxSpawn: 0
+  spawnKey: 
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0
   destroyOnCollission: 0
@@ -223,7 +226,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 0.3}
+  m_Size: {x: 1, y: 0.76}
   m_Direction: 1
 --- !u!114 &8123400699652976130
 MonoBehaviour:
