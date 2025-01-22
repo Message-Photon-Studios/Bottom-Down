@@ -27,9 +27,9 @@ public class PlayerCombatSystem : MonoBehaviour
     /// <summary>
     /// Cascade damage will increase damage of spells each time a spell is cast, but will reset to zero when default attack is used.
     /// </summary>
-    private int cascadeDamage;
-    public int cascadeDamageIncrease;
+    private int cascadeDamage = 0;
     public int maxCascadeDamage;
+    private int bonusDamage;
     private bool attacking;
     private Rigidbody2D body;
 
@@ -157,7 +157,7 @@ public class PlayerCombatSystem : MonoBehaviour
         if(!colorInventory.CheckActveColor()) return;
         if (!colorInventory.IsSpellReady()) return;
 
-        cascadeDamage += cascadeDamageIncrease;
+        cascadeDamage ++;
         if(cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
 
         if(playerMovement.IsGrappeling())
@@ -189,9 +189,7 @@ public class PlayerCombatSystem : MonoBehaviour
     /// </summary>
     private void SpecialAttack()
     {
-        GameColor color = colorInventory.UseActiveColor();
-        colorInventory.EnableRotation();
-
+        GameColor color = colorInventory.CheckActveColor();
         if(currentSpell == null || color == null) return;
 
         Vector3 spawnPoint = new Vector3((spellSpawnPoint.localPosition.x+currentSpell.transform.position.x) * playerMovement.lookDir, 
@@ -199,19 +197,20 @@ public class PlayerCombatSystem : MonoBehaviour
         GameObject spell = GameObject.Instantiate(currentSpell, transform.position + spawnPoint, transform.rotation) as GameObject;
         if(spell != null)
         {
-            spell.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, cascadeDamage);
+            spell.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown); //When adding items to change the cooldown change it here! 
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom();
-            colorInventory.AutoRotate();
         }
-            
+        colorInventory.UseActiveColor();
+        colorInventory.EnableRotation();
+        colorInventory.AutoRotate();
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);
     }
 
     public void PocketSpecialAttack(ColorSlot slot)
     {
-        GameColor color = colorInventory.UseActiveColor(slot);
+        GameColor color = colorInventory.CheckActveColor(slot);
         ColorSpell spell = slot.colorSpell;
         if (spell == null || color == null) return;
 
@@ -220,12 +219,23 @@ public class PlayerCombatSystem : MonoBehaviour
         GameObject spellSpawn = GameObject.Instantiate(spell.gameObject, transform.position + spawnPoint, transform.rotation) as GameObject;
         if (spellSpawn != null)
         {
-            spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, cascadeDamage);
+            spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom(slot);
         }
+        colorInventory.UseActiveColor(slot);
 
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
+    }
+
+    public int GetExtraDamage()
+    {
+        return cascadeDamage + colorInventory.GetColorMaxDamageBuff() + bonusDamage;
+    }
+
+    public void AddBonusDamage(int bonus)
+    {
+        bonusDamage += bonus;
     }
 
     #endregion

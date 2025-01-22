@@ -19,7 +19,7 @@ MonoBehaviour:
   - rid: 1655388888735678468
   itemCategory: 2
   itemRarity: 0
-  maxSpawn: -1
+  maxSpawn: 2
   references:
     version: 2
     RefIds:
@@ -27,4 +27,5 @@ MonoBehaviour:
       type: {class: ColorArmour, ns: , asm: Assembly-CSharp}
       data:
         color: {fileID: 11400000, guid: 515b8e0cc06f688409aca84476871b24, type: 2}
+        allColor: 0
         armour: 0.25

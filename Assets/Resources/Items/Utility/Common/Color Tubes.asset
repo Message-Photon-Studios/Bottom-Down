@@ -15,18 +15,18 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6ccb0185cbc644b41850a99f1eff1c1b, type: 3}
   description: 'Everyone should paint.
 
-    Gain a +15% chance that coloring an enemy
+    Gain a +35% chance that coloring an enemy
     also colors nearby enemies.'
   itemCost: 45
   effects:
   - rid: 7258339239831011328
   itemCategory: 3
-  itemRarity: 1
-  maxSpawn: -1
+  itemRarity: 0
+  maxSpawn: 3
   references:
     version: 2
     RefIds:
     - rid: 7258339239831011328
       type: {class: ColorNearbyUncolored, ns: , asm: Assembly-CSharp}
       data:
-        chanceToColorNearby: 15
+        chanceToColorNearby: 35

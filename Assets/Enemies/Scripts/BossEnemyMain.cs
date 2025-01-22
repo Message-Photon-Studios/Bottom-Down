@@ -152,7 +152,7 @@ public class BossEnemyMain : Enemy
 
     public override void DamagePlayer()
     {
-        player.DamagePlayer((int)(beamDamage*stats.GetDamageFactor()), stats);
+        player.DamagePlayer(stats.GetScaledDamage(beamDamage), stats);
     }
 
     protected override void OnDisable()

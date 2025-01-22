@@ -1476,18 +1476,18 @@ MonoBehaviour:
         - Key: 0
           Value: 0.8
         - Key: 1
-          Value: 0.19
+          Value: 0.18
         - Key: 2
-          Value: 0.01
+          Value: 0.02
     - Key: 1
       Value:
         _serializedList:
         - Key: 0
           Value: 0
         - Key: 1
-          Value: 0.95
+          Value: 0.9
         - Key: 2
-          Value: 0.05
+          Value: 0.1
     - Key: 2
       Value:
         _serializedList:
