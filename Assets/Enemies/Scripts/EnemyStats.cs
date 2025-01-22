@@ -89,7 +89,6 @@ public class EnemyStats : MonoBehaviour
     public bool isColoredThisFrame {get; private set;} = false;
     private bool dealingRainbowDamage = false;
     public static bool chaoticMixer = false;
-    private bool mixerActive = false;
     ColorLibrary colorLibrary;
     GameObject player;
     PlayerStats playerStats;
@@ -749,6 +748,7 @@ public class EnemyStats : MonoBehaviour
     /// </summary>
     private void WakeEnemyAnimation()
     {
+        if(lastSleep == Time.time) return;
         animator.SetBool("sleep", false); //TODO make animation event
         if(sleepParticles)
         {

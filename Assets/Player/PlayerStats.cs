@@ -133,7 +133,6 @@ public class PlayerStats : MonoBehaviour
     public void DamagePlayer(int damage, EnemyStats enemy)
     {
         if(invincibilityTimer > 0) return;
-        Debug.Log(damage);
         if(enemy != null && damage > 0)
         {
             damage = Mathf.RoundToInt(damage * (1f - GetColorArmour(enemy.GetColor())));
@@ -301,6 +300,7 @@ public class PlayerStats : MonoBehaviour
 
     public float GetColorArmour(GameColor color)
     {
+        if(color == null) return 0;
         float armour = defaultArmour;
         if (colorArmour.ContainsKey(color)) armour += colorArmour[color];
         if (color != null && colorInventory.CheckIfActiveColorMatches(color)) armour += adaptiveArmourBonus;
