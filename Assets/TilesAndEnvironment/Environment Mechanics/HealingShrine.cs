@@ -12,7 +12,11 @@ public class HealingShrine : MonoBehaviour
     [SerializeField] int increaseCost;
     [SerializeField] GameObject canvas;
     [SerializeField] TMP_Text cost;
+    [SerializeField] TMP_Text description;
     [SerializeField] InputActionReference buyAction;
+    [SerializeField] List<string> phrases;
+    [SerializeField] string healAmoutText;
+    Animator animator;
 
 
 
@@ -27,7 +31,9 @@ public class HealingShrine : MonoBehaviour
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        animator = GetComponent<Animator>();
         cost.text = "Cost: " + CalculatePrice();
+        description.text = phrases[0] + "\n" + healAmoutText;
     }
 
     private void OnEnable()
@@ -54,6 +60,8 @@ public class HealingShrine : MonoBehaviour
             cost.color = Color.white;
             buyable = true;
         }
+        if (count >= phrases.Count) description.text = phrases[phrases.Count-1] + "\n" + healAmoutText;
+        else description.text = phrases[count] + "\n" + healAmoutText;
         if (player.GetHealth() >= player.GetMaxHealth()) buyable = false;
     }
 
@@ -83,9 +91,16 @@ public class HealingShrine : MonoBehaviour
     private void Buy()
     {
         if (!buyable) return;
+        if (animator.GetBool("heal")) return;
         inventory.PayCost(CalculatePrice());
         player.HealPlayer(heal);
         count++;
         UpdateCost();
+        animator.SetBool("heal", true);
+    }
+
+    protected void HealDone()
+    {
+        animator.SetBool("heal", false);
     }
 }
