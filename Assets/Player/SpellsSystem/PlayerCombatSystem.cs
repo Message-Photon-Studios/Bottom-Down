@@ -27,8 +27,7 @@ public class PlayerCombatSystem : MonoBehaviour
     /// <summary>
     /// Cascade damage will increase damage of spells each time a spell is cast, but will reset to zero when default attack is used.
     /// </summary>
-    private int cascadeDamage;
-    public int cascadeDamageIncrease;
+    private int cascadeDamage = 0;
     public int maxCascadeDamage;
     private int bonusDamage;
     private bool attacking;
@@ -158,7 +157,7 @@ public class PlayerCombatSystem : MonoBehaviour
         if(!colorInventory.CheckActveColor()) return;
         if (!colorInventory.IsSpellReady()) return;
 
-        cascadeDamage += cascadeDamageIncrease;
+        cascadeDamage ++;
         if(cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
 
         if(playerMovement.IsGrappeling())

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b78befdb766d5c24e9eee0a256bd3e45, type: 3}
   description: Gain 50% resistance against enemies of the same color as your current
-    selected bottle
+    selected bottle.
   itemCost: 45
   effects:
   - rid: 3075677523047350274

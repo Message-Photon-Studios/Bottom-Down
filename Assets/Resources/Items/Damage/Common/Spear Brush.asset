@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spear Brush
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: c1274c8322f7fc24a85baf43e4da06b4, type: 3}
-  description: Add 3 damage to all spells
+  description: Add 3 damage to all spell hits.
   itemCost: 30
   effects:
   - rid: 3075677538533769216
