@@ -10,39 +10,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: MainMenu Shared Data
+  m_Name: Settings Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: MainMenu
-  m_TableCollectionNameGuidString: 41cd030bd059c3540bae81d958a5ab9d
+  m_TableCollectionName: Settings
+  m_TableCollectionNameGuidString: 950576e3b3d56084ea28b7a3d81e4655
   m_Entries:
-  - m_Id: 654542901248
-    m_Key: ContinueMM
+  - m_Id: 302540132352
+    m_Key: Sound
     m_Metadata:
       m_Items: []
-  - m_Id: 1160275300352
-    m_Key: NewGameMM
+  - m_Id: 505125015552
+    m_Key: Master
     m_Metadata:
       m_Items: []
-  - m_Id: 1203841536000
-    m_Key: SettingsMM
+  - m_Id: 625786753024
+    m_Key: Background
     m_Metadata:
       m_Items: []
-  - m_Id: 1222233559040
-    m_Key: CreditsMM
+  - m_Id: 2120938688512
+    m_Key: Music
     m_Metadata:
       m_Items: []
-  - m_Id: 1325442797568
-    m_Key: ExitMM
+  - m_Id: 2162432937984
+    m_Key: Enviroment
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2194968154112
+    m_Key: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2210927480832
+    m_Key: Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2224286339072
+    m_Key: Color
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 805651141288001560
+    rid: 805651184260218880
   references:
     version: 2
     RefIds:
-    - rid: 805651141288001560
+    - rid: 805651184260218880
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1737467913682
+        m_CustomEpoch: 1737631405500
