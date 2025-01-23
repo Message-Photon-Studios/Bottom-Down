@@ -192,7 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Fires a borrowing worm that will hunt down a nearby enemy. This spell
     will automatically fires when you take damage. \nPower: 100%"
-  spellCost: 50
+  spellCost: 40
   powerScale: 1
   coolDown: 4
   castWhenDamaged: 1
