@@ -16,17 +16,4 @@ public class ColorNearbyUncolored : ItemEffect
     {
         GetPlayer().GetComponent<PlayerStats>().chanceToColorNearby -= chanceToColorNearby;
     }
-
-    public override bool CanBeSpawned()
-    {
-
-        float availableChance = GetPlayer().GetComponent<PlayerStats>().chanceToColorNearby;
-        List<ColorNearbyUncolored> effects = ItemSpellManager.instance.GetEffectsInLevel<ColorNearbyUncolored>(this);
-        foreach (ColorNearbyUncolored item in effects)
-        {
-            availableChance += item.chanceToColorNearby;
-        }
-
-        return availableChance + chanceToColorNearby <= 80;
-    }
 }
