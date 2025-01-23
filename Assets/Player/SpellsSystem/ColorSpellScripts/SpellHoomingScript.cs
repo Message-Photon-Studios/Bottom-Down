@@ -77,6 +77,7 @@ public class SpellHoomingScript : MonoBehaviour
         GameObject target = null;
         List<GameObject> inRange = new List<GameObject>();
         bool canSmartTarget = false;
+        PlayerStats playerStats = PlayerLevelMananger.instance.playerStats;
         foreach (GameObject enemy in enemies)
         {
             float distance = (enemy.transform.position - transform.position).sqrMagnitude;
@@ -85,7 +86,7 @@ public class SpellHoomingScript : MonoBehaviour
                 if (!canSmartTarget)
                 {
                     EnemyStats stats = enemy.GetComponent<EnemyStats>();
-                    if (stats.GetColor() != null) if (stats.GetColor() != color) canSmartTarget = true;
+                    if (stats.GetColor() != null) if (stats.GetColor() != color || playerStats.corrosiveColor) canSmartTarget = true;
                     if (stats.GetColor() == null) canSmartTarget = true;
                 }
                 inRange.Add(enemy);
@@ -113,6 +114,7 @@ public class SpellHoomingScript : MonoBehaviour
     public GameObject SetSmart()
     {
         GameObject target = null;
+        PlayerStats playerStats = PlayerLevelMananger.instance.playerStats;
         foreach (GameObject enemy in enemies)
         {
             float distance = (enemy.transform.position - transform.position).sqrMagnitude;
@@ -121,7 +123,7 @@ public class SpellHoomingScript : MonoBehaviour
                 EnemyStats stats = enemy.GetComponent<EnemyStats>();
                 if (stats.GetColor() != null)
                 {
-                    if (stats.GetColor() == color) continue;
+                    if (stats.GetColor() == color && !playerStats.corrosiveColor) continue;
                 }
                 if (target == null) target = enemy;
                 else if (distance < (target.transform.position - transform.position).sqrMagnitude) target = enemy;

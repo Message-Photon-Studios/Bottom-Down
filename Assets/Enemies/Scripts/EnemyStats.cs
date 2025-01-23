@@ -475,7 +475,7 @@ public class EnemyStats : MonoBehaviour
             GameObject floorFlame = Instantiate(burning.floorParticles, GetPosition(), new Quaternion());
             floorFlame.GetComponent<FloorFlame>().dir = (int) ((i%2-0.5)*2);
             floorFlame.GetComponent<FloorFlame>().SetBurning(damage+6, timer+2, range, burnParticles, floorParticles, flames);
-            }
+        }
     }
 
     public bool isBurning()
