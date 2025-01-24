@@ -26,6 +26,8 @@ public class ColorSpell : MonoBehaviour
 
     [SerializeField] public string spawnKey;
 
+    [SerializeField] bool ignoreLookDir;
+
     /// <summary>
     /// The projectile will be destroyed on impact with any object
     /// </summary>
@@ -116,13 +118,16 @@ public class ColorSpell : MonoBehaviour
 
         if (this.power <= 0.1) this.power = 0.1f;
 
-        foreach(Collider2D col in GetComponents<Collider2D>())
+        if (!ignoreLookDir)
         {
-            col.offset *= new Vector2(lookDir, 1);
+            foreach (Collider2D col in GetComponents<Collider2D>())
+            {
+                col.offset *= new Vector2(lookDir, 1);
+            }
         }
-
+        
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
+        if (spriteRenderer != null && !ignoreLookDir)
         {
             spriteRenderer.flipX = lookDir == -1;
         }
@@ -130,7 +135,7 @@ public class ColorSpell : MonoBehaviour
 
         foreach(var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
-            if (child != null)
+            if (child != null && !ignoreLookDir)
             {
                 child.flipX = lookDir == -1;
             }
@@ -142,6 +147,8 @@ public class ColorSpell : MonoBehaviour
             var main = ballTray.main;
             main.startColor = gameColor.colorMat.color;
             ballTray.Play();
+            if (!ignoreLookDir)
+                ballTray.transform.localPosition = new Vector2(ballTray.transform.localPosition.x * lookDir, ballTray.transform.localPosition.y);
         }
 
         foreach (SpellMover mover in gameObject.GetComponents<SpellMover>())
@@ -200,6 +207,12 @@ public class ColorSpell : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+
+    public void AddObjectAlreadyHit(Collider2D collider) 
+    {
+        if (objectsAlreadyHit.Contains(collider)) return;
+        objectsAlreadyHit.Add(collider);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
