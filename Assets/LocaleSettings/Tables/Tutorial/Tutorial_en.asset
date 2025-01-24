@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorial_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 7cefca766aeb9b345abd786cb2bd2022, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 9081458688
+    m_Localized: 'Move Sylvia:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 417325649920
+    m_Localized: and
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1509543383040
+    m_Localized: 'Jump:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2887732957184
+    m_Localized: Double Jump by jumping in the air.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3975966101504
+    m_Localized: Hold for a higher jump.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16193872990208
+    m_Localized: Climb by jumping onto a wall.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18193696165888
+    m_Localized: Sylvias library of useful items.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18373476618240
+    m_Localized: It would be a shame if they got lost.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30740293881856
+    m_Localized: Cast a spell using color from bottles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31312392753152
+    m_Localized: OR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32283084722176
+    m_Localized: The number of bottles you can carry is limited.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33017423466496
+    m_Localized: Shape your spells by casting them from different bottles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33565983903744
+    m_Localized: Refill colors from enemies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34848908251136
+    m_Localized: Colors are stored in bottles.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36051062886400
+    m_Localized: Remove and add color to enemues by using your abilities.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36962044743680
+    m_Localized: 'BEWARE!
+
+      Enemies are IMMUNE to their own color.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37332208848896
+    m_Localized: Enemies without color takes REDUCED DAMAGE.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38531297447936
+    m_Localized: Change your active bottle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39321504321536
+    m_Localized: Different colors give your spells different effects.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39647338827776
+    m_Localized: Mix color by adding different colors to same bottle.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40020938067968
+    m_Localized: Mix colors on enemies by casting spells on them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40356553691136
+    m_Localized: Remove unwanted color
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41389304582144
+    m_Localized: HOLD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42348432855040
+    m_Localized: Check your inventory to learn more about colors, bottles and items.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44977082863616
+    m_Localized: Exit the cave?
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
