@@ -192,16 +192,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fire a bolt of color that impacts the first target it hits.
-
-    Power:
-    100%'
+  description: "Fire a high velocity spear that gets lounged into enemies and the
+    ground. \nPower: 100% + Continious 20%"
   spellCost: 40
   powerScale: 1
-  coolDown: 0.1
+  coolDown: 4
   castWhenDamaged: 0
   castOnSpellImpact: 0
-  storedSpells: 1
+  storedSpells: 2
   maxSpawn: 0
   spawnKey: 
   ignoreLookDir: 0
@@ -220,15 +218,15 @@ MonoBehaviour:
   - {fileID: 3321278458073070407}
   - {fileID: 6904973936221531880}
   spellSprite:
-    bigSprite: {fileID: 21300000, guid: a91eb75871ab80e47b9521f2c3bdc1fd, type: 3}
-    bigSpriteMask: {fileID: 21300000, guid: e3c018f35de5c2546b1558e08df0b010, type: 3}
-    bigSpriteCapMask: {fileID: 21300000, guid: e3a9c4ee3da5fb84f84fd33271261bfc, type: 3}
-    mediumSprite: {fileID: 21300000, guid: 68be518fb3bde7d489692719838492a9, type: 3}
-    mediumSpriteMask: {fileID: 21300000, guid: 4743301885a1f5745a23ec10159feefe, type: 3}
-    mediumSpriteCapMask: {fileID: 21300000, guid: e4d19cae8cc79344f85c944e55b0abb7, type: 3}
-    smallSprite: {fileID: 21300000, guid: 0e4410dc1c8445849863eb9a57105ac2, type: 3}
-    smallSpriteMask: {fileID: 21300000, guid: c0da91dbb370a2a4eae7a5661573c13d, type: 3}
-    smallSpriteCapMask: {fileID: 21300000, guid: 6e26f46f0d2fe6840a3e2d330dbce090, type: 3}
+    bigSprite: {fileID: 21300000, guid: 9004401a833eaea4dbbaa1a44e5dce44, type: 3}
+    bigSpriteMask: {fileID: 21300000, guid: 653f22150460b9e4aa1a9c0490d0338b, type: 3}
+    bigSpriteCapMask: {fileID: 21300000, guid: 2618e5c6c86191f428b79c34ac2bde7e, type: 3}
+    mediumSprite: {fileID: 21300000, guid: bca6ae14aaf90104fb0209fdd95f3751, type: 3}
+    mediumSpriteMask: {fileID: 21300000, guid: 0ac837d02a917d14caf70a8dfc3dbf88, type: 3}
+    mediumSpriteCapMask: {fileID: 21300000, guid: 2f8c462cd6c7e824faa5de479062d864, type: 3}
+    smallSprite: {fileID: 21300000, guid: 4fdb7d53ab0a2bd419b426439980e3c2, type: 3}
+    smallSpriteMask: {fileID: 21300000, guid: e1938a65e193d3d4da171993c4d4b106, type: 3}
+    smallSpriteCapMask: {fileID: 21300000, guid: 51dbed9dbf9564440be3c743348ce48f, type: 3}
 --- !u!70 &5526896281579278936
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
