@@ -264,15 +264,15 @@ MonoBehaviour:
   - {fileID: 3321278458073070407}
   - {fileID: 7571504440280734828}
   spellSprite:
-    bigSprite: {fileID: 21300000, guid: 9004401a833eaea4dbbaa1a44e5dce44, type: 3}
-    bigSpriteMask: {fileID: 21300000, guid: 653f22150460b9e4aa1a9c0490d0338b, type: 3}
-    bigSpriteCapMask: {fileID: 21300000, guid: 2618e5c6c86191f428b79c34ac2bde7e, type: 3}
-    mediumSprite: {fileID: 21300000, guid: bca6ae14aaf90104fb0209fdd95f3751, type: 3}
-    mediumSpriteMask: {fileID: 21300000, guid: 0ac837d02a917d14caf70a8dfc3dbf88, type: 3}
-    mediumSpriteCapMask: {fileID: 21300000, guid: 2f8c462cd6c7e824faa5de479062d864, type: 3}
-    smallSprite: {fileID: 21300000, guid: 4fdb7d53ab0a2bd419b426439980e3c2, type: 3}
-    smallSpriteMask: {fileID: 21300000, guid: e1938a65e193d3d4da171993c4d4b106, type: 3}
-    smallSpriteCapMask: {fileID: 21300000, guid: 51dbed9dbf9564440be3c743348ce48f, type: 3}
+    bigSprite: {fileID: 21300000, guid: f38d227f16348014ea6147bd531037ff, type: 3}
+    bigSpriteMask: {fileID: 21300000, guid: f86d7068ca927a94bad6e626a87f206f, type: 3}
+    bigSpriteCapMask: {fileID: 21300000, guid: 3e704f1a8232d62489a3ebab21168536, type: 3}
+    mediumSprite: {fileID: 21300000, guid: 783c135b352ef4a4b9a935b34c52017e, type: 3}
+    mediumSpriteMask: {fileID: 21300000, guid: c9a542f986fa32f48a704578c8f12365, type: 3}
+    mediumSpriteCapMask: {fileID: 21300000, guid: 96a00147de24a3d44bb497c1e51cd000, type: 3}
+    smallSprite: {fileID: 21300000, guid: 6e11aaa2b93f929428ea5e5ed8754bab, type: 3}
+    smallSpriteMask: {fileID: 21300000, guid: 345f26c77c1caad478d4d350d5bc6dc4, type: 3}
+    smallSpriteCapMask: {fileID: 21300000, guid: 0a8a1926dea420741812d1997e2abb19, type: 3}
 --- !u!114 &7571504440280734828
 MonoBehaviour:
   m_ObjectHideFlags: 0
