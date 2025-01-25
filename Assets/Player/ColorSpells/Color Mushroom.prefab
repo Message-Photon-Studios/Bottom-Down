@@ -238,14 +238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: "Fire a high velocity spear that gets lounged into enemies and the
-    ground. \nPower: 100% + Continious 20%"
+  description: "Fire a small seed that grows into a mushroom. This mushroom will
+    then produce 10 small hooming spores. \nPower. 10 x 20%"
   spellCost: 40
   powerScale: 0.2
-  coolDown: 0
+  coolDown: 6
   castWhenDamaged: 0
   castOnSpellImpact: 0
-  storedSpells: 2
+  storedSpells: 1
   maxSpawn: 0
   spawnKey: 
   ignoreLookDir: 0

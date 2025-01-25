@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7692674297862362138}
   - component: {fileID: 5526896281579278936}
   m_Layer: 8
-  m_Name: Color Mushroom - Destroy
+  m_Name: Spore Destroy
   m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: -615436619
   m_SortingLayer: 10
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1422918368, guid: bff888fc9104b284e98fcaf145ff6af9, type: 3}
+  m_Sprite: {fileID: 1281813993, guid: 8975a305c0fdd4846a5d2421a58765e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,7 +136,7 @@ Animator:
   m_GameObject: {fileID: 3321278458073070463}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 88366d2560e38d144b5466ab39728da9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87b513427d0a1f84e8b305babccdee06, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   triggerOnlyOncePerEnemy: 0
   attackAgainTimer: 1.5
   requirePlayerLOSonSpawn: 1
-  lifeTime: 1
+  lifeTime: 0.45
   animationTrigger: handSpell
   onImpact: []
   spellSprite:
