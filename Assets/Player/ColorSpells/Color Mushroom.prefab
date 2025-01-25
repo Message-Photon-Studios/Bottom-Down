@@ -241,7 +241,7 @@ MonoBehaviour:
   description: "Fire a high velocity spear that gets lounged into enemies and the
     ground. \nPower: 100% + Continious 20%"
   spellCost: 40
-  powerScale: 1
+  powerScale: 0.2
   coolDown: 0
   castWhenDamaged: 0
   castOnSpellImpact: 0
