@@ -122,8 +122,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
-        height: 60
+        width: 100
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: StoredSpellIndicator_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 100
         y: 0
-        width: 40
-        height: 60
+        width: 100
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: StoredSpellIndicator_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 200
         y: 0
-        width: 40
-        height: 60
+        width: 100
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,10 +183,10 @@ TextureImporter:
       name: StoredSpellIndicator_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 300
         y: 0
-        width: 40
-        height: 60
+        width: 100
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: StoredSpellIndicator_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 400
         y: 0
-        width: 40
-        height: 60
+        width: 100
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,6 +217,27 @@ TextureImporter:
       bones: []
       spriteID: 18f8e58580ca97447a301309927b3247
       internalID: 681516039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StoredSpellIndicator_5
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 100
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ffe073ddc53a064b9b854ae40f75b9b
+      internalID: 1119413419
       vertices: []
       indices: 
       edges: []
@@ -235,6 +256,7 @@ TextureImporter:
       StoredSpellIndicator_3: 455605052
       StoredSpellIndicator_4: 681516039
       StoredSpellIndicator_1: -1072934786
+      StoredSpellIndicator_5: 1119413419
       StoredSpellIndicator_2: -890007216
       StoredSpellIndicator_0: 1947908213
   spritePackingTag: 

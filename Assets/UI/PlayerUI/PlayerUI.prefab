@@ -12216,12 +12216,14 @@ MonoBehaviour:
   - {fileID: -890007216, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 455605052, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 681516039, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
+  - {fileID: 1119413419, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   ChargesMaskSprites:
   - {fileID: 1987269435, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 310396190, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 489425688, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: -1212415347, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 673837511, guid: 11f6033e4952df54ebfa118024430858, type: 3}
+  - {fileID: 1419873227, guid: 11f6033e4952df54ebfa118024430858, type: 3}
 --- !u!1 &5010577764341087680
 GameObject:
   m_ObjectHideFlags: 0
@@ -18260,12 +18262,14 @@ MonoBehaviour:
   - {fileID: -890007216, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 455605052, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 681516039, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
+  - {fileID: 1119413419, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   ChargesMaskSprites:
   - {fileID: 1987269435, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 310396190, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 489425688, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: -1212415347, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 673837511, guid: 11f6033e4952df54ebfa118024430858, type: 3}
+  - {fileID: 1419873227, guid: 11f6033e4952df54ebfa118024430858, type: 3}
 --- !u!1 &7439927084330903303
 GameObject:
   m_ObjectHideFlags: 0
@@ -19620,12 +19624,14 @@ MonoBehaviour:
   - {fileID: -890007216, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 455605052, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 681516039, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
+  - {fileID: 1119413419, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   ChargesMaskSprites:
   - {fileID: 1987269435, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 310396190, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 489425688, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: -1212415347, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 673837511, guid: 11f6033e4952df54ebfa118024430858, type: 3}
+  - {fileID: 1419873227, guid: 11f6033e4952df54ebfa118024430858, type: 3}
 --- !u!1 &7992960096742702533
 GameObject:
   m_ObjectHideFlags: 0
@@ -20791,12 +20797,14 @@ MonoBehaviour:
   - {fileID: -890007216, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 455605052, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   - {fileID: 681516039, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
+  - {fileID: 1119413419, guid: cc9524a27b53055448ecf809f7a48eb1, type: 3}
   ChargesMaskSprites:
   - {fileID: 1987269435, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 310396190, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 489425688, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: -1212415347, guid: 11f6033e4952df54ebfa118024430858, type: 3}
   - {fileID: 673837511, guid: 11f6033e4952df54ebfa118024430858, type: 3}
+  - {fileID: 1419873227, guid: 11f6033e4952df54ebfa118024430858, type: 3}
 --- !u!1 &8495066878716140335
 GameObject:
   m_ObjectHideFlags: 0
