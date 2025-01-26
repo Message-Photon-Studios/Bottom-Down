@@ -24,6 +24,8 @@ public class ColorInventory : MonoBehaviour
     /// </summary>
     [SerializeField] public int activeSlot;
 
+    [SerializeField] public Glyph glyph;
+
     [SerializeField] public ColorSpell defaultSpell;
     [SerializeField] InputActionReference changeRightActions;
     [SerializeField] InputActionReference pickUpAction;
@@ -494,6 +496,12 @@ public class ColorInventory : MonoBehaviour
         GameColor gameColor = ActiveSlot().gameColor;
         int amount = ActiveSlot().charge;
         if(gameColor == null || amount <= 0) return;
+
+        if(glyph != null)
+        {
+            GameObject activeGlyph = Instantiate(glyph.gameObject, transform.position, transform.rotation);
+            activeGlyph.GetComponent<Glyph>().OnEmptyBottle(gameColor, amount);
+        }
 
         ActiveSlot().RemoveColor();
         

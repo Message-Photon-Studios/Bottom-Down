@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class GlyphEffect : MonoBehaviour
 {
-    public abstract void WeakEffect();
-    public abstract void NormalEffect();
-    public abstract void StrongEffect();
+    public abstract void WeakEffect(GameColor color, int amount);
+    public abstract void NormalEffect(GameColor color, int amount);
+    public abstract void StrongEffect(GameColor color, int amount);
 
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class Glyph : MonoBehaviour
 {
     [SerializeField] Sprite itemSprite;
-    [SerializeField] Sprite slotSprite;
-    [SerializeField] [TextArea(5, 20)] public string description;
+    [SerializeField] Sprite UISprite;
+    [TextArea(5, 20)] public string description;
     [SerializeField] GameColor glyphColor;
 
     [SerializeField] bool allowMix;
@@ -55,25 +55,29 @@ public class Glyph : MonoBehaviour
             }
         }
 
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer.material = color?.colorMat;
+
         if (amount < normalEffectMinAmount)
         {
             foreach (GlyphEffect effect in GlyphEffects)
             {
-                effect.WeakEffect();
+                effect.WeakEffect(color, amount);
             }
             
         } else if (amount < strongEffectMinAmount)
         {
             foreach (GlyphEffect effect in GlyphEffects)
             {
-                effect.NormalEffect();
+                effect.NormalEffect(color, amount);
             }
             animator.SetBool("normal", true);
         } else
         {
             foreach (GlyphEffect effect in GlyphEffects)
             {
-                effect.StrongEffect();
+                effect.StrongEffect(color, amount);
             }
             animator.SetBool("strong", true);
         }
