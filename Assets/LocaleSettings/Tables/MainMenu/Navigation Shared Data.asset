@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: MainMenu Shared Data
+  m_Name: Navigation Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: MainMenu
+  m_TableCollectionName: Navigation
   m_TableCollectionNameGuidString: 41cd030bd059c3540bae81d958a5ab9d
   m_Entries:
   - m_Id: 654542901248
@@ -33,6 +33,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1325442797568
     m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193743256752128
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193760428232704
+    m_Key: Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193771945791488
+    m_Key: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193799582060544
+    m_Key: MainMenu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2194334490038272
+    m_Key: GamePaused
     m_Metadata:
       m_Items: []
   m_Metadata:

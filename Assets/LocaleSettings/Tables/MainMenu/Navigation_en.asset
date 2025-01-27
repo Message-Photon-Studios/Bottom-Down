@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: MainMenu_en
+  m_Name: Navigation_en
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en
@@ -36,6 +36,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1325442797568
     m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193743256752128
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193760428232704
+    m_Localized: Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193771945791488
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193799582060544
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2194334490038272
+    m_Localized: Game Paused
     m_Metadata:
       m_Items: []
   references:
