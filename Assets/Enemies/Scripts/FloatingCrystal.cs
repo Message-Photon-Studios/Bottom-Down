@@ -15,6 +15,7 @@ public class FloatingCrystal : Enemy
     [SerializeField] GameObject attackPrefab;
     [SerializeField] float patrolDistance;
     [SerializeField] float patrolIdleTime;
+    [SerializeField] ParticleSystem aimTarget;
     protected override Node SetupTree()
     {
         Node root = new Selector(new List<Node>{
@@ -35,6 +36,7 @@ public class FloatingCrystal : Enemy
             new Sequence(new List<Node>{
                 new CheckBool("aggressive", true),
                 new CheckPlayerDistance(stats, player, 0, attackDistance),
+                new ParticlesPlay (aimTarget, true),
                 new Wait(.3f),
                 new EnemyObjectSpawner(stats, attackPrefab, Vector2.zero, Vector2.right, true, 1)
             }),
@@ -42,6 +44,7 @@ public class FloatingCrystal : Enemy
             new Sequence(new List<Node>{
                 new CheckBool("aggressive", true),
                 new CheckPlayerDistance(stats, player, attackDistance, aggressiveMaxDistance),
+                new ParticlesPlay (aimTarget, false),
                 new LookAtPlayer(stats, player),
                 new HomTowardsTarget(stats, startRotation, player.transform, 1f, turnSpeed, .5f),
             }),
