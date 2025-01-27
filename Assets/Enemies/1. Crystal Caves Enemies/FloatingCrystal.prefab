@@ -91,6 +91,8 @@ MonoBehaviour:
   attackDistance: 3
   startRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
   attackPrefab: {fileID: 5788280326398322861, guid: 10e45c0be22527f46b8779786e6324bf, type: 3}
+  patrolDistance: 2
+  patrolIdleTime: 2
 --- !u!50 &5778462283322534054
 Rigidbody2D:
   serializedVersion: 4
@@ -166,8 +168,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 908811297
-  m_SortingLayer: 5
+  m_SortingLayerID: -602895935
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: -1977456123, guid: cdebf4e40ccc31f45a6460b385fd0cc8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
