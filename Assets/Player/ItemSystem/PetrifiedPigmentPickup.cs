@@ -19,7 +19,8 @@ public class PetrifiedPigmentPickup : MonoBehaviour
         #endif
     }
 
-    private void OnEnable() {
+    private void Start()
+{
 
         if(GameManager.instance.IsPetrifiedPigmentPickedUp(id) || Random.Range(0f,1f)<.5f)
         {

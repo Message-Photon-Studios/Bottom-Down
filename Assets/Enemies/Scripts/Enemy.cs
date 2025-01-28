@@ -69,7 +69,7 @@ public abstract class Enemy : BehaviourTree.Tree
             other.rigidbody.AddForce(Vector2.up * playerCollisionForce.y + ((Vector2)player.transform.position-stats.GetPosition()) * Vector2.right * playerCollisionForce.x);
             body.velocity = new Vector2(0, body.velocity.y);
             other.gameObject.GetComponent<PlayerStats>().DamagePlayer(stats.GetScaledDamage(playerCollisionDamage), stats);
-            other.gameObject.GetComponent<PlayerMovement>().movementRoot.SetRoot(gameObject.name + "enemyCollision", 0.35f);
+            other.gameObject.GetComponent<PlayerMovement>().movementRoot.SetRoot(gameObject.name + "enemyCollision", 0.3f);
         }
     }
     #endregion

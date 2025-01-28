@@ -90,6 +90,9 @@ TagManager:
   - name: Front Decoration
     uniqueID: 2140779007
     locked: 0
+  - name: GhostEnemies
+    uniqueID: 3692071361
+    locked: 0
   - name: Spell
     uniqueID: 3679530677
     locked: 0
