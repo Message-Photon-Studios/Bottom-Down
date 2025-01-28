@@ -27589,7 +27589,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -412274399
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -52901,7 +52901,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 770068331
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -55557,7 +55557,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 1751608321316de76b4fe62d00000000f1d96dbd69344abcaf52466ff5691fde215c2b363f82bf2f8f03c457b52e51dbebd8da21ffb1997f
+  m_ApplyToSortingLayers: 1751608321316de76b4fe62d00000000f1d96dbd69344abcaf52466ff5691fde215c2b363f82bf2f8f03c457b52e51dbebd8da21ffb1997fc18910dc
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -55840,22 +55840,6 @@ PrefabInstance:
     - target: {fileID: 3431114834662248585, guid: 4120f70e70636a0499486c7e254f6b93, type: 3}
       propertyPath: m_Intensity
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3431114834662248585, guid: 4120f70e70636a0499486c7e254f6b93, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3431114834662248585, guid: 4120f70e70636a0499486c7e254f6b93, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[10]
-      value: -615436619
-      objectReference: {fileID: 0}
-    - target: {fileID: 3431114834662248585, guid: 4120f70e70636a0499486c7e254f6b93, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[11]
-      value: 567990507
-      objectReference: {fileID: 0}
-    - target: {fileID: 3431114834662248585, guid: 4120f70e70636a0499486c7e254f6b93, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[12]
-      value: 2140779007
       objectReference: {fileID: 0}
     - target: {fileID: 3431114834662248586, guid: 4120f70e70636a0499486c7e254f6b93, type: 3}
       propertyPath: m_RootOrder

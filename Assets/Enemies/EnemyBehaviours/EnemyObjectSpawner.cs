@@ -57,6 +57,12 @@ public class EnemyObjectSpawner : Node
 
     public override NodeState Evaluate()
     {
+        if(stats.IsAsleep())
+        {
+            state = NodeState.FAILURE;
+            return state;
+        }
+
         try //Adding this here because i cant figure out what is null.
         {
             Vector2 useOffset = offset * (Vector2.left*stats.lookDir + Vector2.up);
