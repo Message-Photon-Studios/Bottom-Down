@@ -7,12 +7,13 @@ using System;
 using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine.Localization;
 public class TipsManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] SerializedDictionary<string, Tips> tipsDictionary;
     private SerializedDictionary<string, Tips> currentTipsDictionary;
 
-    [SerializeField, TextArea(2,4)] string[] loadingTips;
+    [SerializeField] LocalizedString[] loadingTips;
 
     [SerializeField] InputActionReference removeTooltipButton;
 
@@ -78,7 +79,7 @@ public class TipsManager : MonoBehaviour, IDataPersistence
 
     public string GetLoadingTips()
     {
-        return loadingTips[UnityEngine.Random.Range(0, loadingTips.Length)];
+        return loadingTips[UnityEngine.Random.Range(0, loadingTips.Length)].GetLocalizedString();
     }
     
 

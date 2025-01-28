@@ -1444,20 +1444,106 @@ MonoBehaviour:
           \n\nIf a rainbow colored enemy dies then some of their color will be automatically
           collected."
   loadingTips:
-  - The inventory has information on all colors.
-  - The red color steals health from enemies and converts it to temporary hitpoints.
-  - Blue color both slows the enemys movement and attacks.
-  - The range of yellow colors lightning scales with the power of the color.
-  - Attacking a sleeping enemy increases the power of the color a lot.
-  - A colors power affects both the damage and the colors other effects.
-  - If a raibow colored enemy dies some of its color will restore the players flasks.
-  - Enemies are immune towards their own color.
-  - Uncolored enemies have increased defences towards all color spells.
-  - If a poisoned enemy dies the poison will spread to one nearby enemy and increase
-    in potency.
-  - Fire increases its damage each time it spreads.
-  - A poisoned enemy deals significantly less damage than normal.
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 92065763328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 141747294208
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 147556405248
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 151922675712
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 218024906752
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 232277151744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 241387180032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 251797442560
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 263851872256
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 278976532480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 294977802240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 329878605824
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   removeTooltipButton: {fileID: -4679931084075046408, guid: fd04459890e791843a48243064f9151b, type: 3}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4351019461878009442
 MonoBehaviour:
   m_ObjectHideFlags: 0
