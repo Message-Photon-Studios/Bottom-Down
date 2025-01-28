@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 6125480898092892914}
   - component: {fileID: 5321488155720401886}
   m_Layer: 8
-  m_Name: Color Wisp
+  m_Name: Cromatic Wisp
   m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
