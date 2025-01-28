@@ -199,7 +199,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 0
   attackAgainTimer: 1.5
-  requirePlayerLOSonSpawn: 1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 6.1
   animationTrigger: handSpell
   onImpact:
