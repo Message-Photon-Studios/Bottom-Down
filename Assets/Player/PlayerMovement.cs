@@ -591,6 +591,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+        beforeClimbLookDir = lookDir;
 
         if(CollidesWithWall(lookDir)) return;
 
