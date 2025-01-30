@@ -125,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
     float dashStartPosX = 0;
     bool dashedDone = false;
     float dashTimeout = 0;
+    float dashCdStart = -1f;
 
     #endregion
 
@@ -585,7 +586,7 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="ctx"></param>
     private void Dash(InputAction.CallbackContext ctx)
     {
-        if(isDashing || dashedDone || movementRoot.rooted) return;
+        if(isDashing || dashedDone || movementRoot.rooted || Time.time - dashCdStart < 0.5f) return;
 
         if(IsGrappeling())
         {
@@ -616,6 +617,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator.SetBool("dash", false);
         isDashing = false;
         playerStats.RemovePlayerInvincible();
+        dashCdStart = Time.time;
     }
 
     #endregion
