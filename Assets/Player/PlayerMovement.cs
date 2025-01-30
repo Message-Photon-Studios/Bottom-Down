@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     * jumpFalloff will decrease the time and the power of the jetpack. This does also work in reverse for decreasing variables.
     */
 
-    [SerializeField] InputActionReference walkAction, jumpAction, lookAction, dropDownAction; //Input actiuons for controlling the movement and camera checks
+    [SerializeField] InputActionReference walkAction, jumpAction, lookAction, dropDownAction, verticalMoveAction; //Input actiuons for controlling the movement and camera checks
     [SerializeField] Rigidbody2D body;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator playerAnimator;
@@ -128,9 +128,11 @@ public class PlayerMovement : MonoBehaviour
         
         jumpAction.action.started += Jump;
         jumpAction.action.canceled += JumpCancel;
-        lookAction.action.performed += checkAction;
+        lookAction.action.started += checkAction;
         lookAction.action.canceled += checkCancle;
         dropDownAction.action.performed += dropDown;
+        verticalMoveAction.action.performed += VerticalMove;
+        verticalMoveAction.action.canceled += CancelVerticalMove;
     }
 
     private void OnDisable() {
@@ -139,6 +141,8 @@ public class PlayerMovement : MonoBehaviour
         lookAction.action.performed -= checkAction;
         lookAction.action.canceled -= checkCancle;
         dropDownAction.action.performed -= dropDown;
+        verticalMoveAction.action.performed -= VerticalMove;
+        verticalMoveAction.action.canceled -= CancelVerticalMove;
     }
 
     void Start()
@@ -209,6 +213,12 @@ public class PlayerMovement : MonoBehaviour
         jump = 0;
     }
 
+    
+    public void ResetDoubleJump()
+    {
+        doubleJumpActive = false;
+    }
+
     #endregion
 
     #region Camera Check
@@ -216,7 +226,6 @@ public class PlayerMovement : MonoBehaviour
     void CheckBelowStart()
     {
         checkDownTimer = .2f;
-        DropDown();
         //Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
         if(focusPoint == null && movementRoot.totalRoot) return;
         if(IsGrappeling() || !IsGrounded() || IsOnPlatform()) return;
@@ -236,11 +245,6 @@ public class PlayerMovement : MonoBehaviour
     {
         focusPoint.localPosition = new Vector3(focusPoint.localPosition.x, focusPointNormalY, focusPoint.localPosition.z);
         isCheckingY = false;
-    }
-
-    public void ResetDoubleJump()
-    {
-        doubleJumpActive = false;
     }
 
     #endregion
@@ -329,6 +333,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(walkDir < 0 && lookDir > 0 ) Flip();
         else if(walkDir > 0 && lookDir < 0) Flip();
+
+        if(verticalMoveAction.action.ReadValue<float>() < 0f) DropDown();
 
         if(wasClimbing)
         {
@@ -445,7 +451,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrappeling())
         {   
-            float lookWalk = lookAction.action.ReadValue<float>();
+            float lookWalk = verticalMoveAction.action.ReadValue<float>();
             if(lookWalk > lookDir*walkDir) walkDir = lookWalk*lookDir;
 
             climbTime += Time.fixedDeltaTime;
@@ -552,13 +558,23 @@ public class PlayerMovement : MonoBehaviour
         beforeClimbLookDir = lookDir;
     }
 
+    void VerticalMove(InputAction.CallbackContext callbackContext)
+    {
+
+    }
+
+    void CancelVerticalMove(InputAction.CallbackContext callbackContext)
+    {
+
+    }
+
     #endregion
 
     #region Platform
 
     void DropDown()
     {
-        if(Mathf.Abs(body.velocity.x) < 1f)
+        if(Mathf.Abs(body.velocity.x) < 10f)
             Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
     }
 
