@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  verticalSpeedUp: 2
+  verticalSpeedUp: 3
   verticalSpeedDown: 6
   focusPoint: {fileID: 0}
   player: {fileID: 0}
