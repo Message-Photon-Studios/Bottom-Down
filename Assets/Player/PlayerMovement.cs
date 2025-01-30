@@ -126,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
     bool dashedDone = false;
     float dashTimeout = 0;
     float dashCdStart = -1f;
+    Vector3 lastDashPos = Vector2.zero;
 
     #endregion
 
@@ -369,11 +370,15 @@ public class PlayerMovement : MonoBehaviour
         //Check if the dash should be canceled
         if(isDashing)
         {       
-            if(Time.time-dashTimeout > 0.35f || Mathf.Abs(transform.position.x - dashStartPosX) > dashDistance || CollidesWithWall(lookDir))
+            if(Time.time-dashTimeout > 0.35f || (Time.time-dashTimeout > 0.001f && transform.position.Equals(lastDashPos)) || Mathf.Abs(transform.position.x - dashStartPosX) > dashDistance || CollidesWithWall(lookDir))
             {
                 StopDash();
             }
-            else return;
+            else 
+            {
+                lastDashPos = transform.position;
+                return;
+            }
         }
 
         if(walkDir < 0 && lookDir > 0 ) Flip();
@@ -596,9 +601,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(CollidesWithWall(lookDir)) return;
 
+        lastDashPos = transform.position;
+
         playerStats.SetPlayerInvincible();
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         body.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        transform.position = transform.position + Vector3.up * 0.05f;
         movementRoot.SetRoot("dash", true);
         body.velocity = dashSpeed * Vector2.right * lookDir;
         dashStartPosX = transform.position.x;
@@ -611,6 +620,7 @@ public class PlayerMovement : MonoBehaviour
     private void StopDash()
     {
         if(!isDashing) return;
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, false);
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         movementRoot.SetRoot("dash", false);
         body.velocity = Vector2.zero;
