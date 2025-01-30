@@ -6,7 +6,6 @@ using System;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine.UI;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 /// <summary>
 /// This class controls the players movement and keeps track of player states such as it being rooted, falling or in the air. 
@@ -342,9 +341,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CollidesWithWall(int dir)
     {
-        if(Physics2D.Raycast((Vector2)transform.position + Vector2.down* playerCollider.size.y/2 + Vector2.right*dir*playerCollider.size.x/2 + playerCollider.offset, Vector2.right * dir, .5f, GameManager.instance.maskLibrary.onlyGround)) return true;
-        if(Physics2D.Raycast((Vector2)transform.position + Vector2.up * playerCollider.size.y/2 + Vector2.right*dir*playerCollider.size.x/2 + playerCollider.offset, Vector2.right * dir, .5f, GameManager.instance.maskLibrary.onlyGround)) return true;
-        if(Physics2D.Raycast((Vector2)transform.position + Vector2.right*dir*playerCollider.size.x/2 + playerCollider.offset, Vector2.right * dir, .5f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.down* playerCollider.size.y/2 + playerCollider.offset, Vector2.right * dir, playerCollider.size.x/2 + .2f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.up * playerCollider.size.y/2 + playerCollider.offset, Vector2.right * dir, playerCollider.size.x + .2f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + playerCollider.offset, Vector2.right * dir, playerCollider.size.x + .2f, GameManager.instance.maskLibrary.onlyGround)) return true;
 
         return false;
     }
