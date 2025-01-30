@@ -1368,6 +1368,8 @@ MonoBehaviour:
   - {fileID: -7692674297862362138, guid: cf6b3a2cfc7faec41933d2267b226a61, type: 3}
   - {fileID: -7692674297862362138, guid: 0667849121b330d43bbb2a0dcaeacaf4, type: 3}
   - {fileID: -7692674297862362138, guid: 1ef20f86cfadc914fb76490f0998163b, type: 3}
+  - {fileID: -7692674297862362138, guid: 92b6e40bee0cc364ca7de7011efab0e2, type: 3}
+  - {fileID: -7692674297862362138, guid: f6a96ca9b26e0a04ea4f9e0a765e862d, type: 3}
   spellUnlockSound: {fileID: 5256688047709658222}
   petrifiedPickupSound: {fileID: 2976471086048920126}
   soundEffectManager: {fileID: 7690066140520027446}

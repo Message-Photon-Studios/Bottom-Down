@@ -4816,6 +4816,7 @@ Transform:
   - {fileID: 8888529798381071088}
   - {fileID: 1070836058670212631}
   - {fileID: 2909381182721097486}
+  - {fileID: 584424546045505186}
   m_Father: {fileID: 1110097504496171644}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10770,6 +10771,84 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5601755027595367773, guid: 2247f616991a9bb4396c69f00c9698b1, type: 3}
   m_PrefabInstance: {fileID: 934213339807615534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1611777578509031676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8915922797761034755}
+    m_Modifications:
+    - target: {fileID: 979372694519061337, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 979372694519061337, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517851, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_Name
+      value: Lobber_Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.4761982
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.104138
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779926786009519046, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4779926786009519046, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+--- !u!4 &584424546045505186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2180415310798517854, guid: 8613079a0901b4e4aa5ec8d8a6efed6f, type: 3}
+  m_PrefabInstance: {fileID: 1611777578509031676}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2463779391773708917
 PrefabInstance:
