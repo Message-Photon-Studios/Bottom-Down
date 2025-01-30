@@ -73,6 +73,8 @@ public class PlayerStats : MonoBehaviour
     private float adaptiveArmourBonus = 0f;
     private float defaultArmour = 0f;
     private float invincibilityBonus = 0f;
+
+    #region Setup
     public void Setup(LevelManager levelManager)
     {
         this.levelManager = levelManager;
@@ -89,6 +91,10 @@ public class PlayerStats : MonoBehaviour
         itemVaribles = new Dictionary<string, int>();
         colorInventory = GetComponent<ColorInventory>();
     }
+
+    #endregion
+
+    #region Update Loop
     void Update()
     {
         secTimer -= Time.deltaTime;
@@ -117,7 +123,7 @@ public class PlayerStats : MonoBehaviour
             {
                 invincibilityTimer = 0;
                 tmp.a = 1;
-                Physics2D.IgnoreLayerCollision(3,6,false);
+                RemovePlayerInvincible();
             }
             GetComponent<SpriteRenderer>().color = tmp;
         }
@@ -125,6 +131,10 @@ public class PlayerStats : MonoBehaviour
         
 
     }
+
+    #endregion
+
+    #region Damage Player
 
     /// <summary>
     /// Damage the player
@@ -169,9 +179,7 @@ public class PlayerStats : MonoBehaviour
             health -= damage;
             animator.SetTrigger("damaged");
         }
-        Physics2D.IgnoreLayerCollision(3,6);
-        
-        invincibilityTimer = hitInvincibilityTime + invincibilityBonus;
+        SetPlayerInvincible();
         GetComponent<PlayerCombatSystem>().RemoveAttackRoot();
         GetComponent<PlayerCombatSystem>().RemovePlayerAirlock();
         if(health <= 0)
@@ -199,13 +207,9 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
     }
 
-    private void PlayerReachZeroHp()
-    {
-        animator.SetBool("dead", true);
-        movement.movementRoot.SetTotalRoot("dead", true);
-        invincibilityTimer = 3f;
-        playerSounds.PlayDeath();
-    }
+    #endregion
+
+    #region Healing & Health
 
     /// <summary>
     /// Heal the player
@@ -217,19 +221,6 @@ public class PlayerStats : MonoBehaviour
         if(health > maxHealth) health = maxHealth;
         onHealthChanged?.Invoke(health);
     }
-
-    /// <summary>
-    /// Adds shield to the player
-    /// </summary>
-    /// <param name="addShield"></param> 
-    public void AddShield(int addShield)
-    {
-        shield += addShield;
-        shieldDecay = 0;
-        if(shield > maxShield) shield = maxShield;
-        onShieldChanged?.Invoke(shield);
-    }
-
 
     /// <summary>
     /// Returns the players current health
@@ -260,7 +251,23 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
     }
 
-    public int GetMaxShield()
+    #endregion
+
+    #region Shield
+
+        /// <summary>
+    /// Adds shield to the player
+    /// </summary>
+    /// <param name="addShield"></param> 
+    public void AddShield(int addShield)
+    {
+        shield += addShield;
+        shieldDecay = 0;
+        if(shield > maxShield) shield = maxShield;
+        onShieldChanged?.Invoke(shield);
+    }
+
+        public int GetMaxShield()
     {
         return maxShield;
     }
@@ -273,6 +280,18 @@ public class PlayerStats : MonoBehaviour
     public int GetShield()
     {
         return shield;
+    }
+
+    #endregion
+
+    #region Kill Player
+
+    private void PlayerReachZeroHp()
+    {
+        animator.SetBool("dead", true);
+        movement.movementRoot.SetTotalRoot("dead", true);
+        invincibilityTimer = 3f;
+        playerSounds.PlayDeath();
     }
 
     /// <summary>
@@ -289,6 +308,10 @@ public class PlayerStats : MonoBehaviour
         onPlayerDied?.Invoke();
     }
 
+    #endregion
+
+    #region Invincibility 
+
     /// <summary>
     /// Returns true if the player is invincible
     /// </summary>
@@ -297,6 +320,29 @@ public class PlayerStats : MonoBehaviour
     {
         return invincibilityTimer > 0;
     }
+
+    public void AddInvincibilityBonus(float time)
+    {
+        invincibilityBonus += time;
+    }
+
+    public void SetPlayerInvincible()
+    {
+        Physics2D.IgnoreLayerCollision(3,6);
+        Physics2D.IgnoreLayerCollision(3,13);
+        invincibilityTimer = hitInvincibilityTime + invincibilityBonus;
+    }
+
+    public void RemovePlayerInvincible()
+    {
+        Physics2D.IgnoreLayerCollision(3,6, false);
+        Physics2D.IgnoreLayerCollision(3,13, false);
+        invincibilityTimer = 0;
+    }
+
+    #endregion
+
+    #region Armour
 
     public float GetColorArmour(GameColor color)
     {
@@ -332,8 +378,5 @@ public class PlayerStats : MonoBehaviour
         defaultArmour += addArmour;
     }
 
-    public void AddInvincibilityBonus(float time)
-    {
-        invincibilityBonus += time;
-    }
+    #endregion
 }

@@ -143,6 +143,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.8)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""037ca3e1-dd53-4689-9ad1-0396c2af09ca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -435,7 +444,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d6a359c2-bb3d-4778-a7fb-d6640d7b687d"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PlayStation;XboxController"",
@@ -838,6 +847,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""VerticalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c300b7f-2cfb-4edd-9723-be467f1d2f26"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse;Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48c50139-7964-4a71-a8ee-8f318fa5a8ce"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""241b2897-888c-45a6-8d4a-62d1100ad916"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayStation;XboxController"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -909,6 +951,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_VerticalLook = m_Player.FindAction("VerticalLook", throwIfNotFound: true);
         m_Player_VerticalMovement = m_Player.FindAction("VerticalMovement", throwIfNotFound: true);
         m_Player_DivideColor = m_Player.FindAction("DivideColor", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -981,6 +1024,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_VerticalLook;
     private readonly InputAction m_Player_VerticalMovement;
     private readonly InputAction m_Player_DivideColor;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -998,6 +1042,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @VerticalLook => m_Wrapper.m_Player_VerticalLook;
         public InputAction @VerticalMovement => m_Wrapper.m_Player_VerticalMovement;
         public InputAction @DivideColor => m_Wrapper.m_Player_DivideColor;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1046,6 +1091,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DivideColor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDivideColor;
                 @DivideColor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDivideColor;
                 @DivideColor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDivideColor;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1089,6 +1137,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DivideColor.started += instance.OnDivideColor;
                 @DivideColor.performed += instance.OnDivideColor;
                 @DivideColor.canceled += instance.OnDivideColor;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -1144,5 +1195,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnVerticalLook(InputAction.CallbackContext context);
         void OnVerticalMovement(InputAction.CallbackContext context);
         void OnDivideColor(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

@@ -14,8 +14,11 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Speed")]
     [SerializeField] float movementSpeed; // Base movement speed for the player in air and on ground
     [SerializeField] float climbSpeed; //The speed that the player is climbing with
+
+    [Header("Jump")]
     [SerializeField] float jumpPower; //The initial boost power for the jump. Increasing this will increse the jumpheight and jump speed but decrease controll
     [SerializeField] float leapPower; //This detemines the extra forward speed of the double jump
     [SerializeField] float wallJumpPower; //The power of the jump when jumping of wall
@@ -23,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpJetpack; //A small extra power over time for the jump that alows the player to controll the height of the jump
     [SerializeField] float jumpFalloff; //The falloff power of the jump jetpack
     [SerializeField] float coyoteTime; //A small second affter leaving a platform you can still jump as normal. 
+    
+    [Header("Dash")]
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDistance;
 
     /*
     * The jumpJetpack and the jumpFalloff does controll the extra force over time for the players jump that allows the player to controll the heigh of the jump.
@@ -31,21 +38,32 @@ public class PlayerMovement : MonoBehaviour
     * jumpFalloff will decrease the time and the power of the jetpack. This does also work in reverse for decreasing variables.
     */
 
-    [SerializeField] InputActionReference walkAction, jumpAction, lookAction, dropDownAction, verticalMoveAction; //Input actiuons for controlling the movement and camera checks
-    [SerializeField] Rigidbody2D body;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator playerAnimator;
-    [SerializeField] Transform focusPoint; //The point tha the camera will try to focus on
+    [Header("Input Actions")]
+    [SerializeField] InputActionReference walkAction;
+    [SerializeField] InputActionReference jumpAction, lookAction, dropDownAction, verticalMoveAction, dashAction; //Input actiuons for controlling the movement and camera checks
+
+    [Header("Camera controls")]
     [SerializeField] float aimFocusMaxX;
     [SerializeField] float aimFocusMaxY;
     [SerializeField] float aimFocusAcceleration;
     [SerializeField] float checkPointY;
+
+    [Header("Components")]
+    [SerializeField] Rigidbody2D body;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Animator playerAnimator;
+    [SerializeField] Transform focusPoint; //The point tha the camera will try to focus on
     [SerializeField] CapsuleCollider2D playerCollider;
+    [SerializeField] PlayerSounds playerSounds;
+    [SerializeField] PlayerStats playerStats;
+
+    [Header("Particles")]
     [SerializeField] ParticleSystem dustParticles;
     [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] ParticleSystem wallParticles;
     [SerializeField] ParticleSystem wallJumpParticles;
 
+    #region Functional Variables
     /// <summary>
     /// The time that the player has spent in the air. Is 0 if the player is standing on the ground.
     /// </summary>
@@ -89,8 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 originalFocusPointPos;
 
-    [SerializeField] PlayerSounds playerSounds;
-
 
     Action<InputAction.CallbackContext> checkAction;
     Action<InputAction.CallbackContext> checkCancle;
@@ -104,6 +120,13 @@ public class PlayerMovement : MonoBehaviour
 
     private CameraFocus cameraFocus;
     private CameraMovement mainCamera;
+
+    public bool isDashing {get; private set;} = false;
+    float dashStartPosX = 0;
+    bool dashedDone = false;
+    float dashTimeout = 0;
+
+    #endregion
 
     #region Setup
     private void OnEnable() {
@@ -133,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
         dropDownAction.action.performed += dropDown;
         verticalMoveAction.action.performed += VerticalMove;
         verticalMoveAction.action.canceled += CancelVerticalMove;
+        dashAction.action.performed += Dash;
     }
 
     private void OnDisable() {
@@ -143,6 +167,7 @@ public class PlayerMovement : MonoBehaviour
         dropDownAction.action.performed -= dropDown;
         verticalMoveAction.action.performed -= VerticalMove;
         verticalMoveAction.action.canceled -= CancelVerticalMove;
+        dashAction.action.performed -= Dash;
     }
 
     void Start()
@@ -312,13 +337,22 @@ public class PlayerMovement : MonoBehaviour
                     Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2+playerCollider.offset, Vector2.left, .7f, GameManager.instance.maskLibrary.onlyGround))  
                 ));
     }
+
+    public bool CollidesWithWall(int dir)
+    {
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.down* playerCollider.size.y/2 + Vector2.right*dir*playerCollider.size.x/2 + playerCollider.offset, Vector2.right * dir, .5f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.up * playerCollider.size.y/2 + Vector2.right*dir*playerCollider.size.x/2 + playerCollider.offset, Vector2.right * dir, .5f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.right*dir*playerCollider.size.x/2 + playerCollider.offset, Vector2.right * dir, .5f, GameManager.instance.maskLibrary.onlyGround)) return true;
+
+        return false;
+    }
    
     #endregion
 
     #region Update Loop
     bool wallRight = false;
     private void FixedUpdate() {
-        
+
         if(jump > 0 || IsGrappeling()) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
         else if(checkDownTimer <= 0) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, false);
 
@@ -331,10 +365,21 @@ public class PlayerMovement : MonoBehaviour
 
         if(movementRoot.totalRoot) walkDir = 0;
 
+        //Check if the dash should be canceled
+        if(isDashing)
+        {       
+            if(Time.time-dashTimeout > 0.35f || Mathf.Abs(transform.position.x - dashStartPosX) > dashDistance || CollidesWithWall(lookDir))
+            {
+                StopDash();
+            }
+            else return;
+        }
+
         if(walkDir < 0 && lookDir > 0 ) Flip();
         else if(walkDir > 0 && lookDir < 0) Flip();
 
         if(verticalMoveAction.action.ReadValue<float>() < 0f) DropDown();
+
 
         if(wasClimbing)
         {
@@ -350,6 +395,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrounded())
         {
+            dashedDone = false;
             if((Vector2)transform.position != previousFramePosition)
             {
                 previousFramePosition = transform.position;
@@ -451,6 +497,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrappeling())
         {   
+            dashedDone = false;
             float lookWalk = verticalMoveAction.action.ReadValue<float>();
             if(lookWalk > lookDir*walkDir) walkDir = lookWalk*lookDir;
 
@@ -526,6 +573,48 @@ public class PlayerMovement : MonoBehaviour
        
         if(!movementRoot.rooted)
             body.AddForce(new Vector2(0,jump));
+    }
+
+    #endregion
+
+    #region Dash
+    
+    /// <summary>
+    /// Starts the dash action if possible
+    /// </summary>
+    /// <param name="ctx"></param>
+    private void Dash(InputAction.CallbackContext ctx)
+    {
+        if(isDashing || dashedDone || movementRoot.rooted) return;
+
+        if(IsGrappeling())
+        {
+            Flip();
+        }
+
+        if(CollidesWithWall(lookDir)) return;
+
+        playerStats.SetPlayerInvincible();
+        body.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        body.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        movementRoot.SetRoot("dash", true);
+        body.velocity = dashSpeed * Vector2.right * lookDir;
+        dashStartPosX = transform.position.x;
+        playerAnimator.SetBool("dash", true);
+        isDashing = true;
+        dashedDone = true;
+        dashTimeout = Time.time;
+    }
+
+    private void StopDash()
+    {
+        if(!isDashing) return;
+        body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+        movementRoot.SetRoot("dash", false);
+        body.velocity = Vector2.zero;
+        playerAnimator.SetBool("dash", false);
+        isDashing = false;
+        playerStats.RemovePlayerInvincible();
     }
 
     #endregion
