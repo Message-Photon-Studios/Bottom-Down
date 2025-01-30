@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: WillowRegionalDefaultCrystalHub
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 037e2aa729d122d4a9771d048e84c86a, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: 406c2dfd39d53fc459e005e83acb7df7, type: 2}
+  - {fileID: 11400000, guid: 327ed0955b030654d9a7fe388d3608b3, type: 2}
+  m_Extensions: []
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds: []
