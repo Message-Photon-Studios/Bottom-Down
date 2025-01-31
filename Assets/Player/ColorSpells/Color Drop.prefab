@@ -181,7 +181,7 @@ MonoBehaviour:
     Power:
     100%'
   spellCost: 40
-  powerScale: 1
+  powerScale: 0
   coolDown: 1
   castWhenDamaged: 0
   castOnSpellImpact: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa85a9b2bdfcad843aa407e333f693a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnForceMin: {x: 200, y: 50}
+  spawnForceMin: {x: 100, y: 50}
   spawnForceMax: {x: 50, y: 0}
 --- !u!1001 &3068050921329342166
 PrefabInstance:

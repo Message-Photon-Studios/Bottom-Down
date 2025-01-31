@@ -311,6 +311,7 @@ public class ColorInventory : MonoBehaviour
     public bool CheckCanSpawn(ColorSlot slot)
     {
         ColorSpell spell = slot.colorSpell;
+        if (spell == null) spell = defaultSpell;
         if (spell.maxSpawn <= 0) return true;
         if (spell.spawnKey == null || spell.spawnKey == "")
         {
@@ -956,7 +957,7 @@ public class ColorInventory : MonoBehaviour
         {
             ColorSpell spell = slot.colorSpell;
             if (spell == null) spell = defaultSpell;
-            if (spell.castOnDash)
+            if (spell.castOnDash && IsSpellReady(slot))
             {
                 GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
             }
@@ -970,7 +971,7 @@ public class ColorInventory : MonoBehaviour
         {
             ColorSpell spell = slot.colorSpell;
             if (spell == null) spell = defaultSpell;
-            if (spell.castOnSpellImpact && IsSpellReady(slot))
+            if (spell.castOnSpellImpact)
             {
                 GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
             }

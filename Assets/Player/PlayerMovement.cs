@@ -107,8 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 originalFocusPointPos;
 
-<<<<<<< HEAD
-
     Action<InputAction.CallbackContext> checkAction;
     Action<InputAction.CallbackContext> checkCancle;
 
@@ -116,8 +114,6 @@ public class PlayerMovement : MonoBehaviour
 
     public UnityAction onPlayerDash;
 
-=======
->>>>>>> dev
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
 
     private Queue<Vector2> lastGroundPosition = new Queue<Vector2>();
