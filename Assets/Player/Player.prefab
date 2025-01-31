@@ -5309,25 +5309,30 @@ MonoBehaviour:
   jumpJetpack: 410
   jumpFalloff: 900
   coyoteTime: 0.1
+  dashSpeed: 50
+  dashDistance: 4.5
   walkAction: {fileID: 2156130203312526529, guid: fd04459890e791843a48243064f9151b, type: 3}
   jumpAction: {fileID: 8155338115105704411, guid: fd04459890e791843a48243064f9151b, type: 3}
   lookAction: {fileID: 7816966763905407227, guid: fd04459890e791843a48243064f9151b, type: 3}
   dropDownAction: {fileID: 2244437516755409555, guid: fd04459890e791843a48243064f9151b, type: 3}
-  body: {fileID: 468746527930208001}
-  spriteRenderer: {fileID: 468746527930208031}
-  playerAnimator: {fileID: 5589058685384803136}
-  focusPoint: {fileID: 468746528245736198}
+  verticalMoveAction: {fileID: -5664506344742684639, guid: fd04459890e791843a48243064f9151b, type: 3}
+  dashAction: {fileID: 6904516431623520599, guid: fd04459890e791843a48243064f9151b, type: 3}
   aimFocusMaxX: 4
   aimFocusMaxY: 3.5
   aimFocusAcceleration: 2.5
   checkPointY: 4
+  body: {fileID: 468746527930208001}
+  spriteRenderer: {fileID: 468746527930208031}
+  playerAnimator: {fileID: 5589058685384803136}
+  focusPoint: {fileID: 468746528245736198}
   playerCollider: {fileID: 468746527930208002}
+  playerSounds: {fileID: 8219171091925355652}
+  playerStats: {fileID: 7401497038098640722}
   dustParticles: {fileID: 6508366360112006936}
   jumpParticles: {fileID: 5623213183324694574}
   wallParticles: {fileID: 574845218076256338}
   wallJumpParticles: {fileID: 5915199760427040155}
   inAttackAnimation: 0
-  playerSounds: {fileID: 8219171091925355652}
   isCheckingY: 0
 --- !u!50 &468746527930208001
 Rigidbody2D:
@@ -5502,7 +5507,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.8, y: 1.8}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -16160,7 +16165,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -301831581
-  m_SortingLayer: 12
+  m_SortingLayer: 13
   m_SortingOrder: 11
   m_Sprite: {fileID: 21300000, guid: ad1361674abba6d45aec13723fe357d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
