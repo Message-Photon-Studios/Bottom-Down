@@ -127,12 +127,30 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""VerticalMovement"",
+                    ""type"": ""Button"",
+                    ""id"": ""f948a495-c3e5-4fa8-b3e3-36e199811c47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""DivideColor"",
                     ""type"": ""Button"",
                     ""id"": ""96a22342-4dc2-446a-a5bb-3d8484bec3fc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=0.8)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""037ca3e1-dd53-4689-9ad1-0396c2af09ca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -426,7 +444,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d6a359c2-bb3d-4778-a7fb-d6640d7b687d"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PlayStation;XboxController"",
@@ -658,8 +676,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""1D Axis"",
                     ""id"": ""df854b3e-cc1c-4d20-a75c-7f3882fa564c"",
                     ""path"": ""1DAxis"",
-                    ""interactions"": ""Hold(duration=0.1,pressPoint=0.6)"",
-                    ""processors"": ""AxisDeadzone(min=0.5),Scale(factor=10),Clamp(min=-1,max=1)"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": ""AxisDeadzone(min=0.3),Scale(factor=10),Clamp(min=-1,max=1)"",
                     ""groups"": """",
                     ""action"": ""VerticalLook"",
                     ""isComposite"": true,
@@ -668,7 +686,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""d6eccdf5-8276-4aa5-a9d0-3ac82e66fede"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PlayStation;XboxController"",
@@ -679,7 +697,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""93a42891-4e1a-4fa3-a3af-8bacde878a0e"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PlayStation;XboxController"",
@@ -728,6 +746,138 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""DivideColor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""7a22a6f7-effa-43cf-af08-09ba86017507"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=10),Clamp(min=-1,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""766cfa37-04a6-4333-8c31-2a512eb2d716"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse;Keyboard"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""36f68a0a-704c-43e1-b1d6-43c16baa4515"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse;Keyboard"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""90b53bcc-d62b-448f-9fcd-82cfda2fb5af"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=10),Clamp(min=-1,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a1680f2f-2296-4833-8d0a-234d32801c91"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayStation;XboxController"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""5e4c1ec9-8c78-46ff-8c6e-90f34b863027"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayStation;XboxController"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""cd0982fc-0f40-4fe9-b3d3-a8efabf1e464"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": ""AxisDeadzone,Scale(factor=10),Clamp(min=-1,max=1)"",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a28402cf-702c-48b4-b3e0-29ff16fd5254"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayStation;XboxController"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""26abb7ca-5396-4662-a303-0f7fd8492855"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayStation;XboxController"",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48c50139-7964-4a71-a8ee-8f318fa5a8ce"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c300b7f-2cfb-4edd-9723-be467f1d2f26"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse;Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""241b2897-888c-45a6-8d4a-62d1100ad916"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayStation;XboxController"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -799,7 +949,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_DefaultAttack = m_Player.FindAction("DefaultAttack", throwIfNotFound: true);
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_VerticalLook = m_Player.FindAction("VerticalLook", throwIfNotFound: true);
+        m_Player_VerticalMovement = m_Player.FindAction("VerticalMovement", throwIfNotFound: true);
         m_Player_DivideColor = m_Player.FindAction("DivideColor", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -870,7 +1022,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DefaultAttack;
     private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_VerticalLook;
+    private readonly InputAction m_Player_VerticalMovement;
     private readonly InputAction m_Player_DivideColor;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -886,7 +1040,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @DefaultAttack => m_Wrapper.m_Player_DefaultAttack;
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @VerticalLook => m_Wrapper.m_Player_VerticalLook;
+        public InputAction @VerticalMovement => m_Wrapper.m_Player_VerticalMovement;
         public InputAction @DivideColor => m_Wrapper.m_Player_DivideColor;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -929,9 +1085,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @VerticalLook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalLook;
                 @VerticalLook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalLook;
                 @VerticalLook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalLook;
+                @VerticalMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalMovement;
+                @VerticalMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalMovement;
+                @VerticalMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnVerticalMovement;
                 @DivideColor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDivideColor;
                 @DivideColor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDivideColor;
                 @DivideColor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDivideColor;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -969,9 +1131,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @VerticalLook.started += instance.OnVerticalLook;
                 @VerticalLook.performed += instance.OnVerticalLook;
                 @VerticalLook.canceled += instance.OnVerticalLook;
+                @VerticalMovement.started += instance.OnVerticalMovement;
+                @VerticalMovement.performed += instance.OnVerticalMovement;
+                @VerticalMovement.canceled += instance.OnVerticalMovement;
                 @DivideColor.started += instance.OnDivideColor;
                 @DivideColor.performed += instance.OnDivideColor;
                 @DivideColor.canceled += instance.OnDivideColor;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -1025,6 +1193,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnDefaultAttack(InputAction.CallbackContext context);
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnVerticalLook(InputAction.CallbackContext context);
+        void OnVerticalMovement(InputAction.CallbackContext context);
         void OnDivideColor(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

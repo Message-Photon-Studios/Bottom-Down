@@ -42,7 +42,7 @@ public class ItemInventory : MonoBehaviour
 
     Action<InputAction.CallbackContext> pickUp;
 
-    void OnEnable()
+    void Start()
     {
         startCoins = coins;
         pickUp = (InputAction.CallbackContext ctx) => {

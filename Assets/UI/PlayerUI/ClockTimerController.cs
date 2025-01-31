@@ -25,7 +25,7 @@ public class ClockTimerController : MonoBehaviour
      * it is however not recomended to check this in the Update loop, insted check when a level is loaded. This is because the GameObject.FindObjectWithTag method is kinda slow. 
      */
 
-    private void OnEnable()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>(); 
         UIController.UILoaded += LoadClock;
