@@ -111,7 +111,9 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
-        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        player.GetComponent<PlayerMovement>().onPlayerDash += DashSpells;
         colorLib = GameManager.instance.GetComponent<ColorLibrary>();
 
         foreach (ColorSlot colorSlot in colorSlots)
@@ -130,7 +132,9 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
         ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
-        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
+        player.GetComponent<PlayerMovement>().onPlayerDash -= DashSpells;
     }
 
     #endregion
@@ -291,17 +295,22 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public bool IsSpellReady()
     {
-        ValidateCDlist(ActiveSlot());
-        foreach (float coolDown in ActiveSlot().storedSpellCDs)
+        return IsSpellReady(ActiveSlot());
+    }
+
+    public bool IsSpellReady(ColorSlot slot)
+    {
+        ValidateCDlist(slot);
+        foreach (float coolDown in slot.storedSpellCDs)
         {
-            if (coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
+            if (coolDown <= Time.fixedTime && CheckCanSpawn(slot)) return true;
         }
         return false;
     }
 
-    public bool CheckCanSpawn()
+    public bool CheckCanSpawn(ColorSlot slot)
     {
-        ColorSpell spell = GetActiveColorSpell();
+        ColorSpell spell = slot.colorSpell;
         if (spell.maxSpawn <= 0) return true;
         if (spell.spawnKey == null || spell.spawnKey == "")
         {
@@ -338,7 +347,11 @@ public class ColorInventory : MonoBehaviour
     /// <param name="time"></param>
     public void SetCoolDown(float time)
     {
-        ColorSlot slot = ActiveSlot();
+        SetCoolDown(time, ActiveSlot());
+    }
+
+    public void SetCoolDown(float time, ColorSlot slot)
+    {
         for (int i = 0; i < slot.storedSpellCDs.Count; i++)
         {
             if (slot.storedSpellCDs[i] <= Time.fixedTime)
@@ -937,13 +950,27 @@ public class ColorInventory : MonoBehaviour
         EnableRotation();
     }
 
+    public void DashSpells()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDash)
+            {
+                GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+            }
+        }
+        EnableRotation();
+    }
+
     public void SpellImactTrigger()
     {
         foreach (ColorSlot slot in colorSlots)
         {
             ColorSpell spell = slot.colorSpell;
             if (spell == null) spell = defaultSpell;
-            if (spell.castOnSpellImpact)
+            if (spell.castOnSpellImpact && IsSpellReady(slot))
             {
                 GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
             }

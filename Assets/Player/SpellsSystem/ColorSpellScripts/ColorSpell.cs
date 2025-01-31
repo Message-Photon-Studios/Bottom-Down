@@ -19,6 +19,7 @@ public class ColorSpell : MonoBehaviour
     [SerializeField] public float coolDown = 1;
     [SerializeField] public bool castWhenDamaged;
     [SerializeField] public bool castOnSpellImpact;
+    [SerializeField] public bool castOnDash;
 
     [SerializeField] public int storedSpells = 1;
 

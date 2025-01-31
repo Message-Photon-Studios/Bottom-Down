@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3321278458073070463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 1, z: 0}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -171,6 +171,7 @@ MonoBehaviour:
   coolDown: 1
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 1
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -184,8 +185,8 @@ MonoBehaviour:
   triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
   requirePlayerLOSonSpawn: 1
-  lifeTime: 1
-  animationTrigger: raisedSpell
+  lifeTime: 0.1
+  animationTrigger: handSpell
   onImpact:
   - {fileID: 3372746672021076762}
   - {fileID: 128680342652377248}
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed67004b5d1b149a373b86cb7e1aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelay: 0.05
+  spawnDelay: 0.02
   spawnAmount: 100
   spawnPrefabs:
   - {fileID: 3321278458073070463, guid: 99ca6ab092a322d4dbe6dfb996b70bd6, type: 3}

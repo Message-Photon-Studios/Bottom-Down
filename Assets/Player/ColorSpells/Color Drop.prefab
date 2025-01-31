@@ -76,7 +76,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.26
 --- !u!114 &3321278458073070407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   coolDown: 1
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 

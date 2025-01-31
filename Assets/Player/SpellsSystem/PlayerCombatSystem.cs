@@ -228,6 +228,27 @@ public class PlayerCombatSystem : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
     }
 
+    public void DashSpecialAttack(ColorSlot slot)
+    {
+        GameColor color = colorInventory.CheckActveColor(slot);
+        ColorSpell spell = slot.colorSpell;
+        if (spell == null || color == null) return;
+
+        Vector3 spawnPoint = new Vector3((spellSpawnPoint.localPosition.x + spell.transform.position.x) * playerMovement.lookDir,
+                                        spell.transform.position.y + spellSpawnPoint.localPosition.y);
+        GameObject spellSpawn = GameObject.Instantiate(spell.gameObject, transform.position + spawnPoint, transform.rotation) as GameObject;
+        if (spellSpawn != null)
+        {
+            spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
+            colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown, slot);
+            colorInventory.SetRandomBuff();
+            colorInventory.MixRandom(slot);
+        }
+        colorInventory.UseActiveColor(slot);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
+    }
+
     public int GetExtraDamage()
     {
         return cascadeDamage + colorInventory.GetColorMaxDamageBuff() + bonusDamage;
