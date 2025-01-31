@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Input Actions")]
     [SerializeField] InputActionReference walkAction;
-    [SerializeField] InputActionReference jumpAction, lookAction, dropDownAction, verticalMoveAction, dashAction; //Input actiuons for controlling the movement and camera checks
+    [SerializeField] InputActionReference jumpAction, lookAction, verticalMoveAction, dashAction; //Input actiuons for controlling the movement and camera checks
 
     [Header("Camera controls")]
     [SerializeField] float aimFocusMaxX;
@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 originalFocusPointPos;
 
+<<<<<<< HEAD
 
     Action<InputAction.CallbackContext> checkAction;
     Action<InputAction.CallbackContext> checkCancle;
@@ -115,6 +116,8 @@ public class PlayerMovement : MonoBehaviour
 
     public UnityAction onPlayerDash;
 
+=======
+>>>>>>> dev
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
 
     private Queue<Vector2> lastGroundPosition = new Queue<Vector2>();
@@ -140,24 +143,11 @@ public class PlayerMovement : MonoBehaviour
         }
         originalFocusPointPos = new Vector3(focusPoint.localPosition.x, focusPoint.localPosition.y, focusPoint.localPosition.z);
         movementRoot.SetTotalRoot("loading", true);
-        checkAction = (InputAction.CallbackContext ctx) => {
-            if(lookAction.action.ReadValue<float>() < 0f)
-            {
-                CheckBelowStart();
-            }
-            else if(lookAction.action.ReadValue<float>() > 0f)
-                CheckAboveStart();
-        };
-
-        checkCancle = (InputAction.CallbackContext ctx) => {CheckCancel();};
-
-        dropDown = (InputAction.CallbackContext ctx) => {DropDown();};
         
         jumpAction.action.started += Jump;
         jumpAction.action.canceled += JumpCancel;
-        lookAction.action.started += checkAction;
-        lookAction.action.canceled += checkCancle;
-        dropDownAction.action.performed += dropDown;
+        lookAction.action.started += CameraCheck;
+        lookAction.action.canceled += CheckCancel;
         verticalMoveAction.action.performed += VerticalMove;
         verticalMoveAction.action.canceled += CancelVerticalMove;
         dashAction.action.performed += Dash;
@@ -166,9 +156,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable() {
         jumpAction.action.started -= Jump;
         jumpAction.action.canceled -= JumpCancel;
-        lookAction.action.performed -= checkAction;
-        lookAction.action.canceled -= checkCancle;
-        dropDownAction.action.performed -= dropDown;
+        lookAction.action.started -= CameraCheck;
+        lookAction.action.canceled -= CheckCancel;
         verticalMoveAction.action.performed -= VerticalMove;
         verticalMoveAction.action.canceled -= CancelVerticalMove;
         dashAction.action.performed -= Dash;
@@ -252,6 +241,16 @@ public class PlayerMovement : MonoBehaviour
 
     #region Camera Check
     float checkDownTimer = 0;
+
+    void CameraCheck(InputAction.CallbackContext ctx)
+    {
+        if(lookAction.action.ReadValue<float>() < 0f)
+        {
+            CheckBelowStart();
+        }
+        else if(lookAction.action.ReadValue<float>() > 0f)
+            CheckAboveStart();
+    }
     void CheckBelowStart()
     {
         checkDownTimer = .2f;
@@ -268,6 +267,11 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrappeling() || !IsGrounded()) return;
         focusPoint.localPosition = new Vector3(focusPoint.localPosition.x, checkPointY, focusPoint.localPosition.z);
         isCheckingY = true;
+    }
+
+    void CheckCancel(InputAction.CallbackContext ctx)
+    {
+        CheckCancel();
     }
 
     void CheckCancel()
@@ -665,7 +669,7 @@ public class PlayerMovement : MonoBehaviour
 
     void VerticalMove(InputAction.CallbackContext callbackContext)
     {
-
+      if(verticalMoveAction.action.ReadValue<float>() < 0f) DropDown();
     }
 
     void CancelVerticalMove(InputAction.CallbackContext callbackContext)
