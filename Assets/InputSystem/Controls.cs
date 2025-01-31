@@ -819,7 +819,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""1D Axis"",
                     ""id"": ""cd0982fc-0f40-4fe9-b3d3-a8efabf1e464"",
                     ""path"": ""1DAxis"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.1)"",
                     ""processors"": ""AxisDeadzone,Scale(factor=10),Clamp(min=-1,max=1)"",
                     ""groups"": """",
                     ""action"": ""VerticalMovement"",
