@@ -10,6 +10,7 @@ public class SpellSpawnOnEnemy : SpellImpact
 
     public override void Impact(Collider2D other, Vector2 impactPoint)
     {
+        Debug.Log("_____________TEST " + other);
         if (other.CompareTag("Enemy"))
         {
             
