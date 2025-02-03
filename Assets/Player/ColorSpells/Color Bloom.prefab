@@ -128,7 +128,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 1780624658, guid: 598c1300b98cc6f4a96fbd520f5c0501, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -182,9 +182,11 @@ MonoBehaviour:
   coolDown: 1.5
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 1
   storedSpells: 3
   maxSpawn: 0
   spawnKey: 
+  ignoreLookDir: 0
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0
   destroyOnCollission: 0
