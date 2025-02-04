@@ -3357,7 +3357,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1775570592712995085, guid: f238821a7e55a194494af5720b7ffc79, type: 3}
       propertyPath: m_Intensity
-      value: 0.3
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2540921010390771491, guid: f238821a7e55a194494af5720b7ffc79, type: 3}
       propertyPath: m_RootOrder
