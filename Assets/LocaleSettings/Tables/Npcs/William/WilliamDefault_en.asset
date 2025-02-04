@@ -17,7 +17,25 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 58d6c709a9a61bd4dbfbd78078529956, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 18027909120
+    m_Localized: Oh  He.. Hey there..
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24306782208
+    m_Localized: These bottles.. I found them laying around, broken sadly. They were
+      so pretty though!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26844336128
+    m_Localized: I tried, I really tried my best to repair them, hopefully you find
+      one you like.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29193146368
+    m_Localized: Also G...G... Good luck out there!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

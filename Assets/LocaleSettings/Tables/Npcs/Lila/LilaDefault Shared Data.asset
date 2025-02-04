@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: LilaDefault Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: LilaDefault
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
-  m_Entries: []
+  m_TableCollectionNameGuidString: e0b70eb27842dac4993a71443e779a8b
+  m_Entries:
+  - m_Id: 10322972672
+    m_Key: 0
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 805651342524678153
+    rid: 6766119785555558411
   references:
     version: 2
     RefIds:
-    - rid: 805651342524678153
+    - rid: 6766119785555558411
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1738236771112
+        m_CustomEpoch: 1738689844002

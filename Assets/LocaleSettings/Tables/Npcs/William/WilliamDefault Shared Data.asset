@@ -13,16 +13,32 @@ MonoBehaviour:
   m_Name: WilliamDefault Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: WilliamDefault
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
-  m_Entries: []
+  m_TableCollectionNameGuidString: 58d6c709a9a61bd4dbfbd78078529956
+  m_Entries:
+  - m_Id: 18027909120
+    m_Key: 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24306782208
+    m_Key: 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26844336128
+    m_Key: 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29193146368
+    m_Key: 3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 805651342524678151
+    rid: 6766119785555558409
   references:
     version: 2
     RefIds:
-    - rid: 805651342524678151
+    - rid: 6766119785555558409
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1738236220186
+        m_CustomEpoch: 1738689703260

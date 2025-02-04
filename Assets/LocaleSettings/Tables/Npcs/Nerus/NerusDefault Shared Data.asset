@@ -13,16 +13,28 @@ MonoBehaviour:
   m_Name: NerusDefault Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: NerusDefault
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
-  m_Entries: []
+  m_TableCollectionNameGuidString: e17101b56f719fc4dac1c19e88701d36
+  m_Entries:
+  - m_Id: 19424612352
+    m_Key: 0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21588873216
+    m_Key: 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23828631552
+    m_Key: 2
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 805651342524678155
+    rid: 6766119785555558417
   references:
     version: 2
     RefIds:
-    - rid: 805651342524678155
+    - rid: 6766119785555558417
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1738237051932
+        m_CustomEpoch: 1738690393765

@@ -17,7 +17,19 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: e17101b56f719fc4dac1c19e88701d36, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 19424612352
+    m_Localized: Greetings adventurer!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21588873216
+    m_Localized: Do you want to buy any old keys from my collection?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23828631552
+    m_Localized: Who knows where they might lead!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

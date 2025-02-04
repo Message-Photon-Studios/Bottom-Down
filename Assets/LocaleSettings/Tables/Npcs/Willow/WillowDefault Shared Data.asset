@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: WillowDefault Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: WillowDefault
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
-  m_Entries: []
+  m_TableCollectionNameGuidString: 530a9fb1812acc9499957a3e4a381516
+  m_Entries:
+  - m_Id: 15561658368
+    m_Key: 0
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 805651342524678144
+    rid: 6766119785555558402
   references:
     version: 2
     RefIds:
-    - rid: 805651342524678144
+    - rid: 6766119785555558402
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1738235136407
+        m_CustomEpoch: 1738689262148

@@ -33,6 +33,65 @@ MonoBehaviour:
     m_Address: Assets/LocaleSettings/Tables/LoadingTips/LoadingTips Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 530a9fb1812acc9499957a3e4a381516
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c6f1461515aca9c4fb6fc9025ae81232
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefCaveTown Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c693cb9c3087e8a45991b96933f3aa5a
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefFirstCave Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2f34d841e540f9f4c8d03d2de32c18d7
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefCrystalHub Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7c7087d0c1694d7448e36bb5e6005676
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefQuakeBoss Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 8bd19b43577d81445b417c12588ae1cb
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowSpecFirstCave Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2ebaaaded97cd03478546183d0d46b2e
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowSpecCoralCaves Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 58d6c709a9a61bd4dbfbd78078529956
+    m_Address: Assets/LocaleSettings/Tables/Npcs/William/WilliamDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: ed61c3a7d8719cc49ab512e3ed9bbe89
+    m_Address: Assets/LocaleSettings/Tables/Npcs/William/WilliamRegDefCaveTown Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e0b70eb27842dac4993a71443e779a8b
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Lila/LilaDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: bf145c09b0cd61641a15dd980b7aac83
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Lila/LilaSpecCaveTown Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e17101b56f719fc4dac1c19e88701d36
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Nerus/NerusDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 4de5aee7836c8824684b604ba3ae77e7
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Nerus/NerusSpecCaveTown Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:

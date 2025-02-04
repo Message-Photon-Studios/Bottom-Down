@@ -41,6 +41,84 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: bd3b9e602f73b21459e3ae6ffc6c932e
+    m_Address: WillowDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: f5a82592d9389d741b8601ada28f8cd0
+    m_Address: WillowRegDefCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 03166be006a003d4da654bab434d0c43
+    m_Address: WillowRegDefFirstCave_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 93b1ab3857348ad4e8faa26fdf56006c
+    m_Address: WillowRegDefCrystalHub_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 70327c2a425a6194b8c91592889c7ceb
+    m_Address: WillowRegDefQuakeBoss_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c993aa7db18df7c4d9a75e982a169e30
+    m_Address: WillowSpecFirstCave_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 055e64cab401a314d9ac2d2adbebd8a0
+    m_Address: WillowSpecCoralCaves_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 82c9903a2e8cfe640a3958a128daa047
+    m_Address: WilliamDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 77789889f4c376c4595792ab99b1fddd
+    m_Address: WilliamRegDefCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 0d0e14dfb4c5313479ec7c0ae28f8239
+    m_Address: LilaDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: cafa0ce0148b9924693d2406e9cc7a69
+    m_Address: LilaSpecCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: eabbadc115796dd4086efbb11659bfcb
+    m_Address: NerusDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 583876e495672114b9423247344a8e35
+    m_Address: NerusSpecCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
