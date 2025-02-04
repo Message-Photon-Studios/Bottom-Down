@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using Steamworks;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Keeps track of the colors that the player has gathered. 
@@ -37,6 +38,7 @@ public class ColorInventory : MonoBehaviour
     public Dictionary<string, int> spellsSpawned = new Dictionary<string, int>();
     SpellPickup pickUpSpell = null;
     ColorLibrary colorLib;
+    Light2D playerLight;
 
     public int blockDrainColor = 0;
     private bool CanSwap = true;
@@ -102,6 +104,7 @@ public class ColorInventory : MonoBehaviour
     UnityAction<int> slotChangedBrush; 
     void Start()
     {
+        playerLight = GetComponentInChildren<Light2D>();
         startColorSlots = colorSlots.Count;
         slotChangedBrush = (int dir) => {updateBrushColor();}; 
         changeRightActions.action.performed += (dir) => {RotateActive((int)dir.ReadValue<float>()); };
@@ -119,6 +122,8 @@ public class ColorInventory : MonoBehaviour
             if(colorSlot.gameColor == null)
                 colorSlot.SetGameColor(colorLib.GetRandomColor());
         }
+
+        if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
     }
 
     void OnDisable()
@@ -653,7 +658,6 @@ public class ColorInventory : MonoBehaviour
 
         fillSlot.AddCharge(amount);
         fillSlot.SetGameColor(setColor);
-
         onColorUpdated?.Invoke();
     }
 
@@ -683,6 +687,13 @@ public class ColorInventory : MonoBehaviour
     {
         // brush.
         GetComponent<SpriteRenderer>().material = ActiveSlot().charge > 0 ? ActiveSlot().gameColor.colorMat : defaultColor;
+        if(ActiveSlot().charge > 0)
+        {
+            if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
+        } else  
+        {
+            if(playerLight) playerLight.color = Color.white;
+        }
     }
 
     public void MixRandom()
