@@ -55812,14 +55812,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5512257291840877216, guid: 76bc2844489f6c44a9002bd22958ac58, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5512257291840877216, guid: 76bc2844489f6c44a9002bd22958ac58, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.data[1]
-      value: 801079871
-      objectReference: {fileID: 0}
     - target: {fileID: 8152938521107592839, guid: 76bc2844489f6c44a9002bd22958ac58, type: 3}
       propertyPath: m_Name
       value: MinimapLight

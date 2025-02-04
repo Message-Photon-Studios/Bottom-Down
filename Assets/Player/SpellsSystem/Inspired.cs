@@ -25,7 +25,7 @@ public class Inspired : MonoBehaviour
 
     private UIController UI;
 
-    public void OnEnable() {
+    public void Start() {
         if(spellToEnable) spellToEnable.SetActive(false);
         if(GameManager.instance.IsSpellSpawnable(unlockSpell))
         {

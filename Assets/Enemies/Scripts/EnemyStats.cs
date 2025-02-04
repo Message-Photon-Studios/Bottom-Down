@@ -103,11 +103,11 @@ public class EnemyStats : MonoBehaviour
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         normalAnimationSpeed = animator.speed;
-        colorLibrary = GameManager.instance.GetComponent<ColorLibrary>();
     }
 
     void Start()
     {
+        colorLibrary = GameManager.instance.GetComponent<ColorLibrary>();
         if(!setColorByHand) //Moved form awake
             color = LevelManager.instance.GetComponent<EnemyManager>().GetRandomEnemyColor();
         if(color != null)

@@ -5318,7 +5318,6 @@ GameObject:
   - component: {fileID: 2697461800471101761}
   - component: {fileID: 8882502837427551011}
   - component: {fileID: 4183076919624799810}
-  - component: {fileID: 8839845958120394949}
   - component: {fileID: 7646961322464936137}
   - component: {fileID: 2672959761008707747}
   m_Layer: 6
@@ -5436,22 +5435,6 @@ MonoBehaviour:
   layersToHit:
     serializedVersion: 2
     m_Bits: 9
---- !u!58 &8839845958120394949
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8865370589715980451}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
 --- !u!198 &7646961322464936137
 ParticleSystem:
   m_ObjectHideFlags: 0
