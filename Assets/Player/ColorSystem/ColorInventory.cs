@@ -86,7 +86,7 @@ public class ColorInventory : MonoBehaviour
     /// </summary>
     public UnityAction<bool> onSpellPickupInRange;
 
-    public UnityAction<List<float>, float> onCoolDownSet;
+    public UnityAction<List<float>, float, int> onCoolDownSet;
 
     /// <summary>
     /// Called whenever amount of charges on a spell is changed (usually trough an item).
@@ -361,7 +361,7 @@ public class ColorInventory : MonoBehaviour
                 break;
             }
         }
-        onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time));
+        onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time), colorSlots.IndexOf(slot));
     }
 
     public float CalculateCD(float time)
