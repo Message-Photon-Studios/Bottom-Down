@@ -422,6 +422,7 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public float GetColorBuff(GameColor color)
     {
+        if (color == null) return 0;
         float buff = 0;
         foreach (ColorSlot slot in colorSlots)
         {

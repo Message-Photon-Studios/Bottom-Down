@@ -162,10 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fire a bolt of color that impacts the first target it hits.
-
-    Power:
-    100%'
+  description: "Summon five drops of paint that rains down on enemies. Autocast on
+    Dash. \nPower: 5 x 40%"
   spellCost: 40
   powerScale: 0.4
   coolDown: 3

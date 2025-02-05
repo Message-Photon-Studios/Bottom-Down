@@ -191,16 +191,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Make a short range splash of color in front of you.
-
-    Power: 80%'
+  description: "Wield a blade of color. Autocast on Dash. \nPower: 100%"
   spellCost: 40
-  powerScale: 0.8
-  coolDown: 1.5
+  powerScale: 1
+  coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 0
   castOnDash: 1
-  storedSpells: 1
+  storedSpells: 2
   maxSpawn: 0
   spawnKey: 
   ignoreLookDir: 0
@@ -218,15 +216,15 @@ MonoBehaviour:
   onImpact:
   - {fileID: 3321278458073070407}
   spellSprite:
-    bigSprite: {fileID: 21300000, guid: c0211c1eea3659345b0bce8b963704f5, type: 3}
-    bigSpriteMask: {fileID: 21300000, guid: b3a2718dc7dd88848929fd5361ce08a7, type: 3}
-    bigSpriteCapMask: {fileID: 21300000, guid: 30988bdc2cd8f0e4598a0f7312b70ef9, type: 3}
-    mediumSprite: {fileID: 21300000, guid: 8c2fdc484d068144bb9d8c1f5a5ceba3, type: 3}
-    mediumSpriteMask: {fileID: 21300000, guid: ed4cdc5afe7add34fac9e95406f66f17, type: 3}
-    mediumSpriteCapMask: {fileID: 21300000, guid: f14eba6f03bdb274886afd61abaf4d21, type: 3}
-    smallSprite: {fileID: 21300000, guid: 1e3adc1a366dbb24faebc637298c3393, type: 3}
-    smallSpriteMask: {fileID: 21300000, guid: 0de681b650992e844a3b67e800f2a419, type: 3}
-    smallSpriteCapMask: {fileID: 21300000, guid: 510e5f0590012204588f0636773e0edf, type: 3}
+    bigSprite: {fileID: 21300000, guid: a0905968bf1048b48a4d7decb1c10c48, type: 3}
+    bigSpriteMask: {fileID: 21300000, guid: 2150b93e7990fc948bcfe9d35cf904fc, type: 3}
+    bigSpriteCapMask: {fileID: 21300000, guid: 8936a3685127ac94d86ca435a478484e, type: 3}
+    mediumSprite: {fileID: 21300000, guid: 82b3725a81e41bd47aa56fa7ee1e367e, type: 3}
+    mediumSpriteMask: {fileID: 21300000, guid: 75760cb6c37bd5e47b97cceb7a313311, type: 3}
+    mediumSpriteCapMask: {fileID: 21300000, guid: 11b4448e9de4ece439a7c116c58cd00e, type: 3}
+    smallSprite: {fileID: 21300000, guid: 6b3d2c8d7f0bc7d45bd71728ac9cf316, type: 3}
+    smallSpriteMask: {fileID: 21300000, guid: f2e5010ada927924f9632ef6bbf95f83, type: 3}
+    smallSpriteCapMask: {fileID: 21300000, guid: 16c8706a787e7664786199a20684504e, type: 3}
 --- !u!114 &7939297641866764751
 MonoBehaviour:
   m_ObjectHideFlags: 0

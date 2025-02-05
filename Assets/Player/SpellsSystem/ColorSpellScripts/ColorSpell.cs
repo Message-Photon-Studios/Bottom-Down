@@ -351,6 +351,11 @@ public class ColorSpell : MonoBehaviour
             child.material = gameColor?.colorMat;
         }*/
     }
+
+    public void DestroySpell()
+    {
+        Destroy(this);
+    }
 }
 /// <summary>
 /// This struct keeps track of all sprites for a bottle
