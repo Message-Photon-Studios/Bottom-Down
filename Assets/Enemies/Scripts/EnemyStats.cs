@@ -116,8 +116,20 @@ public class EnemyStats : MonoBehaviour
             GetComponent<SpriteRenderer>().material = color.colorMat;
         else
             GetComponent<SpriteRenderer>().material = defaultColor;
-        
-        if(enemyLight) enemyLight.color = color.lightTintColor;
+
+        if (enemyLight)
+        {
+            if (color)
+            {
+                enemyLight.color = color.lightTintColor;
+            } else
+            {
+                enemyLight.color = Color.white;
+            }
+        }
+            
+            
+            
         onDamageTaken += DmgNumber.create;
         onEnemyDeath += (EnemyStats _) => dropCoins(coinsDropped.GetReward());
         enemySounds = GetComponent<EnemySounds>();
