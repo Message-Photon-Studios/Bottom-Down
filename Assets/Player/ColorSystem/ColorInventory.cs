@@ -403,7 +403,7 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public float GetColorBuff(GameColor color)
     {
-        float buff = 0;
+        float buff = 1;
         foreach (ColorSlot slot in colorSlots)
         {
             if((slot.gameColor == color || balanceColors) && slot.charge == slot.maxCapacity) 
