@@ -128,7 +128,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
             onStartedNewRun?.Invoke();
         } else if(levelManager.isCaveTownLevel)
         {
-            Debug.Log("Testing testing");
             DataPersistenceManager.instance.LoadGame();
             onLoadedCaveTown?.Invoke();
         }

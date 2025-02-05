@@ -22,8 +22,17 @@ public class BubbleElementalMovement : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {   
-            spriteRenderer.flipX = (other.transform.position.x > transform.position.x);
-            body.velocity = (new Vector2(slideSpeed*((spriteRenderer.flipX)?-1:1), 0));
+            bool playerR = (other.transform.position.x > transform.position.x);
+            bool spellLookR = (transform.parent.localScale.x > 0);
+            /*
+                both true -> true;
+                plR true & slR false -> false;
+                plR false & slR -> false;
+                plR false & slR false -> true;
+            */
+
+            spriteRenderer.flipX =  !(playerR != spellLookR);
+            body.velocity = (new Vector2(slideSpeed*((playerR)?-1:1), 0));
             hasTriggered = true;
         }   
     }

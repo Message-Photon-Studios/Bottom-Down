@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorMat: {fileID: 2100000, guid: 4386134c72943a442b58e46e656b3670, type: 2}
   plainColor: {r: 0.64760196, g: 0.2028302, b: 1, a: 1}
+  lightTintColor: {r: 0.75666755, g: 0.5424528, b: 1, a: 1}
   description: 'Sleeps the enemy, making it unable to act. A spell cast on a sleeping
     enemy will be massively powered up. Recently awoken enemies can not be slept
     for a short while.

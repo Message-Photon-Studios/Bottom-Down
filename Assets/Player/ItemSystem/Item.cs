@@ -9,7 +9,7 @@ using System;
 /// <summary>
 /// This is the base class for an item
 /// </summary>
-[CreateAssetMenu(menuName = "Item/Item")]
+[CreateAssetMenu(menuName = "Item/Item"), Serializable]
 public class Item : ScriptableObject
 {
     public Sprite sprite;
