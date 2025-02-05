@@ -231,7 +231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1528154048138061622
 RectTransform:
   m_ObjectHideFlags: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   baseCost: 20
   increaseCost: 10
   canvas: {fileID: 1064579540017460114}
-  cost: {fileID: 261482794199180395}
+  cost: {fileID: 7065395270226878534}
   description: {fileID: 1040582945424561052}
   buyAction: {fileID: -4679931084075046408, guid: fd04459890e791843a48243064f9151b, type: 3}
   phrases:
