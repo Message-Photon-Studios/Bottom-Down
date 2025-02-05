@@ -236,11 +236,11 @@ public class ItemInventory : MonoBehaviour
 
     public void SetPermanentItems()
     {
-        PermanentUpgradeManager.instance.upgrades.items = items.ToArray();
+        PermanentUpgradeManager.instance.upgrades.SetPermanentItems(items);
     }
 
     private void LoadPermanentItems()
     {
-        items.AddRange(PermanentUpgradeManager.instance.upgrades.items);
+        items.AddRange(PermanentUpgradeManager.instance.upgrades.GetPermanentItems());
     }
 }
