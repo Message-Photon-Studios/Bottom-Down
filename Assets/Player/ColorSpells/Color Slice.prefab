@@ -73,9 +73,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.59, y: 1.19}
+  m_Offset: {x: 0, y: -1}
   serializedVersion: 2
-  m_Radius: 0.77
+  m_Radius: 1.55
 --- !u!70 &-2812139904606595728
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -89,9 +89,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.42, y: 0}
-  m_Size: {x: 5.73, y: 5}
-  m_Direction: 1
+  m_Offset: {x: 2, y: 0}
+  m_Size: {x: 3.32, y: 5}
+  m_Direction: 0
 --- !u!114 &3321278458073070407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,7 @@ SpriteRenderer:
   m_SortingLayerID: -615436619
   m_SortingLayer: 11
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1140706814, guid: f66b1a66bd1ce8148979f8f5cd34bd25, type: 3}
+  m_Sprite: {fileID: -996088377, guid: dab4ddbe0a2bd1243b8310bca4499210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   impactOnNonEnemies: 1
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 0
-  attackAgainTimer: 0.1
+  attackAgainTimer: -1
   requirePlayerLOSonSpawn: 0
   lifeTime: 0.4
   animationTrigger: swipeSpell
