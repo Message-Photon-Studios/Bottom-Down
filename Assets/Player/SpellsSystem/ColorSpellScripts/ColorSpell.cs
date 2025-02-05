@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Handles the impact of color spells
@@ -116,29 +117,36 @@ public class ColorSpell : MonoBehaviour
         this.extraDamage = extraDamage;
         resetEnemyTime = attackAgainTimer;
 
+        foreach(Light2D light in GetComponentsInChildren<Light2D>())
+        {
+            light.color = gameColor.lightTintColor;
+        }
+
         if (this.power <= 0.1) this.power = 0.1f;
 
         if (!ignoreLookDir)
         {
-            foreach (Collider2D col in GetComponents<Collider2D>())
+            transform.localScale = new Vector3(lookDir,1,1);
+            /*foreach (Collider2D col in GetComponents<Collider2D>())
             {
                 col.offset *= new Vector2(lookDir, 1);
-            }
+            }*/
         }
         
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null && !ignoreLookDir)
+        /*if (spriteRenderer != null && !ignoreLookDir)
         {
             spriteRenderer.flipX = lookDir == -1;
-        }
+        }*/
         spriteRenderer.material = gameColor?.colorMat;
 
         foreach(var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
+            /*
             if (child != null && !ignoreLookDir)
             {
                 child.flipX = lookDir == -1;
-            }
+            }*/
             child.material = gameColor?.colorMat;
         }
         
@@ -147,8 +155,10 @@ public class ColorSpell : MonoBehaviour
             var main = ballTray.main;
             main.startColor = gameColor.colorMat.color;
             ballTray.Play();
+            /*
             if (!ignoreLookDir)
                 ballTray.transform.localPosition = new Vector2(ballTray.transform.localPosition.x * lookDir, ballTray.transform.localPosition.y);
+                */
         }
 
         foreach (SpellMover mover in gameObject.GetComponents<SpellMover>())
@@ -319,18 +329,18 @@ public class ColorSpell : MonoBehaviour
 
     public void SetDir(int lookDir)
     {
+        /*
         foreach (Collider2D col in GetComponents<Collider2D>())
         {
             col.offset *= new Vector2(lookDir, 1);
         }
+        */
 
-        var spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.flipX = lookDir == -1;
-        }
-        spriteRenderer.material = gameColor?.colorMat;
+        //var spriteRenderer = GetComponent<SpriteRenderer>();
+        transform.localScale = new Vector3(lookDir,1,1);
+        //spriteRenderer.material = gameColor?.colorMat;
 
+    /*
         foreach (var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
             if (child != null)
@@ -338,7 +348,7 @@ public class ColorSpell : MonoBehaviour
                 child.flipX = lookDir == -1;
             }
             child.material = gameColor?.colorMat;
-        }
+        }*/
     }
 }
 /// <summary>
