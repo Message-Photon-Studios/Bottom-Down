@@ -5,6 +5,7 @@ using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.Localization;
 
 public class NpcManager : MonoBehaviour, IDataPersistence
 {
@@ -154,9 +155,10 @@ public class NpcData
 
         if(regionalDefaultDialogues.ContainsKey(levelName))
         {
+            Debug.Log("regional");
             return regionalDefaultDialogues[levelName];
         }
-
+        Debug.Log("default");
         return defaultDialogue;
     }
 
@@ -205,7 +207,7 @@ public class Dialogue
         }
     }
     [SerializeField] public int id = 0;
-    [TextArea(5,20)] public string[] texts;
+    [SerializeField] public LocalizedString[] texts;
 } 
 
 #endregion

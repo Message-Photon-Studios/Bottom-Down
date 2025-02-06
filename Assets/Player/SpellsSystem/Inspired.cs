@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
 
 public class Inspired : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Inspired : MonoBehaviour
     [SerializeField] TMP_Text costText;
     [SerializeField] TMP_Text descriptionText;
     [SerializeField] TMP_Text headerText;
+    [SerializeField] LocalizedString unlock;
+    [SerializeField] LocalizedString cost;
 
     private ItemInventory inventory;
     private bool triggered;
@@ -41,10 +44,11 @@ public class Inspired : MonoBehaviour
         UI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIController>();
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
 
-        costText.text = "Cost: " + petrifiedPigmentCost;
+        costText.text = cost.GetLocalizedString() + petrifiedPigmentCost;
         descriptionText.text = unlockSpell.description;
-        headerText.text = "Unlock " + unlockSpell.name;
+        headerText.text = unlock.GetLocalizedString() + unlockSpell.name;
         ui.SetActive(false);
+        cost.StringChanged += UpdateString;
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
@@ -75,5 +79,11 @@ public class Inspired : MonoBehaviour
         }
         gameObject.SetActive(false);
         
+    }
+
+    void UpdateString(string s) {
+        costText.text = cost.GetLocalizedString() + petrifiedPigmentCost;
+        descriptionText.text = unlockSpell.description;
+        headerText.text = unlock.GetLocalizedString() + unlockSpell.name;
     }
 }

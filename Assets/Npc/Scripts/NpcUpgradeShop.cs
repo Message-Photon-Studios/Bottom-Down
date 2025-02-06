@@ -52,7 +52,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
             costText.color = Color.white;
         }
 
-        costText.text = "Cost: " + (cost+costIncrease*buys).ToString();
+        costText.text = cost.ToString();
 
         if(buys >= maxBuys)
         {
