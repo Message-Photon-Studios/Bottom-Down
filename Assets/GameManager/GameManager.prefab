@@ -1697,38 +1697,67 @@ MonoBehaviour:
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 3
-        text: "Each color has a power level that can be seen under the active bottle
-          and in the inventory. A colors power will affect its damage and the efficiency
-          of its other effects. \n\nThe power of a color can be changed by several
-          things, such as items and bottles."
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1185143328768
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: filledBottle
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 10
-        text: "Each bottle that is filled to the maximum will power up the color
-          it is filled with for all bottles. \n\nUsing color from the max filled
-          bottles will make them not filled to the maximum and therefore remove the
-          buff. "
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1236594855936
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: uncoloredDefense
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 10
-        text: An enemy with no color has significantly increased defenses towards
-          all spells.
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1268345737216
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: colorImmunity
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 5
-        text: "\rEnemies are immune towards the color that they themself have.\r\n\r\nRemoving
-          or changing the color removes this immunity.\r\n"
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1288570671104
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: rainbowCombo
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 5
-        text: "Enemies colored to the rainbow color are unstable and will collapse
-          after a few seconds. This deals damage to the enemy and removes their color.
-          \n\nIf a rainbow colored enemy dies then some of their color will be automatically
-          collected."
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1331147051008
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
   loadingTips:
   - m_TableReference:
       m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
