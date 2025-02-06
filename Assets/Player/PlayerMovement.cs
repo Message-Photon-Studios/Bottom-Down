@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// This class controls the players movement and keeps track of player states such as it being rooted, falling or in the air. 
@@ -105,6 +106,13 @@ public class PlayerMovement : MonoBehaviour
     private bool climbCeilingDetected = false;
 
     Vector3 originalFocusPointPos;
+
+    Action<InputAction.CallbackContext> checkAction;
+    Action<InputAction.CallbackContext> checkCancle;
+
+    Action<InputAction.CallbackContext> dropDown;
+
+    public UnityAction onPlayerDash;
 
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
 
@@ -609,6 +617,7 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         dashedDone = true;
         dashTimeout = Time.time;
+        onPlayerDash?.Invoke();
     }
 
     private void StopDash()

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorMat: {fileID: 2100000, guid: d0f023ffdef0b934497644e717c07648, type: 2}
   plainColor: {r: 1, g: 0.98909175, b: 0, a: 1}
+  lightTintColor: {r: 1, g: 0.9532734, b: 0.3820755, a: 1}
   description: Chains through multiple enemies dealing damage to all and pulling
     them together.
   colorEffect: {fileID: 11400000, guid: 3041bf4420f93b547a7e1ddcae0ad180, type: 2}
