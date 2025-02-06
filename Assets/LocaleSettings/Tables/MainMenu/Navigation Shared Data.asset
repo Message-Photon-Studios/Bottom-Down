@@ -55,6 +55,10 @@ MonoBehaviour:
     m_Key: GamePaused
     m_Metadata:
       m_Items: []
+  - m_Id: 5826179937079296
+    m_Key: Next
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
