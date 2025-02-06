@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: LoadingTips Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: LoadingTips
+  m_TableCollectionNameGuidString: ba5b82f7c9b962343b77dae3d5aaa4cd
+  m_Entries:
+  - m_Id: 92065763328
+    m_Key: LoadingTip0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 141747294208
+    m_Key: LoadingTip1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147556405248
+    m_Key: LoadingTip2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151922675712
+    m_Key: LoadingTip3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 218024906752
+    m_Key: LoadingTip4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232277151744
+    m_Key: LoadingTip5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241387180032
+    m_Key: LoadingTip6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251797442560
+    m_Key: LoadingTip7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263851872256
+    m_Key: LoadingTip8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278976532480
+    m_Key: LoadingTip9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 294977802240
+    m_Key: LoadingTip10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 329878605824
+    m_Key: LoadingTip11
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 805651301147344896
+  references:
+    version: 2
+    RefIds:
+    - rid: 805651301147344896
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1738077294674

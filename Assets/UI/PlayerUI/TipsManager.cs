@@ -7,12 +7,13 @@ using System;
 using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine.Localization;
 public class TipsManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] SerializedDictionary<string, Tips> tipsDictionary;
     private SerializedDictionary<string, Tips> currentTipsDictionary;
 
-    [SerializeField, TextArea(2,4)] string[] loadingTips;
+    [SerializeField] LocalizedString[] loadingTips;
 
     [SerializeField] InputActionReference removeTooltipButton;
 
@@ -38,20 +39,20 @@ public class TipsManager : MonoBehaviour, IDataPersistence
         GameManager.instance.Resume();
     }
 
-    public void DisplayTips(string tips)
+    public void DisplayTips(string tipsKey)
     {
         if(!gameTipsObj) return;
         if(!GameManager.instance.allowsTips) return;
-        if(currentTipsDictionary.ContainsKey(tips)) 
+        if(currentTipsDictionary.ContainsKey(tipsKey)) 
         {
-            Tips tipsObj = currentTipsDictionary[tips];
+            Tips tipsObj = currentTipsDictionary[tipsKey];
             if(tipsObj.hasBeenDisplayed) return;
 
             tipsObj.callsNeeded --;
 
             if(tipsObj.callsNeeded <= 0)
             {
-                gameTipsText.text = tipsObj.text;
+                gameTipsText.text = tipsObj.text.GetLocalizedString();
                 tipsObj.hasBeenDisplayed = true;
                 gameTipsObj.SetActive(true);
                 uiController.lightbox.SetActive(true);
@@ -60,8 +61,8 @@ public class TipsManager : MonoBehaviour, IDataPersistence
         }
         else 
         {
-            gameTipsText.text = tips;
-            currentTipsDictionary.Add(tips, new Tips(true, tips, 0));
+            gameTipsText.text = tipsKey;
+            currentTipsDictionary.Add(tipsKey, new Tips(true, tipsDictionary[tipsKey].text, 0));
             uiController.lightbox.SetActive(true);
             gameTipsObj.SetActive(true);
             GameManager.instance.Pause();
@@ -78,7 +79,7 @@ public class TipsManager : MonoBehaviour, IDataPersistence
 
     public string GetLoadingTips()
     {
-        return loadingTips[UnityEngine.Random.Range(0, loadingTips.Length)];
+        return loadingTips[UnityEngine.Random.Range(0, loadingTips.Length)].GetLocalizedString();
     }
     
 
@@ -110,7 +111,7 @@ public class TipsManager : MonoBehaviour, IDataPersistence
 [Serializable]
 public class Tips
 {
-    public Tips (bool hasBeenDisplayed, string text, int callsNeeded)
+    public Tips (bool hasBeenDisplayed, LocalizedString text, int callsNeeded)
     {
         this.hasBeenDisplayed = hasBeenDisplayed;
         this.text = text;
@@ -123,5 +124,5 @@ public class Tips
     }
     [HideInInspector] public bool hasBeenDisplayed;
     [SerializeField] public int callsNeeded;
-    [SerializeField, TextArea(10,20)] public string text;
+    [SerializeField] public LocalizedString text;
 }

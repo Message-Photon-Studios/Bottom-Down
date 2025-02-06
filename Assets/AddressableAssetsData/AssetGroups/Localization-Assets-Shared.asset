@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 238ecf259cb519c4ca19a138d881e272
+  m_SerializeEntries:
+  - m_GUID: 41cd030bd059c3540bae81d958a5ab9d
+    m_Address: Assets/LocaleSettings/Tables/New Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 950576e3b3d56084ea28b7a3d81e4655
+    m_Address: Assets/LocaleSettings/Tables/Settings Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7cefca766aeb9b345abd786cb2bd2022
+    m_Address: Assets/LocaleSettings/Tables/Tutorial/Tutorial Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_Address: Assets/LocaleSettings/Tables/LoadingTips/LoadingTips Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 530a9fb1812acc9499957a3e4a381516
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c6f1461515aca9c4fb6fc9025ae81232
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefCaveTown Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c693cb9c3087e8a45991b96933f3aa5a
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefFirstCave Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2f34d841e540f9f4c8d03d2de32c18d7
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefCrystalHub Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7c7087d0c1694d7448e36bb5e6005676
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowRegDefQuakeBoss Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 8bd19b43577d81445b417c12588ae1cb
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowSpecFirstCave Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2ebaaaded97cd03478546183d0d46b2e
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Willow/WillowSpecCoralCaves Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 58d6c709a9a61bd4dbfbd78078529956
+    m_Address: Assets/LocaleSettings/Tables/Npcs/William/WilliamDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: ed61c3a7d8719cc49ab512e3ed9bbe89
+    m_Address: Assets/LocaleSettings/Tables/Npcs/William/WilliamRegDefCaveTown Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e0b70eb27842dac4993a71443e779a8b
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Lila/LilaDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: bf145c09b0cd61641a15dd980b7aac83
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Lila/LilaSpecCaveTown Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e17101b56f719fc4dac1c19e88701d36
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Nerus/NerusDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 4de5aee7836c8824684b604ba3ae77e7
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Nerus/NerusSpecCaveTown Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 031d79df455fdb741bd7e6306428dc45
+    m_Address: Assets/LocaleSettings/Tables/Shrines/HealingShrine Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 18024db01a427284285b36bb40b91173
+    m_Address: Assets/LocaleSettings/Tables/Shrines/LockedDoor Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: cc248bb70e4a17240867e51c80fddff5
+    m_Address: Assets/LocaleSettings/Tables/InteractableObjects/LevelExit Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7fad935b6fe17134a88e9adac8ee9459
+    m_Address: Assets/LocaleSettings/Tables/InteractableObjects/SpellInspire Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 97906c19f11b73145af468c94cc70725
+    m_Address: Assets/LocaleSettings/Tables/InteractableObjects/LeechShrine Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: a4284127705ac754d8067a9340b31204
+    m_Address: Assets/LocaleSettings/Tables/LoadingTips/PopupTips Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e8c3017947fb8634cbe984fba6c950a1, type: 2}
+    - {fileID: 11400000, guid: 2764038afc45ae74d9a0814bfae54b67, type: 2}

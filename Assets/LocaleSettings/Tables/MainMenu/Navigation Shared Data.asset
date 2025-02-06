@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Navigation Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Navigation
+  m_TableCollectionNameGuidString: 41cd030bd059c3540bae81d958a5ab9d
+  m_Entries:
+  - m_Id: 654542901248
+    m_Key: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1160275300352
+    m_Key: NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1203841536000
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1222233559040
+    m_Key: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1325442797568
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193743256752128
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193760428232704
+    m_Key: Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193771945791488
+    m_Key: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2193799582060544
+    m_Key: MainMenu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2194334490038272
+    m_Key: GamePaused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5826179937079296
+    m_Key: Next
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 805651141288001560
+  references:
+    version: 2
+    RefIds:
+    - rid: 805651141288001560
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1737467913682

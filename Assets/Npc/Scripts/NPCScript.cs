@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Localization;
 
 public class NPCScript : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class NPCScript : MonoBehaviour
                     DataPersistenceManager.instance.SaveGame();
                 }
 
-                textUi.text = dialogue.texts[currentText];
+                textUi.text = dialogue.texts[currentText].GetLocalizedString();
 
             } else 
             {
@@ -76,7 +77,7 @@ public class NPCScript : MonoBehaviour
         if(input == true)
         {
             if(dialogue == null) dialogue = NpcManager.instance.GetDialogue(name);
-            textUi.text = dialogue.texts[currentText];
+            textUi.text = dialogue.texts[currentText].GetLocalizedString();
         }
     }
 
