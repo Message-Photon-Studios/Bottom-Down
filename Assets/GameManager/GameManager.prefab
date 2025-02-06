@@ -1376,6 +1376,7 @@ MonoBehaviour:
   petrifiedPickupSound: {fileID: 2976471086048920126}
   soundEffectManager: {fileID: 7690066140520027446}
   petrifiedPigment: 0
+  inspirationPoints: 0
   maskLibrary:
     playerLayer: 3
     platformLayer: 14

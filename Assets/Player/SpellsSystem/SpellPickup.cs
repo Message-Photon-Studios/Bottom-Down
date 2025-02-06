@@ -6,6 +6,7 @@ using TMPro;
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public class SpellPickup : MonoBehaviour
 {
+    [SerializeField] int inspirationRequired = 0;
     [SerializeField] float spawnChance = 1f;
     [SerializeField] bool needsPayment;
     [SerializeField] ColorSpell colorSpell;
@@ -71,6 +72,12 @@ public class SpellPickup : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
+            if(inspirationRequired < GameManager.instance.GetInspiration())
+            {
+                //TODO Add text about it being locked or something
+                return;
+            }
+            
             inventory.EnablePickUp(this);
             if(needsPayment)
             {

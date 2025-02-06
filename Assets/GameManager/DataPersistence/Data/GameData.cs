@@ -8,6 +8,7 @@ public class GameData
 {
     public string startScene;
     public int petrifiedPigment;
+    public int inspirationPoints;
     public string[] unlockedColorSpells;
     public string[] petrifiedPigmentPickedUp;
     public PermanentUpgrades permanentUpgrades;
@@ -24,6 +25,7 @@ public class GameData
         startScene = "Tutorial_0";
         unlockedColorSpells = new string[0];
         petrifiedPigment = 0;
+        inspirationPoints = 0;
         petrifiedPigmentPickedUp = new string[0];
         tipsDictionary = new SerializedDictionary<string, Tips>();
         npcData = null;

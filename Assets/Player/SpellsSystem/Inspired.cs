@@ -73,6 +73,7 @@ public class Inspired : MonoBehaviour
             spellToEnable.SetActive(true);
             spellToEnable.GetComponent<SpellPickup>().SetSpell(unlockSpell);
         }
+        GameManager.instance.AddInspiration(1);
         gameObject.SetActive(false);
         
     }

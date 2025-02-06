@@ -252,6 +252,21 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
     }
 
+    /// <summary>
+    /// Removes max health. Will only damage player when necessary
+    /// </summary>
+    /// <param name="removeMaxHealth"></param>
+    public void RemoveMaxHealth(int removeMaxHealth)
+    {
+        int damagePlayer = removeMaxHealth - (maxHealth-health);
+        if(damagePlayer > 0) DamagePlayer(damagePlayer, null);
+        else DamagePlayer(0, null);
+        maxHealth -= removeMaxHealth;
+
+        onMaxHealthChanged?.Invoke(maxHealth);
+        onHealthChanged?.Invoke(health);
+    }
+
     #endregion
 
     #region Shield
