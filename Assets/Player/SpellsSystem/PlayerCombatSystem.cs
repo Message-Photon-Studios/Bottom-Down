@@ -36,6 +36,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private bool defaultAirHit = false;
     private bool spellAirHit = false;
     private bool attackDoubleJumped = false;
+    public UnityAction<string> onRecast;
     Action<InputAction.CallbackContext> specialAttackHandler;
     Action<InputAction.CallbackContext> defaultAttackHandler;
 
@@ -197,7 +198,9 @@ public class PlayerCombatSystem : MonoBehaviour
         GameObject spell = GameObject.Instantiate(currentSpell, transform.position + spawnPoint, transform.rotation) as GameObject;
         if(spell != null)
         {
-            spell.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
+            ColorSpell spellStats = spell.GetComponent<ColorSpell>();
+            spellStats.Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
+            if (!spellStats.spawnKey.Equals(""))onRecast?.Invoke(spellStats.spawnKey);
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown); //When adding items to change the cooldown change it here! 
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom();
@@ -219,6 +222,7 @@ public class PlayerCombatSystem : MonoBehaviour
         GameObject spellSpawn = GameObject.Instantiate(spell.gameObject, transform.position + spawnPoint, transform.rotation) as GameObject;
         if (spellSpawn != null)
         {
+
             spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom(slot);

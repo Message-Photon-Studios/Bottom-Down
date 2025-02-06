@@ -141,6 +141,9 @@ public class ColorSpell : MonoBehaviour
         }*/
         spriteRenderer.material = gameColor?.colorMat;
 
+        LineRenderer line = GetComponent<LineRenderer>();
+        if (line) line.material = gameColor?.colorMat;
+
         foreach(var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
             /*
@@ -193,6 +196,11 @@ public class ColorSpell : MonoBehaviour
     void OnEnable()
     {
         Destroy(gameObject, lifeTime);
+    }
+
+    public void SetNewDestroy(float time)
+    {
+        Destroy(gameObject, time);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -304,7 +312,8 @@ public class ColorSpell : MonoBehaviour
     {
         return power;
     }
-    
+
+
     public GameObject GetPlayerObj()
     {
         return player;
@@ -354,7 +363,7 @@ public class ColorSpell : MonoBehaviour
 
     public void DestroySpell()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }
 /// <summary>

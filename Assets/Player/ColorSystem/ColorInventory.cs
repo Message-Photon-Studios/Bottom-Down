@@ -111,6 +111,7 @@ public class ColorInventory : MonoBehaviour
         onColorUpdated += updateBrushColor;
         onSlotChanged += slotChangedBrush;
         ColorSpellImpact.onSpellImpact += SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact += SpellImactTrigger;
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
@@ -137,6 +138,7 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
         ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact -= SpellImactTrigger;
         GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
         player.GetComponent<PlayerMovement>().onPlayerDash -= DashSpells;
