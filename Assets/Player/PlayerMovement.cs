@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     Action<InputAction.CallbackContext> dropDown;
 
     public UnityAction onPlayerDash;
+    public UnityAction onPlayerDoubleJump;
 
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
 
@@ -216,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpActive = true;
             jump = jumpJetpack;
             playerSounds.PlayJump();
+            onPlayerDoubleJump?.Invoke();
         }
     }
 

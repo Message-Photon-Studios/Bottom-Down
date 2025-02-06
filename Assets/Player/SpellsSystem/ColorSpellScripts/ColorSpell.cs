@@ -21,6 +21,7 @@ public class ColorSpell : MonoBehaviour
     [SerializeField] public bool castWhenDamaged;
     [SerializeField] public bool castOnSpellImpact;
     [SerializeField] public bool castOnDash;
+    [SerializeField] public bool castOnDoubleJump;
 
     [SerializeField] public int storedSpells = 1;
 

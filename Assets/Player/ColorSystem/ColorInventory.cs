@@ -118,6 +118,7 @@ public class ColorInventory : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
         player.GetComponent<PlayerMovement>().onPlayerDash += DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump += DoubleJumpSpells;
         colorLib = GameManager.instance.GetComponent<ColorLibrary>();
 
         foreach (ColorSlot colorSlot in colorSlots)
@@ -142,6 +143,7 @@ public class ColorInventory : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
         player.GetComponent<PlayerMovement>().onPlayerDash -= DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump -= DoubleJumpSpells;
     }
 
     #endregion
@@ -972,6 +974,20 @@ public class ColorInventory : MonoBehaviour
             ColorSpell spell = slot.colorSpell;
             if (spell == null) spell = defaultSpell;
             if (spell.castOnDash && IsSpellReady(slot))
+            {
+                GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+            }
+        }
+        EnableRotation();
+    }
+
+    public void DoubleJumpSpells()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDoubleJump && IsSpellReady(slot))
             {
                 GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
             }
