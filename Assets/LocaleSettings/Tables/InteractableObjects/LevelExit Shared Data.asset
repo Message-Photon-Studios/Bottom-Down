@@ -19,6 +19,10 @@ MonoBehaviour:
     m_Key: CaveExit
     m_Metadata:
       m_Items: []
+  - m_Id: 3554723762176
+    m_Key: TutorialExit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

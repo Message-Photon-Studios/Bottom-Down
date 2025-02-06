@@ -49561,6 +49561,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Exit the tutorial?
       objectReference: {fileID: 0}
+    - target: {fileID: 6573583647927776011, guid: 97c977ab1cf9bb94891cb8204055ff09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7584247180477944385, guid: 97c977ab1cf9bb94891cb8204055ff09, type: 3}
       propertyPath: m_RootOrder
       value: 1

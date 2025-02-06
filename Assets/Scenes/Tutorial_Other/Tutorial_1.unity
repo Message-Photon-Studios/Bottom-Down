@@ -43241,6 +43241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelEndPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 2140544200530336212, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 3554723762176
+      objectReference: {fileID: 0}
     - target: {fileID: 2945222904161867230, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
       propertyPath: m_Enabled
       value: 0
