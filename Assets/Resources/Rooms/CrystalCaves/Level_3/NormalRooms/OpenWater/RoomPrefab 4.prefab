@@ -7882,7 +7882,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightInnerAngle
-      value: 23.8
+      value: 43.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
+      propertyPath: m_PointLightOuterAngle
+      value: 64.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 31.697325
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightOuterRadius

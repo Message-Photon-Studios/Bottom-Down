@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Localization;
 
 public class Inspired : MonoBehaviour
 {
@@ -20,8 +19,6 @@ public class Inspired : MonoBehaviour
     [SerializeField] TMP_Text costText;
     [SerializeField] TMP_Text descriptionText;
     [SerializeField] TMP_Text headerText;
-    [SerializeField] LocalizedString unlock;
-    [SerializeField] LocalizedString cost;
 
     private ItemInventory inventory;
     private bool triggered;
@@ -37,18 +34,18 @@ public class Inspired : MonoBehaviour
                 spellToEnable.SetActive(true);
                 spellToEnable.GetComponent<SpellPickup>().SetSpell(unlockSpell);
             }
-            gameObject.SetActive(false);
+            GetComponent<Collider2D>().enabled = false;
+            this.enabled = false;
         }
         
         triggered = false;
-        UI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIController>();
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
+        UI = PlayerLevelMananger.instance.playerUi;
+        inventory = PlayerLevelMananger.instance.playerInventory;
 
-        costText.text = cost.GetLocalizedString() + petrifiedPigmentCost;
+        costText.text = "Cost: " + petrifiedPigmentCost;
         descriptionText.text = unlockSpell.description;
-        headerText.text = unlock.GetLocalizedString() + unlockSpell.name;
+        headerText.text = "Unlock " + unlockSpell.name;
         ui.SetActive(false);
-        cost.StringChanged += UpdateString;
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
@@ -70,7 +67,7 @@ public class Inspired : MonoBehaviour
     public void TriggerUnlock()
     {
         triggered = true;
-        UI.inspired(spell, text);
+        UI.inspired?.Invoke(spell, text);
         GameManager.instance.UnlockedSpell(unlockSpell);
         if(spellToEnable) 
         {
@@ -78,13 +75,8 @@ public class Inspired : MonoBehaviour
             spellToEnable.GetComponent<SpellPickup>().SetSpell(unlockSpell);
         }
         GameManager.instance.AddInspiration(1);
-        gameObject.SetActive(false);
-        
-    }
-
-    void UpdateString(string s) {
-        costText.text = cost.GetLocalizedString() + petrifiedPigmentCost;
-        descriptionText.text = unlockSpell.description;
-        headerText.text = unlock.GetLocalizedString() + unlockSpell.name;
+        ui.SetActive(false);
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }

@@ -68,16 +68,17 @@ public class GameManager : MonoBehaviour, IDataPersistence
         {
             Destroy(this.gameObject);
         }
-    }
 
-    void Start()
-    {
-        unlockedSpells = new List<string>();
         spawnableSpells = new HashSet<string>();
         foreach (ColorSpell spell in startSpells)
         {
             spawnableSpells.Add(spell.name);
         }
+    }
+
+    void Start()
+    {
+        unlockedSpells = new List<string>();
 
         maxClockTime = clockTime;
         player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();

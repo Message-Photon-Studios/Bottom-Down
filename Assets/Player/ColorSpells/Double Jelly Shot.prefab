@@ -183,6 +183,7 @@ MonoBehaviour:
   coolDown: 0.5
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -224,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed67004b5d1b149a373b86cb7e1aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOneInstantly: 0
   spawnDelay: 0
   spawnAmount: 1
   spawnPrefabs:
