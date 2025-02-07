@@ -195,7 +195,7 @@ MonoBehaviour:
     in front of you.
 
     Power: 160%'
-  spellCost: 40
+  spellCost: 20
   powerScale: 1.6
   coolDown: 1.5
   castWhenDamaged: 0

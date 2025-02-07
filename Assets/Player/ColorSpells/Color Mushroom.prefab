@@ -241,11 +241,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Fire a small seed that grows into a mushroom. This mushroom will
     then produce 10 small hooming spores. \nPower. 10 x 20%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.2
   coolDown: 6
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 

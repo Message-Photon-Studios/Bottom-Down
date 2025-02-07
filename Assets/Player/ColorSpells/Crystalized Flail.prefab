@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Sommon a flail that is chained to you and becomes more powerful the
     faster it moves. Casting it again will detatch the flail. \nPower: 100% - 200%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 1
   coolDown: 3
   castWhenDamaged: 0
