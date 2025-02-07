@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
 
 public class Inspired : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Inspired : MonoBehaviour
     [SerializeField] ColorSpell unlockSpell;
     [SerializeField] public int petrifiedPigmentCost;
     [SerializeField] Sprite spell;
-    [SerializeField] String text;
+    [SerializeField] LocalizedString inspireText;
 
     [SerializeField] GameObject ui;
     [SerializeField] TMP_Text costText;
@@ -67,7 +68,7 @@ public class Inspired : MonoBehaviour
     public void TriggerUnlock()
     {
         triggered = true;
-        UI.inspired?.Invoke(spell, text);
+        UI.inspired?.Invoke(spell, inspireText.GetLocalizedString());
         GameManager.instance.UnlockedSpell(unlockSpell);
         if(spellToEnable) 
         {

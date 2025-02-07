@@ -8916,6 +8916,14 @@ PrefabInstance:
       propertyPath: unlockSpell
       value: 
       objectReference: {fileID: -7692674297862362138, guid: e115a84ea227d044590791de70291cf4, type: 3}
+    - target: {fileID: 1569904497173203150, guid: 5a667c860d54a894683494fdca85fc90, type: 3}
+      propertyPath: inspireText.m_TableEntryReference.m_KeyId
+      value: 379597426429952
+      objectReference: {fileID: 0}
+    - target: {fileID: 1569904497173203150, guid: 5a667c860d54a894683494fdca85fc90, type: 3}
+      propertyPath: inspireText.m_TableReference.m_TableCollectionName
+      value: GUID:7fad935b6fe17134a88e9adac8ee9459
+      objectReference: {fileID: 0}
     - target: {fileID: 4024203861461791418, guid: 5a667c860d54a894683494fdca85fc90, type: 3}
       propertyPath: m_RootOrder
       value: 5
