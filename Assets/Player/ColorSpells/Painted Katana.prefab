@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Paint a slicing Katana in front of you. Autocast on double jump.
     \nPower 120%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 1.2
   coolDown: 4
   castWhenDamaged: 0

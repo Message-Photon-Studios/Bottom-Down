@@ -178,11 +178,13 @@ MonoBehaviour:
 
     Power:
     30% for 10 sec'
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.3
   coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 

@@ -193,12 +193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: "Wield a blade of color. Autocast on Dash. \nPower: 100%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 1
   coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 0
   castOnDash: 1
+  castOnDoubleJump: 0
   storedSpells: 2
   maxSpawn: 0
   spawnKey: 

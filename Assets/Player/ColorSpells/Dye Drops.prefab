@@ -164,12 +164,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Summon five drops of paint that rains down on enemies. Autocast on
     Dash. \nPower: 5 x 40%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.4
   coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 0
   castOnDash: 1
+  castOnDoubleJump: 0
   storedSpells: 2
   maxSpawn: 0
   spawnKey: 

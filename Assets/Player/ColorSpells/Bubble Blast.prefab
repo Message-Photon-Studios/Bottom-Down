@@ -196,11 +196,13 @@ MonoBehaviour:
 
     Power:  4 x
     75%'
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.75
   coolDown: 2
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -273,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed67004b5d1b149a373b86cb7e1aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOneInstantly: 0
   spawnDelay: 0.1
   spawnAmount: 3
   spawnPrefabs:

@@ -178,11 +178,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Fire a big and a small jellyfish that impacts the first target they
     hit. The smaller jellyfish is weaker. \r\nPower: 80% + 40%\r\n"
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.8
   coolDown: 0.5
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -224,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed67004b5d1b149a373b86cb7e1aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOneInstantly: 0
   spawnDelay: 0
   spawnAmount: 1
   spawnPrefabs:
