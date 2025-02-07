@@ -148,7 +148,7 @@ public class PlayerCombatSystem : MonoBehaviour
     /// <summary>
     /// Plays the animation for the special attack
     /// </summary>
-    private void SpecialAttackAnimation()
+    public void SpecialAttackAnimation()
     {
         if (Time.timeScale == 0) return;
         if(!playerMovement.IsGrounded() && spellAirHit) return;
@@ -207,7 +207,6 @@ public class PlayerCombatSystem : MonoBehaviour
         }
         colorInventory.UseActiveColor();
         colorInventory.EnableRotation();
-        colorInventory.AutoRotate();
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);
     }
 
