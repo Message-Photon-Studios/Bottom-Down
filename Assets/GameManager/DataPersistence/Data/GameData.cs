@@ -6,6 +6,7 @@ using AYellowpaper.SerializedCollections;
 [System.Serializable]
 public class GameData
 {
+    [SerializeField] private string saveFileVersion;
     public string startScene;
     public int petrifiedPigment;
     public int inspirationPoints;
@@ -16,12 +17,17 @@ public class GameData
     public SerializedDictionary<string, NpcData> npcData;
     public SerializedDictionary<string, int> permanentShopBuys = new SerializedDictionary<string, int>(); 
 
+    public string GetSaveFileVersion()
+    {
+        return saveFileVersion;
+    }
 
     /// <summary>
     /// On new game this constructor will set default values.
     /// </summary>
-    public GameData ()
+    public GameData (string saveFileVersion)
     {
+        this.saveFileVersion = saveFileVersion;
         startScene = "Tutorial_0";
         unlockedColorSpells = new string[0];
         petrifiedPigment = 0;
