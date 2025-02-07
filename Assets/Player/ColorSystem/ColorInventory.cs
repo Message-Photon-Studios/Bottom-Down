@@ -111,12 +111,14 @@ public class ColorInventory : MonoBehaviour
         onColorUpdated += updateBrushColor;
         onSlotChanged += slotChangedBrush;
         ColorSpellImpact.onSpellImpact += SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact += SpellImactTrigger;
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
         GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
         player.GetComponent<PlayerMovement>().onPlayerDash += DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump += DoubleJumpSpells;
         colorLib = GameManager.instance.GetComponent<ColorLibrary>();
 
         foreach (ColorSlot colorSlot in colorSlots)
@@ -137,9 +139,11 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
         ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact -= SpellImactTrigger;
         GameObject player = GameObject.FindWithTag("Player");
         player.GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
         player.GetComponent<PlayerMovement>().onPlayerDash -= DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump -= DoubleJumpSpells;
     }
 
     #endregion
@@ -972,6 +976,20 @@ public class ColorInventory : MonoBehaviour
             if (spell.castOnDash && IsSpellReady(slot))
             {
                 GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+            }
+        }
+        EnableRotation();
+    }
+
+    public void DoubleJumpSpells()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDoubleJump && IsSpellReady(slot))
+            {
+                GetComponent<PlayerCombatSystem>().DoubleJumpSpecialAttack(slot);
             }
         }
         EnableRotation();
