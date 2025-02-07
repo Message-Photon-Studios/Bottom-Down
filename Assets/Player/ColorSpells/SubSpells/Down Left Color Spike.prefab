@@ -182,6 +182,8 @@ MonoBehaviour:
   coolDown: 0.1
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -194,7 +196,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
-  requirePlayerLOSonSpawn: 1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 60
   animationTrigger: raisedSpell
   onImpact:
@@ -254,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e0f513657fe3949b61516c4d8749c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetSpell: 0
 --- !u!114 &7802489595120172075
 MonoBehaviour:
   m_ObjectHideFlags: 0

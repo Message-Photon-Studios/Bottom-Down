@@ -168,6 +168,8 @@ MonoBehaviour:
   coolDown: 0.1
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -180,7 +182,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 0
   attackAgainTimer: 1.5
-  requirePlayerLOSonSpawn: 1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 0.45
   animationTrigger: handSpell
   onImpact: []
