@@ -1,4 +1,5 @@
 
+#if UNITY_EDITOR
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(CompositeCollider2D))]
 public class ShadowCaster2DTileMap : MonoBehaviour
 {
-#if UNITY_EDITOR
     [Space]
     [SerializeField]
     private bool selfShadows = true;
@@ -62,5 +62,5 @@ public class ShadowCaster2DTileMap : MonoBehaviour
         }
 
     }
-#endif
 }
+#endif
