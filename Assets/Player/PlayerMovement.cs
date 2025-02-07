@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     Action<InputAction.CallbackContext> dropDown;
 
     public UnityAction onPlayerDash;
+    public UnityAction onPlayerDoubleJump;
 
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
 
@@ -128,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
     float dashTimeout = 0;
     float dashCdStart = -1f;
     Vector3 lastDashPos = Vector2.zero;
+
+    public float lastFlipTime {get; private set;} = 0;
 
     #endregion
 
@@ -216,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpActive = true;
             jump = jumpJetpack;
             playerSounds.PlayJump();
+            onPlayerDoubleJump?.Invoke();
         }
     }
 
@@ -696,6 +700,8 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrounded())
             playerAnimator.SetTrigger("turn");
         GetComponent<PlayerCombatSystem>().FlipDefaultAttack();
+
+        lastFlipTime = Time.time; 
     }
 
     #region Teleportation
