@@ -21,8 +21,10 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] ColorInventory colorInventory;
     [SerializeField] Animator animator;
     [SerializeField] PlayerSounds playerSounds;
+    [SerializeField] float bunnyCastTolerance;
 
     public int defaultAttackDamage = 0;
+    private float bunnyCast = 0;
 
     /// <summary>
     /// Cascade damage will increase damage of spells each time a spell is cast, but will reset to zero when default attack is used.
@@ -151,15 +153,22 @@ public class PlayerCombatSystem : MonoBehaviour
     public void SpecialAttackAnimation()
     {
         if (Time.timeScale == 0) return;
-        if(!playerMovement.IsGrounded() && spellAirHit) return;
+        if(!playerMovement.IsGrounded() && spellAirHit)
+        {
+            SetBunnySpell();
+            return;
+        }
         currentSpell= colorInventory.GetActiveColorSpell().gameObject;
         if(currentSpell == null) return;
-        if(attacking) return;
+        if(attacking)
+        {
+            SetBunnySpell();
+            return;
+        }
         if(!colorInventory.CheckActveColor()) return;
         if (!colorInventory.IsSpellReady()) return;
 
-        cascadeDamage ++;
-        if(cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
+
 
         if(playerMovement.IsGrappeling())
         {
@@ -183,6 +192,7 @@ public class PlayerCombatSystem : MonoBehaviour
         body.constraints |= RigidbodyConstraints2D.FreezePositionY;
         playerSounds.PlayCastingSpell();
         colorInventory.DisableRotation();
+        bunnyCast = -1;
     }
 
     /// <summary>
@@ -207,6 +217,8 @@ public class PlayerCombatSystem : MonoBehaviour
         }
         colorInventory.UseActiveColor();
         colorInventory.EnableRotation();
+        cascadeDamage++;
+        if (cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
         transform.position= new Vector3(transform.position.x, transform.position.y-0.001f,transform.position.z);
     }
 
@@ -227,6 +239,8 @@ public class PlayerCombatSystem : MonoBehaviour
             colorInventory.MixRandom(slot);
         }
         colorInventory.UseActiveColor(slot);
+        cascadeDamage++;
+        if (cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
 
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
     }
@@ -248,6 +262,8 @@ public class PlayerCombatSystem : MonoBehaviour
             colorInventory.MixRandom(slot);
         }
         colorInventory.UseActiveColor(slot);
+        cascadeDamage++;
+        if (cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
 
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
     }
@@ -272,6 +288,8 @@ public class PlayerCombatSystem : MonoBehaviour
             colorInventory.MixRandom(slot);
         }
         colorInventory.UseActiveColor(slot);
+        cascadeDamage++;
+        if (cascadeDamage > maxCascadeDamage) cascadeDamage = maxCascadeDamage;
 
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.001f, transform.position.z);
     }
@@ -314,5 +332,20 @@ public class PlayerCombatSystem : MonoBehaviour
         defaultAirHit = false;
         spellAirHit = false;
         attackDoubleJumped = false;
+    }
+
+    private void SetBunnySpell()
+    {
+        if (bunnyCast > Time.fixedTime) return;
+        bunnyCast = Time.fixedTime + bunnyCastTolerance;
+    }
+
+    void Update()
+    {
+
+        if (bunnyCast > 0 && bunnyCast >= Time.fixedTime)
+        {
+            SpecialAttackAnimation();
+        }
     }
 }
