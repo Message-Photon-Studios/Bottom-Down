@@ -172,6 +172,7 @@ MonoBehaviour:
   castWhenDamaged: 0
   castOnSpellImpact: 0
   castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -184,7 +185,7 @@ MonoBehaviour:
   triggerOnlyOnce: 0
   triggerOnlyOncePerEnemy: 1
   attackAgainTimer: -1
-  requirePlayerLOSonSpawn: 1
+  requirePlayerLOSonSpawn: 0
   lifeTime: 1.1
   animationTrigger: raisedSpell
   onImpact:

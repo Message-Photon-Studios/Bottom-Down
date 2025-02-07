@@ -184,10 +184,11 @@ MonoBehaviour:
     faster it moves. Casting it again will detatch the flail. \nPower: 100% - 200%"
   spellCost: 40
   powerScale: 1
-  coolDown: 1
+  coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 0
   castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: flailSpell

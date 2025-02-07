@@ -16,8 +16,9 @@ GameObject:
   - component: {fileID: 4874330200776334801}
   - component: {fileID: 6271258304019460346}
   - component: {fileID: -7692674297862362138}
+  - component: {fileID: 7939297641866764751}
   m_Layer: 8
-  m_Name: Color Katana
+  m_Name: Painted Blade
   m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,15 +68,15 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3321278458073070463}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.64, y: -0.94}
+  m_Offset: {x: 0, y: -1}
   serializedVersion: 2
-  m_Radius: 2.34
+  m_Radius: 1.55
 --- !u!70 &-2812139904606595728
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -83,7 +84,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3321278458073070463}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -148,7 +149,7 @@ SpriteRenderer:
   m_SortingLayerID: -615436619
   m_SortingLayer: 11
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2074292757, guid: e32aa89d0eb03a7489febaf4448fc239, type: 3}
+  m_Sprite: {fileID: -996088377, guid: dab4ddbe0a2bd1243b8310bca4499210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,7 +170,7 @@ Animator:
   m_GameObject: {fileID: 3321278458073070463}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 600564fe561cac148b997d8d3844c274, type: 2}
+  m_Controller: {fileID: 9100000, guid: 34398910b368d364480d9a86b515f074, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -197,8 +198,7 @@ MonoBehaviour:
   coolDown: 3
   castWhenDamaged: 0
   castOnSpellImpact: 0
-  castOnDash: 0
-  castOnDoubleJump: 1
+  castOnDash: 1
   storedSpells: 2
   maxSpawn: 0
   spawnKey: 
@@ -212,20 +212,33 @@ MonoBehaviour:
   triggerOnlyOncePerEnemy: 0
   attackAgainTimer: -1
   requirePlayerLOSonSpawn: 0
-  lifeTime: 1
+  lifeTime: 0.4
   animationTrigger: swipeSpell
   onImpact:
   - {fileID: 3321278458073070407}
   spellSprite:
-    bigSprite: {fileID: 21300000, guid: 39a0d037376ec9245badab7825f34eac, type: 3}
-    bigSpriteMask: {fileID: 21300000, guid: d3aacb06d04efba4ea71482cf47963cd, type: 3}
-    bigSpriteCapMask: {fileID: 21300000, guid: c8af7755e46ba634097f182c2215ab8f, type: 3}
-    mediumSprite: {fileID: 21300000, guid: cc52574b52b982f40bc4f8b594f5e465, type: 3}
-    mediumSpriteMask: {fileID: 21300000, guid: 1a090fda8b8d4d44d9c1cdefd8dc72cd, type: 3}
-    mediumSpriteCapMask: {fileID: 21300000, guid: ee35da113f3a7114e92d40b5147f8d43, type: 3}
-    smallSprite: {fileID: 21300000, guid: 849fca71e00881143a45badb88271720, type: 3}
-    smallSpriteMask: {fileID: 21300000, guid: 84c3331a586a4694786a13348a39e5f9, type: 3}
-    smallSpriteCapMask: {fileID: 21300000, guid: c5d7d023a924d724581b9b8e1e96f3e3, type: 3}
+    bigSprite: {fileID: 21300000, guid: a0905968bf1048b48a4d7decb1c10c48, type: 3}
+    bigSpriteMask: {fileID: 21300000, guid: 2150b93e7990fc948bcfe9d35cf904fc, type: 3}
+    bigSpriteCapMask: {fileID: 21300000, guid: 8936a3685127ac94d86ca435a478484e, type: 3}
+    mediumSprite: {fileID: 21300000, guid: 82b3725a81e41bd47aa56fa7ee1e367e, type: 3}
+    mediumSpriteMask: {fileID: 21300000, guid: 75760cb6c37bd5e47b97cceb7a313311, type: 3}
+    mediumSpriteCapMask: {fileID: 21300000, guid: 11b4448e9de4ece439a7c116c58cd00e, type: 3}
+    smallSprite: {fileID: 21300000, guid: 6b3d2c8d7f0bc7d45bd71728ac9cf316, type: 3}
+    smallSpriteMask: {fileID: 21300000, guid: f2e5010ada927924f9632ef6bbf95f83, type: 3}
+    smallSpriteCapMask: {fileID: 21300000, guid: 16c8706a787e7664786199a20684504e, type: 3}
+--- !u!114 &7939297641866764751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3321278458073070463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e0f513657fe3949b61516c4d8749c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetSpell: 0
 --- !u!1001 &1007130421494915340
 PrefabInstance:
   m_ObjectHideFlags: 0
