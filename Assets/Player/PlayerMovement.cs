@@ -130,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
     float dashCdStart = -1f;
     Vector3 lastDashPos = Vector2.zero;
 
+    public float lastFlipTime {get; private set;} = 0;
+
     #endregion
 
     #region Setup
@@ -698,6 +700,8 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrounded())
             playerAnimator.SetTrigger("turn");
         GetComponent<PlayerCombatSystem>().FlipDefaultAttack();
+
+        lastFlipTime = Time.time; 
     }
 
     #region Teleportation

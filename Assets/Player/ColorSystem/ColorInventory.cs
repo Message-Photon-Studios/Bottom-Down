@@ -989,7 +989,7 @@ public class ColorInventory : MonoBehaviour
             if (spell == null) spell = defaultSpell;
             if (spell.castOnDoubleJump && IsSpellReady(slot))
             {
-                GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+                GetComponent<PlayerCombatSystem>().DoubleJumpSpecialAttack(slot);
             }
         }
         EnableRotation();
