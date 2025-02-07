@@ -5379,6 +5379,7 @@ MonoBehaviour:
   colorInventory: {fileID: 2907638193198340670}
   animator: {fileID: 5589058685384803136}
   playerSounds: {fileID: 8219171091925355652}
+  bunnyCastTolerance: 0.1
   defaultAttackDamage: 0
   maxCascadeDamage: 0
 --- !u!114 &2907638193198340670

@@ -54,7 +54,6 @@ public class ColorInventory : MonoBehaviour
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
-    private int lastDir = 0;
     private float colorMaxBonus = 0;
     private int colorMaxDamageBonus = 0;
     
@@ -158,8 +157,8 @@ public class ColorInventory : MonoBehaviour
     {
         if (!CanSwap) return;
         activeSlot = (colorSlots.Count+activeSlot+dir)%colorSlots.Count;
-        lastDir = dir;
         onSlotChanged?.Invoke(dir);
+        if (autoRotate) GetComponent<PlayerCombatSystem>().SpecialAttackAnimation();
     }
 
     public void DisableRotation()
@@ -170,11 +169,6 @@ public class ColorInventory : MonoBehaviour
     public void EnableRotation()
     {
         CanSwap = true;
-    }
-
-    public void AutoRotate()
-    {
-        if (autoRotate) RotateActive(lastDir);
     }
 
     /// <summary>
