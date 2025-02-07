@@ -158,7 +158,7 @@ public class ItemLibrary : MonoBehaviour{
             {
                 Debug.LogError("Item collection " + ((ItemCategory)categoryIndex).ToString() + "/" + dropPointRarity.ToString() + " is empty even though it is default!");
                 items = new List<Item>();
-                for (int i = 0; i < itemMatrix.Length; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     for (int j = 0; j < itemMatrix[i,(int)dropPointRarity].items.Length; j++)
                     {
