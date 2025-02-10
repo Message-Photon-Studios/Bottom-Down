@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Rendering.Universal;
 
 /// <summary>
@@ -10,7 +11,7 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Collider2D))]
 public class ColorSpell : MonoBehaviour
 {
-    [TextArea(5, 20)] public string description;
+    [SerializeField] public LocalizedString description;
 
     public int spellCost;
     /// <summary>

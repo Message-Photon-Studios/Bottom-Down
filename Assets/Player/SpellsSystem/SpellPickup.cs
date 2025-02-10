@@ -42,7 +42,7 @@ public class SpellPickup : MonoBehaviour
     {
         if (colorSpell == null || pickedup) this.colorSpell = setSpell;
                 
-        descriptionText.text = colorSpell.description;
+        descriptionText.text = colorSpell.description.GetLocalizedString();
         nameText.text = colorSpell.name;
         cost.text = "Cost: " + colorSpell.spellCost;
 

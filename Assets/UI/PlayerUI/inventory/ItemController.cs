@@ -323,6 +323,6 @@ public class ItemController : MonoBehaviour
         selectedItemContainer.SetActive(true);
         selectedImage.sprite =bottle.GetBottleSprite().bigSprite;
         selectedName.text = bottle.name;
-        selectedDesc.text = bottle.description;
+        selectedDesc.text = bottle.description.GetLocalizedString();
     }
 }

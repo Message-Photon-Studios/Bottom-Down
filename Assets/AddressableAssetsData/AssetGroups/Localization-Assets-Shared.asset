@@ -128,6 +128,86 @@ MonoBehaviour:
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 2ce2a0dfdc44cf24c91f21b3058da26f
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_Bomba Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2dcfddcb6e79d1d4e86772395a33ee61
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_BubbleBlast Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 76d26e5d100de344681328fb91b87722
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ColorBloom Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 7868fb2d48a2dbb4e944fcbb7b4cfd68
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ColorBolt Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 46e270f3cf9a570488f0b24b8d7d461c
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ColorClaws Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e3e668f8c6adbe8458168d0bc282be75
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ColorMushroom Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 4eedb30d2952e8b47ab5e15ef65bf3c5
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ColorPunch Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: cc75edfdee110d7479a012159566a12e
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ColorSwipe Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 39d55ffd3a32a6b40b8b31f510d8dd28
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ChromaticWhisp Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 6e8651b1cfc6ebb449fd5f17bc5f3aa5
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_CrystalizedFlail Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 22f5804f448791447979b5c9edc0e9a3
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_DoubleJellyShot Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2b4ae29a8d44e684c994c2f2ed5792ee
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_DyeDrops Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 9e0880cc33ebca94598bc11b2bc68c12
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_ElementalSlime Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 5164034b96a89944f86493cacf6e1dd4
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_GrapeShot Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b0ba66eaa2a546042a2702e4175bbe50
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_PaintedBlade Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 0ae3b96e973c10345a7f20915208b9c7
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_PaintedKatana Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 34e3a9de4083fd242921169165f69709
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_PaintedSpear Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: db25cb29281f1ac4aaff86581c7f77d4
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_PrismaticShards Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 5279abf02d55b934cbaabc36c6e9a503
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_SpectralBeam Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c34ae696256391e4d88218cc3c657cfa
+    m_Address: Assets/LocaleSettings/Tables/Bottles/SB_VengefulWorm Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:

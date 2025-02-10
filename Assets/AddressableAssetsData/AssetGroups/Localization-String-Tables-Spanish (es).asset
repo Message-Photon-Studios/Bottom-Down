@@ -167,6 +167,126 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-es
     - Preload
+  - m_GUID: 4faf7afe7e3efb04e92320c2679b4c2c
+    m_Address: SB_Bomba_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 6ab0707cea611344fa5b0bd00b83c2c9
+    m_Address: SB_BubbleBlast_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 14136a7a67173514aa6b6a64627b54b3
+    m_Address: SB_ColorBloom_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: ae78cfd12cde8344e9716b3817a144bb
+    m_Address: SB_ColorBolt_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: afdda9952ae332842b97710d78135246
+    m_Address: SB_ColorClaws_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: a6bd99c3c662836478f2576eccef23f6
+    m_Address: SB_ColorMushroom_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 61ea20c5b110fd345880e9f1c30d19b7
+    m_Address: SB_ColorPunch_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: b4f5f9b9fb234fd4681bec8b9856c14b
+    m_Address: SB_ColorSwipe_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 22902208ef772c7438b0dd77ea9ab0dc
+    m_Address: SB_ChromaticWhisp_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 8667a5dacf600814fb1ce276ee168236
+    m_Address: SB_CrystalizedFlail_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 588ab69edd8833e42bc7f44138c4b915
+    m_Address: SB_DoubleJellyShot_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 9b9bf0366bcadf14cabd8a6659e0132e
+    m_Address: SB_DyeDrops_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: ee59b6c6a3b3bb1418fa7b374f02dd02
+    m_Address: SB_ElementalSlime_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 79832afac71ade2468e5e89c1300cebf
+    m_Address: SB_GrapeShot_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 0be43f2f62665d643bc38e1c32003a56
+    m_Address: SB_PaintedBlade_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: b52f5a6f00824d04384c9402e1acca14
+    m_Address: SB_PaintedKatana_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 7e1d5febb36db3e419d6bf15d9903848
+    m_Address: SB_PaintedSpear_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: e4b398b8a54944b44aab4aa158cf1f63
+    m_Address: SB_PrismaticShards_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: a939835c9b3f54c429425796e1c6a9be
+    m_Address: SB_SpectralBeam_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: d65beda011559794fabab69dd6d4c170
+    m_Address: SB_VengefulWorm_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
