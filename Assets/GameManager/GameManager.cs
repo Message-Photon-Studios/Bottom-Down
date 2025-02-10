@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public SoundEffectManager soundEffectManager;
 
     [SerializeField] private int petrifiedPigment = 0;
+    [SerializeField] private int inspirationPoints = 0;
     string gameStartScene = "Tutorial_0";
     public bool allowsTips {get; private set;} = true;
     float hunterTimer = 0f;
@@ -67,16 +68,17 @@ public class GameManager : MonoBehaviour, IDataPersistence
         {
             Destroy(this.gameObject);
         }
-    }
 
-    void Start()
-    {
-        unlockedSpells = new List<string>();
         spawnableSpells = new HashSet<string>();
         foreach (ColorSpell spell in startSpells)
         {
             spawnableSpells.Add(spell.name);
         }
+    }
+
+    void Start()
+    {
+        unlockedSpells = new List<string>();
 
         maxClockTime = clockTime;
         player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerStats>();
@@ -181,6 +183,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         petrifiedPigment = data.petrifiedPigment;
         pickedUpPetrifiedPigment = new HashSet<string>();
         pickedUpPetrifiedPigment.AddRange(data.petrifiedPigmentPickedUp);
+
+        inspirationPoints = data.inspirationPoints;
     }
 
     void IDataPersistence.SaveData(GameData data)
@@ -189,6 +193,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.unlockedColorSpells = unlockedSpells.ToArray();
         data.petrifiedPigment = petrifiedPigment;
         data.petrifiedPigmentPickedUp = pickedUpPetrifiedPigment.ToArray();
+        data.inspirationPoints = inspirationPoints;
     }
 
     public string GetStartScene()
@@ -337,6 +342,24 @@ public class GameManager : MonoBehaviour, IDataPersistence
         pickedUpPetrifiedPigment.Add(name);
         onPetrifiedPigmentChanged?.Invoke(1);
         petrifiedPickupSound.Play();
+        DataPersistenceManager.instance.SaveGame();
+    }
+
+    #endregion
+
+    #region Inspiration Points
+
+    public UnityAction<int> onInspirationChanged;
+
+    public int GetInspiration ()
+    {
+        return inspirationPoints;
+    }
+
+    public void AddInspiration(int addInspiration)
+    {
+        inspirationPoints += addInspiration;
+        onInspirationChanged?.Invoke(addInspiration);
         DataPersistenceManager.instance.SaveGame();
     }
 

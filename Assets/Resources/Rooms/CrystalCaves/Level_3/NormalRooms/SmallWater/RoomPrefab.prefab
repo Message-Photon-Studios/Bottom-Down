@@ -2764,7 +2764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.004111663
+      value: 0.0027820058
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2776,7 +2776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.99999154
+      value: 0.9999961
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2792,15 +2792,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightInnerAngle
-      value: 31.14
+      value: 39.94
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightOuterAngle
       value: 67.67
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 17.154757
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 25.849884
+      value: 20.33355
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}

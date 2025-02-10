@@ -179,7 +179,7 @@ MonoBehaviour:
 
     Power: 3
     x 50%'
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.5
   coolDown: 5
   castWhenDamaged: 0

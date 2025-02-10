@@ -150,10 +150,22 @@ public class ItemLibrary : MonoBehaviour{
 
         if(items.Count == 0)
         {
+            items = new List<Item>(category[(int)dropPointRarity].items.Length);
             Debug.LogWarning("Item collection " + ((ItemCategory)categoryIndex).ToString()+"/"+((ItemRarity)picker).ToString() + " is empty!, Taking from default");
             items.AddRange(category[(int)dropPointRarity].items);
 
-            if(items.Count == 0) Debug.LogError("Item collection " + ((ItemCategory)categoryIndex).ToString() + "/" + dropPointRarity.ToString() + " is empty even though it is default!");
+            if(items.Count == 0) 
+            {
+                Debug.LogError("Item collection " + ((ItemCategory)categoryIndex).ToString() + "/" + dropPointRarity.ToString() + " is empty even though it is default!");
+                items = new List<Item>();
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < itemMatrix[i,(int)dropPointRarity].items.Length; j++)
+                    {
+                        items.Add(itemMatrix[i,(int)dropPointRarity].items[j]);;
+                    }
+                }
+            }
         }
 
         Item ret = null;

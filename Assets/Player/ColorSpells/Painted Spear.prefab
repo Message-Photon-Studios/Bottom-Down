@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Fire a high velocity spear that gets lounged into enemies and the
     ground. \nPower: 100% + 4 x 20%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 1
   coolDown: 4
   castWhenDamaged: 0

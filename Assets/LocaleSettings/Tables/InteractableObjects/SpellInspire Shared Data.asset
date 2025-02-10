@@ -23,6 +23,18 @@ MonoBehaviour:
     m_Key: Cost
     m_Metadata:
       m_Items: []
+  - m_Id: 379597426429952
+    m_Key: Bloom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379928247963648
+    m_Key: DoubleJellyfish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 384197579673600
+    m_Key: Inspired
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

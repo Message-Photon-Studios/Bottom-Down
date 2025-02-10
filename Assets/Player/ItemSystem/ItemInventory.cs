@@ -42,6 +42,13 @@ public class ItemInventory : MonoBehaviour
 
     Action<InputAction.CallbackContext> pickUp;
 
+
+    void Awake()
+    {
+        GameManager.instance.onPrepareNewRun += SetPermanentItems;
+        GameManager.instance.onStartedNewRun += LoadPermanentItems;
+        GameManager.instance.onLoadedCaveTown += LoadPermanentItems;
+    }
     void Start()
     {
         startCoins = coins;
@@ -67,9 +74,6 @@ public class ItemInventory : MonoBehaviour
         };
 
         pickUpAction.action.performed += pickUp;
-        GameManager.instance.onPrepareNewRun += SetPermanentItems;
-        GameManager.instance.onStartedNewRun += LoadPermanentItems;
-        GameManager.instance.onLoadedCaveTown += LoadPermanentItems;
     }
 
     void OnDisable()

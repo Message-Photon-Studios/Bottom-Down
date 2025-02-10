@@ -26,6 +26,18 @@ MonoBehaviour:
     m_Localized: 'Cost: '
     m_Metadata:
       m_Items: []
+  - m_Id: 379597426429952
+    m_Localized: 'The caves wisper: beauty can grow anywhere.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 379928247963648
+    m_Localized: 'The sea sings of the strong protecting the weak. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 384197579673600
+    m_Localized: You feel inspired!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

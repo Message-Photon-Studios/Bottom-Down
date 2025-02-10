@@ -159,6 +159,12 @@ MonoBehaviour:
     m_Address: Credits_es
     m_ReadOnly: 1
     m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c9585f024d82e9140b268bd602df1309
+    m_Address: DecayedShrine_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
     - Locale-es
     - Preload
   m_ReadOnly: 1

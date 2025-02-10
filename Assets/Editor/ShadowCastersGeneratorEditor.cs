@@ -1,11 +1,12 @@
 
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(ShadowCaster2DTileMap))]
 public class ShadowCastersGeneratorEditor : Editor
 {
-    #if UNITY_EDITOR
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -30,5 +31,6 @@ public class ShadowCastersGeneratorEditor : Editor
 
         }
     }
-    #endif
+
 }
+#endif

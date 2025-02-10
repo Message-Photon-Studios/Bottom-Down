@@ -194,7 +194,7 @@ MonoBehaviour:
   description: 'Make a short range splash of color in front of you.
 
     Power: 80%'
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.8
   coolDown: 1.5
   castWhenDamaged: 0
