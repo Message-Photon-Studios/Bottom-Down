@@ -287,6 +287,102 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-es
     - Preload
+  - m_GUID: 846a1bb246e4a8441b203e788415db1e
+    m_Address: Item_HealthyNut_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 365a073ffa6e76a44937372e203594a9
+    m_Address: Item_OldKey_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 9438ef015865acf4ca2395f018d885c3
+    m_Address: Item_SpellSlot_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: ff89a54891747834f8c915a61010b300
+    m_Address: Item_BlueRimfrost_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 4790b5975db0c0b4980185d3ec747ff1
+    m_Address: Item_CalmNight_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 2a8cd51a25508fc4a90fa3823a60bced
+    m_Address: Item_CorrodingDecay_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 6b4b9d3026e84bc43a0e740725b34d0c
+    m_Address: Item_FlamingHeat_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 27108f26107223843a051991abcf11e6
+    m_Address: Item_FreezingCold_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 3325d5aeaffa5224d85543113780dfcf
+    m_Address: Item_GreenDeath_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 717b99025d65f204795b1aef5ad6b724
+    m_Address: Item_GrowthLeech_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 9b72088b7a6bb5243aed39d51e3f339f
+    m_Address: Item_OrangeFlames_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 1729471e6ed57b1458d7f4d4d23e5191
+    m_Address: Item_PurpleNight_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: effd9cfca18bed24395fd1b3267011cf
+    m_Address: Item_RainbowCharm_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 45817e5dddeb4c245bd3f6875aab19bf
+    m_Address: Item_RedLeeches_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 171f45d2c0d61f54db5c6b7723d6822b
+    m_Address: Item_StormyNight_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 67615c41fa9458340813b37ca1d033f4
+    m_Address: Item_YellowThunder_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:

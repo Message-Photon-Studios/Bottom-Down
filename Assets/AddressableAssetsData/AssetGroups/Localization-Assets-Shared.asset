@@ -208,6 +208,85 @@ MonoBehaviour:
     m_Address: Assets/LocaleSettings/Tables/Bottles/SB_VengefulWorm Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 33c46e37a11fcca44948fae07bfab9b5
+    m_Address: Assets/LocaleSettings/Tables/Items/_Special/Item_HealthyNut Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 8460e5cab3690ce4f9e825c81d915323
+    m_Address: Assets/LocaleSettings/Tables/Items/_Special/Item_OldKey Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 52959ce571c54ad42b8cd101e5477bf6
+    m_Address: Assets/LocaleSettings/Tables/Items/_Special/Item_SpellSlot Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 484c950d3791c09439983fc4030a332d
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_BlueRimfrost Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 136ca5320269ff048ad365d6a6ddf78d
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_CalmNight Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 1d140d8260d549d41a90a191b7e4c489
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_CorrodingDecay
+      Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: f40dc3256cd67ae44ab609d360d892bd
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_FlamingHeat Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 5fc971b15910b6446acb2518980a25b9
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_FreezingCold Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 5e2ef91bfb475d04191e8b3cf9939c39
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_GreenDeath Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: d9ebd113418707047a3d09c3bcaa1e44
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_GrowthLeech Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: a0495bfa18a92534fa13c7c2c04e3379
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_OrangeFlames Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 1f3e03ab828714940937fd0ce301a820
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_PurpleNight Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: aea249761bec48d4589d0db6d6825603
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_RainbowCharm Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 42f12b9c288688e419fbdec3b6c76fba
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_RedLeeches Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 97cceba5a6b5ca74abd614a1c6f3f0b9
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_StormyNight Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: fe5899d08a332d547a20aca62c00200b
+    m_Address: Assets/LocaleSettings/Tables/Items/ColorBoost/Item_YellowThunder Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
