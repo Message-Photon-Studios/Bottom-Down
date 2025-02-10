@@ -37,6 +37,7 @@ public class ItemPickup : MonoBehaviour
     
     void Start()
     {
+        inventory = PlayerLevelMananger.instance.playerInventory;
         if(spawnFromEnemy != null)
         {
             spawnFromEnemy.onEnemyDeath += SpawnFromEnemy;
@@ -91,7 +92,6 @@ public class ItemPickup : MonoBehaviour
         spriteRenderer.sprite = item.sprite;
 
         canvas.SetActive(false);
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
         hoverCoroutine = StartCoroutine(hoverAnimation());
     }
 

@@ -32,7 +32,7 @@ public class HealingShrine : MonoBehaviour
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
-        cost.text = "Cost: " + CalculatePrice();
+        cost.text = CalculatePrice().ToString();
         description.text = phrases[0] + "\n" + healAmoutText;
     }
 
@@ -49,7 +49,7 @@ public class HealingShrine : MonoBehaviour
 
     private void UpdateCost()
     {
-        cost.text = "Cost: " + CalculatePrice();
+        cost.text = CalculatePrice().ToString();
         if (inventory.GetCoins() < CalculatePrice())
         {
             cost.color = Color.red;

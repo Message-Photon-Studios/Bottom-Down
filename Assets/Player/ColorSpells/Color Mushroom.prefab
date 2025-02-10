@@ -86,6 +86,7 @@ Transform:
   m_Children:
   - {fileID: 2645241902878360685}
   - {fileID: 4374493433690221549}
+  - {fileID: 818325321322748812}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,7 +194,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -1183728565, guid: 603e5fc2e8c999643b961ce1611252a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -240,11 +241,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: "Fire a small seed that grows into a mushroom. This mushroom will
     then produce 10 small hooming spores. \nPower. 10 x 20%"
-  spellCost: 40
+  spellCost: 20
   powerScale: 0.2
   coolDown: 6
   castWhenDamaged: 0
   castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
   storedSpells: 1
   maxSpawn: 0
   spawnKey: 
@@ -421,4 +424,70 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1019539130980119227, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
   m_PrefabInstance: {fileID: 3068050921329342166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3222399616096199351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3321278458073070405}
+    m_Modifications:
+    - target: {fileID: 2874147498126129466, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_Name
+      value: SpellLight Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.396
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129468, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_Intensity
+      value: 0.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+--- !u!4 &818325321322748812 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+  m_PrefabInstance: {fileID: 3222399616096199351}
   m_PrefabAsset: {fileID: 0}

@@ -24,15 +24,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DropDown",
-                    "type": "Button",
-                    "id": "1d1c586c-efe5-46b3-a455-927d2af4b744",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Menu",
                     "type": "Button",
                     "id": "4e844f64-9f17-456c-bd29-bc6cb4929508",
@@ -262,39 +253,6 @@
                     "processors": "",
                     "groups": "PlayStation",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5e7c1d50-2e08-4e90-8208-19841e0f39e8",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard;KeyboardMouse",
-                    "action": "DropDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1c9fecd2-7dbc-457f-8182-1deec7dca788",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PlayStation;XboxController",
-                    "action": "DropDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "25406eb6-7cd6-4a69-a78a-748baf2fa0c2",
-                    "path": "<Gamepad>/leftStick/down",
-                    "interactions": "Hold(duration=0.1)",
-                    "processors": "AxisDeadzone",
-                    "groups": "PlayStation;XboxController",
-                    "action": "DropDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -797,7 +755,7 @@
                     "name": "1D Axis",
                     "id": "cd0982fc-0f40-4fe9-b3d3-a8efabf1e464",
                     "path": "1DAxis",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.1)",
                     "processors": "AxisDeadzone,Scale(factor=10),Clamp(min=-1,max=1)",
                     "groups": "",
                     "action": "VerticalMovement",

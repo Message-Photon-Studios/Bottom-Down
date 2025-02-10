@@ -16,6 +16,11 @@ public class GameColor : ScriptableObject
     [SerializeField] public Color plainColor;
 
     /// <summary>
+    /// How this color should tint lights
+    /// </summary>
+    [SerializeField] public Color lightTintColor;
+
+    /// <summary>
     /// A description of the color
     /// </summary>
     [SerializeField, TextArea(5,20)] public string description;

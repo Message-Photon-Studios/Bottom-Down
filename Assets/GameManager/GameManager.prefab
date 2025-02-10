@@ -1166,84 +1166,269 @@ MonoBehaviour:
         defaultDialogue:
           id: 44460775
           texts:
-          - Hi, do you want to buy something?
+          - m_TableReference:
+              m_TableCollectionName: GUID:530a9fb1812acc9499957a3e4a381516
+            m_TableEntryReference:
+              m_KeyId: 15561658368
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
         regionalDefaultDialogues:
           _serializedList:
           - Key: CaveTown
             Value:
               id: 116391139
               texts:
-              - 'Hi, I found you lying unconscious in the caves. '
-              - I managed to bring you here.
-              - However, all of your items seem to be gone.
-              - 'I have no idea what happened to them. '
-              - "Oh well, you don\u2019t need to thank me. I decided to help you
-                just because I am so generous. "
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c6f1461515aca9c4fb6fc9025ae81232
+                m_TableEntryReference:
+                  m_KeyId: 46427541504
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c6f1461515aca9c4fb6fc9025ae81232
+                m_TableEntryReference:
+                  m_KeyId: 103503630336
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c6f1461515aca9c4fb6fc9025ae81232
+                m_TableEntryReference:
+                  m_KeyId: 109853806592
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c6f1461515aca9c4fb6fc9025ae81232
+                m_TableEntryReference:
+                  m_KeyId: 115277041664
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c6f1461515aca9c4fb6fc9025ae81232
+                m_TableEntryReference:
+                  m_KeyId: 133627121664
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
           - Key: TheOutskirts
             Value:
               id: 307709441
               texts:
-              - Because I am so generous I have even decided to give you this bottle
-                to help you out on your journey.
-              - Now go collect those Astral Pigments so you have something to spend
-                in my shop.
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c693cb9c3087e8a45991b96933f3aa5a
+                m_TableEntryReference:
+                  m_KeyId: 19282006016
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:c693cb9c3087e8a45991b96933f3aa5a
+                m_TableEntryReference:
+                  m_KeyId: 21744062464
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
           - Key: CrystalHub
             Value:
               id: 157530307
               texts:
-              - Hi, do you want to buy something?
-              - Also, if you find my brother then say hi from me.
-              - He should have a shop somewhere around here.
+              - m_TableReference:
+                  m_TableCollectionName: GUID:2f34d841e540f9f4c8d03d2de32c18d7
+                m_TableEntryReference:
+                  m_KeyId: 56770695168
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:2f34d841e540f9f4c8d03d2de32c18d7
+                m_TableEntryReference:
+                  m_KeyId: 95047913472
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:2f34d841e540f9f4c8d03d2de32c18d7
+                m_TableEntryReference:
+                  m_KeyId: 102530551808
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
           - Key: QuakeBoss
             Value:
               id: 311753470
               texts:
-              - 'I have heard a lot of scary noises from this pit below as of recently. '
-              - 'You better prepare yourself by buying some items before venturing
-                down. '
+              - m_TableReference:
+                  m_TableCollectionName: GUID:7c7087d0c1694d7448e36bb5e6005676
+                m_TableEntryReference:
+                  m_KeyId: 25904812032
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:7c7087d0c1694d7448e36bb5e6005676
+                m_TableEntryReference:
+                  m_KeyId: 28945682432
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
         specificDialogues:
           _serializedList:
           - Key: TheOutskirts
             Value:
             - id: 951304142
               texts:
-              - 'Hello there! '
-              - Found yourself stuck in this treacherous cave? Use your map to get
-                guidance to reach the exit at the top of the cave system.
-              - "You see, I found these items lying around the caves after the earthquake.
-                I\u2019m sure someone has a need for these, please have a look."
-              - "Just so you know Finders keepers! But feel free to buy them from
-                me.\r"
+              - m_TableReference:
+                  m_TableCollectionName: GUID:8bd19b43577d81445b417c12588ae1cb
+                m_TableEntryReference:
+                  m_KeyId: 21840531456
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:8bd19b43577d81445b417c12588ae1cb
+                m_TableEntryReference:
+                  m_KeyId: 25456021504
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:8bd19b43577d81445b417c12588ae1cb
+                m_TableEntryReference:
+                  m_KeyId: 28551417856
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:8bd19b43577d81445b417c12588ae1cb
+                m_TableEntryReference:
+                  m_KeyId: 30845702144
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
           - Key: CoralCaves
             Value:
             - id: 600329268
               texts:
-              - Phew, you made it here!
-              - These old corals seem to be filled with those hostile rocks. You
-                need to be careful.
-              - Oh well, do you want to buy anything?
+              - m_TableReference:
+                  m_TableCollectionName: GUID:2ebaaaded97cd03478546183d0d46b2e
+                m_TableEntryReference:
+                  m_KeyId: 13795856384
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:2ebaaaded97cd03478546183d0d46b2e
+                m_TableEntryReference:
+                  m_KeyId: 16597651456
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:2ebaaaded97cd03478546183d0d46b2e
+                m_TableEntryReference:
+                  m_KeyId: 19114233856
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
     - Key: William
       Value:
         defaultDialogue:
           id: 119670184
           texts:
-          - Oh  He.. Hey there..
-          - "These bottles I found them laying around, broken sadly. They were so
-            pretty though!\r"
-          - "I tried, I really tried my best to repair them, hopefully you find one
-            you like.\r"
-          - "Also G...G... Good luck out there!\r"
+          - m_TableReference:
+              m_TableCollectionName: GUID:58d6c709a9a61bd4dbfbd78078529956
+            m_TableEntryReference:
+              m_KeyId: 18027909120
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
+          - m_TableReference:
+              m_TableCollectionName: GUID:58d6c709a9a61bd4dbfbd78078529956
+            m_TableEntryReference:
+              m_KeyId: 24306782208
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
+          - m_TableReference:
+              m_TableCollectionName: GUID:58d6c709a9a61bd4dbfbd78078529956
+            m_TableEntryReference:
+              m_KeyId: 26844336128
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
+          - m_TableReference:
+              m_TableCollectionName: GUID:58d6c709a9a61bd4dbfbd78078529956
+            m_TableEntryReference:
+              m_KeyId: 29193146368
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
         regionalDefaultDialogues:
           _serializedList:
           - Key: CaveTown
             Value:
               id: 793495809
               texts:
-              - Oh, Hi.
-              - "Do\u2026 Do you want to test some of my bottles?"
-              - "You can \u2026 "
-              - 'You can borrow these from me. I will collect them again when you
-                set out on your new journey. '
+              - m_TableReference:
+                  m_TableCollectionName: GUID:ed61c3a7d8719cc49ab512e3ed9bbe89
+                m_TableEntryReference:
+                  m_KeyId: 13640667136
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:ed61c3a7d8719cc49ab512e3ed9bbe89
+                m_TableEntryReference:
+                  m_KeyId: 17268740096
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:ed61c3a7d8719cc49ab512e3ed9bbe89
+                m_TableEntryReference:
+                  m_KeyId: 19579801600
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:ed61c3a7d8719cc49ab512e3ed9bbe89
+                m_TableEntryReference:
+                  m_KeyId: 22654226432
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
         specificDialogues:
           _serializedList: []
     - Key: Lila
@@ -1251,7 +1436,14 @@ MonoBehaviour:
         defaultDialogue:
           id: 593198724
           texts:
-          - Hello Squirrel.
+          - m_TableReference:
+              m_TableCollectionName: GUID:e0b70eb27842dac4993a71443e779a8b
+            m_TableEntryReference:
+              m_KeyId: 10322972672
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
         regionalDefaultDialogues:
           _serializedList: []
         specificDialogues:
@@ -1260,17 +1452,43 @@ MonoBehaviour:
             Value:
             - id: 14067392
               texts:
-              - 'Hello Squirrel.
-
-                I am Lila, the local doctor here. '
+              - m_TableReference:
+                  m_TableCollectionName: GUID:bf145c09b0cd61641a15dd980b7aac83
+                m_TableEntryReference:
+                  m_KeyId: 73073954816
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
     - Key: Nerus
       Value:
         defaultDialogue:
           id: 153072549
           texts:
-          - Greetings adventurer!
-          - Do you want to buy any old keys from my collection?
-          - Who knows where they might lead!
+          - m_TableReference:
+              m_TableCollectionName: GUID:e17101b56f719fc4dac1c19e88701d36
+            m_TableEntryReference:
+              m_KeyId: 19424612352
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
+          - m_TableReference:
+              m_TableCollectionName: GUID:e17101b56f719fc4dac1c19e88701d36
+            m_TableEntryReference:
+              m_KeyId: 21588873216
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
+          - m_TableReference:
+              m_TableCollectionName: GUID:e17101b56f719fc4dac1c19e88701d36
+            m_TableEntryReference:
+              m_KeyId: 23828631552
+              m_Key: 
+            m_FallbackState: 0
+            m_WaitForCompletion: 0
+            m_LocalVariables: []
         regionalDefaultDialogues:
           _serializedList: []
         specificDialogues:
@@ -1279,25 +1497,91 @@ MonoBehaviour:
             Value:
             - id: 288092991
               texts:
-              - Greetings adventurer!
-              - 'I am Nerus then Moth, and you are welcome here to my shop. '
-              - I was once an explorer, just like you, travelling around the caves
-                collecting items and finding secrets.
-              - 'But, that was some time ago. '
-              - 'I broke my wing on one of my adventures. After that Lila, the local
-                doctor, forbade me to go out on any more trips.  '
-              - 'However, life moves on. The last couple of years I have mostly been
-                selling trinkets from my adventuring past here in my shop. '
-              - Business has been rather great, at least until recently when these
-                strange stones has started to come alive.
-              - 'Now I only have these old keys left in stock, I am sure that they
-                might lead somewhere. You can buy them if you want. '
-              - As you are also a fellow adventurer I will include a guarantee. If
-                you ever have a similar accident to mine in the caves you will receive
-                a new key for free.
-              - 'We adventurers need to stick together. '
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 6216749056
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 8536199168
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 11468017664
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 13380620288
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 17168076800
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 21358186496
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 22629060608
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 23614722048
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 24696852480
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:4de5aee7836c8824684b604ba3ae77e7
+                m_TableEntryReference:
+                  m_KeyId: 25514741760
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
   npcOriginalData:
     _serializedList: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &6749319306640925491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,7 +1644,6 @@ MonoBehaviour:
   - {fileID: -7692674297862362138, guid: dc39c17fa0b7cdd41be7ca6e26dd7c9f, type: 3}
   - {fileID: -7692674297862362138, guid: 3de06464deaee1d4b938974b88ead071, type: 3}
   - {fileID: -7692674297862362138, guid: 143286fca810d5547a46eced785b473b, type: 3}
-  - {fileID: -7692674297862362138, guid: 4d714332baa57cb46b2d801f8c1364ed, type: 3}
   - {fileID: -7692674297862362138, guid: ecda5f5278ae77a4ba9dc72760ae1362, type: 3}
   - {fileID: -7692674297862362138, guid: f86b65a2c96d172489d02db1be9243ec, type: 3}
   - {fileID: -7692674297862362138, guid: ae54e4cfc92f8e2429f630d4ad1ccd47, type: 3}
@@ -1370,10 +1653,15 @@ MonoBehaviour:
   - {fileID: -7692674297862362138, guid: 1ef20f86cfadc914fb76490f0998163b, type: 3}
   - {fileID: -7692674297862362138, guid: 92b6e40bee0cc364ca7de7011efab0e2, type: 3}
   - {fileID: -7692674297862362138, guid: f6a96ca9b26e0a04ea4f9e0a765e862d, type: 3}
+  - {fileID: -7692674297862362138, guid: 2c59c48a92a29054792f0a05b786b0ba, type: 3}
+  - {fileID: -7692674297862362138, guid: 9248b96bff3de5c45a5c96f86432a0f2, type: 3}
+  - {fileID: -7692674297862362138, guid: 899e591bc6301404fa3090739ce04e97, type: 3}
+  - {fileID: -7692674297862362138, guid: ceb57f664518fbb4fabf4671a87205da, type: 3}
   spellUnlockSound: {fileID: 5256688047709658222}
   petrifiedPickupSound: {fileID: 2976471086048920126}
   soundEffectManager: {fileID: 7690066140520027446}
   petrifiedPigment: 0
+  inspirationPoints: 0
   maskLibrary:
     playerLayer: 3
     platformLayer: 14
@@ -1411,53 +1699,168 @@ MonoBehaviour:
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 3
-        text: "Each color has a power level that can be seen under the active bottle
-          and in the inventory. A colors power will affect its damage and the efficiency
-          of its other effects. \n\nThe power of a color can be changed by several
-          things, such as items and bottles."
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1185143328768
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: filledBottle
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 10
-        text: "Each bottle that is filled to the maximum will power up the color
-          it is filled with for all bottles. \n\nUsing color from the max filled
-          bottles will make them not filled to the maximum and therefore remove the
-          buff. "
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1236594855936
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: uncoloredDefense
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 10
-        text: An enemy with no color has significantly increased defenses towards
-          all spells.
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1268345737216
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: colorImmunity
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 5
-        text: "\rEnemies are immune towards the color that they themself have.\r\n\r\nRemoving
-          or changing the color removes this immunity.\r\n"
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1288570671104
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
     - Key: rainbowCombo
       Value:
         hasBeenDisplayed: 0
         callsNeeded: 5
-        text: "Enemies colored to the rainbow color are unstable and will collapse
-          after a few seconds. This deals damage to the enemy and removes their color.
-          \n\nIf a rainbow colored enemy dies then some of their color will be automatically
-          collected."
+        text:
+          m_TableReference:
+            m_TableCollectionName: GUID:a4284127705ac754d8067a9340b31204
+          m_TableEntryReference:
+            m_KeyId: 1331147051008
+            m_Key: 
+          m_FallbackState: 0
+          m_WaitForCompletion: 0
+          m_LocalVariables: []
   loadingTips:
-  - The inventory has information on all colors.
-  - The red color steals health from enemies and converts it to temporary hitpoints.
-  - Blue color both slows the enemys movement and attacks.
-  - The range of yellow colors lightning scales with the power of the color.
-  - Attacking a sleeping enemy increases the power of the color a lot.
-  - A colors power affects both the damage and the colors other effects.
-  - If a raibow colored enemy dies some of its color will restore the players flasks.
-  - Enemies are immune towards their own color.
-  - Uncolored enemies have increased defences towards all color spells.
-  - If a poisoned enemy dies the poison will spread to one nearby enemy and increase
-    in potency.
-  - Fire increases its damage each time it spreads.
-  - A poisoned enemy deals significantly less damage than normal.
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 92065763328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 141747294208
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 147556405248
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 151922675712
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 218024906752
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 232277151744
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 241387180032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 251797442560
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 263851872256
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 278976532480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 294977802240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ba5b82f7c9b962343b77dae3d5aaa4cd
+    m_TableEntryReference:
+      m_KeyId: 329878605824
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   removeTooltipButton: {fileID: -4679931084075046408, guid: fd04459890e791843a48243064f9151b, type: 3}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &4351019461878009442
 MonoBehaviour:
   m_ObjectHideFlags: 0

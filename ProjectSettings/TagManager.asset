@@ -96,6 +96,9 @@ TagManager:
   - name: Spell
     uniqueID: 3679530677
     locked: 0
+  - name: Fog
+    uniqueID: 2041007513
+    locked: 0
   - name: UI
     uniqueID: 303372357
     locked: 0

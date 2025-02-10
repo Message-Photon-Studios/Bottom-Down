@@ -52,7 +52,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
             costText.color = Color.white;
         }
 
-        costText.text = "Cost: " + cost.ToString();
+        costText.text = cost.ToString();
 
         if(buys >= maxBuys)
         {
@@ -80,6 +80,7 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
             Shop();
             OpenShop();
 
+            DataPersistenceManager.instance.SaveGame();
             if(deactivatedWhenMaxed && buys >= maxBuys) gameObject.SetActive(false);
         }
         
@@ -97,7 +98,6 @@ public abstract class NpcUpgradeShop : MonoBehaviour, IDataPersistence
         {
             buys = 0;
         }
-        Debug.Log("Test buys " + buys);
         if(deactivatedWhenMaxed && buys >= maxBuys) gameObject.SetActive(false);
     }
 

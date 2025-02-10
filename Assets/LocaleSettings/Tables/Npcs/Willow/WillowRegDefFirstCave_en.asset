@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: WillowRegDefFirstCave_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c693cb9c3087e8a45991b96933f3aa5a, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 19282006016
+    m_Localized: Because I am so generous I have even decided to give you this bottle
+      to help you out on your journey.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21744062464
+    m_Localized: Now go collect those Astral Pigments so you have something to spend
+      in my shop.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

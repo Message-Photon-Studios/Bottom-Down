@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-English (en)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-String-Tables-English (en)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: bbcadd299d0d1b343a98901db861c1ab
+  m_SerializeEntries:
+  - m_GUID: 9f346f3f51a8f88478d31f6f6ba259db
+    m_Address: Navigation_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c84ac2bb37571664081df85ab91b02d5
+    m_Address: Settings_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c8707bcc33f8fda4288e11ba6ed27946
+    m_Address: Tutorial_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: ad12574f0f6625244a8fdff53ccd4e43
+    m_Address: LoadingTips_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: bd3b9e602f73b21459e3ae6ffc6c932e
+    m_Address: WillowDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: f5a82592d9389d741b8601ada28f8cd0
+    m_Address: WillowRegDefCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 03166be006a003d4da654bab434d0c43
+    m_Address: WillowRegDefFirstCave_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 93b1ab3857348ad4e8faa26fdf56006c
+    m_Address: WillowRegDefCrystalHub_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 70327c2a425a6194b8c91592889c7ceb
+    m_Address: WillowRegDefQuakeBoss_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c993aa7db18df7c4d9a75e982a169e30
+    m_Address: WillowSpecFirstCave_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 055e64cab401a314d9ac2d2adbebd8a0
+    m_Address: WillowSpecCoralCaves_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 82c9903a2e8cfe640a3958a128daa047
+    m_Address: WilliamDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 77789889f4c376c4595792ab99b1fddd
+    m_Address: WilliamRegDefCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 0d0e14dfb4c5313479ec7c0ae28f8239
+    m_Address: LilaDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: cafa0ce0148b9924693d2406e9cc7a69
+    m_Address: LilaSpecCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: eabbadc115796dd4086efbb11659bfcb
+    m_Address: NerusDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 583876e495672114b9423247344a8e35
+    m_Address: NerusSpecCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 2a39f49d15be99c439f9323dc8afddb2
+    m_Address: HealingShrine_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 8fe09f03b21286d4c8aad332e5058389
+    m_Address: LockedDoor_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 11c45ccd38aa5bf4c8a2da168546aec5
+    m_Address: LevelExit_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 67633e87369732c478c71c3e1f0605d3
+    m_Address: SpellInspire_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 2f2123f251cb5684daa7da733668d3c0
+    m_Address: LeechShrine_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 3ba65e3efc65b534eb1145a2515f6f1c
+    m_Address: PopupTips_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 9104f9d14c702df4daa52fe13194fc90
+    m_Address: DecayedShrine_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4dff559cb83ad9141983d82217df74b5, type: 2}
+    - {fileID: 11400000, guid: 9e8c8aa4f1cfde54fa6094ee50efdfe3, type: 2}

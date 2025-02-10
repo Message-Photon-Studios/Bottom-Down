@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Threading;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 using static UnityEngine.ParticleSystem;
 
 /// <summary>
@@ -93,6 +93,7 @@ public class EnemyStats : MonoBehaviour
     GameObject player;
     PlayerStats playerStats;
     PlayerCombatSystem playerCombat;
+    Light2D enemyLight;
 
     Rigidbody2D body;
     #region Setup
@@ -107,6 +108,7 @@ public class EnemyStats : MonoBehaviour
 
     void Start()
     {
+        enemyLight = GetComponentInChildren<Light2D>();
         colorLibrary = GameManager.instance.GetComponent<ColorLibrary>();
         if(!setColorByHand) //Moved form awake
             color = LevelManager.instance.GetComponent<EnemyManager>().GetRandomEnemyColor();
@@ -115,6 +117,19 @@ public class EnemyStats : MonoBehaviour
         else
             GetComponent<SpriteRenderer>().material = defaultColor;
 
+        if (enemyLight)
+        {
+            if (color)
+            {
+                enemyLight.color = color.lightTintColor;
+            } else
+            {
+                enemyLight.color = Color.white;
+            }
+        }
+            
+            
+            
         onDamageTaken += DmgNumber.create;
         onEnemyDeath += (EnemyStats _) => dropCoins(coinsDropped.GetReward());
         enemySounds = GetComponent<EnemySounds>();
@@ -518,6 +533,7 @@ public class EnemyStats : MonoBehaviour
         color = null;
         colorAmmount = 0;
         GetComponent<SpriteRenderer>().material = defaultColor;
+        if(enemyLight) enemyLight.color = Color.white;
         onColorChanged?.Invoke(null);
     }
 
@@ -552,6 +568,7 @@ public class EnemyStats : MonoBehaviour
         else
             GetComponent<SpriteRenderer>().material = defaultColor;
         
+        if(enemyLight) enemyLight.color = color.lightTintColor;
         isColoredThisFrame = true;
     }
 

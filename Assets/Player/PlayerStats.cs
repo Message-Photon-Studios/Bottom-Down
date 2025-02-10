@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Handles the player stats
@@ -247,6 +248,21 @@ public class PlayerStats : MonoBehaviour
     {
         maxHealth += addMaxHealth;
         health += addMaxHealth;
+        onMaxHealthChanged?.Invoke(maxHealth);
+        onHealthChanged?.Invoke(health);
+    }
+
+    /// <summary>
+    /// Removes max health. Will only damage player when necessary
+    /// </summary>
+    /// <param name="removeMaxHealth"></param>
+    public void RemoveMaxHealth(int removeMaxHealth)
+    {
+        int damagePlayer = removeMaxHealth - (maxHealth-health);
+        if(damagePlayer > 0) DamagePlayer(damagePlayer, null);
+        else DamagePlayer(0, null);
+        maxHealth -= removeMaxHealth;
+
         onMaxHealthChanged?.Invoke(maxHealth);
         onHealthChanged?.Invoke(health);
     }

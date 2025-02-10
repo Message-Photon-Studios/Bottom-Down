@@ -71,7 +71,7 @@ public class MainMenuController : MonoBehaviour
     public void ContinueGame()
     {
         DataPersistenceManager.instance.LoadGame();
-        LoadScene();
+        LoadScene();    
     }
 
     //Load scene "Gem" when pressed.

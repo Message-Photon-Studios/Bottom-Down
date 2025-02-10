@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using Steamworks;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Keeps track of the colors that the player has gathered. 
@@ -37,6 +38,7 @@ public class ColorInventory : MonoBehaviour
     public Dictionary<string, int> spellsSpawned = new Dictionary<string, int>();
     SpellPickup pickUpSpell = null;
     ColorLibrary colorLib;
+    Light2D playerLight;
 
     public int blockDrainColor = 0;
     private bool CanSwap = true;
@@ -52,7 +54,6 @@ public class ColorInventory : MonoBehaviour
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
-    private int lastDir = 0;
     private float colorMaxBonus = 0;
     private int colorMaxDamageBonus = 0;
     
@@ -86,7 +87,7 @@ public class ColorInventory : MonoBehaviour
     /// </summary>
     public UnityAction<bool> onSpellPickupInRange;
 
-    public UnityAction<List<float>, float> onCoolDownSet;
+    public UnityAction<List<float>, float, int> onCoolDownSet;
 
     /// <summary>
     /// Called whenever amount of charges on a spell is changed (usually trough an item).
@@ -102,16 +103,21 @@ public class ColorInventory : MonoBehaviour
     UnityAction<int> slotChangedBrush; 
     void Start()
     {
+        playerLight = GetComponentInChildren<Light2D>();
         startColorSlots = colorSlots.Count;
         slotChangedBrush = (int dir) => {updateBrushColor();}; 
         changeRightActions.action.performed += (dir) => {RotateActive((int)dir.ReadValue<float>()); };
         onColorUpdated += updateBrushColor;
         onSlotChanged += slotChangedBrush;
         ColorSpellImpact.onSpellImpact += SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact += SpellImactTrigger;
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
-        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        player.GetComponent<PlayerMovement>().onPlayerDash += DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump += DoubleJumpSpells;
         colorLib = GameManager.instance.GetComponent<ColorLibrary>();
 
         foreach (ColorSlot colorSlot in colorSlots)
@@ -119,6 +125,8 @@ public class ColorInventory : MonoBehaviour
             if(colorSlot.gameColor == null)
                 colorSlot.SetGameColor(colorLib.GetRandomColor());
         }
+
+        if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
     }
 
     void OnDisable()
@@ -130,7 +138,11 @@ public class ColorInventory : MonoBehaviour
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
         ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
-        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
+        SpellImactOnVelocity.onSpellImpact -= SpellImactTrigger;
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
+        player.GetComponent<PlayerMovement>().onPlayerDash -= DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump -= DoubleJumpSpells;
     }
 
     #endregion
@@ -145,8 +157,8 @@ public class ColorInventory : MonoBehaviour
     {
         if (!CanSwap) return;
         activeSlot = (colorSlots.Count+activeSlot+dir)%colorSlots.Count;
-        lastDir = dir;
         onSlotChanged?.Invoke(dir);
+        if (autoRotate) GetComponent<PlayerCombatSystem>().SpecialAttackAnimation();
     }
 
     public void DisableRotation()
@@ -157,11 +169,6 @@ public class ColorInventory : MonoBehaviour
     public void EnableRotation()
     {
         CanSwap = true;
-    }
-
-    public void AutoRotate()
-    {
-        if (autoRotate) RotateActive(lastDir);
     }
 
     /// <summary>
@@ -291,17 +298,23 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public bool IsSpellReady()
     {
-        ValidateCDlist(ActiveSlot());
-        foreach (float coolDown in ActiveSlot().storedSpellCDs)
+        return IsSpellReady(ActiveSlot());
+    }
+
+    public bool IsSpellReady(ColorSlot slot)
+    {
+        ValidateCDlist(slot);
+        foreach (float coolDown in slot.storedSpellCDs)
         {
-            if (coolDown <= Time.fixedTime && CheckCanSpawn()) return true;
+            if (coolDown <= Time.fixedTime && CheckCanSpawn(slot)) return true;
         }
         return false;
     }
 
-    public bool CheckCanSpawn()
+    public bool CheckCanSpawn(ColorSlot slot)
     {
-        ColorSpell spell = GetActiveColorSpell();
+        ColorSpell spell = slot.colorSpell;
+        if (spell == null) spell = defaultSpell;
         if (spell.maxSpawn <= 0) return true;
         if (spell.spawnKey == null || spell.spawnKey == "")
         {
@@ -338,7 +351,11 @@ public class ColorInventory : MonoBehaviour
     /// <param name="time"></param>
     public void SetCoolDown(float time)
     {
-        ColorSlot slot = ActiveSlot();
+        SetCoolDown(time, ActiveSlot());
+    }
+
+    public void SetCoolDown(float time, ColorSlot slot)
+    {
         for (int i = 0; i < slot.storedSpellCDs.Count; i++)
         {
             if (slot.storedSpellCDs[i] <= Time.fixedTime)
@@ -347,7 +364,7 @@ public class ColorInventory : MonoBehaviour
                 break;
             }
         }
-        onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time));
+        onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time), colorSlots.IndexOf(slot));
     }
 
     public float CalculateCD(float time)
@@ -403,6 +420,7 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public float GetColorBuff(GameColor color)
     {
+        if (color == null) return 0;
         float buff = 0;
         foreach (ColorSlot slot in colorSlots)
         {
@@ -653,7 +671,6 @@ public class ColorInventory : MonoBehaviour
 
         fillSlot.AddCharge(amount);
         fillSlot.SetGameColor(setColor);
-
         onColorUpdated?.Invoke();
     }
 
@@ -683,6 +700,13 @@ public class ColorInventory : MonoBehaviour
     {
         // brush.
         GetComponent<SpriteRenderer>().material = ActiveSlot().charge > 0 ? ActiveSlot().gameColor.colorMat : defaultColor;
+        if(ActiveSlot().charge > 0)
+        {
+            if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
+        } else  
+        {
+            if(playerLight) playerLight.color = Color.white;
+        }
     }
 
     public void MixRandom()
@@ -932,6 +956,34 @@ public class ColorInventory : MonoBehaviour
             if (spell.castWhenDamaged)
             {
                 GetComponent<PlayerCombatSystem>().PocketSpecialAttack(slot);
+            }
+        }
+        EnableRotation();
+    }
+
+    public void DashSpells()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDash && IsSpellReady(slot))
+            {
+                GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+            }
+        }
+        EnableRotation();
+    }
+
+    public void DoubleJumpSpells()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDoubleJump && IsSpellReady(slot))
+            {
+                GetComponent<PlayerCombatSystem>().DoubleJumpSpecialAttack(slot);
             }
         }
         EnableRotation();

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: WillowRegDefCaveTown_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c6f1461515aca9c4fb6fc9025ae81232, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 46427541504
+    m_Localized: "Hi, I found you lying unconscious in the caves. \r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103503630336
+    m_Localized: I managed to bring you here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 109853806592
+    m_Localized: However, all of your items seem to be gone.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 115277041664
+    m_Localized: 'I have no idea what happened to them. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 133627121664
+    m_Localized: "Oh well, you don\u2019t need to thank me. I decided to help you
+      just because I am so generous. "
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

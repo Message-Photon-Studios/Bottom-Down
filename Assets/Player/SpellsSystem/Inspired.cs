@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Localization;
 
 public class Inspired : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Inspired : MonoBehaviour
     [SerializeField] ColorSpell unlockSpell;
     [SerializeField] public int petrifiedPigmentCost;
     [SerializeField] Sprite spell;
-    [SerializeField] String text;
+    [SerializeField] LocalizedString inspireText;
 
     [SerializeField] GameObject ui;
     [SerializeField] TMP_Text costText;
@@ -34,12 +35,13 @@ public class Inspired : MonoBehaviour
                 spellToEnable.SetActive(true);
                 spellToEnable.GetComponent<SpellPickup>().SetSpell(unlockSpell);
             }
-            gameObject.SetActive(false);
+            GetComponent<Collider2D>().enabled = false;
+            this.enabled = false;
         }
         
         triggered = false;
-        UI = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIController>();
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
+        UI = PlayerLevelMananger.instance.playerUi;
+        inventory = PlayerLevelMananger.instance.playerInventory;
 
         costText.text = "Cost: " + petrifiedPigmentCost;
         descriptionText.text = unlockSpell.description;
@@ -66,14 +68,16 @@ public class Inspired : MonoBehaviour
     public void TriggerUnlock()
     {
         triggered = true;
-        UI.inspired(spell, text);
+        UI.inspired?.Invoke(spell, inspireText.GetLocalizedString());
         GameManager.instance.UnlockedSpell(unlockSpell);
         if(spellToEnable) 
         {
             spellToEnable.SetActive(true);
             spellToEnable.GetComponent<SpellPickup>().SetSpell(unlockSpell);
         }
-        gameObject.SetActive(false);
-        
+        GameManager.instance.AddInspiration(1);
+        ui.SetActive(false);
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }

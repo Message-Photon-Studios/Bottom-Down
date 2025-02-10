@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// This class controls the players movement and keeps track of player states such as it being rooted, falling or in the air. 
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Input Actions")]
     [SerializeField] InputActionReference walkAction;
-    [SerializeField] InputActionReference jumpAction, lookAction, dropDownAction, verticalMoveAction, dashAction; //Input actiuons for controlling the movement and camera checks
+    [SerializeField] InputActionReference jumpAction, lookAction, verticalMoveAction, dashAction; //Input actiuons for controlling the movement and camera checks
 
     [Header("Camera controls")]
     [SerializeField] float aimFocusMaxX;
@@ -106,11 +107,13 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 originalFocusPointPos;
 
-
     Action<InputAction.CallbackContext> checkAction;
     Action<InputAction.CallbackContext> checkCancle;
 
     Action<InputAction.CallbackContext> dropDown;
+
+    public UnityAction onPlayerDash;
+    public UnityAction onPlayerDoubleJump;
 
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
 
@@ -127,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
     float dashCdStart = -1f;
     Vector3 lastDashPos = Vector2.zero;
 
+    public float lastFlipTime {get; private set;} = 0;
+
     #endregion
 
     #region Setup
@@ -137,24 +142,11 @@ public class PlayerMovement : MonoBehaviour
         }
         originalFocusPointPos = new Vector3(focusPoint.localPosition.x, focusPoint.localPosition.y, focusPoint.localPosition.z);
         movementRoot.SetTotalRoot("loading", true);
-        checkAction = (InputAction.CallbackContext ctx) => {
-            if(lookAction.action.ReadValue<float>() < 0f)
-            {
-                CheckBelowStart();
-            }
-            else if(lookAction.action.ReadValue<float>() > 0f)
-                CheckAboveStart();
-        };
-
-        checkCancle = (InputAction.CallbackContext ctx) => {CheckCancel();};
-
-        dropDown = (InputAction.CallbackContext ctx) => {DropDown();};
         
         jumpAction.action.started += Jump;
         jumpAction.action.canceled += JumpCancel;
-        lookAction.action.started += checkAction;
-        lookAction.action.canceled += checkCancle;
-        dropDownAction.action.performed += dropDown;
+        lookAction.action.started += CameraCheck;
+        lookAction.action.canceled += CheckCancel;
         verticalMoveAction.action.performed += VerticalMove;
         verticalMoveAction.action.canceled += CancelVerticalMove;
         dashAction.action.performed += Dash;
@@ -163,9 +155,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable() {
         jumpAction.action.started -= Jump;
         jumpAction.action.canceled -= JumpCancel;
-        lookAction.action.performed -= checkAction;
-        lookAction.action.canceled -= checkCancle;
-        dropDownAction.action.performed -= dropDown;
+        lookAction.action.started -= CameraCheck;
+        lookAction.action.canceled -= CheckCancel;
         verticalMoveAction.action.performed -= VerticalMove;
         verticalMoveAction.action.canceled -= CancelVerticalMove;
         dashAction.action.performed -= Dash;
@@ -228,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpActive = true;
             jump = jumpJetpack;
             playerSounds.PlayJump();
+            onPlayerDoubleJump?.Invoke();
         }
     }
 
@@ -249,6 +241,16 @@ public class PlayerMovement : MonoBehaviour
 
     #region Camera Check
     float checkDownTimer = 0;
+
+    void CameraCheck(InputAction.CallbackContext ctx)
+    {
+        if(lookAction.action.ReadValue<float>() < 0f)
+        {
+            CheckBelowStart();
+        }
+        else if(lookAction.action.ReadValue<float>() > 0f)
+            CheckAboveStart();
+    }
     void CheckBelowStart()
     {
         checkDownTimer = .2f;
@@ -265,6 +267,11 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrappeling() || !IsGrounded()) return;
         focusPoint.localPosition = new Vector3(focusPoint.localPosition.x, checkPointY, focusPoint.localPosition.z);
         isCheckingY = true;
+    }
+
+    void CheckCancel(InputAction.CallbackContext ctx)
+    {
+        CheckCancel();
     }
 
     void CheckCancel()
@@ -614,6 +621,7 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         dashedDone = true;
         dashTimeout = Time.time;
+        onPlayerDash?.Invoke();
     }
 
     private void StopDash()
@@ -661,7 +669,7 @@ public class PlayerMovement : MonoBehaviour
 
     void VerticalMove(InputAction.CallbackContext callbackContext)
     {
-
+      if(verticalMoveAction.action.ReadValue<float>() < 0f) DropDown();
     }
 
     void CancelVerticalMove(InputAction.CallbackContext callbackContext)
@@ -692,6 +700,8 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrounded())
             playerAnimator.SetTrigger("turn");
         GetComponent<PlayerCombatSystem>().FlipDefaultAttack();
+
+        lastFlipTime = Time.time; 
     }
 
     #region Teleportation

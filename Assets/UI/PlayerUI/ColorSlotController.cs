@@ -343,11 +343,11 @@ public class ColorSlotController : MonoBehaviour
     /// <summary>
     /// Add the CoolDown indicator to a list when a spell is used. 
     /// </summary>
-    private void StartCoolDownSlider(List<float> spellCDList, float spellMaxCD)
+    private void StartCoolDownSlider(List<float> spellCDList, float spellMaxCD, int index)
     {
-        if (colorInventory.activeSlot >= slotList.Count) return;
-        if (slotList[colorInventory.activeSlot] == null) return; 
-        Slider slide = slotList[colorInventory.activeSlot].GetComponentInChildren<Slider>();
+        if (index >= slotList.Count) return;
+        if (slotList[index] == null) return; 
+        Slider slide = slotList[index].GetComponentInChildren<Slider>();
         if (slide == null) return;    
         if (spellsOnCoolDown.Contains(slide)) return;
         slide.maxValue = spellMaxCD;
@@ -357,8 +357,7 @@ public class ColorSlotController : MonoBehaviour
                 min = cd;
             }
         } 
-        int activeSlot = colorInventory.activeSlot;
-        spellsWithchargesOnCD.Add((colorSlots[activeSlot], slotList[activeSlot].GetChild(2).GetChild(0).GetComponent<Image>()));
+        spellsWithchargesOnCD.Add((colorSlots[index], slotList[index].GetChild(2).GetChild(0).GetComponent<Image>()));
         if(min < Time.fixedTime) {
             return;
         } else {
