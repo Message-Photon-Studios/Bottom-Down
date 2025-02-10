@@ -324,6 +324,11 @@ public class PlayerStats : MonoBehaviour
         onPlayerDied?.Invoke();
     }
 
+    void OnDestroy()
+    {
+        EnemyStats.chaoticMixer = false; //Resets chaoticMixer 
+    }
+
     #endregion
 
     #region Invincibility 
