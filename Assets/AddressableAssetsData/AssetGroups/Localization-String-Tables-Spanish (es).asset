@@ -159,7 +159,7 @@ MonoBehaviour:
     m_Address: Credits_es
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-en
+    - Locale-es
     - Preload
   - m_GUID: c9585f024d82e9140b268bd602df1309
     m_Address: DecayedShrine_es
@@ -379,6 +379,42 @@ MonoBehaviour:
     - Preload
   - m_GUID: 67615c41fa9458340813b37ca1d033f4
     m_Address: Item_YellowThunder_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: bce1081da10d98a478ee0a8c3731ee6b
+    m_Address: Item_D20_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: ad995044bd2615944b0dcadd0d883b4a
+    m_Address: Item_SelfCorrosiveColor_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: e85165421b074e843bf3b5b057a5d7ed
+    m_Address: Item_ColorBalance_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 4ddffe1f8fb439c4d9527a5ec05ced97
+    m_Address: Item_CrystalizedPaint_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 6e7980dfc239b814fb4d231fd0296e9b
+    m_Address: Item_DecoratedCap_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 0f5a7d2756b15454d965bab01129e426
+    m_Address: Item_FlagPart_es
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es

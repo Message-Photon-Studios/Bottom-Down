@@ -383,6 +383,42 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: 6e13c2a8954037e4584dd0dc0be441ef
+    m_Address: Item_D20_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: c0c21ac574748c442925b5c83479aafe
+    m_Address: Item_SelfCorrosiveColor_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 96fa823c89a9272489afc8894c8fefbc
+    m_Address: Item_ColorBalance_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 5269faa6997147d46a7be8613666e61e
+    m_Address: Item_CrystalizedPaint_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 0acde7e0fdeab5c419db3397e57e2a6c
+    m_Address: Item_DecoratedCap_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 3a32fe07646b929469a2f49166aa0121
+    m_Address: Item_FlagPart_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
