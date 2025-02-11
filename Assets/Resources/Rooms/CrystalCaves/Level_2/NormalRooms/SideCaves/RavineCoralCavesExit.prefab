@@ -8887,6 +8887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelEndPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 5280295106999308894, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
+      propertyPath: goToLevel
+      value: CoralCaves
+      objectReference: {fileID: 0}
     - target: {fileID: 7584247180477944385, guid: 68363fea4b34aff4e9ed2bb6ccd9a2a4, type: 3}
       propertyPath: m_RootOrder
       value: 0

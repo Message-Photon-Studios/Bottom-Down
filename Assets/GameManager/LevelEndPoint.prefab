@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82fbabddb967835449db38790737113f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goToLevel: CoralCaves
+  goToLevel: 
   interactAction: {fileID: -4679931084075046408, guid: fd04459890e791843a48243064f9151b, type: 3}
   canvas: {fileID: 6573583647927776011}
   LoadingSprites: []
