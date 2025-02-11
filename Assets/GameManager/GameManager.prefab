@@ -1268,7 +1268,7 @@ MonoBehaviour:
                 m_FallbackState: 0
                 m_WaitForCompletion: 0
                 m_LocalVariables: []
-          - Key: QuakeBoss
+          - Key: QuakeShop
             Value:
               id: 311753470
               texts:
@@ -1284,6 +1284,22 @@ MonoBehaviour:
                   m_TableCollectionName: GUID:7c7087d0c1694d7448e36bb5e6005676
                 m_TableEntryReference:
                   m_KeyId: 28945682432
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:7c7087d0c1694d7448e36bb5e6005676
+                m_TableEntryReference:
+                  m_KeyId: 2458937437884416
+                  m_Key: 
+                m_FallbackState: 0
+                m_WaitForCompletion: 0
+                m_LocalVariables: []
+              - m_TableReference:
+                  m_TableCollectionName: GUID:7c7087d0c1694d7448e36bb5e6005676
+                m_TableEntryReference:
+                  m_KeyId: 2461396428296192
                   m_Key: 
                 m_FallbackState: 0
                 m_WaitForCompletion: 0

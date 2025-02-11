@@ -9452,7 +9452,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 770068331
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -16923,7 +16923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6719470892083488515, guid: e40b205c1dd26ed4d8e791011a655ff3, type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: -6719470892083488515, guid: e40b205c1dd26ed4d8e791011a655ff3, type: 3}
       propertyPath: m_SortingLayerID
@@ -17813,7 +17813,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6065300906765519598, guid: e650b232608113842a62b224f6f1f400, type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: -6065300906765519598, guid: e650b232608113842a62b224f6f1f400, type: 3}
       propertyPath: m_SortingLayerID
@@ -18427,7 +18427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7759332338338812238, guid: 561b26404e05d4c4e914e71643acaf0b, type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: -7759332338338812238, guid: 561b26404e05d4c4e914e71643acaf0b, type: 3}
       propertyPath: m_SortingLayerID
@@ -19309,7 +19309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6065300906765519598, guid: e650b232608113842a62b224f6f1f400, type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: -6065300906765519598, guid: e650b232608113842a62b224f6f1f400, type: 3}
       propertyPath: m_SortingLayerID
@@ -19647,7 +19647,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6719470892083488515, guid: e40b205c1dd26ed4d8e791011a655ff3, type: 3}
       propertyPath: m_SortingLayer
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: -6719470892083488515, guid: e40b205c1dd26ed4d8e791011a655ff3, type: 3}
       propertyPath: m_SortingLayerID
