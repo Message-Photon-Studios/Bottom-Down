@@ -316,6 +316,96 @@ MonoBehaviour:
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 89fde91523eb9d2489c04c7abd4c5915
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_CascadingBrush Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2f0e9660a5626224a97cca9266296c8d
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_ParryBrush Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 906ceb6cff34fd04c9c864f66878b647
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_SharpBrush Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 6c23394c0875fd141b3034a3a101328a
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_SpearBrush Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b8c469a876b0ee24a874eafc4df3fdf6
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_ComplimentalClash Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 210ba6b1c8430c746b3052f4e9930832
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_Marker Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 4000d0c040b389946afcf873f060a5cb
+    m_Address: Assets/LocaleSettings/Tables/Items/Damage/Item_SpikedCap Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 904156926c7747341b24a6432006048a
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_BlueArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: c3959737cbc9d954c8102e47b143c14f
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_GreenArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 721d7261444cd4442b7884edd7efc7e1
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_OrangeArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: d4285bd1c56e99a418fbf4bc21990468
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_PurpleArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 42d501c656910a149ab3892f787297a9
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_RedArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: e58de607f669bed4c80e7c56b3d699da
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_YellowArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 2749bcd947a23d544b14a1b477407640
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_ElusiveMantle Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 608b35f083ec8764089a06794df6407c
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_AdaptiveArmour Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 3385123482382ca4b9b732ac9baf8f54
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_CharmOfLuck Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 16df55f3853da8047bd69f8dcff3c088
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_CrystalHeart Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b675053020917274e9aaa98c43a6f1da
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_RainbowArmor Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 44464677e971ee74388d8d1d1030df39
+    m_Address: Assets/LocaleSettings/Tables/Items/Survival/Item_RoutedShield Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:

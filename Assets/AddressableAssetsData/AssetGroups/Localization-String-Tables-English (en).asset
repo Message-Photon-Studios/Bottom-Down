@@ -419,6 +419,120 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: 5bf44deee3adcff49985cd0bfa931657
+    m_Address: Item_CascadingBrush_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: a7381ae0cf472944397780e8e71e0d92
+    m_Address: Item_ParryBrush_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: ad5cb91d432c3a64796a4ade00cf6eb6
+    m_Address: Item_SharpBrush_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 10cf828f17ddf1846ba91d79aca2a02a
+    m_Address: Item_SpearBrush_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 89128aeecdcf55f4d96a6dbcdd360d6d
+    m_Address: Item_ComplimentalClash_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 1e92ab69808758149be1f7050f58b735
+    m_Address: Item_Marker_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 1c652ce9a3bdbfe40a91b02744d0b483
+    m_Address: Item_SpikedCap_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: bc8d685170c6d32418e5ef2e1aeb8557
+    m_Address: Item_BlueArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: e29d0c2414750e646b6784bd53458d8c
+    m_Address: Item_GreenArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 29fc5fc1100d8d94cbfc29df4678397e
+    m_Address: Item_OrangeArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 49edc91312cac0749bd9d04d5ad77743
+    m_Address: Item_PurpleArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 5cfed2cedab228741a5f7e6559faa97f
+    m_Address: Item_RedArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: bfa735446e8f8d54aae06e0a5128a695
+    m_Address: Item_YellowArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 7e749344521fc5d4a8a87db761640051
+    m_Address: Item_ElusiveMantle_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 67bd3f0e4403d2d40b9b24b41428e5af
+    m_Address: Item_AdaptiveArmour_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 1f0592a2a3497874f93bfeae94530f99
+    m_Address: Item_CharmOfLuck_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: f09c3b69bd073e04b9710e603757fa56
+    m_Address: Item_CrystalHeart_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 72966d03576c78f43a711813a3b7a630
+    m_Address: Item_RainbowArmor_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 10f6dd94e6125fb4d90097eaeccfbf34
+    m_Address: Item_RoutedShield_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
