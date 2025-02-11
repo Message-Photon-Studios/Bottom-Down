@@ -406,6 +406,64 @@ MonoBehaviour:
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 8505d00df9d655d498e60a21f02e9738
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_ColorTubes Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 08ec9f2e36a36554ba92665d7e56f497
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_EnchantedBucket Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 886cd31566a702a43b8bb0a0da638d65
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_FilledBucket Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 101646b920039224880a4c12c8a8610a
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_ProsperousPouch Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 683246cc10e82704c9011866091f9da2
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_SwiftBrush Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: bbd4a1a2f2ed5a547b7d260542252177
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_WindBag Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: b42dd4c19cb36944cb58d22543c8ce34
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_ChaoticBottle Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: d8f05045887320949aed7ab4b96e5bd9
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_ChaoticMixer Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 098a635a7d181a94b9203423b27a22cb
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_PaintThinner Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: d969001fe7a9abd428853509813a6fd0
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_Pipette Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 11958abfa703335468ac255dbfeef560
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_PocketPaint Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: d76b4aa6fe145ac44aec44a37b88441e
+    m_Address: Assets/LocaleSettings/Tables/Items/Utility/Item_PortableCentrifuge
+      Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:

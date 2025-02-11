@@ -533,6 +533,78 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-es
     - Preload
+  - m_GUID: 00c5b6dc8092b9a4dab0f5f8e01cf04e
+    m_Address: Item_ColorTubes_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 108813fb22dd06c4e91dad84607071cb
+    m_Address: Item_EnchantedBucket_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 7dc635ddcb67a92479f4ba8115f52855
+    m_Address: Item_FilledBucket_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: b51d97995fc59e2429f612727ee34d87
+    m_Address: Item_ProsperousPouch_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 19bf70e744f904847bb6e936b22fd085
+    m_Address: Item_SwiftBrush_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 717e477d55a6bf549833df747ef6727a
+    m_Address: Item_WindBag_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: cb82e330b85837e408f212616f934191
+    m_Address: Item_ChaoticBottle_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 77fad4b34368d57468f138267124a7e5
+    m_Address: Item_ChaoticMixer_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: f87e70e6f730c46438c45581e25a5d6e
+    m_Address: Item_PaintThinner_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: db924273cc977a94d988e8bc4696be09
+    m_Address: Item_Pipette_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 299315f4ca211064c8b28f378418d85f
+    m_Address: Item_PocketPaint_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
+  - m_GUID: 48bccf63a97953944ad2db39ec26d9eb
+    m_Address: Item_PortableCentrifuge_es
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-es
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
