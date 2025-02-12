@@ -34,7 +34,7 @@ public class PetrifiedPigmentPickup : MonoBehaviour
         {
             GameManager.instance.PickedUpPetrifiedPigment(id);
             StopCoroutine(hoverCoroutine);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
