@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Localized: Buy
     m_Metadata:
       m_Items: []
+  - m_Id: 57496988028928
+    m_Localized: Swap
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: Buy
     m_Metadata:
       m_Items: []
+  - m_Id: 57496988028928
+    m_Key: Swap
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
