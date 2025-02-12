@@ -126,6 +126,7 @@ public class ColorInventory : MonoBehaviour
             if(colorSlot.gameColor == null)
                 colorSlot.SetGameColor(colorLib.GetRandomColor());
         }
+        onColorUpdated?.Invoke();
 
         if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
     }
