@@ -43,7 +43,7 @@ public class Inspired : MonoBehaviour
         inventory = PlayerLevelMananger.instance.playerInventory;
 
         costText.text = "Cost: " + petrifiedPigmentCost;
-        descriptionText.text = unlockSpell.description;
+        descriptionText.text = unlockSpell.description.GetLocalizedString();
         headerText.text = "Unlock " + unlockSpell.name;
         ui.SetActive(false);
     }
