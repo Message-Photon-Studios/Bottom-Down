@@ -31,17 +31,18 @@ public class Inspired : MonoBehaviour
         if(spellToEnable) spellToEnable.SetActive(false);
         if(GameManager.instance.IsSpellSpawnable(unlockSpell))
         {
+            if(animator) animator.SetBool("inspired", true);
             if(spellToEnable)
             {
                 spellToEnable.SetActive(true);
             }
-            
-            if(animator) animator.SetBool("inspired", true);
+
+            triggered = true;
             GetComponent<Collider2D>().enabled = false;
-            this.enabled = false;
+        } else 
+        {
+            triggered = false;
         }
-        
-        triggered = false;
         UI = PlayerLevelMananger.instance.playerUi;
         inventory = PlayerLevelMananger.instance.playerInventory;
 
@@ -49,6 +50,14 @@ public class Inspired : MonoBehaviour
         descriptionText.text = unlockSpell.description.GetLocalizedString();
         headerText.text = "Unlock " + unlockSpell.name;
         ui.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        if(triggered)
+        {
+            if(animator) animator.SetBool("inspired", true);
+        }
     }
     
     public void OnTriggerEnter2D(Collider2D other) {
