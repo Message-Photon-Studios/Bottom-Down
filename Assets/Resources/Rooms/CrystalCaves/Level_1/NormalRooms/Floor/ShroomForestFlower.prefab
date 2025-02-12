@@ -8912,6 +8912,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1110097504496171644}
     m_Modifications:
+    - target: {fileID: -5595379822860589214, guid: 5a667c860d54a894683494fdca85fc90, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1569904497173203150, guid: 5a667c860d54a894683494fdca85fc90, type: 3}
+      propertyPath: spell
+      value: 
+      objectReference: {fileID: 21300000, guid: f655e624572f6d443ae3a01439e7e8fe, type: 3}
     - target: {fileID: 1569904497173203150, guid: 5a667c860d54a894683494fdca85fc90, type: 3}
       propertyPath: unlockSpell
       value: 
