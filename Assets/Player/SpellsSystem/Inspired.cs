@@ -20,6 +20,7 @@ public class Inspired : MonoBehaviour
     [SerializeField] TMP_Text costText;
     [SerializeField] TMP_Text descriptionText;
     [SerializeField] TMP_Text headerText;
+    [SerializeField] Animator animator;
 
     private ItemInventory inventory;
     private bool triggered;
@@ -34,6 +35,8 @@ public class Inspired : MonoBehaviour
             {
                 spellToEnable.SetActive(true);
             }
+            
+            if(animator) animator.SetBool("inspired", true);
             GetComponent<Collider2D>().enabled = false;
             this.enabled = false;
         }
@@ -76,6 +79,9 @@ public class Inspired : MonoBehaviour
         }
         GameManager.instance.AddInspiration(1);
         ui.SetActive(false);
+
+        if(animator) animator.SetBool("inspired", true);
+
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }

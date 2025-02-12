@@ -1657,7 +1657,6 @@ MonoBehaviour:
   startSpells:
   - {fileID: -7692674297862362138, guid: cca545def1804c84ca260d3a5e9d7b2b, type: 3}
   - {fileID: -7692674297862362138, guid: ce7465a19865c2a44a0fbdce826d783e, type: 3}
-  - {fileID: -7692674297862362138, guid: dc39c17fa0b7cdd41be7ca6e26dd7c9f, type: 3}
   - {fileID: -7692674297862362138, guid: 3de06464deaee1d4b938974b88ead071, type: 3}
   - {fileID: -7692674297862362138, guid: 143286fca810d5547a46eced785b473b, type: 3}
   - {fileID: -7692674297862362138, guid: ecda5f5278ae77a4ba9dc72760ae1362, type: 3}

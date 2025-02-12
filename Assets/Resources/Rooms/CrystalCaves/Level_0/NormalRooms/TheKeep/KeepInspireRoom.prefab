@@ -5692,7 +5692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repeatable: 0
-  roomRegionColor: 2
+  roomRegionColor: 4
   allowGreenClosingRooms: 0
   roomNodes:
     m_keys:
