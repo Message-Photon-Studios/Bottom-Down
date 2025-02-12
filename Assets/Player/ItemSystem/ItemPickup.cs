@@ -85,8 +85,8 @@ public class ItemPickup : MonoBehaviour
         this.item = setItem;
         this.itemCost = Mathf.RoundToInt(itemCost*ItemSpellManager.instance.stageCostMultiplier);
                 
-        descriptionText.text = item.description;
-        nameText.text = item.name;
+        descriptionText.text = item.GetDesc();
+        nameText.text = item.GetName();
         cost.text = "Cost: " + this.itemCost;
 
         spriteRenderer.sprite = item.sprite;
