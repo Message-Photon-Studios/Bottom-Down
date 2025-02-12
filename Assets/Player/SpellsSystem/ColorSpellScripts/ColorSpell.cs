@@ -11,6 +11,7 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Collider2D))]
 public class ColorSpell : MonoBehaviour
 {
+    [SerializeField] public LocalizedString bottleName;
     [SerializeField] public LocalizedString description;
 
     public int spellCost;
@@ -337,6 +338,22 @@ public class ColorSpell : MonoBehaviour
     public BottleSprite GetBottleSprite()
     {
         return spellSprite;
+    }
+
+    /// <summary>
+    /// Gives name of ColorSpell depending on which language is selected.
+    /// </summary>
+    /// <returns>Localized ColorSpell Name.</returns>
+    public string GetName() {
+        return bottleName.GetLocalizedString();
+    }
+
+    /// <summary>
+    /// Gives description of ColorSpell depending on which language is selected.
+    /// </summary>
+    /// <returns>Localized ColorSpell description.</returns>
+    public string GetDesc() {
+        return description.GetLocalizedString();
     }
 
     public void SetDir(int lookDir)

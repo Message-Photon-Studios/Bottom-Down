@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public class SpellPickup : MonoBehaviour
@@ -42,9 +43,9 @@ public class SpellPickup : MonoBehaviour
     {
         if (colorSpell == null || pickedup) this.colorSpell = setSpell;
                 
-        descriptionText.text = colorSpell.description.GetLocalizedString();
-        nameText.text = colorSpell.name;
-        cost.text = "Cost: " + colorSpell.spellCost;
+        descriptionText.text = colorSpell.GetDesc();
+        nameText.text = colorSpell.GetName();
+        cost.text = colorSpell.spellCost.ToString();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = colorSpell.GetBottleSprite().smallSprite;
@@ -99,6 +100,8 @@ public class SpellPickup : MonoBehaviour
                 buyText.SetActive(false); 
             }
 
+            descriptionText.text = colorSpell.GetDesc();
+            nameText.text = colorSpell.GetName();
             canvas.SetActive(true);
         }
     }

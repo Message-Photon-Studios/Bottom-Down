@@ -121,6 +121,8 @@ public class ItemPickup : MonoBehaviour
                 collectObj.SetActive(false);
             }
 
+            descriptionText.text = item.GetDesc();
+            nameText.text = item.GetName();
             canvas.SetActive(true);
         }
     }

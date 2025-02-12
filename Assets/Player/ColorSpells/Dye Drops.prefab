@@ -162,6 +162,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bottleName:
+    m_TableReference:
+      m_TableCollectionName: GUID:2b4ae29a8d44e684c994c2f2ed5792ee
+    m_TableEntryReference:
+      m_KeyId: 7512788992
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   description:
     m_TableReference:
       m_TableCollectionName: GUID:2b4ae29a8d44e684c994c2f2ed5792ee
