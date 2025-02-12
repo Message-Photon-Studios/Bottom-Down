@@ -200,9 +200,10 @@ MonoBehaviour:
   castOnSpellImpact: 0
   castOnDash: 0
   castOnDoubleJump: 1
+  staggeredSpell: 1
   storedSpells: 3
   maxSpawn: 0
-  spawnKey: 
+  spawnKey: Katana
   ignoreLookDir: 0
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0

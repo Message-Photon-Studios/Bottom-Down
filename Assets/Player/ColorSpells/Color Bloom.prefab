@@ -183,9 +183,10 @@ MonoBehaviour:
   castOnSpellImpact: 0
   castOnDash: 1
   castOnDoubleJump: 0
+  staggeredSpell: 1
   storedSpells: 3
   maxSpawn: 0
-  spawnKey: 
+  spawnKey: bloom
   ignoreLookDir: 0
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0

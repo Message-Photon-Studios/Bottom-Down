@@ -200,9 +200,10 @@ MonoBehaviour:
   castOnSpellImpact: 0
   castOnDash: 1
   castOnDoubleJump: 0
+  staggeredSpell: 1
   storedSpells: 2
-  maxSpawn: 0
-  spawnKey: 
+  maxSpawn: -1
+  spawnKey: Blade
   ignoreLookDir: 0
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 0
