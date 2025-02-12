@@ -463,6 +463,7 @@ MonoBehaviour:
   item: {fileID: 0}
   spawnFromEnemy: {fileID: 0}
   canvas: {fileID: 6429172647331977874}
+  costContainer: {fileID: 503332427100183401}
   cost: {fileID: 8669752031135278694}
   nameText: {fileID: 7945831279127040361}
   descriptionText: {fileID: 7724534315096356300}

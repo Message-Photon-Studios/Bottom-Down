@@ -22,6 +22,7 @@ public class ItemPickup : MonoBehaviour
 
     [Header("Functional")]
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject costContainer;
     [SerializeField] TMP_Text cost;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text descriptionText;
@@ -102,7 +103,7 @@ public class ItemPickup : MonoBehaviour
             if(!needsPayment)
             {
                 inventory.EnablePickUp(this);
-                cost.gameObject.SetActive(false);
+                costContainer.gameObject.SetActive(false);
                 collectObj.SetActive(true);
                 buyObj.SetActive(false);
             } else
@@ -116,7 +117,7 @@ public class ItemPickup : MonoBehaviour
                 }
 
                 inventory.EnableBuyItem(this);
-                cost.gameObject.SetActive(true);
+                costContainer.gameObject.SetActive(true);
                 buyObj.SetActive(true);
                 collectObj.SetActive(false);
             }
@@ -136,7 +137,7 @@ public class ItemPickup : MonoBehaviour
             else
                 inventory.DisableBuyItem(this);
             canvas.SetActive(false);
-            cost.gameObject.SetActive(false);
+            costContainer.gameObject.SetActive(false);
         }
     }
 
