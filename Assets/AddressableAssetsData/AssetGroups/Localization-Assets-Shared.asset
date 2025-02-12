@@ -124,7 +124,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
   - m_GUID: f3afb3d6bb003f6449277e20ee0abdf5
-    m_Address: Assets/LocaleSettings/Tables/InteractableObjects/DecayedShrine Shared Data.asset
+    m_Address: Assets/LocaleSettings/Tables/InteractableObjects/DecayedShrine Shared
+      Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
   - m_GUID: 9e557f6fd4bcfff4d83755c07707eb57
@@ -132,7 +133,8 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
   - m_GUID: aec889a72cdf781499170a4f5bc1304b
-    m_Address: Assets/LocaleSettings/Tables/Npcs/Azula/AzulaRegDefCaveTown Shared Data.asset
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Azula/AzulaRegDefCaveTown Shared
+      Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
   - m_GUID: 5d5f1f2684c0b0245983574629863eac

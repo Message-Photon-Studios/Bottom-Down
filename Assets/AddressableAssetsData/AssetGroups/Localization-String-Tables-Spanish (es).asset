@@ -171,6 +171,7 @@ MonoBehaviour:
     m_Address: AzulaDefault_es
     m_ReadOnly: 1
     m_SerializedLabels:
+    - Locale-es
   - m_GUID: 4faf7afe7e3efb04e92320c2679b4c2c
     m_Address: SB_Bomba_es
     m_ReadOnly: 1
@@ -181,6 +182,7 @@ MonoBehaviour:
     m_Address: AzulaRegDefCaveTown_es
     m_ReadOnly: 1
     m_SerializedLabels:
+    - Locale-es
   - m_GUID: 6ab0707cea611344fa5b0bd00b83c2c9
     m_Address: SB_BubbleBlast_es
     m_ReadOnly: 1
@@ -191,6 +193,7 @@ MonoBehaviour:
     m_Address: AzulaSpecCaveTown_es
     m_ReadOnly: 1
     m_SerializedLabels:
+    - Locale-es
   - m_GUID: 14136a7a67173514aa6b6a64627b54b3
     m_Address: SB_ColorBloom_es
     m_ReadOnly: 1
