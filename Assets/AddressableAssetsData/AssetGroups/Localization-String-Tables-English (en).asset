@@ -161,6 +161,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: 3bef5fa6b1b1fe64a8535df112452c52
+    m_Address: AzulaDefault_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: 049709698c36c2f4fae7308749437697
+    m_Address: AzulaRegDefCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+  - m_GUID: d18efb816584892478a2bf7c58fdda7d
+    m_Address: AzulaSpecCaveTown_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: af85be7eda08ef147b3ddd3e7cc0a1b9, type: 2}
   m_SchemaSet:
