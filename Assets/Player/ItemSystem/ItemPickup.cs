@@ -87,7 +87,7 @@ public class ItemPickup : MonoBehaviour
                 
         descriptionText.text = item.GetDesc();
         nameText.text = item.GetName();
-        cost.text = "Cost: " + this.itemCost;
+        cost.text = this.itemCost.ToString();
 
         spriteRenderer.sprite = item.sprite;
 
