@@ -13,7 +13,7 @@ public class Inspired : MonoBehaviour
     [SerializeField] GameObject spellToEnable;
     [SerializeField] ColorSpell unlockSpell;
     [SerializeField] public int petrifiedPigmentCost;
-    [SerializeField] Sprite spell;
+    [SerializeField] Sprite inspiredSprite;
     [SerializeField] LocalizedString inspireText;
 
     [SerializeField] GameObject ui;
@@ -33,7 +33,6 @@ public class Inspired : MonoBehaviour
             if(spellToEnable)
             {
                 spellToEnable.SetActive(true);
-                spellToEnable.GetComponent<SpellPickup>().SetSpell(unlockSpell);
             }
             GetComponent<Collider2D>().enabled = false;
             this.enabled = false;
@@ -68,7 +67,7 @@ public class Inspired : MonoBehaviour
     public void TriggerUnlock()
     {
         triggered = true;
-        UI.inspired?.Invoke(spell, inspireText.GetLocalizedString());
+        UI.inspired?.Invoke(inspiredSprite, inspireText.GetLocalizedString());
         GameManager.instance.UnlockedSpell(unlockSpell);
         if(spellToEnable) 
         {
