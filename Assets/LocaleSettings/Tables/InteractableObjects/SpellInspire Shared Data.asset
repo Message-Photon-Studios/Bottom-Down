@@ -63,6 +63,10 @@ MonoBehaviour:
     m_Key: ElementalSlime
     m_Metadata:
       m_Items: []
+  - m_Id: 2585993685405696
+    m_Key: ColorMushroom
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
