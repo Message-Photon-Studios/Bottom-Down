@@ -27,7 +27,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 379597426429952
-    m_Localized: 'The caves wisper: beauty can grow anywhere.'
+    m_Localized: A beauty that grows out from the rock.
     m_Metadata:
       m_Items: []
   - m_Id: 379928247963648
@@ -59,15 +59,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2496876662394880
-    m_Localized: The crystals hums of speed and power.
+    m_Localized: 'The crystal hums as if it was reborn. '
     m_Metadata:
       m_Items: []
   - m_Id: 2563015983665152
-    m_Localized: A quiet oozing sound from the ground. Did I sneeze?
+    m_Localized: A quiet oozing sound from deep ounderground. Did I sneeze?
     m_Metadata:
       m_Items: []
   - m_Id: 2585993685405696
     m_Localized: The mushroom remembers the times of exploitation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2623228610777088
+    m_Localized: 'The worms of the deep remember the digging with fury. '
     m_Metadata:
       m_Items: []
   references:
