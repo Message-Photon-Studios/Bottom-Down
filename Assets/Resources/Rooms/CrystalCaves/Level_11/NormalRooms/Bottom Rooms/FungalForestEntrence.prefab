@@ -4169,7 +4169,7 @@ GameObject:
   - component: {fileID: 1110097504496171644}
   - component: {fileID: -6625770280257989673}
   m_Layer: 0
-  m_Name: BottomRoom 1
+  m_Name: FungalForestEntrence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4235,7 +4235,7 @@ MonoBehaviour:
     - doors: 01000000010000000100000001000000
     - doors: 01000000010000000400000004000000
   displayMode: 0
-  maxSpawns: -1
+  maxSpawns: 1
   spawnCount: 1
   selectedNode: {x: 1, y: 0}
   isClosingRoom: 0
@@ -9069,7 +9069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4646957673482606205, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
       propertyPath: id
-      value: PetrifiedPigmentPickupBottomRoom 1212459487
+      value: PetrifiedPigmentPickupFungalForestEntrence144949865
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
@@ -9309,7 +9309,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5036625709104155704, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_ChunkCullingBounds.y
-      value: 0.8499999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7756558360296033240, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Name
@@ -9373,7 +9373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Tiles.Array.size
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileAssetArray.Array.size
@@ -9381,7 +9381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileSpriteArray.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Tiles.Array.data[5].first.x
@@ -9406,15 +9406,15 @@ PrefabInstance:
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileAssetArray.Array.data[2].m_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 1bcc08b0c38848447980404bc328e2be, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: -1078431632, guid: cfe6347f1c1ff724c876b9d92b11ab67, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[1].m_Data
       value: 
-      objectReference: {fileID: 1183855407, guid: cfe6347f1c1ff724c876b9d92b11ab67, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Tiles.Array.data[5].second.m_TileIndex
       value: 2
@@ -9429,27 +9429,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileAssetArray.Array.data[2].m_RefCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_RefCount
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileMatrixArray.Array.data[0].m_RefCount
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Tiles.Array.data[5].second.m_AllTileFlags
@@ -9460,16 +9460,20 @@ PrefabInstance:
       value: 1073741826
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
+      propertyPath: m_Tiles.Array.data[5].second.m_TileSpriteIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Tiles.Array.data[6].second.m_TileSpriteIndex
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 2642572097189858369, guid: 4ef98b4afbb63fe44bd4c56d1516f9f5, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_TileObjectToInstantiateArray.Array.data[0].m_RefCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7886398182644104473, guid: b0377c1527b2c6d4a93c0276abd0ba65, type: 3}
       propertyPath: m_Tiles.Array.data[5].second.m_TileObjectToInstantiateIndex

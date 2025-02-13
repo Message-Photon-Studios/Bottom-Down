@@ -8188,6 +8188,7 @@ Transform:
   - {fileID: 875732025638002492}
   - {fileID: 2553656041934737781}
   - {fileID: 3592322462133961262}
+  - {fileID: 9049321642401814240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18048,6 +18049,72 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3861493066803147509, guid: 4f603a1970aecb340bda8964df55d121, type: 3}
   m_PrefabInstance: {fileID: 4235137944385695743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4461072117611987100
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1110097504496171644}
+    m_Modifications:
+    - target: {fileID: 4646957673482606202, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_Name
+      value: PetrifiedPigmentPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.962631
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646957673482606205, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+      propertyPath: id
+      value: PetrifiedPigmentPickupFlailCave632722439
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+--- !u!4 &9049321642401814240 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4646957673482606204, guid: 9de9d526f5b436946bdefc04a489f352, type: 3}
+  m_PrefabInstance: {fileID: 4461072117611987100}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5518387060923203167
 PrefabInstance:
