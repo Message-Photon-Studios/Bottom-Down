@@ -59,6 +59,10 @@ MonoBehaviour:
     m_Key: CrystalizedFlail
     m_Metadata:
       m_Items: []
+  - m_Id: 2563015983665152
+    m_Key: ElementalSlime
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
