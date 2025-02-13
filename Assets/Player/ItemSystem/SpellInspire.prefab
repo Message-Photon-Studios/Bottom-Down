@@ -633,6 +633,7 @@ MonoBehaviour:
   costText: {fileID: 6212120280095761447}
   descriptionText: {fileID: 9174853900908101037}
   headerText: {fileID: 7980404673463999618}
+  animator: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -701,8 +702,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 770068331
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
