@@ -629,6 +629,24 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
+  unlockString:
+    m_TableReference:
+      m_TableCollectionName: GUID:7fad935b6fe17134a88e9adac8ee9459
+    m_TableEntryReference:
+      m_KeyId: 4987817984
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  costString:
+    m_TableReference:
+      m_TableCollectionName: GUID:7fad935b6fe17134a88e9adac8ee9459
+    m_TableEntryReference:
+      m_KeyId: 145996124160
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   ui: {fileID: 7507607046761687548}
   costText: {fileID: 6212120280095761447}
   descriptionText: {fileID: 9174853900908101037}
@@ -917,7 +935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 15.6, y: 0}
+  m_AnchoredPosition: {x: 15.59375, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &7507607046761687548
@@ -1139,11 +1157,11 @@ RectTransform:
   m_Father: {fileID: 6030054631652322440}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 5, y: 5}
-  m_SizeDelta: {x: 30, y: 10}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -28, y: 5}
+  m_SizeDelta: {x: 40, y: 10}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &1609759317732050096
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1235,7 +1253,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -27.92221, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

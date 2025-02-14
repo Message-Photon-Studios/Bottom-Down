@@ -16,6 +16,9 @@ public class Inspired : MonoBehaviour
     [SerializeField] Sprite inspiredSprite;
     [SerializeField] LocalizedString inspireText;
 
+    [SerializeField] LocalizedString unlockString;
+    [SerializeField] LocalizedString costString;
+
     [SerializeField] GameObject ui;
     [SerializeField] TMP_Text costText;
     [SerializeField] TMP_Text descriptionText;
@@ -46,9 +49,9 @@ public class Inspired : MonoBehaviour
         UI = PlayerLevelMananger.instance.playerUi;
         inventory = PlayerLevelMananger.instance.playerInventory;
 
-        costText.text = "Cost: " + petrifiedPigmentCost;
+        costText.text = costString.GetLocalizedString() + petrifiedPigmentCost;
         descriptionText.text = unlockSpell.description.GetLocalizedString();
-        headerText.text = "Unlock " + unlockSpell.name;
+        headerText.text = unlockString.GetLocalizedString() + unlockSpell.GetName();
         ui.SetActive(false);
     }
 
@@ -62,6 +65,12 @@ public class Inspired : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player") && !triggered && !GameManager.instance.IsSpellSpawnable(unlockSpell)) {
+
+            costText.text = costString.GetLocalizedString() + petrifiedPigmentCost;
+            descriptionText.text = unlockSpell.description.GetLocalizedString();
+            headerText.text = unlockString.GetLocalizedString() + unlockSpell.GetName();
+            if(GameManager.instance.GetPetrifiedPigmentAmount() < petrifiedPigmentCost) costText.color = Color.red;
+            else costText.color = Color.white;
             ui.SetActive(true);
             inventory.EnableInspired(this);
         }
