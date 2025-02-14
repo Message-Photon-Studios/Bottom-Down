@@ -49,6 +49,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        DataPersistenceManager.instance.Start();
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<UIController>();
         if (levelGenerator)
         {
