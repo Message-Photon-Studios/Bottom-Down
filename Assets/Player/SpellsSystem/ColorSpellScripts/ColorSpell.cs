@@ -24,6 +24,7 @@ public class ColorSpell : MonoBehaviour
     [SerializeField] public bool castOnSpellImpact;
     [SerializeField] public bool castOnDash;
     [SerializeField] public bool castOnDoubleJump;
+    [SerializeField] public bool staggeredSpell;
 
     [SerializeField] public int storedSpells = 1;
 
@@ -378,6 +379,11 @@ public class ColorSpell : MonoBehaviour
             }
             child.material = gameColor?.colorMat;
         }*/
+    }
+
+    public void TriggerQueue()
+    {
+        player.GetComponent<ColorInventory>().QuedSpells(spawnKey);
     }
 
     public void DestroySpell()

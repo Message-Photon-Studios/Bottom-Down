@@ -32,6 +32,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private int cascadeDamage = 0;
     public int maxCascadeDamage;
     private int bonusDamage;
+    private int spellSorting = 0;
     private bool attacking;
     private Rigidbody2D body;
 
@@ -56,11 +57,19 @@ public class PlayerCombatSystem : MonoBehaviour
         defaultAttackHitbox.onDefaultHit += EnemyHitDefault;
     }
 
+    private void Start()
+    {
+        GameManager.instance.onLevelLoaded += ResetSpellSortingCounter;
+    }
+
+
+
     private void OnDisable()
     {
         specialAttackAction.action.performed -= specialAttackHandler;
         defaultAttackAction.action.performed -= defaultAttackHandler;
         defaultAttackHitbox.onDefaultHit -= EnemyHitDefault;
+        GameManager.instance.onLevelLoaded -= ResetSpellSortingCounter;
     }
     #endregion
 
@@ -210,6 +219,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             ColorSpell spellStats = spell.GetComponent<ColorSpell>();
             spellStats.Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
+            spellStats.GetComponent<SpriteRenderer>().sortingOrder = spellSorting++;
             if (!spellStats.spawnKey.Equals(""))onRecast?.Invoke(spellStats.spawnKey);
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown); //When adding items to change the cooldown change it here! 
             colorInventory.SetRandomBuff();
@@ -235,6 +245,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
 
             spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
+            spellSpawn.GetComponent<SpriteRenderer>().sortingOrder = spellSorting++;
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom(slot);
         }
@@ -257,6 +268,7 @@ public class PlayerCombatSystem : MonoBehaviour
         if (spellSpawn != null)
         {
             spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, playerMovement.lookDir, GetExtraDamage());
+            spellSpawn.GetComponent<SpriteRenderer>().sortingOrder = spellSorting++;
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown, slot);
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom(slot);
@@ -283,6 +295,7 @@ public class PlayerCombatSystem : MonoBehaviour
             if(Time.time - playerMovement.lastFlipTime < 0.2f) lookDir *=-1;
 
             spellSpawn.GetComponent<ColorSpell>().Initi(color, colorInventory.GetColorBuff(), gameObject, lookDir, GetExtraDamage());
+            spellSpawn.GetComponent<SpriteRenderer>().sortingOrder = spellSorting++;
             colorInventory.SetCoolDown(spell.GetComponent<ColorSpell>().coolDown, slot);
             colorInventory.SetRandomBuff();
             colorInventory.MixRandom(slot);
@@ -338,6 +351,11 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (bunnyCast > Time.fixedTime) return;
         bunnyCast = Time.fixedTime + bunnyCastTolerance;
+    }
+
+    private void ResetSpellSortingCounter()
+    {
+        spellSorting = 0;
     }
 
     void Update()
