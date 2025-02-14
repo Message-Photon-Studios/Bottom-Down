@@ -128,6 +128,19 @@ MonoBehaviour:
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+  - m_GUID: 9e557f6fd4bcfff4d83755c07707eb57
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Azula/AzulaDefault Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: aec889a72cdf781499170a4f5bc1304b
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Azula/AzulaRegDefCaveTown Shared
+      Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+  - m_GUID: 5d5f1f2684c0b0245983574629863eac
+    m_Address: Assets/LocaleSettings/Tables/Npcs/Azula/AzulaSpecCaveTown Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
   - m_GUID: 2ce2a0dfdc44cf24c91f21b3058da26f
     m_Address: Assets/LocaleSettings/Tables/Bottles/SB_Bomba Shared Data.asset
     m_ReadOnly: 1

@@ -72,6 +72,7 @@ public class SpellPickup : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (inventory == null) inventory = PlayerLevelMananger.instance.GetComponent<ColorInventory>();
         if(other.CompareTag("Player"))
         {
             if(inspirationRequired > GameManager.instance.GetInspiration())
