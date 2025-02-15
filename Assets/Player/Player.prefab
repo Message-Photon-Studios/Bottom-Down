@@ -5310,6 +5310,7 @@ MonoBehaviour:
   jumpJetpack: 410
   jumpFalloff: 900
   coyoteTime: 0.1
+  stairJumpPower: {x: 1000, y: 900}
   dashSpeed: 50
   dashDistance: 4.5
   walkAction: {fileID: 2156130203312526529, guid: fd04459890e791843a48243064f9151b, type: 3}
@@ -5328,6 +5329,7 @@ MonoBehaviour:
   playerCollider: {fileID: 468746527930208002}
   playerSounds: {fileID: 8219171091925355652}
   playerStats: {fileID: 7401497038098640722}
+  playerFeet: {fileID: 6120812987470185292}
   dustParticles: {fileID: 6508366360112006936}
   jumpParticles: {fileID: 5623213183324694574}
   wallParticles: {fileID: 574845218076256338}
@@ -15964,8 +15966,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5799}
-  m_Size: {x: 0.8, y: 0.5}
+  m_Offset: {x: 0, y: -0.6799}
+  m_Size: {x: 0.7, y: 0.3}
   m_Direction: 1
 --- !u!1 &7177720769881276728
 GameObject:

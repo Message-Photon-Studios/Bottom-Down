@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpJetpack; //A small extra power over time for the jump that alows the player to controll the height of the jump
     [SerializeField] float jumpFalloff; //The falloff power of the jump jetpack
     [SerializeField] float coyoteTime; //A small second affter leaving a platform you can still jump as normal. 
+    [SerializeField] Vector2 stairJumpPower;
     
     [Header("Dash")]
     [SerializeField] float dashSpeed;
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] CapsuleCollider2D playerCollider;
     [SerializeField] PlayerSounds playerSounds;
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] GameObject playerFeet;
 
     [Header("Particles")]
     [SerializeField] ParticleSystem dustParticles;
@@ -186,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(movementRoot.rooted) return;
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
         wasClimbing = false;
         if (IsGrounded() || coyoteTimer > 0)
         {
@@ -254,7 +256,6 @@ public class PlayerMovement : MonoBehaviour
     void CheckBelowStart()
     {
         checkDownTimer = .2f;
-        //Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
         if(focusPoint == null && movementRoot.totalRoot) return;
         if(IsGrappeling() || !IsGrounded() || IsOnPlatform()) return;
         focusPoint.localPosition = new Vector3(focusPoint.localPosition.x, -checkPointY, focusPoint.localPosition.z);
@@ -331,8 +332,8 @@ public class PlayerMovement : MonoBehaviour
 
         RaycastHit2D startHitR =  Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround);
         RaycastHit2D startHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround);
-        RaycastHit2D continueHitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
-        RaycastHit2D continueHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D continueHitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 - Vector3.right*.1f, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D continueHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2 - Vector3.left*.1f, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
 
         return  ((!startHitR || startHitR.normal.y <0.9f) && 
                 Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/4, Vector2.right, .5f, GameManager.instance.maskLibrary.onlyGround)) ||
@@ -344,6 +345,17 @@ public class PlayerMovement : MonoBehaviour
                     ((!continueHitL || continueHitL.normal.y < 0.9f) &&
                     Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2+playerCollider.offset, Vector2.left, .7f, GameManager.instance.maskLibrary.onlyGround))  
                 ));
+    }
+
+    public bool StairCollision()
+    {
+        if(verticalMoveAction.action.ReadValue<float>() <= 0 && walkDir != lookDir) return false;
+        if(HitCeling()) return false;
+        if(Physics2D.Raycast(transform.position + Vector3.down * playerCollider.size.y/2, Vector3.down, 1.5f, GameManager.instance.maskLibrary.onlyGround)) return false;
+        return  (Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/2, Vector2.right, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && 
+                !Physics2D.Raycast(transform.position+ Vector3.down*.1f, Vector2.right, .5f, GameManager.instance.maskLibrary.onlySolidGround())) ||
+                (Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/2, Vector2.left, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && 
+                !Physics2D.Raycast(transform.position+ Vector3.down*.1f, Vector2.left, .5f, GameManager.instance.maskLibrary.onlySolidGround()));
     }
 
     public bool CollidesWithWall(int dir)
@@ -361,8 +373,8 @@ public class PlayerMovement : MonoBehaviour
     bool wallRight = false;
     private void FixedUpdate() {
 
-        if(jump > 0 || IsGrappeling()) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
-        else if(checkDownTimer <= 0) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, false);
+        if(jump > 0 || IsGrappeling()) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        else if(checkDownTimer <= 0) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, false);
 
         if(checkDownTimer > 0) checkDownTimer -= Time.deltaTime;
         movementRoot.UpdateTimers();
@@ -399,6 +411,13 @@ public class PlayerMovement : MonoBehaviour
             if(lookWalk > lookDir*walkDir) walkDir = lookWalk*lookDir;
         }
         movement = movementSpeed * walkDir;
+
+        if(StairCollision())
+        {
+            if(IsGrappeling()) ReleaseWall();
+            playerFeet.SetActive(false);
+            body.AddForce(stairJumpPower * new Vector2(wallRight?1:-1, 1));
+        }
 
         if(jump > 0)
             jump -= jumpFalloff * Time.fixedDeltaTime;
@@ -507,8 +526,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(IsGrappeling())
+        if(IsGrappeling() && !StairCollision())
         {   
+            playerFeet.SetActive(false);
             dashedDone = false;
             float lookWalk = verticalMoveAction.action.ReadValue<float>();
             if(lookWalk > lookDir*walkDir) walkDir = lookWalk*lookDir;
@@ -569,7 +589,7 @@ public class PlayerMovement : MonoBehaviour
             }
         } else
         {
-
+            if(body.velocity.y <= 0) playerFeet.SetActive(true);
             climbTime = 0;
             coyoteTimerWall -= Time.fixedDeltaTime;
             playerAnimator.SetBool("grapple", false);
@@ -612,7 +632,7 @@ public class PlayerMovement : MonoBehaviour
         playerStats.SetPlayerInvincible();
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         body.constraints |= RigidbodyConstraints2D.FreezePositionY;
-        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
         transform.position = transform.position + Vector3.up * 0.05f;
         movementRoot.SetRoot("dash", true);
         body.velocity = dashSpeed * Vector2.right * lookDir;
@@ -627,7 +647,7 @@ public class PlayerMovement : MonoBehaviour
     private void StopDash()
     {
         if(!isDashing) return;
-        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, false);
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, false);
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         movementRoot.SetRoot("dash", false);
         body.velocity = Vector2.zero;
@@ -648,8 +668,10 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x-5*lookDir, 0);
         wallParticles.Stop();
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-        if(wallRight != spriteRenderer.flipX) Flip();
+        if(wallRight != spriteRenderer.flipX && walkDir != lookDir && verticalMoveAction.action.ReadValue<float>() <= 0) Flip();
         beforeClimbLookDir = lookDir;
+
+        //if(!HitCeling()) body.AddForce(Vector2.up*200f);
     }
 
     public void WallAttackLock()
@@ -684,7 +706,7 @@ public class PlayerMovement : MonoBehaviour
     void DropDown()
     {
         if(Mathf.Abs(body.velocity.x) < 10f)
-            Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
+            Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
     }
 
     #endregion
