@@ -5272,7 +5272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506cee541d3073f45b4c681cba2b3518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 150
+  health: 1000
   maxShield: 50
   maxPermanetShield: 20
   shieldDecayIncrease: 1
