@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Handles the impact of color spells
@@ -9,15 +11,28 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ColorSpell : MonoBehaviour
 {
-    [TextArea(5, 20)] public string description;
+    [SerializeField] public LocalizedString bottleName;
+    [SerializeField] public LocalizedString description;
 
     public int spellCost;
     /// <summary>
     /// Scales the power for this specific color spell
     /// </summary>
     [SerializeField] public float powerScale = 1;
-
     [SerializeField] public float coolDown = 1;
+    [SerializeField] public bool castWhenDamaged;
+    [SerializeField] public bool castOnSpellImpact;
+    [SerializeField] public bool castOnDash;
+    [SerializeField] public bool castOnDoubleJump;
+    [SerializeField] public bool staggeredSpell;
+
+    [SerializeField] public int storedSpells = 1;
+
+    [SerializeField] public int maxSpawn = 0;
+
+    [SerializeField] public string spawnKey;
+
+    [SerializeField] bool ignoreLookDir;
 
     /// <summary>
     /// The projectile will be destroyed on impact with any object
@@ -107,26 +122,39 @@ public class ColorSpell : MonoBehaviour
         this.extraDamage = extraDamage;
         resetEnemyTime = attackAgainTimer;
 
+        foreach(Light2D light in GetComponentsInChildren<Light2D>())
+        {
+            light.color = gameColor.lightTintColor;
+        }
+
         if (this.power <= 0.1) this.power = 0.1f;
 
-        foreach(Collider2D col in GetComponents<Collider2D>())
+        if (!ignoreLookDir)
         {
-            col.offset *= new Vector2(lookDir, 1);
+            transform.localScale = new Vector3(lookDir,1,1);
+            /*foreach (Collider2D col in GetComponents<Collider2D>())
+            {
+                col.offset *= new Vector2(lookDir, 1);
+            }*/
         }
-
+        
         var spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
+        /*if (spriteRenderer != null && !ignoreLookDir)
         {
             spriteRenderer.flipX = lookDir == -1;
-        }
+        }*/
         spriteRenderer.material = gameColor?.colorMat;
+
+        LineRenderer line = GetComponent<LineRenderer>();
+        if (line) line.material = gameColor?.colorMat;
 
         foreach(var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
-            if (child != null)
+            /*
+            if (child != null && !ignoreLookDir)
             {
                 child.flipX = lookDir == -1;
-            }
+            }*/
             child.material = gameColor?.colorMat;
         }
         
@@ -135,6 +163,10 @@ public class ColorSpell : MonoBehaviour
             var main = ballTray.main;
             main.startColor = gameColor.colorMat.color;
             ballTray.Play();
+            /*
+            if (!ignoreLookDir)
+                ballTray.transform.localPosition = new Vector2(ballTray.transform.localPosition.x * lookDir, ballTray.transform.localPosition.y);
+                */
         }
 
         foreach (SpellMover mover in gameObject.GetComponents<SpellMover>())
@@ -170,6 +202,11 @@ public class ColorSpell : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
+    public void SetNewDestroy(float time)
+    {
+        Destroy(gameObject, time);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(triggerOnlyOnce && hasTriggered) return;
@@ -193,6 +230,12 @@ public class ColorSpell : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+
+    public void AddObjectAlreadyHit(Collider2D collider) 
+    {
+        if (objectsAlreadyHit.Contains(collider)) return;
+        objectsAlreadyHit.Add(collider);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -273,7 +316,8 @@ public class ColorSpell : MonoBehaviour
     {
         return power;
     }
-    
+
+
     public GameObject GetPlayerObj()
     {
         return player;
@@ -295,6 +339,56 @@ public class ColorSpell : MonoBehaviour
     public BottleSprite GetBottleSprite()
     {
         return spellSprite;
+    }
+
+    /// <summary>
+    /// Gives name of ColorSpell depending on which language is selected.
+    /// </summary>
+    /// <returns>Localized ColorSpell Name.</returns>
+    public string GetName() {
+        return bottleName.GetLocalizedString();
+    }
+
+    /// <summary>
+    /// Gives description of ColorSpell depending on which language is selected.
+    /// </summary>
+    /// <returns>Localized ColorSpell description.</returns>
+    public string GetDesc() {
+        return description.GetLocalizedString();
+    }
+
+    public void SetDir(int lookDir)
+    {
+        /*
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.offset *= new Vector2(lookDir, 1);
+        }
+        */
+
+        //var spriteRenderer = GetComponent<SpriteRenderer>();
+        transform.localScale = new Vector3(lookDir,1,1);
+        //spriteRenderer.material = gameColor?.colorMat;
+
+    /*
+        foreach (var child in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (child != null)
+            {
+                child.flipX = lookDir == -1;
+            }
+            child.material = gameColor?.colorMat;
+        }*/
+    }
+
+    public void TriggerQueue()
+    {
+        player.GetComponent<ColorInventory>().QuedSpells(spawnKey);
+    }
+
+    public void DestroySpell()
+    {
+        Destroy(gameObject);
     }
 }
 /// <summary>

@@ -212,6 +212,7 @@ public class UIController : MonoBehaviour
         sylviaLoading.gameObject.SetActive(false);
         loadingText.gameObject.SetActive(false);
         loadScreenFinished = true;
+        yield return new WaitForEndOfFrame();
         UILoaded?.Invoke();
     }
 

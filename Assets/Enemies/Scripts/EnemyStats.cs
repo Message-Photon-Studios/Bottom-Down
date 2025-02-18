@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Threading;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 using static UnityEngine.ParticleSystem;
 
 /// <summary>
@@ -88,9 +88,12 @@ public class EnemyStats : MonoBehaviour
 
     public bool isColoredThisFrame {get; private set;} = false;
     private bool dealingRainbowDamage = false;
+    public static bool chaoticMixer = false;
+    ColorLibrary colorLibrary;
     GameObject player;
     PlayerStats playerStats;
     PlayerCombatSystem playerCombat;
+    Light2D enemyLight;
 
     Rigidbody2D body;
     #region Setup
@@ -105,6 +108,8 @@ public class EnemyStats : MonoBehaviour
 
     void Start()
     {
+        enemyLight = GetComponentInChildren<Light2D>();
+        colorLibrary = GameManager.instance.GetComponent<ColorLibrary>();
         if(!setColorByHand) //Moved form awake
             color = LevelManager.instance.GetComponent<EnemyManager>().GetRandomEnemyColor();
         if(color != null)
@@ -112,6 +117,19 @@ public class EnemyStats : MonoBehaviour
         else
             GetComponent<SpriteRenderer>().material = defaultColor;
 
+        if (enemyLight)
+        {
+            if (color)
+            {
+                enemyLight.color = color.lightTintColor;
+            } else
+            {
+                enemyLight.color = Color.white;
+            }
+        }
+            
+            
+            
         onDamageTaken += DmgNumber.create;
         onEnemyDeath += (EnemyStats _) => dropCoins(coinsDropped.GetReward());
         enemySounds = GetComponent<EnemySounds>();
@@ -278,6 +296,10 @@ public class EnemyStats : MonoBehaviour
 
         health -= damage;
 
+        if (chaoticMixer && damage > 0)
+        {
+            StartCoroutine(ChaothicMixer());
+        } 
         onHealthChanged?.Invoke(health);
         onDamageTaken?.Invoke(damage, transform.position);
         int rainbowDmg = (int)(playerCombat.rainbowComboDamage * playerStats.colorRainbowMaxedPower);
@@ -286,6 +308,12 @@ public class EnemyStats : MonoBehaviour
         if (health <= 0) KillEnemy();
         else if ((health - rainbowDmg <= 0 && IsRaibowed() && !dealingRainbowDamage)) DealRainbowDamage(rainbowDmg);
         else currentCoroutine = StartCoroutine(dmgResponse());
+    }
+
+    public IEnumerator ChaothicMixer()
+    {
+        yield return new WaitForSeconds(0.1f);
+        colorLibrary.GetRandomPrimaryColor().MixThisColorOntoEnemy(this, playerStats);
     }
 
     public IEnumerator dmgResponse()
@@ -462,7 +490,7 @@ public class EnemyStats : MonoBehaviour
             GameObject floorFlame = Instantiate(burning.floorParticles, GetPosition(), new Quaternion());
             floorFlame.GetComponent<FloorFlame>().dir = (int) ((i%2-0.5)*2);
             floorFlame.GetComponent<FloorFlame>().SetBurning(damage+6, timer+2, range, burnParticles, floorParticles, flames);
-            }
+        }
     }
 
     public bool isBurning()
@@ -505,6 +533,7 @@ public class EnemyStats : MonoBehaviour
         color = null;
         colorAmmount = 0;
         GetComponent<SpriteRenderer>().material = defaultColor;
+        if(enemyLight) enemyLight.color = Color.white;
         onColorChanged?.Invoke(null);
     }
 
@@ -539,6 +568,7 @@ public class EnemyStats : MonoBehaviour
         else
             GetComponent<SpriteRenderer>().material = defaultColor;
         
+        if(enemyLight) enemyLight.color = color.lightTintColor;
         isColoredThisFrame = true;
     }
 
@@ -593,11 +623,7 @@ public class EnemyStats : MonoBehaviour
         float poisonFactor = 1f;
         if(isPoisoned())
             poisonFactor = (1f-poisonDamageReduction);
-        
-        float playerArmour = 0f;
-        if(GetColor() != null && GetColorAmmount() > 0 && playerStats != null)
-            playerArmour = playerStats.GetColorArmour(GetColor());
-        return spawnPower * poisonFactor * (1f-playerArmour);
+        return spawnPower * poisonFactor;
     }
 
     /// <summary>
@@ -607,7 +633,9 @@ public class EnemyStats : MonoBehaviour
     /// <returns></returns>
     public int GetScaledDamage(int baseDamage)
     {
-        return Mathf.RoundToInt(baseDamage*GetDamageFactor());
+        int i = Mathf.RoundToInt(baseDamage * GetDamageFactor());
+        if (i <= 0) return 1;
+        return i;
     }
     
     /// <summary>
@@ -737,6 +765,7 @@ public class EnemyStats : MonoBehaviour
     /// </summary>
     private void WakeEnemyAnimation()
     {
+        if(lastSleep == Time.time) return;
         animator.SetBool("sleep", false); //TODO make animation event
         if(sleepParticles)
         {

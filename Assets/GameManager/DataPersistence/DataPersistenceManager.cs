@@ -7,6 +7,7 @@ using UnityEditor;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
+    [SerializeField] private string currentSaveFileVersion;
     [SerializeField] private string fileName;
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
@@ -26,17 +27,28 @@ public class DataPersistenceManager : MonoBehaviour
 
     }
 
+    bool initiated = false;
     public void Start() 
     {
+        if(initiated) return;
+        initiated = true;
+        
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         
         LoadGame();
+    }   
+
+    public bool SaveFileVersionOk()
+    {
+        if(gameData.GetSaveFileVersion() != null)
+            return gameData.GetSaveFileVersion().Equals(currentSaveFileVersion);
+        else return false;
     }
 
     public void NewGame()
     {
-        this.gameData = new GameData();
+        this.gameData = new GameData(currentSaveFileVersion);
 
         dataHandler.Save(gameData);
         
@@ -51,7 +63,11 @@ public class DataPersistenceManager : MonoBehaviour
         this.gameData = dataHandler.Load();
         if(this.gameData == null)
         {
-            Debug.Log("No data was found. Initializing new data");
+            Debug.Log("No data was found. Initializing new data.");
+            NewGame();
+        } else if(!SaveFileVersionOk())
+        {
+            Debug.Log("Save file version not compatible with new game. Initializing new data.");
             NewGame();
         }
 

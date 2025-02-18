@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Effects all the impacted list with the color effect
@@ -10,9 +11,10 @@ public class ColorSpellImpact : SpellImpact
     /// Setting this variable to true will change the forces of some spells to refer to the player instead of the spells impact point
     /// </summary>
     [SerializeField] protected bool forcePerspectivePlayer;
-
-
+    [SerializeField] protected bool triggerImpactSpells;
     [SerializeField] public ParticleSystem onImpactParticles;
+
+    static public UnityAction onSpellImpact;
 
     public override void Impact(Collider2D other, Vector2 impactPoint)
     {
@@ -39,6 +41,7 @@ public class ColorSpellImpact : SpellImpact
             if (enemy != null)
             {
                 spell.GetColor().ApplyColorEffect(other.gameObject, transform.position, spell.GetPlayerObj(), spell.GetPower(), forcePerspectivePlayer, spell.GetExtraDamage());
+                if (triggerImpactSpells && !spell.castOnSpellImpact) onSpellImpact?.Invoke();
                 enemy.enemySounds?.PlaySpellHit();
             }
         }

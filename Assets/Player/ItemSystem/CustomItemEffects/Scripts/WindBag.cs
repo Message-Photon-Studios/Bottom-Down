@@ -27,6 +27,7 @@ public class WindBag : CustomItem
 
     public override void Effect(PlayerStats player, EnemyStats hit)
     {
+        if(hit == null) return;
         EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
         int count = player.itemVaribles[itemName];
         float currentRange = range + rangePerStack * count;

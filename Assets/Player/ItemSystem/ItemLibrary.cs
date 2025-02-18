@@ -4,10 +4,12 @@ using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine.UIElements;
 public class ItemLibrary : MonoBehaviour{
 
     [SerializeField] SerializedDictionary<ItemRarity, SerializedDictionary<ItemRarity, float>> dropPointRarities;
     private ItemCollection[,] itemMatrix = new ItemCollection[0,0];
+    private Dictionary<string, Item> specialItems = new Dictionary<string, Item>();
 
     void Awake()
     {
@@ -15,6 +17,9 @@ public class ItemLibrary : MonoBehaviour{
     }
     public void PopulateMatrix()
     {
+        PopulateSpecialItems();
+
+        if(itemMatrix.Length > 0) return; 
         itemMatrix = new ItemCollection[4,3];
 
         Debug.Log("--- Populating Item Matrix ------------------");
@@ -28,6 +33,16 @@ public class ItemLibrary : MonoBehaviour{
             }
         }
         Debug.Log("--- Item Population Done ----------------");
+    }
+
+    void PopulateSpecialItems()
+    {
+        specialItems = new Dictionary<string, Item>();
+        Item[] getSpecial = Resources.LoadAll<Item>("Items/_Special/");
+        foreach (Item item in getSpecial)
+        {
+            specialItems.Add(item.name, item);
+        }
     }
 
     public ItemCollection[] GetCategory(ItemCategory category)
@@ -54,6 +69,7 @@ public class ItemLibrary : MonoBehaviour{
 
     public ItemCollection GetCollection(ItemCategory category, ItemRarity rarity)
     {
+        if(itemMatrix.Length <= 0) PopulateMatrix(); 
         return itemMatrix[(int)category, (int)rarity];
     }
 
@@ -70,6 +86,16 @@ public class ItemLibrary : MonoBehaviour{
         }
 
         return ret;
+    }
+    
+    public Item GetItem(ItemCategory itemCategory, ItemRarity itemRarity, string itemName)
+    {
+        if(itemCategory == ItemCategory.Special)
+        {
+            return specialItems[itemName];
+        }
+
+        return GetCollection(itemCategory, itemRarity).itemDictionary[itemName];
     }
 
     /// <summary>
@@ -124,10 +150,22 @@ public class ItemLibrary : MonoBehaviour{
 
         if(items.Count == 0)
         {
+            items = new List<Item>(category[(int)dropPointRarity].items.Length);
             Debug.LogWarning("Item collection " + ((ItemCategory)categoryIndex).ToString()+"/"+((ItemRarity)picker).ToString() + " is empty!, Taking from default");
             items.AddRange(category[(int)dropPointRarity].items);
 
-            if(items.Count == 0) Debug.LogError("Item collection " + ((ItemCategory)categoryIndex).ToString() + "/" + dropPointRarity.ToString() + " is empty even though it is default!");
+            if(items.Count == 0) 
+            {
+                Debug.LogError("Item collection " + ((ItemCategory)categoryIndex).ToString() + "/" + dropPointRarity.ToString() + " is empty even though it is default!");
+                items = new List<Item>();
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < itemMatrix[i,(int)dropPointRarity].items.Length; j++)
+                    {
+                        items.Add(itemMatrix[i,(int)dropPointRarity].items[j]);;
+                    }
+                }
+            }
         }
 
         Item ret = null;
@@ -160,8 +198,15 @@ public class ItemCollection
     public ItemCollection(Item[] items)
     {
         this.items = items;
+
+        itemDictionary = new Dictionary<string, Item>();
+        foreach (Item item in items)
+        {
+            itemDictionary.Add(item.name, item);
+        }
     }
     public Item[] items;
+    public Dictionary<string, Item> itemDictionary;
 }
 
 /// <summary>

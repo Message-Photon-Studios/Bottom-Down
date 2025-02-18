@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using Steamworks;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Keeps track of the colors that the player has gathered. 
@@ -31,27 +32,36 @@ public class ColorInventory : MonoBehaviour
     [SerializeField] InputActionReference removeColorAction;
     [SerializeField] int rainbowExtraDrain;
     [SerializeField] float minCD = 0.3f;
+    [SerializeField] int maxStoredSpells = 5;
+    [SerializeField] float routedSheildCost = 0.5f;
     private Dictionary<GameColor, float> colorBuffs = new Dictionary<GameColor, float>();
+    public Dictionary<string, int> spellsSpawned = new Dictionary<string, int>();
+    Dictionary<string, int> spellTracker = new Dictionary<string, int>();
     SpellPickup pickUpSpell = null;
     ColorLibrary colorLib;
+    Light2D playerLight;
 
     public int blockDrainColor = 0;
     private bool CanSwap = true;
     private float addetiveCDModifier = 0;
     private float multetiveCDModifier = 1;
     private float defaultBuff = 0;
+    private int bonusSpells = 0;
     public bool balanceColors = false;
     public bool dontMixColor = false;
     public bool autoRotate = false;
     public bool chaosEnabled = false;
+    public bool routedSheild = false;
     private float rngMax = 0;
     private float rngMin = 0;
     private float rngBuff = 0;
-    private int lastDir = 0;
+    private float colorMaxBonus = 0;
+    private int colorMaxDamageBonus = 0;
     
 
+
     #region Actions for UI
-    
+
     /// <summary>
     /// Called when the active color slot is changed
     /// </summary>
@@ -78,7 +88,12 @@ public class ColorInventory : MonoBehaviour
     /// </summary>
     public UnityAction<bool> onSpellPickupInRange;
 
-    public UnityAction<float> onCoolDownSet;
+    public UnityAction<List<float>, float, int> onCoolDownSet;
+
+    /// <summary>
+    /// Called whenever amount of charges on a spell is changed (usually trough an item).
+    /// </summary>
+    public UnityAction onSpellChargeChange;
     
     private System.Action<InputAction.CallbackContext> divideColorHandler;
 
@@ -86,24 +101,34 @@ public class ColorInventory : MonoBehaviour
 
     #region Setup
 
+    UnityAction<int> slotChangedBrush; 
     void Start()
     {
+        playerLight = GetComponentInChildren<Light2D>();
         startColorSlots = colorSlots.Count;
-    }   
-
-    UnityAction<int> slotChangedBrush; 
-
-    void OnEnable()
-    {
         slotChangedBrush = (int dir) => {updateBrushColor();}; 
         changeRightActions.action.performed += (dir) => {RotateActive((int)dir.ReadValue<float>()); };
         onColorUpdated += updateBrushColor;
         onSlotChanged += slotChangedBrush;
+        ColorSpellImpact.onSpellImpact += SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact += SpellImactTrigger;
         pickUpAction.action.performed += PickUp;
         divideColorHandler = (InputAction.CallbackContext ctx) => DivideColor();
         removeColorAction.action.performed += divideColorHandler;
-        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerStats>().onPlayerDamaged += WhenDamaged;
+        player.GetComponent<PlayerMovement>().onPlayerDash += DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump += DoubleJumpSpells;
         colorLib = GameManager.instance.GetComponent<ColorLibrary>();
+
+        foreach (ColorSlot colorSlot in colorSlots)
+        {
+            if(colorSlot.gameColor == null)
+                colorSlot.SetGameColor(colorLib.GetRandomColor());
+        }
+        onColorUpdated?.Invoke();
+
+        if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
     }
 
     void OnDisable()
@@ -114,7 +139,12 @@ public class ColorInventory : MonoBehaviour
         
         pickUpAction.action.performed -= PickUp;
         removeColorAction.action.performed -= divideColorHandler;
-        GameObject.FindWithTag("Player").GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
+        ColorSpellImpact.onSpellImpact -= SpellImactTrigger;
+        SpellImactOnVelocity.onSpellImpact -= SpellImactTrigger;
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerStats>().onPlayerDamaged -= WhenDamaged;
+        player.GetComponent<PlayerMovement>().onPlayerDash -= DashSpells;
+        player.GetComponent<PlayerMovement>().onPlayerDoubleJump -= DoubleJumpSpells;
     }
 
     #endregion
@@ -129,8 +159,8 @@ public class ColorInventory : MonoBehaviour
     {
         if (!CanSwap) return;
         activeSlot = (colorSlots.Count+activeSlot+dir)%colorSlots.Count;
-        lastDir = dir;
         onSlotChanged?.Invoke(dir);
+        if (autoRotate) GetComponent<PlayerCombatSystem>().SpecialAttackAnimation();
     }
 
     public void DisableRotation()
@@ -143,28 +173,28 @@ public class ColorInventory : MonoBehaviour
         CanSwap = true;
     }
 
-    public void AutoRotate()
-    {
-        if (autoRotate) RotateActive(lastDir);
-    }
-
     /// <summary>
     /// Returns the color effect from the active color slot and decreases its charge with 1
     /// </summary>
     /// <returns></returns>
     public GameColor UseActiveColor()
     {
-        if(ActiveSlot().charge > 0)
+        return UseActiveColor(ActiveSlot());
+    }
+
+    public GameColor UseActiveColor(ColorSlot slot)
+    {
+        if(slot.charge > 0)
         {   
-            GameColor ret = ActiveSlot().gameColor;
+            GameColor ret = slot.gameColor;
 
             if (Random.Range(0, 100) > blockDrainColor)
             {
-                int charge = ActiveSlot().charge - 1;
-                if (ActiveSlot().gameColor.name == "Rainbow")
+                int charge = slot.charge - 1;
+                if (slot.gameColor.name == "Rainbow")
                     charge -= rainbowExtraDrain;
                 if(charge < 0) charge = 0;
-                ActiveSlot().SetCharge(charge);
+                slot.SetCharge(charge);
 
                 onColorUpdated?.Invoke();
             }
@@ -189,43 +219,62 @@ public class ColorInventory : MonoBehaviour
     /// </summary>
     public GameColor CheckActveColor()
     {
-        if(ActiveSlot().charge > 0)
+        return CheckActveColor(ActiveSlot());
+    }
+
+    public GameColor CheckActveColor(ColorSlot slot)
+    {
+        if (slot.charge > 0)
         {
-            return ActiveSlot().gameColor;
+            return slot.gameColor;
         }
         return null;
     }
 
-    /// <summary>
-    /// Checks if the cooldown for a spell is done
-    /// </summary>
-    /// <returns></returns>
-    public bool IsSpellReady()
+    public void AddSpellSpawned(string spell, int i)
     {
-        if (ActiveSlot().coolDown <= Time.fixedTime) return true;
-        return false;
+        SetSpawnedSpellCount(spell, GetSpawnedSpellCount(spell) + i);
     }
 
-    /// <summary>
-    /// Starts the cooldown
-    /// </summary>
-    /// <param name="time"></param>
-   public void SetCoolDown(float time)
+    public void RemoveSpellSpawned(string spell, int i)
     {
-        time = (time - time * addetiveCDModifier) * multetiveCDModifier;
-        if (time <= minCD) time = minCD; 
-        ActiveSlot().coolDown = Time.fixedTime + time;
-        onCoolDownSet?.Invoke(time);
+        int count = GetSpawnedSpellCount(spell);
+        count -= i;
+        if (count < 0) count = 0;
+        SetSpawnedSpellCount(spell, count);
     }
 
-    public void MultiplyCDMultiplier(float multiply)
+    public int GetSpawnedSpellCount(string spell)
     {
-        multetiveCDModifier *= multiply;
+        if (spellsSpawned.ContainsKey(spell))
+        {
+            return spellsSpawned[spell];
+        } else
+        {
+            spellsSpawned.Add(spell, 0);
+            return 0;
+        }
     }
 
-    public void AddCDAddetive(float add)
+    public void SetSpawnedSpellCount(string spell, int i)
     {
-        addetiveCDModifier += add;
+        if (spellsSpawned.ContainsKey(spell))
+        {
+            spellsSpawned[spell] = i;
+        }
+        else
+        {
+            spellsSpawned.Add(spell, i);
+        }
+    }
+
+    public void AddBonusSpell(int add)
+    {
+        bonusSpells += add;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ValidateCDlist(slot);
+        }
     }
 
     /// <summary>
@@ -239,6 +288,114 @@ public class ColorInventory : MonoBehaviour
             return ActiveSlot().colorSpell;
         }
         return defaultSpell;
+    }
+
+    #endregion
+
+    #region Cool Down
+
+    /// <summary>
+    /// Checks if the cooldown for a spell is done
+    /// </summary>
+    /// <returns></returns>
+    public bool IsSpellReady()
+    {
+        return IsSpellReady(ActiveSlot());
+    }
+
+    public bool IsSpellReady(ColorSlot slot)
+    {
+        ValidateCDlist(slot);
+        foreach (float coolDown in slot.storedSpellCDs)
+        {
+            if (coolDown <= Time.fixedTime && CheckCanSpawn(slot)) return true;
+        }
+        return false;
+    }
+
+    public bool CheckCanSpawn(ColorSlot slot)
+    {
+        ColorSpell spell = slot.colorSpell;
+        if (spell == null) spell = defaultSpell;
+        if (spell.maxSpawn <= 0) return true;
+        if (spell.spawnKey == null || spell.spawnKey == "")
+        {
+            Debug.Log("Error: Spell is missing Spawn Key but is expected to be limited. Set a spawn key");
+            return true;
+        }
+        int count = GetSpawnedSpellCount(spell.spawnKey);
+        if (count < spell.maxSpawn) return true;
+        return false;
+    }
+
+    public void ValidateCDlist(ColorSlot slot)
+    {
+        ColorSpell spell = slot.colorSpell;
+        if (spell == null) spell = defaultSpell;
+        int capacaty = spell.storedSpells + bonusSpells;
+        if (capacaty > maxStoredSpells) capacaty = maxStoredSpells;
+        if (capacaty <= 0) capacaty = 1;
+        if (slot.storedSpellCDs.Count == 0)
+        {
+            slot.storedSpellCDs = CreateCDList(spell, 0);
+            onSpellChargeChange?.Invoke();
+        }
+        if (slot.storedSpellCDs.Count != capacaty)
+        {
+            slot.storedSpellCDs = UpdateCDList(spell, slot.storedSpellCDs);
+            onSpellChargeChange?.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Starts the cooldown
+    /// </summary>
+    /// <param name="time"></param>
+    public void SetCoolDown(float time)
+    {
+        SetCoolDown(time, ActiveSlot());
+    }
+
+    public void SetCoolDown(float time, ColorSlot slot)
+    {
+        for (int i = 0; i < slot.storedSpellCDs.Count; i++)
+        {
+            if (slot.storedSpellCDs[i] <= Time.fixedTime)
+            {
+                slot.storedSpellCDs = SetCoolDownForIndex(slot.storedSpellCDs, i, time);
+                break;
+            }
+        }
+        onCoolDownSet?.Invoke(slot.storedSpellCDs, CalculateCD(time), colorSlots.IndexOf(slot));
+    }
+
+    public float CalculateCD(float time)
+    {
+        return (time - time * addetiveCDModifier) * multetiveCDModifier;
+    }
+
+    public List<float> SetCoolDownForIndex(List<float> list, int index, float time)
+    {
+        time = CalculateCD(time);
+        if (time <= minCD) time = minCD;
+        list[index] = 0;
+        float max = Time.fixedTime;
+        foreach (float cd in list)
+        {
+            if (max < cd) max = cd;
+        }
+        list[index] = time + max;
+        return list;
+    }
+
+    public void MultiplyCDMultiplier(float multiply)
+    {
+        multetiveCDModifier *= multiply;
+    }
+
+    public void AddCDAddetive(float add)
+    {
+        addetiveCDModifier += add;
     }
 
     #endregion
@@ -265,12 +422,13 @@ public class ColorInventory : MonoBehaviour
     /// <returns></returns>
     public float GetColorBuff(GameColor color)
     {
+        if (color == null) return 0;
         float buff = 0;
         foreach (ColorSlot slot in colorSlots)
         {
             if((slot.gameColor == color || balanceColors) && slot.charge == slot.maxCapacity) 
             {
-                buff += colorMaxBuff;
+                buff += colorMaxBuff + colorMaxBonus;
             }
         }
 
@@ -293,6 +451,29 @@ public class ColorInventory : MonoBehaviour
     public void AddDefaultBuff(float buff)
     {
         defaultBuff += buff;
+    }
+
+    public void AddColorMaxBuff(float add)
+    {
+        colorMaxBonus += add;
+    }
+
+    public void AddColorMaxDamageBuff(int add)
+    {
+        colorMaxDamageBonus += add;
+    }
+
+    public int GetColorMaxDamageBuff()
+    {
+        int damageBonus = 0;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            if (slot.charge == slot.maxCapacity)
+            {
+                damageBonus += colorMaxDamageBonus;
+            }
+        }
+        return damageBonus;
     }
 
     /// <summary>
@@ -438,10 +619,12 @@ public class ColorInventory : MonoBehaviour
     /// <param name="amount"></param>
     public void AddColor(GameColor color, int amount)
     {
+        AddColor(color, amount, null);
+    }
+    public void AddColor(GameColor color, int amount, ColorSlot fillSlot)
+    {
         if(color == null) return;
-        ColorSlot fillSlot = null;
-        
-        fillSlot = ActiveSlot();
+        if(fillSlot == null) fillSlot = ActiveSlot();
 
         /*
         if(ActiveSlot().IsEmpty() || ActiveSlot().gameColor == color)
@@ -490,7 +673,6 @@ public class ColorInventory : MonoBehaviour
 
         fillSlot.AddCharge(amount);
         fillSlot.SetGameColor(setColor);
-
         onColorUpdated?.Invoke();
     }
 
@@ -520,11 +702,23 @@ public class ColorInventory : MonoBehaviour
     {
         // brush.
         GetComponent<SpriteRenderer>().material = ActiveSlot().charge > 0 ? ActiveSlot().gameColor.colorMat : defaultColor;
+        if(ActiveSlot().charge > 0)
+        {
+            if(playerLight) playerLight.color = colorSlots[activeSlot].gameColor.lightTintColor;
+        } else  
+        {
+            if(playerLight) playerLight.color = Color.white;
+        }
     }
 
     public void MixRandom()
     {
         if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1);
+    }
+
+    public void MixRandom(ColorSlot slot)
+    {
+        if (chaosEnabled) AddColor(colorLib.GetRandomPrimaryColor(), 1, slot);
     }
 
     #endregion
@@ -577,7 +771,63 @@ public class ColorInventory : MonoBehaviour
     public void ChangeActiveSlotColorSpell(ColorSpell newSpell)
     {
         ActiveSlot().colorSpell = newSpell;
+        float min = 0;
+        foreach(float cd in ActiveSlot().storedSpellCDs)
+        {
+            if (min == 0) min = cd;
+            if (min > cd) min = cd;
+        }
+        ActiveSlot().storedSpellCDs = CreateCDList(newSpell, min);
         onColorSpellChanged?.Invoke(activeSlot);
+    }
+
+    public List<float> CreateCDList(ColorSpell spell, float min)
+    {
+        if (spell == null) spell = defaultSpell;
+        int spellCapacity = spell.storedSpells + bonusSpells;
+        if (spellCapacity > maxStoredSpells) spellCapacity = maxStoredSpells;
+        List<float> list = new List<float>();
+        list.Add(min);
+        for (int i = 1; i < spellCapacity; i++)
+        {
+            list.Add(0);
+            list = SetCoolDownForIndex(list, i, spell.coolDown);
+        }
+        return list;
+    }
+
+    public List<float> UpdateCDList(ColorSpell spell, List<float> oldList)
+    {
+        List<float> newList = oldList;
+        if (spell == null) spell = defaultSpell;
+        int spellCapacity = spell.storedSpells + bonusSpells;
+        if (spellCapacity > maxStoredSpells) spellCapacity = maxStoredSpells;
+        if (newList.Count == spellCapacity) return newList;
+        if (newList.Count < spellCapacity)
+        {
+            float max = Time.fixedTime;
+            foreach (float f in newList)
+            {
+                if (f > max) max = f;
+            }
+            while (newList.Count < spellCapacity)
+            {
+                max += CalculateCD(spell.coolDown);
+                newList.Add(max);
+            }
+        } else
+        {
+            while (newList.Count > spellCapacity)
+            {
+                float max = 0;
+                foreach(float f in newList)
+                {
+                    if (f > max) max = f;
+                }
+                newList.Remove(max);
+            }
+        }
+        return newList;
     }
 
     /// <summary>
@@ -606,6 +856,7 @@ public class ColorInventory : MonoBehaviour
         }
         colorSlots[index].colorSpell = newSpell;
         colorSlots[index].coolDown = 0;
+        colorSlots[index].storedSpellCDs = CreateCDList(newSpell, 0);
         onColorSpellChanged?.Invoke(index);
     }
 
@@ -636,7 +887,10 @@ public class ColorInventory : MonoBehaviour
         colorSlots.Add(new ColorSlot());
         colorSlots[colorSlots.Count-1].maxCapacity = colorSlots[0].maxCapacity;
 
-        foreach (ColorSlot slot in colorSlots) slot.coolDown = 0;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ValidateCDlist(slot);
+        }
 
         onColorSlotsChanged?.Invoke();
     }
@@ -668,18 +922,150 @@ public class ColorInventory : MonoBehaviour
 
     #endregion
 
-    #region When damaged
+    #region defense
 
-    public void WhenDamaged(PlayerStats player, EnemyStats enemy)
+    public bool CheckIfActiveColorMatches(GameColor color)
     {
-        //Add events from certain items or spells to activate when damaged
+        return color == ActiveSlot().gameColor;
+    }
 
-        EnableRotation();
+    public bool CheckRoutedSheild(GameColor color)
+    {
+        if (!routedSheild) return false;
+        if (color == null) return false;
+        foreach (ColorSlot slot in colorSlots)
+        {
+            if (slot.gameColor == color && slot.charge == slot.maxCapacity)
+            {
+                if (Random.Range(0, 100) > blockDrainColor) AddColor(color, (int) (slot.charge * -routedSheildCost), slot);
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion
 
+    #region Unity Actions
+
+    public void WhenDamaged(PlayerStats player, EnemyStats enemy)
+    {
+        //Add events from certain items or spells to activate when damaged
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castWhenDamaged && slot.charge > 0)
+            {
+                if (spellTracker.ContainsKey(spell.spawnKey))
+                {
+                    spellTracker[spell.spawnKey]++;
+                }
+                else
+                {
+                    spellTracker.Add(spell.spawnKey, 0);
+                }
+                StartCoroutine(PocketSpecialAttack(spell.spawnKey, spellTracker[spell.spawnKey], slot, spell.staggeredSpell));
+            }
+        }
+        EnableRotation();
+    }
+
+    public void SpellImactTrigger()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnSpellImpact && slot.charge > 0)
+            {
+                if (spellTracker.ContainsKey(spell.spawnKey))
+                {
+                    spellTracker[spell.spawnKey]++;
+                }
+                else
+                {
+                    spellTracker.Add(spell.spawnKey, 0);
+                }
+                StartCoroutine(PocketSpecialAttack(spell.spawnKey, spellTracker[spell.spawnKey], slot, spell.staggeredSpell));
+            }
+        }
+    }
+
+    public IEnumerator PocketSpecialAttack(string spell, int delay, ColorSlot slot, bool staggerd)
+    {
+        yield return new WaitUntil(() => spellTracker[spell] < delay || delay == 0 || spell.Equals("") || !staggerd);
+        GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+    }
+
+    public void DashSpells()
+    {
+        
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDash && IsSpellReady(slot) && slot.charge > 0)
+            {
+                if (spellTracker.ContainsKey(spell.spawnKey))
+                {
+                    spellTracker[spell.spawnKey]++;
+                } else
+                {
+                    spellTracker.Add(spell.spawnKey, 0);
+                }
+                StartCoroutine(DashSpecialAttack(spell.spawnKey, spellTracker[spell.spawnKey], slot, spell.staggeredSpell));
+            }
+        }
+        EnableRotation();
+    }
+
+    public IEnumerator DashSpecialAttack(string spell, int delay, ColorSlot slot, bool staggerd)
+    {
+        yield return new WaitUntil(() => spellTracker[spell] < delay || delay == 0 || spell.Equals("") || !staggerd);
+        GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+    }
+
+    public void DoubleJumpSpells()
+    {
+        foreach (ColorSlot slot in colorSlots)
+        {
+            ColorSpell spell = slot.colorSpell;
+            if (spell == null) spell = defaultSpell;
+            if (spell.castOnDoubleJump && IsSpellReady(slot) && slot.charge > 0)
+            {
+                if (spellTracker.ContainsKey(spell.spawnKey))
+                {
+                    spellTracker[spell.spawnKey]++;
+                }
+                else
+                {
+                    spellTracker.Add(spell.spawnKey, 0);
+                }
+                StartCoroutine(DoubleJumpSpecialAttack(spell.spawnKey, spellTracker[spell.spawnKey], slot, spell.staggeredSpell));
+            }
+        }
+        EnableRotation();
+    }
+
+    public IEnumerator DoubleJumpSpecialAttack(string spell, int delay, ColorSlot slot, bool staggerd)
+    {
+        yield return new WaitUntil(() => spellTracker[spell] < delay || delay == 0 || spell.Equals("") || !staggerd);
+        GetComponent<PlayerCombatSystem>().DashSpecialAttack(slot);
+    }
+
+    public void QuedSpells(string spell)
+    {
+        if (spellTracker.ContainsKey(spell))
+        {
+            spellTracker[spell]--;
+            if (spellTracker[spell] < 0) spellTracker.Remove(spell);
+        }
+    }
+
+    #endregion
 }
+
 
 #region Color slot
 
@@ -694,6 +1080,7 @@ public class ColorSlot
     [SerializeField] public int charge;
     [SerializeField] public GameColor gameColor;
     [SerializeField] public ColorSpell colorSpell;
+    public List<float> storedSpellCDs = new List<float>();
     public float coolDown = 0;
     public void Init(Image setImage)
     {

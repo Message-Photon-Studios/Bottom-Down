@@ -42,7 +42,14 @@ public class ItemInventory : MonoBehaviour
 
     Action<InputAction.CallbackContext> pickUp;
 
-    void OnEnable()
+
+    void Awake()
+    {
+        GameManager.instance.onPrepareNewRun += SetPermanentItems;
+        GameManager.instance.onStartedNewRun += LoadPermanentItems;
+        GameManager.instance.onLoadedCaveTown += LoadPermanentItems;
+    }
+    void Start()
     {
         startCoins = coins;
         pickUp = (InputAction.CallbackContext ctx) => {
@@ -67,9 +74,6 @@ public class ItemInventory : MonoBehaviour
         };
 
         pickUpAction.action.performed += pickUp;
-        GameManager.instance.onPrepareNewRun += SetPermanentItems;
-        GameManager.instance.onStartedNewRun += LoadPermanentItems;
-        GameManager.instance.onLoadedCaveTown += LoadPermanentItems;
     }
 
     void OnDisable()
@@ -236,11 +240,11 @@ public class ItemInventory : MonoBehaviour
 
     public void SetPermanentItems()
     {
-        PermanentUpgradeManager.instance.upgrades.items = items.ToArray();
+        PermanentUpgradeManager.instance.upgrades.SetPermanentItems(items);
     }
 
     private void LoadPermanentItems()
     {
-        items.AddRange(PermanentUpgradeManager.instance.upgrades.items);
+        items.AddRange(PermanentUpgradeManager.instance.upgrades.GetPermanentItems());
     }
 }

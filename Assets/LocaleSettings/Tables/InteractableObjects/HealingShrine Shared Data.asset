@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: HealingShrine Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: HealingShrine
+  m_TableCollectionNameGuidString: 031d79df455fdb741bd7e6306428dc45
+  m_Entries:
+  - m_Id: 7739281408
+    m_Key: Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 81647112192
+    m_Key: Description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 423726157824
+    m_Key: Cost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1357814435840
+    m_Key: Buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4639407731380224
+    m_Key: HealAmount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4639556247490560
+    m_Key: Phrase0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4639619220770816
+    m_Key: Phrase1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4639633875668992
+    m_Key: Phrase2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4639652112502784
+    m_Key: Phrase3
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 6766119807133417474
+  references:
+    version: 2
+    RefIds:
+    - rid: 6766119807133417474
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1738768800207

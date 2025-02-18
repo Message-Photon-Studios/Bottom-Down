@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LoadingTips_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: ba5b82f7c9b962343b77dae3d5aaa4cd, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 92065763328
+    m_Localized: The inventory has information on all colors.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 141747294208
+    m_Localized: The red color steals health from enemies and converts it to temporary
+      hitpoints.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147556405248
+    m_Localized: Blue color both slows the enemys movement and attacks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 151922675712
+    m_Localized: The range of yellow colors lightning scales with the power of the
+      color.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 218024906752
+    m_Localized: Attacking a sleeping enemy increases the power of the color a lot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232277151744
+    m_Localized: A colors power affects both the damage and the colors other effects.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241387180032
+    m_Localized: If a raibow colored enemy dies some of its color will restore the
+      players flasks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 251797442560
+    m_Localized: Enemies are immune towards their own color.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 263851872256
+    m_Localized: Uncolored enemies have increased defences towards all color spells.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278976532480
+    m_Localized: If a poisoned enemy dies the poison will spread to one nearby enemy
+      and increase in potency.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 294977802240
+    m_Localized: Fire increases its damage each time it spreads.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 329878605824
+    m_Localized: A poisoned enemy deals significantly less damage than normal.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

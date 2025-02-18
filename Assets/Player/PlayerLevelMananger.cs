@@ -11,9 +11,12 @@ public class PlayerLevelMananger : MonoBehaviour
 {
     [SerializeField] GameObject[] loadWithPlayerObjects; //Objects that will be set as dont destroy on load with the player and then destroyed at the same time
     Vector3 startPosition;
-    private static GameObject instance;
-    PlayerMovement movement; //Handles the players movement
-    LevelManager gameManager; //The game manager handles the specific scene
+    public static PlayerLevelMananger instance;
+    public PlayerMovement playerMovement {get; private set;} //Handles the players movement
+    public LevelManager levelManager {get; private set;} //The game manager handles the specific scene
+    public PlayerStats playerStats {get; private set;}
+    public ItemInventory playerInventory {get; private set;}
+    public UIController playerUi {get; private set;}
     Animator animator;
     PlayerStats stats; //A class that handles the players health and statistics
 
@@ -38,7 +41,7 @@ public class PlayerLevelMananger : MonoBehaviour
         }
         else if(instance == null) 
         {
-            instance = this.gameObject;
+            instance = this;
             foreach (GameObject obj in loadWithPlayerObjects)
             {
                 if(obj != null)
@@ -53,9 +56,20 @@ public class PlayerLevelMananger : MonoBehaviour
             }
         }
 
-        movement = GetComponent<PlayerMovement>();
+        playerStats = GetComponent<PlayerStats>();
+        playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
+        playerInventory = GetComponent<ItemInventory>();
+
+        foreach (GameObject obj in loadWithPlayerObjects)
+        {
+            if(obj.GetComponent<UIController>())
+            {
+                playerUi = obj.GetComponent<UIController>();
+                break;
+            }
+        }
 
         stats.onPlayerDied += ForceKillPlayer;
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -74,15 +88,15 @@ public class PlayerLevelMananger : MonoBehaviour
     /// <param name="gameManager"></param>
     public void SetStartLevel(LevelManager gameManager)
     {
-        this.gameManager = gameManager;
+        this.levelManager = gameManager;
         
         if(animator) animator.SetBool("dead", false);
-        if(movement)
+        if(playerMovement)
         {
             transform.position = startPosition;
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>().SetStartLevel();
-            movement.movementRoot.SetTotalRoot("endLevel", false);
-            movement.movementRoot.SetTotalRoot("dead", false);
+            playerMovement.movementRoot.SetTotalRoot("endLevel", false);
+            playerMovement.movementRoot.SetTotalRoot("dead", false);
         }
         GetComponent<Rigidbody2D>().simulated = true;
 

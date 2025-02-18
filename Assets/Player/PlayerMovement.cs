@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics.Tracing;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 /// <summary>
 /// This class controls the players movement and keeps track of player states such as it being rooted, falling or in the air. 
@@ -13,8 +14,11 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement Speed")]
     [SerializeField] float movementSpeed; // Base movement speed for the player in air and on ground
     [SerializeField] float climbSpeed; //The speed that the player is climbing with
+
+    [Header("Jump")]
     [SerializeField] float jumpPower; //The initial boost power for the jump. Increasing this will increse the jumpheight and jump speed but decrease controll
     [SerializeField] float leapPower; //This detemines the extra forward speed of the double jump
     [SerializeField] float wallJumpPower; //The power of the jump when jumping of wall
@@ -22,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpJetpack; //A small extra power over time for the jump that alows the player to controll the height of the jump
     [SerializeField] float jumpFalloff; //The falloff power of the jump jetpack
     [SerializeField] float coyoteTime; //A small second affter leaving a platform you can still jump as normal. 
+    [SerializeField] Vector2 stairJumpPower;
+    
+    [Header("Dash")]
+    [SerializeField] float dashSpeed;
+    [SerializeField] float dashDistance;
 
     /*
     * The jumpJetpack and the jumpFalloff does controll the extra force over time for the players jump that allows the player to controll the heigh of the jump.
@@ -30,21 +39,33 @@ public class PlayerMovement : MonoBehaviour
     * jumpFalloff will decrease the time and the power of the jetpack. This does also work in reverse for decreasing variables.
     */
 
-    [SerializeField] InputActionReference walkAction, jumpAction, lookAction, dropDownAction; //Input actiuons for controlling the movement and camera checks
-    [SerializeField] Rigidbody2D body;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator playerAnimator;
-    [SerializeField] Transform focusPoint; //The point tha the camera will try to focus on
+    [Header("Input Actions")]
+    [SerializeField] InputActionReference walkAction;
+    [SerializeField] InputActionReference jumpAction, lookAction, verticalMoveAction, dashAction; //Input actiuons for controlling the movement and camera checks
+
+    [Header("Camera controls")]
     [SerializeField] float aimFocusMaxX;
     [SerializeField] float aimFocusMaxY;
     [SerializeField] float aimFocusAcceleration;
     [SerializeField] float checkPointY;
+
+    [Header("Components")]
+    [SerializeField] Rigidbody2D body;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Animator playerAnimator;
+    [SerializeField] Transform focusPoint; //The point tha the camera will try to focus on
     [SerializeField] CapsuleCollider2D playerCollider;
+    [SerializeField] PlayerSounds playerSounds;
+    [SerializeField] PlayerStats playerStats;
+    [SerializeField] GameObject playerFeet;
+
+    [Header("Particles")]
     [SerializeField] ParticleSystem dustParticles;
     [SerializeField] ParticleSystem jumpParticles;
     [SerializeField] ParticleSystem wallParticles;
     [SerializeField] ParticleSystem wallJumpParticles;
 
+    #region Functional Variables
     /// <summary>
     /// The time that the player has spent in the air. Is 0 if the player is standing on the ground.
     /// </summary>
@@ -88,49 +109,65 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 originalFocusPointPos;
 
-    [SerializeField] PlayerSounds playerSounds;
-
-
     Action<InputAction.CallbackContext> checkAction;
     Action<InputAction.CallbackContext> checkCancle;
 
     Action<InputAction.CallbackContext> dropDown;
 
+    public UnityAction onPlayerDash;
+    public UnityAction onPlayerDoubleJump;
+
     [HideInInspector] public bool isCheckingY = false; //Is true when player checks above or below
+
+    private Queue<Vector2> lastGroundPosition = new Queue<Vector2>();
+    private Vector2 previousFramePosition = Vector2.zero;
+
+    private CameraFocus cameraFocus;
+    private CameraMovement mainCamera;
+
+    public bool isDashing {get; private set;} = false;
+    float dashStartPosX = 0;
+    bool dashedDone = false;
+    float dashTimeout = 0;
+    float dashCdStart = -1f;
+    Vector3 lastDashPos = Vector2.zero;
+
+    public float lastFlipTime {get; private set;} = 0;
+
+    #endregion
+
     #region Setup
     private void OnEnable() {
+        for (int i = 0; i < 10; i++) // Determines how large the position save queue is
+        {
+            lastGroundPosition.Enqueue(transform.position);
+        }
         originalFocusPointPos = new Vector3(focusPoint.localPosition.x, focusPoint.localPosition.y, focusPoint.localPosition.z);
         movementRoot.SetTotalRoot("loading", true);
-        checkAction = (InputAction.CallbackContext ctx) => {
-            if(lookAction.action.ReadValue<float>() < 0f)
-            {
-                CheckBelowStart();
-            }
-            else if(lookAction.action.ReadValue<float>() > 0f)
-                CheckAboveStart();
-        };
-
-        checkCancle = (InputAction.CallbackContext ctx) => {CheckCancel();};
-
-        dropDown = (InputAction.CallbackContext ctx) => {DropDown();};
         
         jumpAction.action.started += Jump;
         jumpAction.action.canceled += JumpCancel;
-        lookAction.action.performed += checkAction;
-        lookAction.action.canceled += checkCancle;
-        dropDownAction.action.performed += dropDown;
+        lookAction.action.started += CameraCheck;
+        lookAction.action.canceled += CheckCancel;
+        verticalMoveAction.action.performed += VerticalMove;
+        verticalMoveAction.action.canceled += CancelVerticalMove;
+        dashAction.action.performed += Dash;
     }
 
     private void OnDisable() {
         jumpAction.action.started -= Jump;
         jumpAction.action.canceled -= JumpCancel;
-        lookAction.action.performed -= checkAction;
-        lookAction.action.canceled -= checkCancle;
-        dropDownAction.action.performed -= dropDown;
+        lookAction.action.started -= CameraCheck;
+        lookAction.action.canceled -= CheckCancel;
+        verticalMoveAction.action.performed -= VerticalMove;
+        verticalMoveAction.action.canceled -= CancelVerticalMove;
+        dashAction.action.performed -= Dash;
     }
 
     void Start()
     {
+        cameraFocus = GameObject.Find("CameraFocus").GetComponent<CameraFocus>();
+        mainCamera = Camera.main.gameObject.GetComponent<CameraMovement>();
         focusPointNormalY = focusPoint.localPosition.y;
     }
 
@@ -151,7 +188,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(movementRoot.rooted) return;
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
         wasClimbing = false;
         if (IsGrounded() || coyoteTimer > 0)
         {
@@ -184,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
             doubleJumpActive = true;
             jump = jumpJetpack;
             playerSounds.PlayJump();
+            onPlayerDoubleJump?.Invoke();
         }
     }
 
@@ -195,15 +233,29 @@ public class PlayerMovement : MonoBehaviour
         jump = 0;
     }
 
+    
+    public void ResetDoubleJump()
+    {
+        doubleJumpActive = false;
+    }
+
     #endregion
 
     #region Camera Check
     float checkDownTimer = 0;
+
+    void CameraCheck(InputAction.CallbackContext ctx)
+    {
+        if(lookAction.action.ReadValue<float>() < 0f)
+        {
+            CheckBelowStart();
+        }
+        else if(lookAction.action.ReadValue<float>() > 0f)
+            CheckAboveStart();
+    }
     void CheckBelowStart()
     {
         checkDownTimer = .2f;
-        DropDown();
-        //Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
         if(focusPoint == null && movementRoot.totalRoot) return;
         if(IsGrappeling() || !IsGrounded() || IsOnPlatform()) return;
         focusPoint.localPosition = new Vector3(focusPoint.localPosition.x, -checkPointY, focusPoint.localPosition.z);
@@ -218,15 +270,15 @@ public class PlayerMovement : MonoBehaviour
         isCheckingY = true;
     }
 
+    void CheckCancel(InputAction.CallbackContext ctx)
+    {
+        CheckCancel();
+    }
+
     void CheckCancel()
     {
         focusPoint.localPosition = new Vector3(focusPoint.localPosition.x, focusPointNormalY, focusPoint.localPosition.z);
         isCheckingY = false;
-    }
-
-    public void ResetDoubleJump()
-    {
-        doubleJumpActive = false;
     }
 
     #endregion
@@ -234,8 +286,14 @@ public class PlayerMovement : MonoBehaviour
     #region Collision checks
     public bool IsGrounded()
     {  
-        bool ret =  Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround) ||
-                    Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        
+        bool ret = false;
+        if(hitR && hitL) ret = true;
+        else if(hitL && hitL.normal.y >= .9f) ret = true;
+        else if(hitR && hitR.normal.y >= .9f) ret = true;
+
         playerAnimator.SetBool("grounded", ret);
         return ret;
     }
@@ -272,16 +330,41 @@ public class PlayerMovement : MonoBehaviour
     {
         if(walkDir != lookDir && walkDir != 0) return false;
 
-        return  (!Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround) && 
+        RaycastHit2D startHitR =  Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D startHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D continueHitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 - Vector3.right*.1f, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D continueHitL = Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2 - Vector3.left*.1f, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround());
+
+        return  ((!startHitR || startHitR.normal.y <0.9f) && 
                 Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/4, Vector2.right, .5f, GameManager.instance.maskLibrary.onlyGround)) ||
-                (!Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 2.1f, GameManager.instance.maskLibrary.onlyGround) &&
+                ((!startHitL || startHitL.normal.y < 0.9f) &&
                 Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/4, Vector2.left, .5f, GameManager.instance.maskLibrary.onlyGround)) ||
                 ((wasClimbing) && (
-                    (!Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround()) && 
+                    ((!continueHitR || continueHitR.normal.y < 0.9f)  && 
                     Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2+playerCollider.offset, Vector2.right, .7f, GameManager.instance.maskLibrary.onlyGround)) ||
-                    (!Physics2D.Raycast(transform.position+Vector3.left* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlySolidGround()) &&
+                    ((!continueHitL || continueHitL.normal.y < 0.9f) &&
                     Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2+playerCollider.offset, Vector2.left, .7f, GameManager.instance.maskLibrary.onlyGround))  
                 ));
+    }
+
+    public bool StairCollision()
+    {
+        if(verticalMoveAction.action.ReadValue<float>() <= 0 && walkDir != lookDir) return false;
+        if(HitCeling()) return false;
+        if(Physics2D.Raycast(transform.position + Vector3.down * playerCollider.size.y/2, Vector3.down, 1.5f, GameManager.instance.maskLibrary.onlyGround)) return false;
+        return  (Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/2, Vector2.right, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && 
+                !Physics2D.Raycast(transform.position+ Vector3.down*.1f, Vector2.right, .5f, GameManager.instance.maskLibrary.onlySolidGround())) ||
+                (Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/2, Vector2.left, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && 
+                !Physics2D.Raycast(transform.position+ Vector3.down*.1f, Vector2.left, .5f, GameManager.instance.maskLibrary.onlySolidGround()));
+    }
+
+    public bool CollidesWithWall(int dir)
+    {
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.down* playerCollider.size.y/2 + playerCollider.offset, Vector2.right * dir, playerCollider.size.x/2 + .2f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + Vector2.up * playerCollider.size.y/2 + playerCollider.offset, Vector2.right * dir, playerCollider.size.x + .2f, GameManager.instance.maskLibrary.onlyGround)) return true;
+        if(Physics2D.Raycast((Vector2)transform.position + playerCollider.offset, Vector2.right * dir, playerCollider.size.x + .2f, GameManager.instance.maskLibrary.onlyGround)) return true;
+
+        return false;
     }
    
     #endregion
@@ -289,9 +372,9 @@ public class PlayerMovement : MonoBehaviour
     #region Update Loop
     bool wallRight = false;
     private void FixedUpdate() {
-        
-        if(jump > 0 || IsGrappeling()) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
-        else if(checkDownTimer <= 0) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, false);
+
+        if(jump > 0 || IsGrappeling()) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        else if(checkDownTimer <= 0) Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, false);
 
         if(checkDownTimer > 0) checkDownTimer -= Time.deltaTime;
         movementRoot.UpdateTimers();
@@ -302,8 +385,25 @@ public class PlayerMovement : MonoBehaviour
 
         if(movementRoot.totalRoot) walkDir = 0;
 
+        //Check if the dash should be canceled
+        if(isDashing)
+        {       
+            if(Time.time-dashTimeout > 0.35f || (Time.time-dashTimeout > 0.001f && transform.position.Equals(lastDashPos)) || Mathf.Abs(transform.position.x - dashStartPosX) > dashDistance || CollidesWithWall(lookDir))
+            {
+                StopDash();
+            }
+            else 
+            {
+                lastDashPos = transform.position;
+                return;
+            }
+        }
+
         if(walkDir < 0 && lookDir > 0 ) Flip();
         else if(walkDir > 0 && lookDir < 0) Flip();
+
+        if(verticalMoveAction.action.ReadValue<float>() < 0f) DropDown();
+
 
         if(wasClimbing)
         {
@@ -312,6 +412,13 @@ public class PlayerMovement : MonoBehaviour
         }
         movement = movementSpeed * walkDir;
 
+        if(StairCollision())
+        {
+            if(IsGrappeling()) ReleaseWall();
+            playerFeet.SetActive(false);
+            body.AddForce(stairJumpPower * new Vector2(wallRight?1:-1, 1));
+        }
+
         if(jump > 0)
             jump -= jumpFalloff * Time.fixedDeltaTime;
         else if(jump < 0)
@@ -319,6 +426,14 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrounded())
         {
+            dashedDone = false;
+            if((Vector2)transform.position != previousFramePosition)
+            {
+                previousFramePosition = transform.position;
+                lastGroundPosition.Enqueue(transform.position);
+                lastGroundPosition.Dequeue();
+            }
+
             if(!isCheckingY)
             {
                 if(walkDir != 0 && focusPoint.localPosition.x < aimFocusMaxX && focusPoint.localPosition.x > -aimFocusMaxX)
@@ -411,9 +526,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(IsGrappeling())
+        if(IsGrappeling() && !StairCollision())
         {   
-            float lookWalk = lookAction.action.ReadValue<float>();
+            playerFeet.SetActive(false);
+            dashedDone = false;
+            float lookWalk = verticalMoveAction.action.ReadValue<float>();
             if(lookWalk > lookDir*walkDir) walkDir = lookWalk*lookDir;
 
             climbTime += Time.fixedDeltaTime;
@@ -472,7 +589,7 @@ public class PlayerMovement : MonoBehaviour
             }
         } else
         {
-
+            if(body.velocity.y <= 0) playerFeet.SetActive(true);
             climbTime = 0;
             coyoteTimerWall -= Time.fixedDeltaTime;
             playerAnimator.SetBool("grapple", false);
@@ -492,6 +609,56 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Dash
+    
+    /// <summary>
+    /// Starts the dash action if possible
+    /// </summary>
+    /// <param name="ctx"></param>
+    private void Dash(InputAction.CallbackContext ctx)
+    {
+        if(isDashing || dashedDone || movementRoot.rooted || Time.time - dashCdStart < 0.5f) return;
+
+        if(IsGrappeling())
+        {
+            Flip();
+        }
+        beforeClimbLookDir = lookDir;
+
+        if(CollidesWithWall(lookDir)) return;
+
+        lastDashPos = transform.position;
+
+        playerStats.SetPlayerInvincible();
+        body.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        body.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        transform.position = transform.position + Vector3.up * 0.05f;
+        movementRoot.SetRoot("dash", true);
+        body.velocity = dashSpeed * Vector2.right * lookDir;
+        dashStartPosX = transform.position.x;
+        playerAnimator.SetBool("dash", true);
+        isDashing = true;
+        dashedDone = true;
+        dashTimeout = Time.time;
+        onPlayerDash?.Invoke();
+    }
+
+    private void StopDash()
+    {
+        if(!isDashing) return;
+        Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, false);
+        body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+        movementRoot.SetRoot("dash", false);
+        body.velocity = Vector2.zero;
+        playerAnimator.SetBool("dash", false);
+        isDashing = false;
+        playerStats.RemovePlayerInvincible();
+        dashCdStart = Time.time;
+    }
+
+    #endregion
+
     #region Climbing
 
     public void ReleaseWall()
@@ -501,8 +668,10 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x-5*lookDir, 0);
         wallParticles.Stop();
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
-        if(wallRight != spriteRenderer.flipX) Flip();
+        if(wallRight != spriteRenderer.flipX && walkDir != lookDir && verticalMoveAction.action.ReadValue<float>() <= 0) Flip();
         beforeClimbLookDir = lookDir;
+
+        //if(!HitCeling()) body.AddForce(Vector2.up*200f);
     }
 
     public void WallAttackLock()
@@ -520,14 +689,24 @@ public class PlayerMovement : MonoBehaviour
         beforeClimbLookDir = lookDir;
     }
 
+    void VerticalMove(InputAction.CallbackContext callbackContext)
+    {
+      if(verticalMoveAction.action.ReadValue<float>() < 0f) DropDown();
+    }
+
+    void CancelVerticalMove(InputAction.CallbackContext callbackContext)
+    {
+
+    }
+
     #endregion
 
     #region Platform
 
     void DropDown()
     {
-        if(Mathf.Abs(body.velocity.x) < 1f)
-            Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerLayer, GameManager.instance.maskLibrary.platformLayer, true);
+        if(Mathf.Abs(body.velocity.x) < 10f)
+            Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
     }
 
     #endregion
@@ -543,7 +722,25 @@ public class PlayerMovement : MonoBehaviour
         if(IsGrounded())
             playerAnimator.SetTrigger("turn");
         GetComponent<PlayerCombatSystem>().FlipDefaultAttack();
+
+        lastFlipTime = Time.time; 
     }
+
+    #region Teleportation
+
+    public void Teleport(Vector2 toPosition)
+    {
+        transform.position = toPosition;
+        cameraFocus.Teleport(toPosition);
+        mainCamera.TeleportCamarera(toPosition);
+    }
+
+    public void ReturnToLastGround()
+    {
+        Teleport(lastGroundPosition.Peek());
+    }
+
+    #endregion
 
 }
 

@@ -22,6 +22,7 @@ public class ItemPickup : MonoBehaviour
 
     [Header("Functional")]
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject costContainer;
     [SerializeField] TMP_Text cost;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text descriptionText;
@@ -37,6 +38,7 @@ public class ItemPickup : MonoBehaviour
     
     void Start()
     {
+        inventory = PlayerLevelMananger.instance.playerInventory;
         if(spawnFromEnemy != null)
         {
             spawnFromEnemy.onEnemyDeath += SpawnFromEnemy;
@@ -84,14 +86,13 @@ public class ItemPickup : MonoBehaviour
         this.item = setItem;
         this.itemCost = Mathf.RoundToInt(itemCost*ItemSpellManager.instance.stageCostMultiplier);
                 
-        descriptionText.text = item.description;
-        nameText.text = item.name;
-        cost.text = "Cost: " + this.itemCost;
+        descriptionText.text = item.GetDesc();
+        nameText.text = item.GetName();
+        cost.text = this.itemCost.ToString();
 
         spriteRenderer.sprite = item.sprite;
 
         canvas.SetActive(false);
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
         hoverCoroutine = StartCoroutine(hoverAnimation());
     }
 
@@ -102,7 +103,7 @@ public class ItemPickup : MonoBehaviour
             if(!needsPayment)
             {
                 inventory.EnablePickUp(this);
-                cost.gameObject.SetActive(false);
+                costContainer.gameObject.SetActive(false);
                 collectObj.SetActive(true);
                 buyObj.SetActive(false);
             } else
@@ -116,11 +117,13 @@ public class ItemPickup : MonoBehaviour
                 }
 
                 inventory.EnableBuyItem(this);
-                cost.gameObject.SetActive(true);
+                costContainer.gameObject.SetActive(true);
                 buyObj.SetActive(true);
                 collectObj.SetActive(false);
             }
 
+            descriptionText.text = item.GetDesc();
+            nameText.text = item.GetName();
             canvas.SetActive(true);
         }
     }
@@ -134,7 +137,7 @@ public class ItemPickup : MonoBehaviour
             else
                 inventory.DisableBuyItem(this);
             canvas.SetActive(false);
-            cost.gameObject.SetActive(false);
+            costContainer.gameObject.SetActive(false);
         }
     }
 

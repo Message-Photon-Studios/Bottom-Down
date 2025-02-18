@@ -5,15 +5,17 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using JetBrains.Annotations;
 using System;
+using UnityEngine.Localization;
 
 /// <summary>
 /// This is the base class for an item
 /// </summary>
-[CreateAssetMenu(menuName = "Item/Item")]
+[CreateAssetMenu(menuName = "Item/Item"), Serializable]
 public class Item : ScriptableObject
 {
     public Sprite sprite;
-    [TextArea(5,20)] public string description;
+    [SerializeField] public LocalizedString itemName;
+    [SerializeField] public LocalizedString description;
     public int itemCost;
     [SerializeReference] public List<ItemEffect> effects = new List<ItemEffect>(); 
     [SerializeField] public ItemCategory itemCategory;
@@ -65,6 +67,22 @@ public class Item : ScriptableObject
             if (count >= maxSpawn) ret = false;
         }
         return ret;
+    }
+
+    /// <summary>
+    /// Gives name of item depending on which language is selected.
+    /// </summary>
+    /// <returns>Localized Name.</returns>
+    public string GetName() {
+        return itemName.GetLocalizedString();
+    }
+
+    /// <summary>
+    /// Gives description of item depending on which language is selected.
+    /// </summary>
+    /// <returns>Localized description.</returns>
+    public string GetDesc() {
+        return description.GetLocalizedString();
     }
 
     #if UNITY_EDITOR
@@ -186,6 +204,30 @@ public class ItemInspector : Editor
         if (GUILayout.Button("Add Player Stats Bools Manager"))
         {
             item.effects.Add(new PlayerStatsBools());
+        }
+        if (GUILayout.Button("Add Change Stored Spell Bonus"))
+        {
+            item.effects.Add(new ChangeStoredSpellBonus());
+        }
+        if (GUILayout.Button("Add Color Max Bonus"))
+        {
+            item.effects.Add(new ColorMaxBonus());
+        }
+        if (GUILayout.Button("Add Color Max Damage Bonus"))
+        {
+            item.effects.Add(new ColorMaxDamageBonus());
+        }
+        if (GUILayout.Button("Add Adaptive Color Armour"))
+        {
+            item.effects.Add(new AdaptiveColorArmour());
+        }
+        if (GUILayout.Button("Add Invincibility Bonus"))
+        {
+            item.effects.Add(new AddInvincibilityBonus());
+        }
+        if (GUILayout.Button("Add Spell Bonus Damage"))
+        {
+            item.effects.Add(new AddSpellBonusDamage());
         }
     }
 }

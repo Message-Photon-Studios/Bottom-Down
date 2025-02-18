@@ -37,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2645241902878360685}
+  - {fileID: 7020532310094805848}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePerspectivePlayer: 1
+  triggerImpactSpells: 1
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!212 &4874330200776334801
 SpriteRenderer:
@@ -143,7 +145,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: -566457090, guid: a9cadb104bfc3fe45ac8edf3e433c088, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -188,13 +190,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fire a bolt of color that impacts the first target it hits.
-
-    Power:
-    100%'
-  spellCost: 40
+  bottleName:
+    m_TableReference:
+      m_TableCollectionName: GUID:7868fb2d48a2dbb4e944fcbb7b4cfd68
+    m_TableEntryReference:
+      m_KeyId: 4241231872
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:7868fb2d48a2dbb4e944fcbb7b4cfd68
+    m_TableEntryReference:
+      m_KeyId: 36524789760
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  spellCost: 20
   powerScale: 1
   coolDown: 1
+  castWhenDamaged: 0
+  castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
+  storedSpells: 1
+  maxSpawn: 0
+  spawnKey: 
+  ignoreLookDir: 0
   destroyOnAllImpact: 0
   destroyOnEnemyHit: 1
   destroyOnCollission: 1
@@ -218,6 +242,9 @@ MonoBehaviour:
     smallSprite: {fileID: 21300000, guid: 0e4410dc1c8445849863eb9a57105ac2, type: 3}
     smallSpriteMask: {fileID: 21300000, guid: c0da91dbb370a2a4eae7a5661573c13d, type: 3}
     smallSpriteCapMask: {fileID: 21300000, guid: 6e26f46f0d2fe6840a3e2d330dbce090, type: 3}
+  references:
+    version: 2
+    RefIds: []
 --- !u!70 &5526896281579278936
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -347,4 +374,66 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1019539130980119227, guid: c8f7b49310f23b74bad42d9ccadd3e30, type: 3}
   m_PrefabInstance: {fileID: 3068050921329342166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5084270527753273955
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3321278458073070405}
+    m_Modifications:
+    - target: {fileID: 2874147498126129466, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_Name
+      value: SpellLight Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+--- !u!4 &7020532310094805848 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+  m_PrefabInstance: {fileID: 5084270527753273955}
   m_PrefabAsset: {fileID: 0}

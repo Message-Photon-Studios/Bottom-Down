@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>
 /// Handles the player stats
@@ -18,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] PlayerMovement movement;
     [SerializeField] GameObject blockAura;
+    private ColorInventory colorInventory;
     int maxHealth;
     float invincibilityTimer = 0;
     public int chanceToBlock = 0;
@@ -62,13 +64,18 @@ public class PlayerStats : MonoBehaviour
     public UnityAction onPlayerDied;
 
     /// <summary>
-    /// This event fires when the player is damaged
+    /// This event fires when the player is damaged. The enemy stats is null when the player is damaged by non enemies.
     /// </summary>
     public UnityAction<PlayerStats, EnemyStats> onPlayerDamaged;
 
     private bool isDeathExecuted;
 
     private Dictionary<GameColor, float> colorArmour = new Dictionary<GameColor, float>();
+    private float adaptiveArmourBonus = 0f;
+    private float defaultArmour = 0f;
+    private float invincibilityBonus = 0f;
+
+    #region Setup
     public void Setup(LevelManager levelManager)
     {
         this.levelManager = levelManager;
@@ -83,7 +90,12 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
         colorArmour = new Dictionary<GameColor, float>();
         itemVaribles = new Dictionary<string, int>();
+        colorInventory = GetComponent<ColorInventory>();
     }
+
+    #endregion
+
+    #region Update Loop
     void Update()
     {
         secTimer -= Time.deltaTime;
@@ -112,7 +124,7 @@ public class PlayerStats : MonoBehaviour
             {
                 invincibilityTimer = 0;
                 tmp.a = 1;
-                Physics2D.IgnoreLayerCollision(3,6,false);
+                RemovePlayerInvincible();
             }
             GetComponent<SpriteRenderer>().color = tmp;
         }
@@ -121,6 +133,10 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    #endregion
+
+    #region Damage Player
+
     /// <summary>
     /// Damage the player
     /// </summary>
@@ -128,22 +144,33 @@ public class PlayerStats : MonoBehaviour
     public void DamagePlayer(int damage, EnemyStats enemy)
     {
         if(invincibilityTimer > 0) return;
-        //if(damage == 0) return;
+        if(enemy != null && damage > 0)
+        {
+            damage = Mathf.RoundToInt(damage * (1f - GetColorArmour(enemy.GetColor())));
+            if (damage <= 0) damage = 1;
+        }
+
         shieldDecay = 0;
         if (UnityEngine.Random.Range(0, 100) < chanceToBlock)
         {
             GameObject aura = Instantiate(blockAura, transform);
             Destroy(aura, 1);
-            Debug.Log("Damage blocked");
-            //return;
-        } else
+        }
+        else if (enemy != null && colorInventory.CheckRoutedSheild(enemy.GetColor()))
         {
-            if(shield >= damage)
+            //TODO add proper block Sheild
+            GameObject aura = Instantiate(blockAura, transform);
+            Destroy(aura, 1);
+        }
+        else
+        {
+            if (shield >= damage)
             {
                 shield -= damage;
                 damage = 0;
                 onShieldChanged?.Invoke(shield);
-            } else if(shield > 0 && damage > shield)
+            }
+            else if (shield > 0 && damage > shield)
             {
                 damage -= shield;
                 shield = 0;
@@ -153,9 +180,7 @@ public class PlayerStats : MonoBehaviour
             health -= damage;
             animator.SetTrigger("damaged");
         }
-        Physics2D.IgnoreLayerCollision(3,6);
-        
-        invincibilityTimer = hitInvincibilityTime;
+        SetPlayerInvincible();
         GetComponent<PlayerCombatSystem>().RemoveAttackRoot();
         GetComponent<PlayerCombatSystem>().RemovePlayerAirlock();
         if(health <= 0)
@@ -183,13 +208,9 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
     }
 
-    private void PlayerReachZeroHp()
-    {
-        animator.SetBool("dead", true);
-        movement.movementRoot.SetTotalRoot("dead", true);
-        invincibilityTimer = 3f;
-        playerSounds.PlayDeath();
-    }
+    #endregion
+
+    #region Healing & Health
 
     /// <summary>
     /// Heal the player
@@ -201,19 +222,6 @@ public class PlayerStats : MonoBehaviour
         if(health > maxHealth) health = maxHealth;
         onHealthChanged?.Invoke(health);
     }
-
-    /// <summary>
-    /// Adds shield to the player
-    /// </summary>
-    /// <param name="addShield"></param> 
-    public void AddShield(int addShield)
-    {
-        shield += addShield;
-        shieldDecay = 0;
-        if(shield > maxShield) shield = maxShield;
-        onShieldChanged?.Invoke(shield);
-    }
-
 
     /// <summary>
     /// Returns the players current health
@@ -244,7 +252,38 @@ public class PlayerStats : MonoBehaviour
         onHealthChanged?.Invoke(health);
     }
 
-    public int GetMaxShield()
+    /// <summary>
+    /// Removes max health. Will only damage player when necessary
+    /// </summary>
+    /// <param name="removeMaxHealth"></param>
+    public void RemoveMaxHealth(int removeMaxHealth)
+    {
+        int damagePlayer = removeMaxHealth - (maxHealth-health);
+        if(damagePlayer > 0) DamagePlayer(damagePlayer, null);
+        else DamagePlayer(0, null);
+        maxHealth -= removeMaxHealth;
+
+        onMaxHealthChanged?.Invoke(maxHealth);
+        onHealthChanged?.Invoke(health);
+    }
+
+    #endregion
+
+    #region Shield
+
+        /// <summary>
+    /// Adds shield to the player
+    /// </summary>
+    /// <param name="addShield"></param> 
+    public void AddShield(int addShield)
+    {
+        shield += addShield;
+        shieldDecay = 0;
+        if(shield > maxShield) shield = maxShield;
+        onShieldChanged?.Invoke(shield);
+    }
+
+        public int GetMaxShield()
     {
         return maxShield;
     }
@@ -259,6 +298,18 @@ public class PlayerStats : MonoBehaviour
         return shield;
     }
 
+    #endregion
+
+    #region Kill Player
+
+    private void PlayerReachZeroHp()
+    {
+        animator.SetBool("dead", true);
+        movement.movementRoot.SetTotalRoot("dead", true);
+        invincibilityTimer = 3f;
+        playerSounds.PlayDeath();
+    }
+
     /// <summary>
     /// Kill the player
     /// </summary>
@@ -269,9 +320,14 @@ public class PlayerStats : MonoBehaviour
         isDeathExecuted = true;
         //TODO
         //Debug.Log("Player died. Player deaths not implemented");
+        EnemyStats.chaoticMixer = false; //Resets chaoticMixer 
         levelManager?.PlayerDied();
         onPlayerDied?.Invoke();
     }
+
+    #endregion
+
+    #region Invincibility 
 
     /// <summary>
     /// Returns true if the player is invincible
@@ -282,20 +338,46 @@ public class PlayerStats : MonoBehaviour
         return invincibilityTimer > 0;
     }
 
-    public float GetColorArmour (GameColor color)
+    public void AddInvincibilityBonus(float time)
     {
-        if(colorArmour == null) return 0f;
-        if(colorArmour.ContainsKey(color))
+        invincibilityBonus += time;
+    }
+
+    public void SetPlayerInvincible()
+    {
+        Physics2D.IgnoreLayerCollision(3,6);
+        Physics2D.IgnoreLayerCollision(3,13);
+        Physics2D.IgnoreLayerCollision(3,2);
+        invincibilityTimer = hitInvincibilityTime + invincibilityBonus;
+    }
+
+    public void RemovePlayerInvincible()
+    {
+        Physics2D.IgnoreLayerCollision(3,6, false);
+        Physics2D.IgnoreLayerCollision(3,13, false);
+        Physics2D.IgnoreLayerCollision(3,2, false);
+
+        invincibilityTimer = 0;
+    }
+
+    #endregion
+
+    #region Armour
+
+    public float GetColorArmour(GameColor color)
+    {
+        if(color == null) return 0;
+        float armour = defaultArmour;
+        if (colorArmour.ContainsKey(color)) armour += colorArmour[color];
+        if (color != null && colorInventory.CheckIfActiveColorMatches(color)) armour += adaptiveArmourBonus;
+        if (armour > .9f)
         {
-            float armour = colorArmour[color];
-            if(armour > .9f)
-                return .9f;
-            else
-                return
-                    armour;
+            return .9f;
         }
+            
         else
-            return 0f;
+            return
+                armour;
     }
 
     public void AddColorArmour(GameColor color, float addArmour)
@@ -305,4 +387,16 @@ public class PlayerStats : MonoBehaviour
         else
             colorArmour.Add(color, addArmour);
     }
+
+    public void AddAdaptiveArmour(float addArmour)
+    {
+        adaptiveArmourBonus += addArmour;
+    }
+
+    public void AddDefaultArmour(float addArmour)
+    {
+        defaultArmour += addArmour;
+    }
+
+    #endregion
 }

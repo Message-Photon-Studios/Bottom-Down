@@ -2798,7 +2798,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 770068331
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -3310,7 +3310,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2140779007
-  m_SortingLayer: 10
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0.8499999, z: 0}
@@ -3456,7 +3456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0032961403
+      value: 0.004087386
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3468,7 +3468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.9999946
+      value: 0.99999166
       objectReference: {fileID: 0}
     - target: {fileID: 3026189038897726227, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3484,15 +3484,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightInnerAngle
-      value: 30.51
+      value: 59.25
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightOuterAngle
       value: 85.1
       objectReference: {fileID: 0}
     - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 14.834438
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666672014895932569, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 24.390253
+      value: 22.72328
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56213ac626f8d51479e9f199c4b91b3b, type: 3}

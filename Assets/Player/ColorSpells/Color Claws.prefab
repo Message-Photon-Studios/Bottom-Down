@@ -36,7 +36,8 @@ Transform:
   m_LocalPosition: {x: -0.45, y: 0.5, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 175375407986156426}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,7 +117,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -615436619
-  m_SortingLayer: 8
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 762165020, guid: 668f574b8938e32409217139fc71f6fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -161,13 +162,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1f12213843ff940b7071efb89c3129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: "Paint a small cat that flies forward. Landing on the ground causes
-    the cat to lurk for enemies. \nPower: 140%"
-  spellCost: 40
+  bottleName:
+    m_TableReference:
+      m_TableCollectionName: GUID:46e270f3cf9a570488f0b24b8d7d461c
+    m_TableEntryReference:
+      m_KeyId: 6174806016
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:46e270f3cf9a570488f0b24b8d7d461c
+    m_TableEntryReference:
+      m_KeyId: 26332631040
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  spellCost: 20
   powerScale: 1.4
-  coolDown: 2
+  coolDown: 3
+  castWhenDamaged: 0
+  castOnSpellImpact: 0
+  castOnDash: 0
+  castOnDoubleJump: 0
+  storedSpells: 2
+  maxSpawn: 0
+  spawnKey: 
+  ignoreLookDir: 0
   destroyOnAllImpact: 1
   destroyOnEnemyHit: 0
+  destroyOnCollission: 0
   impactOnEnemies: 0
   impactOnNonEnemies: 1
   triggerOnlyOnce: 1
@@ -188,6 +214,9 @@ MonoBehaviour:
     smallSprite: {fileID: 21300000, guid: fcb07cba04c2fd541a3eb2efd14b27a7, type: 3}
     smallSpriteMask: {fileID: 21300000, guid: a1c2025957c93cb45bf00eec7808c574, type: 3}
     smallSpriteCapMask: {fileID: 21300000, guid: 5792eb689c8852341943f02d5e40ca80, type: 3}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1585154843906230144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcePerspectivePlayer: 0
+  triggerImpactSpells: 0
   onImpactParticles: {fileID: 6003583976257369962, guid: 2ab5ccc58353eab4ca195aba1a04b6cc, type: 3}
 --- !u!114 &2146103257369105666
 MonoBehaviour:
@@ -245,3 +275,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnForce: {x: 800, y: 200}
+--- !u!1001 &2705549480286493361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3321278458073070405}
+    m_Modifications:
+    - target: {fileID: 2874147498126129466, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_Name
+      value: SpellLight Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.715
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874147498126129468, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+      propertyPath: m_Intensity
+      value: 0.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+--- !u!4 &175375407986156426 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2874147498126129467, guid: ff989ad7dfb170148b2d18dcc9519145, type: 3}
+  m_PrefabInstance: {fileID: 2705549480286493361}
+  m_PrefabAsset: {fileID: 0}

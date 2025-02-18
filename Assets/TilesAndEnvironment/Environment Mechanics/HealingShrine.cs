@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
+using UnityEngine.Localization;
 
 public class HealingShrine : MonoBehaviour
 {
@@ -12,7 +13,11 @@ public class HealingShrine : MonoBehaviour
     [SerializeField] int increaseCost;
     [SerializeField] GameObject canvas;
     [SerializeField] TMP_Text cost;
+    [SerializeField] TMP_Text description;
     [SerializeField] InputActionReference buyAction;
+    [SerializeField] List<LocalizedString> phrases;
+    [SerializeField] LocalizedString healAmoutText;
+    Animator animator;
 
 
 
@@ -27,7 +32,9 @@ public class HealingShrine : MonoBehaviour
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<ItemInventory>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        cost.text = "Cost: " + CalculatePrice();
+        animator = GetComponent<Animator>();
+        cost.text = CalculatePrice().ToString();
+        description.text = phrases[0].GetLocalizedString() + "\n" + healAmoutText.GetLocalizedString();
     }
 
     private void OnEnable()
@@ -43,7 +50,7 @@ public class HealingShrine : MonoBehaviour
 
     private void UpdateCost()
     {
-        cost.text = "Cost: " + CalculatePrice();
+        cost.text = CalculatePrice().ToString();
         if (inventory.GetCoins() < CalculatePrice())
         {
             cost.color = Color.red;
@@ -54,6 +61,8 @@ public class HealingShrine : MonoBehaviour
             cost.color = Color.white;
             buyable = true;
         }
+        if (count >= phrases.Count) description.text = phrases[phrases.Count-1].GetLocalizedString() + "\n" + healAmoutText.GetLocalizedString();
+        else description.text = phrases[count].GetLocalizedString() + "\n" + healAmoutText.GetLocalizedString();
         if (player.GetHealth() >= player.GetMaxHealth()) buyable = false;
     }
 
@@ -83,9 +92,16 @@ public class HealingShrine : MonoBehaviour
     private void Buy()
     {
         if (!buyable) return;
+        if (animator.GetBool("heal")) return;
         inventory.PayCost(CalculatePrice());
         player.HealPlayer(heal);
         count++;
         UpdateCost();
+        animator.SetBool("heal", true);
+    }
+
+    protected void HealDone()
+    {
+        animator.SetBool("heal", false);
     }
 }

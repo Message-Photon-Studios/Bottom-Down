@@ -13,18 +13,36 @@ MonoBehaviour:
   m_Name: Yellow Armour
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8beaee36baace2743b1bc3ce26b688bc, type: 3}
-  description: This item blocks 25% of the damage taken from yellow colored enemies.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:e58de607f669bed4c80e7c56b3d699da
+    m_TableEntryReference:
+      m_KeyId: 3985379328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  description:
+    m_TableReference:
+      m_TableCollectionName: GUID:e58de607f669bed4c80e7c56b3d699da
+    m_TableEntryReference:
+      m_KeyId: 6237720576
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemCost: 30
   effects:
   - rid: 1655388888735678468
   itemCategory: 2
   itemRarity: 0
-  maxSpawn: -1
+  maxSpawn: 2
   references:
     version: 2
     RefIds:
     - rid: 1655388888735678468
       type: {class: ColorArmour, ns: , asm: Assembly-CSharp}
       data:
-        color: {fileID: 11400000, guid: 515b8e0cc06f688409aca84476871b24, type: 2}
+        color: {fileID: 11400000, guid: a5087b0e29c5b414795753d6fe24755a, type: 2}
+        allColor: 0
         armour: 0.25

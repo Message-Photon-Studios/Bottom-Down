@@ -10,6 +10,7 @@ public class ColorSpellSpawn : SpellImpact
     /// <summary>
     /// After this time the spell will autospawn the spawn spells.
     /// </summary>
+    [SerializeField] bool spawnOneInstantly;
     [SerializeField] float spawnDelay;
     private float delayTimer;
     [SerializeField] int spawnAmount;
@@ -22,7 +23,7 @@ public class ColorSpellSpawn : SpellImpact
     private void Start()
     {
         delayTimer = spawnDelay;
-
+        if (spawnOneInstantly) Spawn();
     }
 
 

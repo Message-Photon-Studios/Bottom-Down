@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public class SpellPickup : MonoBehaviour
 {
+    [SerializeField] int inspirationRequired = 0;
     [SerializeField] float spawnChance = 1f;
     [SerializeField] bool needsPayment;
     [SerializeField] ColorSpell colorSpell;
     [SerializeField] GameObject canvas;
+    [SerializeField] GameObject costContainer;
     [SerializeField] TMP_Text cost;
     [SerializeField] TMP_Text nameText;
     [SerializeField] TMP_Text descriptionText;
@@ -41,9 +44,9 @@ public class SpellPickup : MonoBehaviour
     {
         if (colorSpell == null || pickedup) this.colorSpell = setSpell;
                 
-        descriptionText.text = colorSpell.description;
-        nameText.text = colorSpell.name;
-        cost.text = "Cost: " + colorSpell.spellCost;
+        descriptionText.text = colorSpell.GetDesc();
+        nameText.text = colorSpell.GetName();
+        cost.text = colorSpell.spellCost.ToString();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = colorSpell.GetBottleSprite().smallSprite;
@@ -69,12 +72,19 @@ public class SpellPickup : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (inventory == null) inventory = PlayerLevelMananger.instance.GetComponent<ColorInventory>();
         if(other.CompareTag("Player"))
         {
+            if(inspirationRequired > GameManager.instance.GetInspiration())
+            {
+                //TODO Add text about it being locked or something
+                return;
+            }
+            
             inventory.EnablePickUp(this);
             if(needsPayment)
             {
-                cost.gameObject.SetActive(true);
+                costContainer.gameObject.SetActive(true);
                 swapText.SetActive(false);
                 buyText.SetActive(true);
 
@@ -88,10 +98,13 @@ public class SpellPickup : MonoBehaviour
                 
             } else
             {
+                costContainer.gameObject.SetActive(false);
                 swapText.SetActive(true);
                 buyText.SetActive(false); 
             }
 
+            descriptionText.text = colorSpell.GetDesc();
+            nameText.text = colorSpell.GetName();
             canvas.SetActive(true);
         }
     }
@@ -102,7 +115,7 @@ public class SpellPickup : MonoBehaviour
         {
             inventory.DisablePickUp(this);
             canvas.SetActive(false);
-            cost.gameObject.SetActive(false);
+            costContainer.gameObject.SetActive(false);
         }
     }
 
