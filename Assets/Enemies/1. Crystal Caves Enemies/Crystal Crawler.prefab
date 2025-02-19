@@ -87,6 +87,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCollisionDamage: 30
   playerCollisionForce: {x: 1000, y: 5000}
+  damage: 30
+  attackTrigger:
+    radius: 1.1
+    direction: 0
+    width: 360
+    offset: {x: 0, y: 0}
+    color: {r: 1, g: 0, b: 0, a: 1}
   viewTrigger:
     radius: 8.5
     direction: 0

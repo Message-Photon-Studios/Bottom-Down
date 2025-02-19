@@ -8,6 +8,8 @@ using Steamworks;
 
 public class CrystalCrawler : Enemy
 {
+    [SerializeField] int damage;
+    [SerializeField] Trigger attackTrigger;
     [SerializeField] Trigger viewTrigger;
     [SerializeField] Trigger preventJump;
     [SerializeField] float runSpeed;
@@ -26,10 +28,19 @@ public class CrystalCrawler : Enemy
                 new CheckBool("prusuit", true),
 
                 new Selector(new List<Node>{
-                        new Sequence(new List<Node>{
+                    
+                    new Sequence(new List<Node>{
                         new Inverter(new CheckPlayerArea(stats, player, viewTrigger)),
                         new Wait(2f, 1f),
                         new SetParentVariable("prusuit", false, 4)
+                    }),
+
+                    new Sequence(new List<Node>{
+                        new CheckBool("prusuit", true),
+                        new CheckPlayerArea(stats, player, attackTrigger),
+                        new DamagePlayer(stats, player, damage),
+                        new CheckGrounded(stats, legPos),
+                        new EnemyJump(stats, body, jumpForce, forwardJumpForce),
                     }),
 
                     new Sequence(new List<Node>{
@@ -108,6 +119,7 @@ public class CrystalCrawler : Enemy
 
         triggersToFlip.Add(viewTrigger);
         triggersToFlip.Add(preventJump);
+        triggersToFlip.Add(attackTrigger);
         return root;
     }
 
@@ -125,6 +137,7 @@ public class CrystalCrawler : Enemy
     private void OnDrawGizmosSelected() {
         viewTrigger.DrawTrigger(stats.GetPosition());
         preventJump.DrawTrigger(stats.GetPosition());
+        attackTrigger.DrawTrigger(stats.GetPosition());
         Handles.color = Color.green;
         Handles.DrawDottedLine(stats.GetPosition()+Vector2.left+Vector2.up*checkJumpHight, stats.GetPosition()+Vector2.right+Vector2.up*checkJumpHight, 5);
     }
