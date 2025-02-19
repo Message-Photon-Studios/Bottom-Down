@@ -187,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         if(movementRoot.rooted || stairLeap) return;
+        //if(stairLeap) stairLeap = false;
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
         wasClimbing = false;
@@ -286,8 +287,22 @@ public class PlayerMovement : MonoBehaviour
     #region Collision checks
     public bool IsGrounded()
     {  
-        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
-        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlyGround);
+        
+        bool ret = false;
+        if(hitR && hitL) ret = true;
+        else if(hitL && hitL.normal.y >= .9f) ret = true;
+        else if(hitR && hitR.normal.y >= .9f) ret = true;
+
+        playerAnimator.SetBool("grounded", ret);
+        return ret;
+    }
+
+    public bool IsOnSolidGround()
+    {  
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlySolidGround());
         
         bool ret = false;
         if(hitR && hitL) ret = true;
@@ -316,8 +331,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsOnPlatform() 
     {
-        return Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyPlatforms) &&
-        Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2, Vector2.down, 1f, GameManager.instance.maskLibrary.onlyPlatforms);
+        return  Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlyPlatforms) &&
+                Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlyPlatforms);
     }
 
     private bool HitCeling ()
@@ -352,7 +367,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(verticalMoveAction.action.ReadValue<float>() <= 0 && walkDir != lookDir && !stairLeap) return false;
         if(HitCeling()) return false;
-        if(Physics2D.Raycast(transform.position + Vector3.down * playerCollider.size.y/2, Vector3.down, 1.5f, GameManager.instance.maskLibrary.onlyGround) || IsGrounded()) return false;
+        if(Physics2D.Raycast(transform.position + Vector3.down * playerCollider.size.y/2, Vector3.down, 2.1f, GameManager.instance.maskLibrary.onlyGround) || IsOnSolidGround()) return false;
         return  (Physics2D.Raycast((Vector2)transform.position+Vector2.down* (playerCollider.size.y/2+.02f) + playerCollider.offset, Vector2.right, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && 
                 !Physics2D.Raycast(transform.position, Vector2.right, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && walkDir != -1) ||
                 (Physics2D.Raycast((Vector2)transform.position+Vector2.down* (playerCollider.size.y/2+.02f) + playerCollider.offset, Vector2.left, .5f, GameManager.instance.maskLibrary.onlySolidGround()) && 
@@ -421,17 +436,17 @@ public class PlayerMovement : MonoBehaviour
             playerFeet.SetActive(false);
             playerAnimator.SetInteger("velocityY", 1);
             playerAnimator.SetBool("walking", false);
-                playerAnimator.SetBool("grounded", false);
-            body.AddForce(stairJumpPower * new Vector2(wallRight?1:-1, 1));
+            playerAnimator.SetBool("grounded", false);
+            body.AddForce(stairJumpPower * new Vector2(lookDir, 1));
             focusPoint.localPosition = originalFocusPointPos;
             return;
         }
         
         if(stairLeap)
         {   
-            if(IsGrounded())
+            if(IsGrounded() || IsGrappeling() || HitCeling())
             {   
-                body.velocity = Vector2.zero;
+                //body.velocity = Vector2.zero;
                 stairLeap = false;
             }
             else
@@ -650,10 +665,12 @@ public class PlayerMovement : MonoBehaviour
     private void Dash(InputAction.CallbackContext ctx)
     {
         if(isDashing || dashedDone || movementRoot.rooted || Time.time - dashCdStart < 0.5f) return;
-
+        if(stairLeap) stairLeap = false;
         if(IsGrappeling())
         {
-            Flip();
+            if(walkDir != lookDir)
+                Flip();
+            else return;
         }
         beforeClimbLookDir = lookDir;
 
