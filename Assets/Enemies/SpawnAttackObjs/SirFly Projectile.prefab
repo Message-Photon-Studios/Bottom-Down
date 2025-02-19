@@ -4895,7 +4895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842512fbc23254c44a4172efb14a9d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollisionDamage: 10
   playerCollisionForce: {x: 1000, y: 0.5}
   damage: 10
   force: {x: 0, y: 0}

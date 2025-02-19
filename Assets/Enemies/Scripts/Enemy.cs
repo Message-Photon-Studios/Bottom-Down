@@ -11,8 +11,8 @@ using BehaviourTree;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : BehaviourTree.Tree
 {
-    [SerializeField] int playerCollisionDamage = 10; //The damage that will be dealt to the player if they walk into the enemy
-    [SerializeField] Vector2 playerCollisionForce = new Vector2(2000, 0.5f); //The force that will be added to the player if they walk into the enemy
+    //[SerializeField] int playerCollisionDamage = 10; //The damage that will be dealt to the player if they walk into the enemy
+    //[SerializeField] Vector2 playerCollisionForce = new Vector2(2000, 0.5f); //The force that will be added to the player if they walk into the enemy
     protected EnemyStats stats;
     protected Animator animator;
     protected Rigidbody2D body; 
@@ -61,6 +61,8 @@ public abstract class Enemy : BehaviourTree.Tree
 
     #endregion
 
+    /*
+
     #region  Collision with player
     public void CollideWithPlayer(GameObject player)
     {
@@ -73,6 +75,8 @@ public abstract class Enemy : BehaviourTree.Tree
         }
     }
     #endregion
+
+    */
     
     #region Switches the players direction
     public void SwitchDirection()

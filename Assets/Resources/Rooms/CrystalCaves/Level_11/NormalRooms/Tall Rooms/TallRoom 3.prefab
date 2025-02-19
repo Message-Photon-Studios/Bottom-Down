@@ -40239,6 +40239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Krystina
       objectReference: {fileID: 0}
+    - target: {fileID: 3617679102183803457, guid: 140e958ed22292e419225d8d15c5a3ca, type: 3}
+      propertyPath: attackForce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6159840693135054709, guid: 140e958ed22292e419225d8d15c5a3ca, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -40794,6 +40798,10 @@ PrefabInstance:
     - target: {fileID: 3141353343972162462, guid: 140e958ed22292e419225d8d15c5a3ca, type: 3}
       propertyPath: m_Name
       value: Krystina (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617679102183803457, guid: 140e958ed22292e419225d8d15c5a3ca, type: 3}
+      propertyPath: attackForce
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6159840693135054709, guid: 140e958ed22292e419225d8d15c5a3ca, type: 3}
       propertyPath: m_AnchorMax.x

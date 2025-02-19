@@ -85,7 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc30e9374fe69ce46b13f9d2aa2ea27e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollisionDamage: 25
   playerCollisionForce: {x: 2000, y: 0.5}
   viewRange: 15
   eyePosY: -0.7

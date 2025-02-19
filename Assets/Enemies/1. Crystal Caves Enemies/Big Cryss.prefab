@@ -84,7 +84,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 201812b66451e8a499903791add5d2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollisionDamage: 10
   playerCollisionForce: {x: 2000, y: 0}
   viewRange: 6
   attackTrigger:

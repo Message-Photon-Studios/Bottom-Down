@@ -7,6 +7,7 @@ using UnityEditor;
 public class Krystina : Enemy
 {
     [SerializeField] int damage;
+    [SerializeField] float attackForce;
     [SerializeField] Trigger attackTrigger;
     [SerializeField] float patrollIdleTime;
 
@@ -15,9 +16,8 @@ public class Krystina : Enemy
         
         Node root = new Selector(new List<Node>{
             new Sequence(new List<Node>{
-                new CheckPlayerArea(stats, player, attackTrigger),
+                new NormalAttack("krystinaAttack", player, damage, attackForce, 0.5f, attackTrigger, stats),
                 new AnimationBool(animator, "walk", false),
-                new DamagePlayer(stats, player, damage)
             }),
 
             new RandomPatroll(stats, body, animator, 1, patrollIdleTime, .4f, "attack", "walk"),
@@ -25,6 +25,7 @@ public class Krystina : Enemy
         
         
         root.SetData("attack", false);
+        root.SetData("krystinaAttack", true);
         triggersToFlip.Add(attackTrigger);
         return root;
     }

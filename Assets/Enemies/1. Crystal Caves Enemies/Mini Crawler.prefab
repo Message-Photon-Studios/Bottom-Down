@@ -85,9 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff05b56a3ed20004b87f3c83123a640b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollisionDamage: 15
-  playerCollisionForce: {x: 1000, y: 5000}
   damage: 15
+  attackForce: 3000
   attackTrigger:
     radius: 0.6
     direction: 0
@@ -110,6 +109,8 @@ MonoBehaviour:
   jumpForce: 6000
   checkJumpHight: 2.5
   forwardJumpForce: 5000
+  smallJumpForce: 3000
+  smallJumpForward: 2500
   jumpIdleTime: 2
   patrollIdleTime: 2
 --- !u!50 &5913113476945127390

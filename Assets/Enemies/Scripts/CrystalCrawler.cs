@@ -9,6 +9,7 @@ using Steamworks;
 public class CrystalCrawler : Enemy
 {
     [SerializeField] int damage;
+    [SerializeField] float attackForce;
     [SerializeField] Trigger attackTrigger;
     [SerializeField] Trigger viewTrigger;
     [SerializeField] Trigger preventJump;
@@ -16,6 +17,8 @@ public class CrystalCrawler : Enemy
     [SerializeField] float jumpForce;
     [SerializeField] float checkJumpHight;
     [SerializeField] float forwardJumpForce;
+    [SerializeField] float smallJumpForce;
+    [SerializeField] float smallJumpForward;
     [SerializeField] float jumpIdleTime;
     [SerializeField] float patrollIdleTime;
 
@@ -38,9 +41,9 @@ public class CrystalCrawler : Enemy
                     new Sequence(new List<Node>{
                         new CheckBool("prusuit", true),
                         new CheckPlayerArea(stats, player, attackTrigger),
-                        new DamagePlayer(stats, player, damage),
+                        new NormalAttack("crawlerAttack", player, damage, attackForce, 0.5f, attackTrigger, stats),
                         new CheckGrounded(stats, legPos),
-                        new EnemyJump(stats, body, jumpForce, forwardJumpForce),
+                        new EnemyJump(stats, body, smallJumpForce, smallJumpForward),
                     }),
 
                     new Sequence(new List<Node>{
@@ -116,6 +119,7 @@ public class CrystalCrawler : Enemy
         root.SetData("charge", false);
         root.SetData("enableJump", true);
         root.SetData("prusuit", false);
+        root.SetData("crawlerAttack", true);
 
         triggersToFlip.Add(viewTrigger);
         triggersToFlip.Add(preventJump);
