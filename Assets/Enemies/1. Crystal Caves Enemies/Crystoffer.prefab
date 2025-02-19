@@ -87,10 +87,10 @@ MonoBehaviour:
   playerCollisionDamage: 5
   playerCollisionForce: {x: 2000, y: 0}
   attackTrigger:
-    radius: 0.5
+    radius: 0.55
     direction: 0
     width: 360
-    offset: {x: -0.44, y: 0.1}
+    offset: {x: -0.3, y: 0.1}
     color: {r: 1, g: 0, b: 0, a: 1}
   swordDamage: 15
   swordForce: 4000

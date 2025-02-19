@@ -86,6 +86,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCollisionDamage: 20
   playerCollisionForce: {x: 2000, y: 0}
+  damage: 20
+  attackTrigger:
+    radius: 0.44
+    direction: 0
+    width: 360
+    offset: {x: 0, y: 0.01}
+    color: {r: 1, g: 0, b: 0, a: 1}
   patrollIdleTime: 4
 --- !u!50 &3141353343972162463
 Rigidbody2D:
