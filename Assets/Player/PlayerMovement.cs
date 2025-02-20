@@ -186,8 +186,12 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         
-        if(movementRoot.rooted || stairLeap) return;
-        //if(stairLeap) stairLeap = false;
+        if(movementRoot.rooted) return;
+        if(stairLeap) 
+        {   
+            body.velocity = Vector2.zero;
+            stairLeap = false;
+        }
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
         wasClimbing = false;
@@ -287,8 +291,8 @@ public class PlayerMovement : MonoBehaviour
     #region Collision checks
     public bool IsGrounded()
     {  
-        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlyGround);
-        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .2f, GameManager.instance.maskLibrary.onlyGround);
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .2f, GameManager.instance.maskLibrary.onlyGround);
         
         bool ret = false;
         if(hitR && hitL) ret = true;
@@ -301,8 +305,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsOnSolidGround()
     {  
-        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlySolidGround());
-        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .3f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D hitR = Physics2D.Raycast(transform.position+Vector3.right* playerCollider.size.x/2 -Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .2f, GameManager.instance.maskLibrary.onlySolidGround());
+        RaycastHit2D hitL = Physics2D.Raycast(transform.position-Vector3.right* playerCollider.size.x/2 +Vector3.right*0.15f + Vector3.down*playerCollider.size.y/2, Vector2.down, .2f, GameManager.instance.maskLibrary.onlySolidGround());
         
         bool ret = false;
         if(hitR && hitL) ret = true;
