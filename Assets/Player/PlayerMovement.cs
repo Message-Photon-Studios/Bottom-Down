@@ -187,16 +187,12 @@ public class PlayerMovement : MonoBehaviour
     {
         
         if(movementRoot.rooted) return;
-        if(stairLeap) 
-        {   
-            body.velocity = Vector2.zero;
-            stairLeap = false;
-        }
         body.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         Physics2D.IgnoreLayerCollision(GameManager.instance.maskLibrary.playerFeetLayer, GameManager.instance.maskLibrary.platformLayer, true);
         wasClimbing = false;
         if (IsGrounded() || coyoteTimer > 0)
         {
+            Debug.Log("Test 1");
             body.AddForce(new Vector2(movement, 0));
             body.AddForce(Vector2.up * jumpPower);
             jump = jumpJetpack;
@@ -206,11 +202,26 @@ public class PlayerMovement : MonoBehaviour
             dustParticles.Stop();
             coyoteTimer = 0;
             return;
-        } else if(IsGrappeling() || coyoteTimerWall > 0)
+        } else if(stairLeap)
         {
+            body.velocity = Vector2.zero;
+            stairLeap = false;
+
+            body.AddForce(new Vector2(lookDir*wallJumpPower, 0)); 
+            body.AddForce(Vector2.up * jumpPower);
+            jump = jumpJetpack;
+            playerSounds.PlayJump();
+            wallJumpParticles.transform.eulerAngles = wallRight ? new Vector3(0, 0, 0) : new Vector3(0, 180, 0);
+            wallJumpParticles.transform.localPosition = wallRight ? new Vector3(0.44f, 0.202f, 0f) : new Vector3(-0.44f, 0.202f, 0f);
+            wallJumpParticles.Play();
+            coyoteTimerWall = 0;
+        } 
+        else if(IsGrappeling() || coyoteTimerWall > 0)
+        {
+            Debug.Log("Test 2");
             body.AddForce(Vector2.up * jumpPower);
 
-            bool wallRight = Physics2D.Raycast(transform.position+Vector3.down* playerCollider.size.y/2, Vector2.right, 1f, 3);
+            bool wallRight = Physics2D.Raycast((Vector2)transform.position+Vector2.down* playerCollider.size.y/2 +playerCollider.offset, Vector2.right, 1f, 3);
             body.AddForce(new Vector2((wallRight?-1:1)*wallJumpPower, 0)); 
             jump = jumpJetpack;
             playerSounds.PlayJump();
@@ -220,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimerWall = 0;
         } else if(!doubleJumpActive)
         {
+            Debug.Log("Test 3");
             body.AddForce(new Vector2(movement*leapPower, 0));
             body.velocity = new Vector2(body.velocity.x, 0);
             body.AddForce(Vector2.up * jumpPower);
