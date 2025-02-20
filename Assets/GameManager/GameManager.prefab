@@ -1760,6 +1760,7 @@ MonoBehaviour:
   inspirationPoints: 0
   maskLibrary:
     playerLayer: 3
+    playerFeetLayer: 15
     platformLayer: 14
     groundLayer: 0
     onlyGround:
